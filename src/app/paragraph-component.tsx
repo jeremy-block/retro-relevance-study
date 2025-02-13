@@ -1,16 +1,43 @@
 import React, { useRef, useState, useCallback, useMemo } from "react";
 import { useStudyContext } from "./study-context";
 import { v4 as uuidv4 } from "uuid";
-import { RelevanceLevel, TextSelection } from "./types";
+import { RelevanceLevel, TextSelection as TextSelectionType } from "./types";
+import { TextSelection } from "./text-selection";
 
-// Color mapping for relevance levels
-const RELEVANCE_COLORS = {
-  [RelevanceLevel.HIGH]: "bg-green-200",
-  [RelevanceLevel.RELEVANT]: "bg-blue-200",
-  [RelevanceLevel.SOMEWHAT_RELEVANT]: "bg-yellow-100",
-  [RelevanceLevel.UNMARKED]: "bg-transparent",
-  [RelevanceLevel.IRRELEVANT]: "bg-red-100",
-  [RelevanceLevel.INCORRECT]: "bg-red-300",
+interface RelevanceContextMenuProps {
+  position: { x: number; y: number };
+  onSelect: (level: RelevanceLevel) => void;
+  onClose: () => void;
+}
+
+const RelevanceContextMenu: React.FC<RelevanceContextMenuProps> = ({
+  position,
+  onSelect,
+  onClose,
+}) => {
+  // Use portal for better stacking context
+  return (
+    <div
+      className="fixed z-50 bg-white p-2 border rounded shadow-lg"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        transform: "translate(-50%, -100%)",
+      }}
+    >
+      {Object.values(RelevanceLevel)
+        .filter((level) => level !== RelevanceLevel.UNMARKED)
+        .map((level) => (
+          <button
+            key={level}
+            onClick={() => onSelect(level)}
+            className="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
+          >
+            {level}
+          </button>
+        ))}
+    </div>
+  );
 };
 
 export const ParagraphComponent: React.FC<{
@@ -19,13 +46,17 @@ export const ParagraphComponent: React.FC<{
 }> = ({ paragraphId, content }) => {
   const { state, dispatch } = useStudyContext();
   const paragraphRef = useRef<HTMLDivElement>(null);
-  const [localSelection, setLocalSelection] = useState<{
+  const [menuPosition, setMenuPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
+  const [currentSelection, setCurrentSelection] = useState<{
     start: number;
     end: number;
+    text: string;
   } | null>(null);
 
-  // Text selection handler with robust error catching
-  const handleTextSelection = useCallback(() => {
+  const handleTextSelection = useCallback((event: MouseEvent) => {
     if (!paragraphRef.current) return null;
 
     try {
@@ -36,7 +67,6 @@ export const ParagraphComponent: React.FC<{
       const startNode = range.startContainer;
       const endNode = range.endContainer;
 
-      // Validate selection boundaries
       if (
         !paragraphRef.current.contains(startNode) ||
         !paragraphRef.current.contains(endNode)
@@ -44,18 +74,19 @@ export const ParagraphComponent: React.FC<{
         return null;
       }
 
-      const startOffset = range.startOffset;
-      const endOffset = range.endOffset;
+      const selectedText = range.toString().trim();
+      if (!selectedText) return null;
 
-      // Prevent zero-length selections
-      if (startOffset === endOffset) return null;
+      // Calculate character offsets
+      const textContent = paragraphRef.current.textContent || "";
+      const startOffset = textContent.indexOf(selectedText);
+      const endOffset = startOffset + selectedText.length;
 
-      // Robust selection index calculation
-      const selectedText = range.toString();
+      if (startOffset === -1) return null;
 
       return {
-        start: Math.min(startOffset, endOffset),
-        end: Math.max(startOffset, endOffset),
+        start: startOffset,
+        end: endOffset,
         text: selectedText,
       };
     } catch (error) {
@@ -64,18 +95,28 @@ export const ParagraphComponent: React.FC<{
     }
   }, []);
 
-  // Relevance selection handler
-  const handleRelevanceSelection = useCallback(
-    (relevanceLevel: RelevanceLevel) => {
-      if (!localSelection) return;
+  const handleMouseUp = useCallback(
+    (event: React.MouseEvent) => {
+      const selection = handleTextSelection(event.nativeEvent);
+      if (selection) {
+        setCurrentSelection(selection);
+        setMenuPosition({ x: event.clientX, y: event.clientY });
+      }
+    },
+    [handleTextSelection]
+  );
 
-      const newSelection: TextSelection = {
+  const handleRelevanceSelect = useCallback(
+    (level: RelevanceLevel) => {
+      if (!currentSelection) return;
+
+      const newSelection: TextSelectionType = {
         id: uuidv4(),
         paragraphId,
-        startIndex: localSelection.start,
-        endIndex: localSelection.end,
-        text: content.slice(localSelection.start, localSelection.end),
-        relevanceLevel,
+        startIndex: currentSelection.start,
+        endIndex: currentSelection.end,
+        text: currentSelection.text,
+        relevanceLevel: level,
         timestamp: Date.now(),
       };
 
@@ -84,16 +125,25 @@ export const ParagraphComponent: React.FC<{
         payload: newSelection,
       });
 
-      setLocalSelection(null);
+      setCurrentSelection(null);
+      setMenuPosition(null);
+      window.getSelection()?.removeAllRanges();
     },
-    [localSelection, paragraphId, content, dispatch]
+    [currentSelection, paragraphId, dispatch]
   );
 
-  // Render selections with color coding
+  const handleRemoveSelection = useCallback(
+    (selectionId: string) => {
+      dispatch({
+        type: "REMOVE_SELECTION",
+        payload: { paragraphId, selectionId },
+      });
+    },
+    [paragraphId, dispatch]
+  );
+
   const renderedContent = useMemo(() => {
     const selections = state.selections[paragraphId] || [];
-
-    // Sort selections by start index to handle overlapping
     const sortedSelections = [...selections].sort(
       (a, b) => a.startIndex - b.startIndex
     );
@@ -107,14 +157,15 @@ export const ParagraphComponent: React.FC<{
         result.push(content.slice(lastIndex, selection.startIndex));
       }
 
-      // Add colored selection
+      // Add selection component
       result.push(
-        <span
+        <TextSelection
           key={selection.id}
-          className={`${RELEVANCE_COLORS[selection.relevanceLevel]}`}
-        >
-          {content.slice(selection.startIndex, selection.endIndex)}
-        </span>
+          id={selection.id}
+          text={selection.text}
+          relevanceLevel={selection.relevanceLevel}
+          onRemove={handleRemoveSelection}
+        />
       );
 
       lastIndex = selection.endIndex;
@@ -126,36 +177,25 @@ export const ParagraphComponent: React.FC<{
     }
 
     return result;
-  }, [content, state.selections, paragraphId]);
+  }, [content, state.selections, paragraphId, handleRemoveSelection]);
 
   return (
     <div
       ref={paragraphRef}
-      onMouseUp={() => {
-        const selection = handleTextSelection();
-        if (selection) setLocalSelection(selection);
-      }}
-      className="p-4 bg-white border rounded cursor-text"
+      onMouseUp={handleMouseUp}
+      className="p-4 bg-white border rounded cursor-text relative"
     >
       {renderedContent}
 
-      {localSelection && (
-        <div
-          className="fixed z-50 bg-gray-100 p-2 border rounded shadow"
-          // Position logic would be added here
-        >
-          {Object.values(RelevanceLevel)
-            .filter((level) => level !== RelevanceLevel.UNMARKED)
-            .map((level) => (
-              <button
-                key={level}
-                onClick={() => handleRelevanceSelection(level)}
-                className={`m-1 p-1 rounded ${RELEVANCE_COLORS[level]}`}
-              >
-                {level}
-              </button>
-            ))}
-        </div>
+      {menuPosition && (
+        <RelevanceContextMenu
+          position={menuPosition}
+          onSelect={handleRelevanceSelect}
+          onClose={() => {
+            setMenuPosition(null);
+            setCurrentSelection(null);
+          }}
+        />
       )}
     </div>
   );
