@@ -24,24 +24,20 @@ export const TextSelection: React.FC<TextSelectionProps> = ({
   onRemove,
 }) => {
   return (
-    <span className="relative group">
-      <span
-        className={`${RELEVANCE_COLORS[relevanceLevel]} relative inline-block`}
+    <span className={`${RELEVANCE_COLORS[relevanceLevel]} relative group`}>
+      {text}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onRemove(id);
+        }}
+        className="absolute -top-5 -right-6 opacity-0 group-hover:opacity-100 
+                   bg-white rounded-full border-2 border-solid border-gray-300 px-1.5 shadow-lg 
+                   hover:bg-gray-200 transition-opacity"
+        aria-label="Remove selection"
       >
-        {text}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onRemove(id);
-          }}
-          className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 
-                   bg-white rounded-full p-0.5 shadow-sm 
-                   hover:bg-gray-100 transition-opacity"
-          aria-label="Remove selection"
-        >
-          X
-        </button>
-      </span>
+        X
+      </button>
     </span>
   );
 };
