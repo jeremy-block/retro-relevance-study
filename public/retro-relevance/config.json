@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
+    "studyMetadata": {
+        "title": "Retrospective Relevance",
+        "version": "pilot phase 4",
+        "authors": [
+            "Jeremy Block"
+        ],
+        "date": "2025-04-01",
+        "description": "We want to evaluate how you edit summaries of your work",
+        "organizations": [
+            "University of Florida"
+        ]
+    },
+    "uiConfig": {
+        "contactEmail": "j.block@ufl.edu",
+        "helpTextPath": "../retro-relevance/assets/tutorialText/help.md",
+        "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
+        "withProgressBar": true,
+        "autoDownloadStudy": true,
+        "autoDownloadTime": 5000,
+        "studyEndMsg": "Thank you for completing this study. You're the best!",
+        "sidebar": false,
+        "windowEventDebounceTime": 500,
+        "urlParticipantIdParam": "PROLIFIC_ID",
+        "numSequences": 500
+    },
+    "components": {
+        "introduction": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/intro.md",
+            "response": []
+        },
+        "first-question-set": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "q1-name",
+                    "prompt": "What is your first name?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "longText",
+                    "placeholder": "Please enter your first name"
+                },
+                {
+                    "id": "q2-color",
+                    "prompt": "What is your favorite color?",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "dropdown",
+                    "placeholder": "Please choose your favorite color",
+                    "options": [
+                        "Red",
+                        "Blue",
+                        "My favorite color is not shown here."
+                    ]
+                }
+            ]
+        }        
+    },
+    "sequence": {
+        "order": "fixed",
+        "components": [
+            "introduction",
+            "first-question-set"
+        ]
+    }
+}
