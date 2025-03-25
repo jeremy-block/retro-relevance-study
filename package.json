@@ -47,6 +47,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "lodash.throttle": "^4.1.1",
+    "markdown-it": "^14.1.0",
     "plyr-react": "^5.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -1,0 +1,145 @@
+/* src/styles/tailwind.css */
+@import 'tailwindcss';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+/* Custom styles for the application */
+
+/* Styles for the sentence items in TextEditor component */
+.sentence-item {
+  @apply transition-all duration-200;
+}
+
+.sentence-item:hover {
+  @apply bg-gray-100;
+}
+
+.sentence-item.dragging { 
+  @apply shadow-lg border-blue-400;
+}
+
+/* Styles for relevance highlighting in ParagraphSelection component */
+[data-relevance="High relevance"] {
+  @apply bg-green-200;
+}
+
+[data-relevance="Relevant"] {
+  @apply bg-blue-200;
+}
+
+[data-relevance="Low relevance"] {
+  @apply bg-yellow-200;
+}
+
+[data-relevance="Unmarked"] {
+  @apply bg-transparent;
+}
+
+[data-relevance="Irrelevant"] {
+  @apply bg-red-200;
+}
+
+[data-relevance="Incorrect"] {
+  @apply bg-gray-200;
+}
+
+/* Styles for markdown rendering */
+.prose pre {
+  @apply bg-gray-50 p-3 rounded-sm overflow-auto;
+}
+
+.prose code {
+  @apply bg-gray-50 px-1 py-0.5 rounded-sm text-sm;
+}
+
+body {
+  @apply bg-gray-100;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.prose {
+  @apply text-gray-800 leading-relaxed;
+}
+
+.prose h2 {
+  @apply text-xl font-bold mb-2;
+}
+
+.prose p {
+  @apply mb-0
+}
+
+.prose ul {
+  @apply mb-4 list-disc pl-5;
+}
+
+.prose li {
+  @apply mb-1;
+}
+
+
+/* Custom styles for markdown rendering */
+.markdown-content h1 {
+  @apply text-2xl font-bold ;
+}
+
+.markdown-content h2 {
+  @apply text-xl font-bold mb-3;
+}
+
+.markdown-content h3 {
+  @apply text-lg font-bold mb-1;
+}
+
+.markdown-content h4 {
+  @apply font-bold mb-2;
+}
+
+.markdown-content p {
+  @apply mb-0;
+}
+
+.markdown-content ul {
+  @apply list-disc pl-5 mb-2;
+}
+
+.markdown-content ol {
+  @apply list-decimal pl-5 mb-2;
+}
+
+.markdown-content a {
+  @apply text-blue-600 hover:underline;
+}
+
+.markdown-content strong {
+  @apply font-bold;
+}
+
+.markdown-content em {
+  @apply italic;
+}
+
+.markdown-content code {
+  @apply font-mono bg-gray-100 px-1 rounded;
+}
+
+.markdown-content blockquote {
+  @apply pl-4 border-l-4 border-gray-300 italic;
+}

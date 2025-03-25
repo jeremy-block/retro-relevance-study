@@ -14,18 +14,38 @@
     },
     "uiConfig": {
         "contactEmail": "j.block@ufl.edu",
-        "helpTextPath": "../retro-relevance/assets/tutorialText/help.md",
         "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 5000,
         "studyEndMsg": "Thank you for completing this study. You're the best!",
-        "sidebar": false,
+        "sidebar": true,
         "windowEventDebounceTime": 500,
         "urlParticipantIdParam": "PROLIFIC_ID",
         "numSequences": 500
     },
     "components": {
+        "SentenceList":{
+            "description": "This is SentenceList",
+            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
+            "type": "react-component",
+            "path": "retro-relevance/SentenceList.tsx",
+            "parameters": {
+                "content":{
+                    "sentences":[],
+                    "focusedSentenceId":null
+                }
+            },
+            "response": [
+                {
+                    "id": "test-response1",
+                    "prompt": "Please keep editing the sentence list.",
+                    "required": true,
+                    "location": "sidebar",
+                    "type": "reactive"
+                }
+            ]
+        },
         "introduction": {
             "type": "markdown",
             "path": "../retro-relevance/assets/tutorialText/intro.md",
@@ -61,6 +81,7 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "SentenceList",
             "introduction",
             "first-question-set"
         ]
