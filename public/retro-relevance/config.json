@@ -29,12 +29,9 @@
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
             "type": "react-component",
-            "path": "retro-relevance/SentenceList.tsx",
+            "path": "retro-relevance/test.tsx",
             "parameters": {
-                "content":{
-                    "sentences":[],
-                    "focusedSentenceId":null
-                }
+                "taskid": "test-response1"
             },
             "response": [
                 {
@@ -44,6 +41,16 @@
                     "location": "sidebar",
                     "type": "reactive"
                 }
+            ]
+        },
+        "Tester": {
+            "description": "This is SentenceList",
+            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
+            "type": "react-component",
+            "path": "retro-relevance/testTwo.tsx",
+            "parameters": {
+            },
+            "response": [
             ]
         },
         "introduction": {
@@ -81,7 +88,8 @@
     "sequence": {
         "order": "fixed",
         "components": [
-            "SentenceList",
+            "SentenceList",            
+            "Tester",
             "introduction",
             "first-question-set"
         ]
