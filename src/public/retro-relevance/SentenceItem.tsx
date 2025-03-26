@@ -1,7 +1,6 @@
 // src/components/TextEditor/SentenceItem.tsx
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { markdownToHtml } from './utils/markdownUtils';
-// import { updateSentence, setFocusedSentence } from './retro-store/slices/contentSlice';
 import { initializeTrrack, Registry } from '@trrack/core';
 import { ProvenanceGraph } from '@trrack/core/graph/graph-slice';
 import { StimulusParams } from "../../store/types";
@@ -10,7 +9,7 @@ import { StimulusParams } from "../../store/types";
 
 
 interface SentenceItemProps {
-  id: string;
+  id: string
   text: string;
   //todo update the type of text to match the new structure
   // sentenceItem: {
@@ -24,123 +23,141 @@ interface SentenceItemProps {
 
 function SentenceItem({ 
     setAnswer, parameters,
-    // onChange,
-    // onRemove,
-    // onAddAfter,
-    // focused,
+    onChange = () => {},
+    onRemove = () => {},
+    onAddAfter = ()=> {},
+    focused = true,
 }: SentenceItemProps & StimulusParams<any>) {
     const answers = parameters.testingStimulusValue
-    const { taskid } = parameters
+    const { key } = parameters
     console.log(parameters)
-    // const selectedID = parameters.id;
     const id = parameters.id;
+    // console.log("🚀 ~ id:", id)
     const text = parameters.text;
 
     
-  const [editText, setEditText] = useState(text);
-  const editorRef = useRef<HTMLTextAreaElement>(null);
-  const [showRemoveDialog, setShowRemoveDialog] = useState(false);
-//   const [removeReason, setRemoveReason] = useState('');
-const { actions, trrack } = useMemo(() => {
-    const reg = Registry.create();
+    const [editText, setEditText] = useState(text);
+    const editorRef = useRef<HTMLTextAreaElement>(null);
+    const [showRemoveDialog, setShowRemoveDialog] = useState(false);
+    //todo make sure to log remove reason into provenance trracker.
+    const [removeReason, setRemoveReason] = useState('');
+    const { actions, trrack } = useMemo(() => {
+        const reg = Registry.create();
 
-    const focusSentence = reg.register('setFocusedSentence', (state, id:string|null) => {
-        state.content.focusedSentenceId = id;
-        return state;
-    });
+        const setFocusedSentence = reg.register('setFocusedSentence', (state, id: string | null) => {
+            state.content.focusedSentenceId = id;
+            return state;
+        });
 
-    //todo Make more sliders for data store
-
-    const trrackInst = initializeTrrack({
-        registry: reg,
-        initialState: {
-            content: {
-                //todo set up initial store config
-                focusedSentenceId: null,
+        //todo Make more slicers for data store
+        const updateSentence = reg.register('updateSentence', (state, payload: { id: string; text: string }) => {
+            console.log("🚀 ~ updateSentence ~ payload:", payload)
+            const sentence = (state.content.sentences ?? []).find(s => s.id === payload.id);
+            if (sentence) {
+                sentence.text = payload.text;
             }
-        },
-    });
+        });
 
-    return {
-        actions: {
-            //todo list possible actions.
-            focusSentence,
-        },
-        trrack: trrackInst,
-    };
-}, []);
+        const trrackInst = initializeTrrack({
+            registry: reg,
+            initialState: {
+                content: {
+                    //todo set up initial store config
+                    focusedSentenceId: null,
+                    sentences: [null]
+                }
+            },
+        });
+
+        return {
+            actions: {
+                //todo list possible actions.
+                updateSentence,
+                setFocusedSentence,
+            },
+            trrack: trrackInst,
+        };
+    }, []);
     
-    const setFocused = useCallback((something:string) => {
+    const sentenceUpdateCallback = useCallback((payload: { id: string; text: string }) => {
+        console.log("🚀 ~ setFocused ~ payload:", payload)
+        trrack.apply('updatingSent', actions.updateSentence(payload))
+    }, [actions, id, trrack]);
+
+    const focusedSetCallback = useCallback((something: string | null) => {
         console.log("🚀 ~ setFocused ~ something:", something)
-      
-          trrack.apply('"setting ID"', actions.focusSentence(id));
-      
-          setAnswer({
+        if (something === null) {
+            trrack.apply('DeselectSentence', actions.setFocusedSentence(id))
+            something = '';
+        } else {
+            trrack.apply('"setting ID"', actions.setFocusedSentence(id));
+        }
+        setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
-              answers: {
-                  [taskid]: something
-              },
-          });
-        }, [actions, setAnswer, taskid, trrack]);
+            answers: {
+                [key]: something
+            },
+        });
+    }, [actions, key, trrack]);
 
 
-//   // Ensure only one item is focused at a time
-//   useEffect(() => {
-//     if (focused && editorRef.current) {
-//       editorRef.current.focus();
-//     }
-//   }, [focused]);
+  // Ensure only one item is focused at a time
+  useEffect(() => {
+    if (focused && editorRef.current) {
+      editorRef.current.focus();
+    }
+  }, [focused]);
 
   
-//   // Start editing
-//   const handleStartEdit = () => {
-//     dispatch(setFocusedSentence(id)); //Mark Item as focused
-//   };
+  // Start editing
+  const handleStartEdit = () => {
+    focusedSetCallback(id); //Mark Item as focused
+  };
   
-//   // Save changes
-//   const handleSave = () => {
-//     if (text !== editText) {
-//       onChange(id, editText, text);
-//     }
-//     dispatch(updateSentence({ id, text: editText }));
-//     dispatch(setFocusedSentence(null)); //Clear focus when done editing
-//   };
+  // Save changes
+  const handleSave = () => {
+    if (text !== editText) {
+      onChange(id, editText, text);
+    }
+    sentenceUpdateCallback({ id, text: editText });
+    focusedSetCallback(null); //Clear focus when done editing
+  };
   
-//   // Handle key press
-//   // todo handle up and down arrow keys for navigation (maybe with shift key)
-//   const handleKeyDown = (e: React.KeyboardEvent) => {
-//     if (e.key === 'Enter' && !e.shiftKey) {
-//       e.preventDefault();
-//       handleSave();
-//       setTimeout(() => onAddAfter(), 0);
-//     } else if (e.key === 'Escape') {
-//       // setIsEditing(false);
-//       setEditText(text);
-//       dispatch(setFocusedSentence(null)); //Clear focus on cancel
+  // Handle key press
+  // todo handle up and down arrow keys for navigation (maybe with shift key)
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSave();
+      setTimeout(() => onAddAfter(), 0);
+    } else if (e.key === 'Escape') {
+      // setIsEditing(false);
+      setEditText(text);
+      focusedSetCallback(null); //Clear focus on cancel
 
-//     }
-//   };
+    }
+  };
   
-//   // Confirm sentence removal
-//   const handleRemoveConfirm = () => {
-//     if (removeReason) {
-//       onRemove(id, text, removeReason);
-//       setShowRemoveDialog(false);
-//       setRemoveReason('');
-//     }
-//   };
+  // Confirm sentence removal
+  const handleRemoveConfirm = () => {
+    if (removeReason) {
+      onRemove(id, text, removeReason);
+      setShowRemoveDialog(false);
+      setRemoveReason('');
+    }
+  };
   
-//   // Render HTML from markdown
-//   const renderHtml = () => {
-//     if(!text) return { __html: '<span class="text-gray-400 italic">Blank line - Please click to edit</span>' };
-//     return { __html: markdownToHtml(text) };
-//   };
+  // Render HTML from markdown
+  const renderHtml = () => {
+    if(!text) return { __html: '<span class="text-gray-400 italic">Blank line - Please click to edit</span>' };
+    return { __html: markdownToHtml(text) };
+  };
   
   return (
       <div className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
-          <button onClick={() => setFocused(id)}>{text}</button>
-      {/* {focused ? (
+          <button onClick={() => focusedSetCallback(id)}>{text}</button>
+      {focused ? (
         <div>
           <textarea
             ref={editorRef}
@@ -171,17 +188,17 @@ const { actions, trrack } = useMemo(() => {
             dangerouslySetInnerHTML={renderHtml()} 
           />
         </div>
-      )} */}
+      )}
       
-      {/* <div 
+      <div 
         className="absolute top-0 left-0 w-6 h-6 bg-gray-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl cursor-grab"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
         </svg>
-      </div> */}
+      </div>
       
-      {/* <button
+      <button
         className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
         onClick={() => text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty')}
         title="Remove sentence"
@@ -189,9 +206,9 @@ const { actions, trrack } = useMemo(() => {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
-      </button> */}
+      </button>
       
-      {/* {showRemoveDialog && (
+      {showRemoveDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-4 rounded shadow-lg max-w-md w-full">
             <h3 className="text-lg font-semibold mb-3">Why are you removing this sentence?</h3>
@@ -250,7 +267,7 @@ const { actions, trrack } = useMemo(() => {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
