@@ -5,6 +5,8 @@ import { StimulusParams } from "../../store/types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function test({ parameters, setAnswer }: StimulusParams<any>) {
+  const answers = useStoreSelector((state) => state.answers["AdminStart_0"].answer.mainSummary);
+
     const { taskid } = parameters;
 
 
@@ -19,10 +21,13 @@ function test({ parameters, setAnswer }: StimulusParams<any>) {
           },
         });
       }, [setAnswer]);
-const answers = useStoreSelector((state) => state.answers);
   console.log("🚀 ~ test ~ answers:", answers)
   return (
-    <div><button onClick={clickCallback}>
+    <div>
+      <p>
+        {answers}
+      </p>
+      <button onClick={clickCallback}>
         <p style={{ height: 400 }}>
       Hello 
     </p>

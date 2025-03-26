@@ -25,6 +25,19 @@
         "numSequences": 500
     },
     "components": {
+        "AdminStart": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "mainSummary",
+                    "prompt": "Please copy the text in from the researcher",
+                    "required": true,
+                    "location": "aboveStimulus",
+                    "type": "longText",
+                    "placeholder": "Please enter the output from the large language model"
+                }
+            ]
+        },
         "SentenceList":{
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
@@ -88,6 +101,7 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "AdminStart",
             "SentenceList",            
             "Tester",
             "introduction",
