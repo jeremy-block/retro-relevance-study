@@ -42,10 +42,13 @@
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
             "type": "react-component",
-            "path": "retro-relevance/test.tsx",
+            "path": "retro-relevance/SentenceItem.tsx",
             "parameters": {
                 "taskid": "test-response1",
-                "testingStimulusValue": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:"
+                "testingStimulusValue": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:",
+                    "setAnswer": "",
+    "id" : "hello",
+    "text": "hi there"
             },
             "response": [
                 {
@@ -102,7 +105,6 @@
     "sequence": {
         "order": "fixed",
         "components": [
-            "AdminStart",
             "SentenceList",            
             "Tester",
             "introduction",
