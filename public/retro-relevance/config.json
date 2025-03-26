@@ -44,7 +44,8 @@
             "type": "react-component",
             "path": "retro-relevance/test.tsx",
             "parameters": {
-                "taskid": "test-response1"
+                "taskid": "test-response1",
+                "testingStimulusValue": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:"
             },
             "response": [
                 {
