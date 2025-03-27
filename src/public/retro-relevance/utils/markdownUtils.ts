@@ -143,6 +143,7 @@ export const splitIntoSentencesOld = (text: string): string[] => {
 /**
  * Splits text into sentences with metadata for markdown elements
  */
+//todo fix this to add id into the output next to text (or maybe it can go inside metadata... but that will be a problem for later.)
 export const splitIntoSentencesAndMetadata = (text: string): Array<{text: string, metadata: {isListItem: boolean, indentLevel: number}}> => {
   // Define abbreviations to avoid false splitting
   const abbreviations = ['mr.', 'mrs.', 'dr.', 'prof.', 'inc.', 'i.e.', 'e.g.', 'etc.', 'vs.', 'fig.'];

@@ -47,6 +47,15 @@ export type Sentence = {
   text: string;
 };
 
+export type possibleNewSentence = {
+  id: string;
+  text: string;
+  metadata: {
+    indentLevel: number;
+    isListItem: boolean;
+  };
+}
+
 // Represents a single DOM element that needs to be highlighted
 export interface HighlightableElement {
   nodeRef: string;  // A unique reference to identify the node

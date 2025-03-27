@@ -1,16 +1,11 @@
 // src/components/TextEditor/SentenceItem.tsx
-import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { markdownToHtml } from './utils/markdownUtils';
-import { initializeTrrack, Registry } from '@trrack/core';
-import { ProvenanceGraph } from '@trrack/core/graph/graph-slice';
-import { StimulusParams } from "../../store/types";
-
-
-
 
 interface SentenceItemProps {
-  id: string
+  id: string;
   text: string;
+  focused: boolean;
   //todo update the type of text to match the new structure
   // sentenceItem: {
   //   metadata: {id: string, isListItem: boolean, indentLevel: number }, text: string;
@@ -18,110 +13,40 @@ interface SentenceItemProps {
   onChange: (id: string, newText: string, oldText: string) => void;
   onRemove: (id: string, oldText: string, reason: string) => void;
   onAddAfter: () => void;
-  focused: boolean;
+  onFocus: (id: string | null) => void;
 }
 
-function SentenceItem({ 
-    setAnswer, parameters,
-    onChange = () => {},
-    onRemove = () => {},
-    onAddAfter = ()=> {},
-    focused = true,
-}: SentenceItemProps & StimulusParams<any>) {
-    const answers = parameters.testingStimulusValue
-    const { key } = parameters
-    console.log(parameters)
-    const id = parameters.id;
-    // console.log("🚀 ~ id:", id)
-    const text = parameters.text;
-
-    
-    const [editText, setEditText] = useState(text);
-    const editorRef = useRef<HTMLTextAreaElement>(null);
-    const [showRemoveDialog, setShowRemoveDialog] = useState(false);
-    //todo make sure to log remove reason into provenance trracker.
-    const [removeReason, setRemoveReason] = useState('');
-    const { actions, trrack } = useMemo(() => {
-        const reg = Registry.create();
-
-        const setFocusedSentence = reg.register('setFocusedSentence', (state, id: string | null) => {
-            state.content.focusedSentenceId = id;
-            return state;
-        });
-
-        //todo Make more slicers for data store
-        const updateSentence = reg.register('updateSentence', (state, payload: { id: string; text: string }) => {
-            console.log("🚀 ~ updateSentence ~ payload:", payload)
-            const sentence = (state.content.sentences ?? []).find(s => s.id === payload.id);
-            if (sentence) {
-                sentence.text = payload.text;
-            }
-        });
-
-        const trrackInst = initializeTrrack({
-            registry: reg,
-            initialState: {
-                content: {
-                    //todo set up initial store config
-                    focusedSentenceId: null,
-                    sentences: [null]
-                }
-            },
-        });
-
-        return {
-            actions: {
-                //todo list possible actions.
-                updateSentence,
-                setFocusedSentence,
-            },
-            trrack: trrackInst,
-        };
-    }, []);
-    
-    const sentenceUpdateCallback = useCallback((payload: { id: string; text: string }) => {
-        console.log("🚀 ~ setFocused ~ payload:", payload)
-        trrack.apply('updatingSent', actions.updateSentence(payload))
-    }, [actions, id, trrack]);
-
-    const focusedSetCallback = useCallback((something: string | null) => {
-        console.log("🚀 ~ setFocused ~ something:", something)
-        if (something === null) {
-            trrack.apply('DeselectSentence', actions.setFocusedSentence(id))
-            something = '';
-        } else {
-            trrack.apply('"setting ID"', actions.setFocusedSentence(id));
-        }
-        setAnswer({
-            status: true,
-            provenanceGraph: trrack.graph.backend,
-            answers: {
-                [key]: something
-            },
-        });
-    }, [actions, key, trrack]);
-
-
+const SentenceItem: React.FC<SentenceItemProps> = ({
+  id,
+  text,
+  focused,
+  onChange,
+  onRemove,
+  onAddAfter,
+  onFocus,
+}) => {
+  const [editText, setEditText] = useState(text);
+  const editorRef = useRef<HTMLTextAreaElement>(null);
+  const [showRemoveDialog, setShowRemoveDialog] = useState(false);
+  const [removeReason, setRemoveReason] = useState('');
+  
   // Ensure only one item is focused at a time
   useEffect(() => {
     if (focused && editorRef.current) {
       editorRef.current.focus();
     }
   }, [focused]);
-
-  
   // Start editing
   const handleStartEdit = () => {
-    focusedSetCallback(id); //Mark Item as focused
+        onFocus(id);  // This tells the parent to set the focus to this sentence
   };
-  
   // Save changes
   const handleSave = () => {
+    console.log("🚀 ~ handleSave ~ text:", text, editText)
     if (text !== editText) {
       onChange(id, editText, text);
     }
-    sentenceUpdateCallback({ id, text: editText });
-    focusedSetCallback(null); //Clear focus when done editing
+    onFocus(null);  // Clear focus when done editing
   };
   
   // Handle key press
@@ -132,10 +57,8 @@ function SentenceItem({
       handleSave();
       setTimeout(() => onAddAfter(), 0);
     } else if (e.key === 'Escape') {
-      // setIsEditing(false);
       setEditText(text);
-      focusedSetCallback(null); //Clear focus on cancel
-
+      onFocus(null);
     }
   };
   
@@ -150,13 +73,12 @@ function SentenceItem({
   
   // Render HTML from markdown
   const renderHtml = () => {
-    if(!text) return { __html: '<span class="text-gray-400 italic">Blank line - Please click to edit</span>' };
+    if (!text) return { __html: '<span class="text-gray-400 italic">Blank line - Please click to edit</span>' };
     return { __html: markdownToHtml(text) };
   };
   
   return (
-      <div className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
-          <button onClick={() => focusedSetCallback(id)}>{text}</button>
+    <div className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
       {focused ? (
         <div>
           <textarea
@@ -165,6 +87,7 @@ function SentenceItem({
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             onBlur={handleSave}
+            onClick={handleStartEdit}
             onKeyDown={handleKeyDown}
             rows={Math.max(2, editText.split('\n').length)}
           />
@@ -200,12 +123,10 @@ function SentenceItem({
       
       <button
         className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
-        onClick={() => text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty')}
+        onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
         title="Remove sentence"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-        </svg>
+        ✕
       </button>
       
       {showRemoveDialog && (
@@ -213,48 +134,24 @@ function SentenceItem({
           <div className="bg-white p-4 rounded shadow-lg max-w-md w-full">
             <h3 className="text-lg font-semibold mb-3">Why are you removing this sentence?</h3>
             <div className="mb-4 space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="removeReason"
-                  value="inaccurate"
-                  checked={removeReason === 'inaccurate'}
-                  onChange={() => setRemoveReason('inaccurate')}
-                  className="mr-2"
-                />
-                <span>Inaccurate</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="removeReason"
-                  value="irrelevant"
-                  checked={removeReason === 'irrelevant'}
-                  onChange={() => setRemoveReason('irrelevant')}
-                  className="mr-2"
-                />
-                <span>Irrelevant</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="removeReason"
-                  value="other"
-                  checked={removeReason === 'other'}
-                  onChange={() => setRemoveReason('other')}
-                  className="mr-2"
-                />
-                <span>Other</span>
-              </label>
+              {['inaccurate', 'irrelevant', 'other'].map((reason) => (
+                <label key={reason} className="flex items-center">
+                  <input
+                    type="radio"
+                    name="removeReason"
+                    value={reason}
+                    checked={removeReason === reason}
+                    onChange={() => setRemoveReason(reason)}
+                    className="mr-2"
+                  />
+                  <span>{reason.charAt(0).toUpperCase() + reason.slice(1)}</span>
+                </label>
+              ))}
             </div>
             <div className="flex justify-end space-x-2">
               <button
                 className="px-4 py-2 border rounded hover:bg-gray-100"
-                onClick={() => {
-                  setShowRemoveDialog(false);
-                  setRemoveReason('');
-                }}
-              >
+                onClick={() => setShowRemoveDialog(false)}>
                 Cancel
               </button>
               <button

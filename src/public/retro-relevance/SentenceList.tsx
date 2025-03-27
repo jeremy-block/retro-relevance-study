@@ -1,129 +1,317 @@
-// // src/components/TextEditor/SentenceList.tsx
-// import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// // import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-// import SentenceItem from './SentenceItem';
-// import { updateSentence, removeSentence, addSentence } from './retro-store/slices/contentSlice';
-// import { Sentence } from './retro-types';
+// src/components/TextEditor/SentenceList.tsx
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Registry, initializeTrrack } from '@trrack/core';
+import SentenceItem from './SentenceItem';
+import { Sentence } from './retro-types';
+import { splitIntoSentences, splitIntoSentencesAndMetadata, splitIntoSentencesOld } from './utils/markdownUtils';
+import { useStoreSelector } from '../../store/store';
 
-// function SentenceList({ parameters }: { parameters: any }) {
-//   const dispatch = useDispatch();
-//   const sentences = parameters.content.sentences;
-//   const focusedSentenceId = parameters.content.focusedSentenceId;
-  
-  
-//   //todo this may be why tehre are multiple dispach events for adding sentence. to be determined
-//   // Handle sentence text change
-//   const handleSentenceChange = (id: string, newText: string, oldText: string) => {
-//     dispatch(updateSentence({ id, text: newText }));
+// Interface for SentenceList props
+interface SentenceListProps {
+    parameters: any; //I think this is always passed in.
+    initialSentences?: Sentence[];
+    provenanceState?: { all: { sentences: Sentence[], focusedSentenceId: string | null } };
+    updateState?: (all: { sentences: Sentence[], focusedSentenceId: string | null }) => void;
+    setAnswer?: (data: any) => void;
+}
 
-//     // Log the edit
-//     // logAction({
-//     //   type: 'edit',
-//     //   paragraphID: 'p1',
-//     //   sentenceID: id,
-//     //   priorSentenceText: oldText,
-//     //   newSentenceText: newText,
-//     //   diff: computeDiff(oldText, newText),
-//     //   allText: getAllText((sentences ?? []).map(sentence => 
-//     //     sentence.id === id ? { ...sentence, text: newText } : sentence
-//     //   )),
-//     // });
-//   };
-  
-//   // Handle sentence removal
-//   const handleSentenceRemove = (id: string, text: string,  reason: string) => {
-//     dispatch(removeSentence({ id, text, reason }));
+const SentenceList: React.FC<SentenceListProps> = ({
+    parameters,
+    initialSentences = splitIntoSentencesOld(parameters.testingStimulusValue).map((text, index) => ({
+        id: `sentence-${index}`,
+        text,
+    })),
+    provenanceState,
+    updateState = () => null,
+    setAnswer = () => null
+}) => {
+    // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
+    // console.log("🚀 ~ provenanceState:", provenanceState)
 
-//     // // Log the removal
-//     // logAction({
-//     //   type: 'remove',
-//     //   paragraphID: 'p1',
-//     //   sentenceID: id,
-//     //   priorSentenceText: text,
-//     //   newSentenceText: '',
-//     //   diff: `REMOVED: ${reason}`,
-//     //   allText: getAllText((sentences ?? []).filter(sentence => sentence.id !== id)),
-//     // });
-//   };
-  
-//   //todo this may be why tehre are multiple dispach events for adding sentence. to be determined
-//   // Handle sentence addition
-//   const handleAddSentence = (afterId: string | null) => {
-//       dispatch(addSentence({ afterId }));
-      
-//       // // Log the addition
-//       // logAction({
-//       //   type: 'add',
-//       //   paragraphID: 'p1',
-//       //   sentenceID: newId,
-//       //   priorSentenceText: '',
-//       //   newSentenceText: '',
-//       //   allText: getAllText([...sentences, newSentence]),
-//       // });
-//   };
-  
-//   // Handle drag and drop reordering
-//   // const handleDragEnd = (result: DropResult) => {
-//   //   if (!result.destination) return;
-    
-//   //   const sourceIndex = result.source.index;
-//   //   const destinationIndex = result.destination.index;
-    
-//   //   if (sourceIndex === destinationIndex) return;
-    
-//   //   const reorderedSentences = Array.from(sentences);
-//   //   const [removed] = reorderedSentences.splice(sourceIndex, 1);
-//   //   reorderedSentences.splice(destinationIndex, 0, removed);
-    
-//   //   setSentences(reorderedSentences);
-    
-//   //   // Log the reordering
-//   //   logAction({
-//   //     type: 'reorder',
-//   //     paragraphID: 'p1',
-//   //     sentenceID: removed.id,
-//   //     priorSentenceText: `position: ${sourceIndex}`,
-//   //     newSentenceText: `position: ${destinationIndex}`,
-//   //     allText: getAllText(reorderedSentences),
-//   //   });
-//   // };
-  
-//   // Get all text combined
-//   const getAllText = (currentSentences: Sentence[]): string => {
-//     return currentSentences.map(s => s.text).join(' ');
-//   };
-  
-//   // Compute difference between texts
-//   const computeDiff = (oldText: string, newText: string): string => {
-//     return `removed: "${oldText}" added: "${newText}"`;
-//   };
-//   return (
-//     <>
-//       {(sentences?.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
-//       <div className="space-y-1">
-//         {sentences?.map((sentence) => (
-//           <SentenceItem
-//             key={sentence.id}
-//             id={sentence.id}
-//             text={sentence.text}
-//             onChange={handleSentenceChange}
-//             onRemove={handleSentenceRemove}
-//             onAddAfter={() => handleAddSentence(sentence.id)}
-//             focused={focusedSentenceId === sentence.id}
-//           />
-//         ))}
-//       </div>
-//       <div className="mt-4">
-//         <button
-//           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-//           onClick={() => handleAddSentence(null)}
-//         >
-//           + Add Sentence
-//         </button>
-//       </div>
-//     </>
-//   );
-// };
 
-// export default SentenceList
+    const answers = useStoreSelector((state) => state.answers);
+    // console.log("🚀 ~ answers:", answers)
+    // Local state that will sync with Trrack
+    const [sentences, setSentences] = useState<Sentence[]>(
+        provenanceState?.all.sentences || initialSentences
+    );
+
+    const [focusedSentenceId, setFocusedSentenceId] = useState<string | null>(
+        provenanceState?.all.focusedSentenceId || null
+    );
+
+    // Sync local state with provenance state when it changes
+    useEffect(() => {
+        if (provenanceState) {
+            setSentences(provenanceState.all.sentences);
+            setFocusedSentenceId(provenanceState.all.focusedSentenceId);
+        }
+    }, [provenanceState]);
+
+    // Initialize Trrack
+    const { actions, trrack } = useMemo(() => {
+        const reg = Registry.create();
+
+        // Register actions that can modify state
+        const updateSentenceAction = reg.register('updateSentence', (state, payload: { id: string, text: string }) => {
+            console.log("🚀 ~ updateSentenceAction ~ state:", payload)
+            const updatedSentences = state.all.sentences.map((sentence: Sentence) => {
+                sentence.id === payload.id ? { ...sentence, text: payload.text } : sentence
+            }
+            );
+
+            state.all = {
+                ...state.all,
+                sentences: updatedSentences
+            };
+            return state;
+        });
+
+        const removeSentenceAction = reg.register('removeSentence', (state, payload: { id: string }) => {
+            console.log("🚀 ~ removeSentenceAction ~ state:", { ...state.all })
+
+            const updatedSentences = state.all.sentences.filter((sentence: Sentence) =>
+                sentence.id !== payload.id
+            );
+
+            state.all = {
+                ...state.all,
+                sentences: updatedSentences
+            };
+            return state;
+        });
+
+        const addSentenceAction = reg.register('addSentence', (state, payload: {
+            newSentence: Sentence,
+            afterId: string | null
+        }) => {
+            let updatedSentences: Sentence[];
+
+            if (payload.afterId === null) {
+                updatedSentences = [...state.all.sentences, payload.newSentence];
+            } else {
+                updatedSentences = [];
+                let added = false;
+
+                for (const sentence of state.all.sentences) {
+                    updatedSentences.push(sentence);
+                    if (sentence.id === payload.afterId) {
+                        updatedSentences.push(payload.newSentence);
+                        added = true;
+                    }
+                }
+
+                if (!added) {
+                    updatedSentences.push(payload.newSentence);
+                }
+            }
+
+            state.all = {
+                ...state.all,
+                sentences: updatedSentences,
+                focusedSentenceId: payload.newSentence.id
+            };
+            return state;
+        });
+
+        const setFocusedSentenceAction = reg.register('setFocusedSentence', (state, newFocusedId: string | null) => {
+            state.all = {
+                ...state.all,
+                focusedSentenceId: newFocusedId
+            };
+            return state;
+        });
+
+        const trrackInst = initializeTrrack({
+            registry: reg,
+            initialState: {
+                all: {
+                    sentences: initialSentences,
+                    focusedSentenceId: null
+                }
+            }
+        });
+
+        return {
+            actions: {
+                updateSentence: updateSentenceAction,
+                removeSentence: removeSentenceAction,
+                addSentence: addSentenceAction,
+                setFocusedSentence: setFocusedSentenceAction
+            },
+            trrack: trrackInst
+        };
+    }, [initialSentences]);
+
+    // Handle sentence text change
+    const handleSentenceChange = useCallback((id: string, newText: string, oldText: string) => {
+        // Apply the change to Trrack
+        trrack.apply('Update Sentence', actions.updateSentence({ id, text: newText }));
+
+        // Update local state
+        const updatedSentences = sentences.map(sentence =>
+            sentence.id === id ? { ...sentence, text: newText } : sentence
+        );
+        setSentences(updatedSentences);
+
+        // Notify parent component
+        updateState({
+            sentences: updatedSentences,
+            focusedSentenceId
+        });
+
+        // Set answer for tracking
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["test-response1"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer]);
+
+    // Handle sentence removal
+    const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
+        // Apply the change to Trrack
+        trrack.apply('Remove Sentence', actions.removeSentence({ id }));
+
+        // Update local state
+        const updatedSentences = sentences.filter(sentence => sentence.id !== id);
+        setSentences(updatedSentences);
+
+        // Notify parent component
+        updateState({
+            sentences: updatedSentences,
+            focusedSentenceId: focusedSentenceId === id ? null : focusedSentenceId
+        });
+
+        // Set answer for tracking
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["test-response1"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer]);
+
+    // Handle sentence addition
+    const handleAddSentence = useCallback((afterId: string | null) => {
+        // Create a new sentence
+        const newSentence: Sentence = {
+            id: `s${Date.now()}`, // Generate unique ID
+            text: '',
+            // Add any other properties needed for a Sentence
+        };
+
+        // Apply the change to Trrack
+        trrack.apply('Add Sentence', actions.addSentence({
+            newSentence,
+            afterId
+        }));
+
+        // Update local state
+        let updatedSentences: Sentence[];
+        if (afterId === null) {
+            updatedSentences = [...sentences, newSentence];
+        } else {
+            updatedSentences = [];
+            let added = false;
+
+            for (const sentence of sentences) {
+                updatedSentences.push(sentence);
+                if (sentence.id === afterId) {
+                    updatedSentences.push(newSentence);
+                    added = true;
+                }
+            }
+
+            if (!added) {
+                updatedSentences.push(newSentence);
+            }
+        }
+
+        setSentences(updatedSentences);
+        setFocusedSentenceId(newSentence.id);
+
+        // Notify parent component
+        updateState({
+            sentences: updatedSentences,
+            focusedSentenceId: newSentence.id
+        });
+
+        // Set answer for next component
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["test-response1"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, trrack, actions, updateState, setAnswer]);
+
+    const handleSentenceIdChange = useCallback((newFocus: string | null) => {
+        console.log("Previous Focus:", focusedSentenceId, "New Focus:", newFocus);
+
+        // Apply the change to Trrack
+        trrack.apply('Set Focused Sentence', actions.setFocusedSentence(newFocus));
+
+        // Update local state
+        setFocusedSentenceId(newFocus);
+
+        // Notify parent component
+        updateState({
+            sentences,
+            focusedSentenceId: newFocus
+        });
+
+        // Set answer for tracking
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["test-response1"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, trrack, actions, updateState, setAnswer]);
+
+    // Get all text combined
+    const joinTextOfObjects = (currentSentences: Sentence[]): string => {
+        return currentSentences.map(s => s.text).join(' ');
+    };
+
+    // Compute difference between texts
+    const computeDiff = (oldText: string, newText: string): string => {
+        return `removed: "${oldText}" added: "${newText}"`;
+    };
+
+    return (
+        <>
+            {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
+            <div className="space-y-1">
+                {sentences.map((sentence) => (
+                    <SentenceItem
+                        key={sentence.id}
+                        id={sentence.id}
+                        text={sentence.text}
+                        focused={focusedSentenceId === sentence.id}
+                        onChange={handleSentenceChange}
+                        onRemove={handleSentenceRemove}
+                        onAddAfter={() => handleAddSentence(sentence.id)}
+                        onFocus={handleSentenceIdChange}
+                    />
+                ))}
+            </div>
+            <div className="mt-4">
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => handleAddSentence(null)}
+                >
+                    + Add Sentence
+                </button>
+            </div>
+        </>
+    );
+};
+
+export default SentenceList;
