@@ -1,4 +1,20 @@
 // src/types/index.ts
+
+export interface SentenceListState {
+  sentences: Sentence[];
+  focusedSentenceId: string | null;
+}
+
+export interface SentenceListParams {
+  testingStimulusValue: Sentence[]|string
+  all: {
+    original?: Paragraph;
+    sentences: Sentence[];
+    focusedSentenceId: string | null;
+  }
+}
+
+
 export type AppState = {
   user: User;
   content: Content;
@@ -66,6 +82,7 @@ export interface HighlightableElement {
 }
 
 export type TextSelection = {
+  ParentParagraphID: string;
   id: string;
   startIndex: number;
   endIndex: number;

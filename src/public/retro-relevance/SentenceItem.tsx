@@ -46,7 +46,7 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
     if (text !== editText) {
       onChange(id, editText, text);
     }
-    onFocus(null);  // Clear focus when done editing
+    // onFocus(null);  // Clear focus when done editing
   };
   
   // Handle key press

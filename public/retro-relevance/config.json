@@ -52,7 +52,7 @@
             "type": "react-component",
             "path": "retro-relevance/ParagraphSelection/ParagraphContentWithSelections.tsx",
             "parameters": {
-                "testingStimulusValue": [
+                "testingStimulusValue":[
                     {
                         "id": "p1",
                         "text": "# this is the first paragraph.\n There could be more here, but I don't think I will talk much about it."
@@ -161,12 +161,12 @@
     "sequence": {
         "order": "fixed",
         "components": [
-            "SelectionTask",
+            "AdminStart",
             "SentenceList",
             "Tester",
+            "SelectionTask",
             "introduction",
-            "first-question-set",
-            "AdminStart"
+            "first-question-set"
         ]
     }
 }

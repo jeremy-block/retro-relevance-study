@@ -2,32 +2,23 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Registry, initializeTrrack } from '@trrack/core';
 import SentenceItem from './SentenceItem';
-import { Sentence } from './retro-types';
+import { Sentence, SentenceListParams, SentenceListState } from './retro-types';
 import { splitIntoSentences, splitIntoSentencesAndMetadata, splitIntoSentencesOld } from './utils/markdownUtils';
 import { useStoreSelector } from '../../store/store';
+import { StimulusParams, StoredAnswer } from '../../store/types';
 
-// Interface for SentenceList props
-interface SentenceListProps {
-    parameters: any; //I think this is always passed in.
-    initialSentences?: Sentence[];
-    provenanceState?: { all: { sentences: Sentence[], focusedSentenceId: string | null } };
-    updateState?: (all: { sentences: Sentence[], focusedSentenceId: string | null }) => void;
-    setAnswer?: (data: any) => void;
-}
-interface StoredAnswer {
-    [key: string]: any; // Add specific properties if known, e.g., participantAssignedID?: string;
-}
 
-const SentenceList: React.FC<SentenceListProps> = ({
+//todo set isTesting to false once ready for participants.
+const isTesting = false;
+
+export function SentenceList({
     parameters,
-    initialSentences = splitIntoSentencesOld(parameters.testingStimulusValue).map((text, index) => ({
-        id: `sentence-${index}`,
-        text,
-    })),
+    setAnswer,
     provenanceState,
     updateState = () => null,
-    setAnswer = () => null
-}) => {
+}: StimulusParams<SentenceListParams, { all: SentenceListState }> & { updateState: (a: SentenceListState) => void }) {
+
+
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
     // console.log("🚀 ~ provenanceState:", provenanceState)
 
@@ -35,16 +26,62 @@ const SentenceList: React.FC<SentenceListProps> = ({
     const trialNameToPullResponseFrom = "AdminStart_0"
     const keyForSummary = "originalSummary"
     const keyForID = "participantAssignedID"
-    
-    const answers = useStoreSelector((state): { [key: string]: StoredAnswer } => state.answers);
-    
-    //todo set isTesting to false once ready for participants.
-    const isTesting = true;
-    (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
 
-    
+    const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
+
+    // Determine source text
+    const source = isTesting
+        ? parameters.testingStimulusValue as string
+        : answers[trialNameToPullResponseFrom].answer[keyForSummary] as string;
+
+    const initialSentences = splitIntoSentencesOld(source).map((text, index) => ({
+        id: `sentence-${index}`,
+        text,
+    }));
+    const initialFocus = null;
     // console.log("🚀 ~ answers:", answers)
-    // Local state that will sync with Trrack
+    // (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
+
+
+ 
+
+    // function setLocalState(newState: { sentences: { id: string; text: string; }[]; focusedSentenceId: string | null }) {
+    //     setSentences(newState.sentences);
+    //     setFocusedSentenceId(newState.focusedSentenceId);
+    // }
+
+    const [localState, setLocalState] = useState<SentenceListState>(provenanceState ? (provenanceState.all) : {
+        sentences: initialSentences,
+        focusedSentenceId: initialFocus,
+    });
+
+
+    // Local state that will be applied to Trrack
+    // // Sync local state with provenance state when it changes
+    // useEffect(() => {
+    //     if (provenanceState) {
+    //         setSentences(provenanceState.all.sentences);
+    //         setFocusedSentenceId(provenanceState.all.focusedSentenceId);
+    //     }
+    // }, [provenanceState]);
+
+    useEffect(() => {
+        console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
+        if (provenanceState) {
+            console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
+            // setSentences(provenanceState.all.sentences);
+            // setFocusedSentenceId(provenanceState.all.focusedSentenceId);
+            setLocalState(provenanceState.all || provenanceState);
+        } else {
+            console.log("🚀 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
+            // setSentences(initialSentences);
+            // setFocusedSentenceId(initialFocus)
+            setLocalState({ sentences: initialSentences, focusedSentenceId: initialFocus })
+        }
+    }, [provenanceState]);
+
+ 
+
     const [sentences, setSentences] = useState<Sentence[]>(
         provenanceState?.all.sentences || initialSentences
     );
@@ -53,93 +90,37 @@ const SentenceList: React.FC<SentenceListProps> = ({
         provenanceState?.all.focusedSentenceId || null
     );
 
-    // Sync local state with provenance state when it changes
-    useEffect(() => {
-        if (provenanceState) {
-            setSentences(provenanceState.all.sentences);
-            setFocusedSentenceId(provenanceState.all.focusedSentenceId);
-        }
-    }, [provenanceState]);
+
 
     // Initialize Trrack
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
-        // Register actions that can modify state
-        const updateSentenceAction = reg.register('updateSentence', (state, payload: { id: string, text: string }) => {
-            console.log("🚀 ~ updateSentenceAction ~ state:", payload)
-            const updatedSentences = state.all.sentences.map((sentence: Sentence) => {
-                sentence.id === payload.id ? { ...sentence, text: payload.text } : sentence
-            }
-            );
-
-            state.all = {
-                ...state.all,
-                sentences: updatedSentences
-            };
+        const updateSentenceAction = reg.register('updateSentence', (state, payload: SentenceListState) => {
+            console.log("🚀 ~ updateSentenceAction ~ payload:", payload)
+            console.log("🚀 ~ updateSentenceAction ~ state:", state.all.sentences)
+            state.all = { payload };
+            console.log("🚀 ~ updateSentenceAction ~ state.all:", state.all)
             return state;
         });
-
-        const removeSentenceAction = reg.register('removeSentence', (state, payload: { id: string }) => {
-            console.log("🚀 ~ removeSentenceAction ~ state:", { ...state.all })
-
-            const updatedSentences = state.all.sentences.filter((sentence: Sentence) =>
-                sentence.id !== payload.id
-            );
-
-            state.all = {
-                ...state.all,
-                sentences: updatedSentences
-            };
-            return state;
+        const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: SentenceListState) => {
+            state.all = { payload };
+            return state
         });
-
-        const addSentenceAction = reg.register('addSentence', (state, payload: {
-            newSentence: Sentence,
-            afterId: string | null
-        }) => {
-            let updatedSentences: Sentence[];
-
-            if (payload.afterId === null) {
-                updatedSentences = [...state.all.sentences, payload.newSentence];
-            } else {
-                updatedSentences = [];
-                let added = false;
-
-                for (const sentence of state.all.sentences) {
-                    updatedSentences.push(sentence);
-                    if (sentence.id === payload.afterId) {
-                        updatedSentences.push(payload.newSentence);
-                        added = true;
-                    }
-                }
-
-                if (!added) {
-                    updatedSentences.push(payload.newSentence);
-                }
-            }
-
-            state.all = {
-                ...state.all,
-                sentences: updatedSentences,
-                focusedSentenceId: payload.newSentence.id
-            };
-            return state;
+        const addSentenceAction = reg.register('addSentenceAction', (state, payload: SentenceListState) => {
+            state.all = { payload };
+            return state
         });
-
-        const setFocusedSentenceAction = reg.register('setFocusedSentence', (state, newFocusedId: string | null) => {
-            state.all = {
-                ...state.all,
-                focusedSentenceId: newFocusedId
-            };
-            return state;
+        const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: SentenceListState) => {
+            state.all = { payload };
+            return state
         });
 
         const trrackInst = initializeTrrack({
             registry: reg,
             initialState: {
                 all: {
-                    sentences: initialSentences,
+                    sentences: [],
                     focusedSentenceId: null
                 }
             }
@@ -154,111 +135,31 @@ const SentenceList: React.FC<SentenceListProps> = ({
             },
             trrack: trrackInst
         };
-    }, [initialSentences]);
+    }, []);
 
     // Handle sentence text change
     const handleSentenceChange = useCallback((id: string, newText: string, oldText: string) => {
-        // Apply the change to Trrack
-        trrack.apply('Update Sentence', actions.updateSentence({ id, text: newText }));
+        const updatedSentences = localState.sentences.map((sentence: Sentence) => {
+            return sentence.id === id ? { ...sentence, text: newText } : sentence;
+        });
+        console.log("🚀 ~ updatedSentences ~ localState:", localState)
+        console.log("🚀 ~ handleSentenceChange ~ updatedSentences:", updatedSentences)
 
-        // Update local state
-        const updatedSentences = sentences.map(sentence =>
-            sentence.id === id ? { ...sentence, text: newText } : sentence
-        );
         setSentences(updatedSentences);
+        setFocusedSentenceId(null);
 
-        // Notify parent component
-        updateState({
+        const newState = {
+            ...localState,
             sentences: updatedSentences,
-            focusedSentenceId
-        });
-
-        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
-        // Set answer for tracking
-        setAnswer({
-            status: true,
-            provenanceGraph: trrack.graph.backend,
-            answers: {
-                ["paragraphID"]: ParagraphID,
-                ["updatedSummary"]: joinTextOfObjects(sentences)
-            }
-        });
-    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
-
-    // Handle sentence removal
-    const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
-        // Apply the change to Trrack
-        trrack.apply('Remove Sentence', actions.removeSentence({ id }));
-
-        // Update local state
-        const updatedSentences = sentences.filter(sentence => sentence.id !== id);
-        setSentences(updatedSentences);
-
-        // Notify parent component
-        updateState({
-            sentences: updatedSentences,
-            focusedSentenceId: focusedSentenceId === id ? null : focusedSentenceId
-        });
-
-        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
-        // Set answer for tracking
-        setAnswer({
-            status: true,
-            provenanceGraph: trrack.graph.backend,
-            answers: {
-                ["paragraphID"]: ParagraphID,
-                ["updatedSummary"]: joinTextOfObjects(sentences)
-            }
-        });
-    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
-
-    // Handle sentence addition
-    const handleAddSentence = useCallback((afterId: string | null) => {
-        // Create a new sentence
-        const newSentence: Sentence = {
-            id: `s${Date.now()}`, // Generate unique ID
-            text: '',
-            // Add any other properties needed for a Sentence
+            focusedSentenceId: null
         };
+        console.log("🚀 ~ handleSentenceChange ~ newState:", newState)
 
         // Apply the change to Trrack
-        trrack.apply('Add Sentence', actions.addSentence({
-            newSentence,
-            afterId
-        }));
+        trrack.apply('Update Sentence', actions.updateSentence(newState));
 
-        // Update local state
-        let updatedSentences: Sentence[];
-        if (afterId === null) {
-            updatedSentences = [...sentences, newSentence];
-        } else {
-            updatedSentences = [];
-            let added = false;
-
-            for (const sentence of sentences) {
-                updatedSentences.push(sentence);
-                if (sentence.id === afterId) {
-                    updatedSentences.push(newSentence);
-                    added = true;
-                }
-            }
-
-            if (!added) {
-                updatedSentences.push(newSentence);
-            }
-        }
-
-        setSentences(updatedSentences);
-        setFocusedSentenceId(newSentence.id);
-
-        // Notify parent component
-        updateState({
-            sentences: updatedSentences,
-            focusedSentenceId: newSentence.id
-        });
-
-        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
-        // Set answer for next component
+        // Set answer for tracking
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
@@ -269,22 +170,111 @@ const SentenceList: React.FC<SentenceListProps> = ({
         });
     }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
 
-    const handleSentenceIdChange = useCallback((newFocus: string | null) => {
-        console.log("Previous Focus:", focusedSentenceId, "New Focus:", newFocus);
+    // Handle sentence removal
+    const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
+        console.log("🚀 ~ removeSentenceAction ~ state:", { ...localState })
+
+        //todo add in some way to capture reason.
+
+        const updatedSentences = localState.sentences.filter((sentence: Sentence) =>
+            sentence.id !== id
+        );
+
+        const newState = {
+            ...localState,
+            sentences: updatedSentences
+        }
+
+        setSentences(updatedSentences);
 
         // Apply the change to Trrack
-        trrack.apply('Set Focused Sentence', actions.setFocusedSentence(newFocus));
+        trrack.apply('Remove Sentence', actions.removeSentence(newState));
+
+        // Set answer for tracking
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
+            }
+        });
+        return localState
+    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
+
+    // Handle sentence addition
+    const handleAddSentence = useCallback((afterId: string | null) => {
+
+        // Create a new sentence
+        const newSentence: Sentence = {
+            id: `s${Date.now()}`, // Generate unique ID
+            text: '',
+            // Add any other properties needed for a Sentence
+        };
+        // const newSentence = { id: Date.now, text: '' };
+        let someSentences: Sentence[];
+
+        if (afterId === null) {
+            someSentences = [...localState.sentences, newSentence];
+        } else {
+            someSentences = [];
+            let added = false;
+
+            for (const sentence of localState.sentences) {
+                someSentences.push(sentence);
+                if (sentence.id === afterId) {
+                    someSentences.push(newSentence);
+                    added = true;
+                }
+            }
+
+            if (!added) {
+                someSentences.push(newSentence);
+            }
+        }
+        setSentences(someSentences);
+        setFocusedSentenceId(newSentence.id);
+
+        const newState = {
+            ...localState,
+            sentences: someSentences,
+            focusedSentenceId: newSentence.id
+        };
+
+        // Apply the change to Trrack
+        trrack.apply('Add Sentence', actions.addSentence(newState));
+
+        // Set answer for next component
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(localState.sentences)
+            }
+        });
+        return localState;
+    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
+
+    const handleSentenceIdChange = useCallback((newFocus: string | null) => {
+        console.log("Previous Focus:", localState.focusedSentenceId, "New Focus:", newFocus);
 
         // Update local state
         setFocusedSentenceId(newFocus);
 
-        // Notify parent component
-        updateState({
-            sentences,
+        const newState = {
+            ...localState,
+            // sentences: updatedSentences,
             focusedSentenceId: newFocus
-        });
+        };
+        // Apply the change to Trrack
+        trrack.apply('Set Focused Sentence', actions.setFocusedSentence(newState));
 
-        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
+        console.log("🚀 ~ handleSentenceIdChange ~ newState:", newState)
+
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
         // Set answer for tracking
         setAnswer({
             status: true,
@@ -336,3 +326,4 @@ const SentenceList: React.FC<SentenceListProps> = ({
 };
 
 export default SentenceList;
+
