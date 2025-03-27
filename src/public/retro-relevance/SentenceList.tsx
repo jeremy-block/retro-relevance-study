@@ -9,14 +9,13 @@ import { StimulusParams, StoredAnswer } from '../../store/types';
 
 
 //todo set isTesting to false once ready for participants.
-const isTesting = false;
+const isTesting = true;
 
 export function SentenceList({
     parameters,
     setAnswer,
     provenanceState,
-    updateState = () => null,
-}: StimulusParams<SentenceListParams, { all: SentenceListState }> & { updateState: (a: SentenceListState) => void }) {
+}: StimulusParams<SentenceListParams, { all: SentenceListState }>) {
 
 
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
@@ -50,10 +49,20 @@ export function SentenceList({
     //     setFocusedSentenceId(newState.focusedSentenceId);
     // }
 
-    const [localState, setLocalState] = useState<SentenceListState>(provenanceState ? (provenanceState.all) : {
-        sentences: initialSentences,
-        focusedSentenceId: initialFocus,
-    });
+    // const [localState, setLocalState] = useState<SentenceListState>({
+    //     sentences: initialSentences,
+    //     focusedSentenceId: initialFocus,
+    // });
+
+
+    const [sentences, setSentences] = useState<Sentence[]>(
+        provenanceState?.all.sentences || initialSentences
+    );
+
+    const [focusedSentenceId, setFocusedSentenceId] = useState<string | null>(
+        provenanceState?.all.focusedSentenceId || null
+    );
+
 
 
     // Local state that will be applied to Trrack
@@ -69,26 +78,18 @@ export function SentenceList({
         console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
         if (provenanceState) {
             console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
-            // setSentences(provenanceState.all.sentences);
-            // setFocusedSentenceId(provenanceState.all.focusedSentenceId);
-            setLocalState(provenanceState.all || provenanceState);
+            setSentences(provenanceState.all.sentences);
+            setFocusedSentenceId(provenanceState.all.focusedSentenceId);
+            // setLocalState(provenanceState.all);
         } else {
-            console.log("🚀 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
-            // setSentences(initialSentences);
-            // setFocusedSentenceId(initialFocus)
-            setLocalState({ sentences: initialSentences, focusedSentenceId: initialFocus })
+            console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
+            setSentences(initialSentences);
+            setFocusedSentenceId(initialFocus)
+            // setLocalState({ sentences: initialSentences, focusedSentenceId: initialFocus })
         }
     }, [provenanceState]);
 
  
-
-    const [sentences, setSentences] = useState<Sentence[]>(
-        provenanceState?.all.sentences || initialSentences
-    );
-
-    const [focusedSentenceId, setFocusedSentenceId] = useState<string | null>(
-        provenanceState?.all.focusedSentenceId || null
-    );
 
 
 
@@ -99,20 +100,21 @@ export function SentenceList({
         const updateSentenceAction = reg.register('updateSentence', (state, payload: SentenceListState) => {
             console.log("🚀 ~ updateSentenceAction ~ payload:", payload)
             console.log("🚀 ~ updateSentenceAction ~ state:", state.all.sentences)
-            state.all = { payload };
+            state.all = payload ;
             console.log("🚀 ~ updateSentenceAction ~ state.all:", state.all)
             return state;
         });
-        const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: SentenceListState) => {
-            state.all = { payload };
+        const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: Sentence[]) => {
+            // state.all = { payload };
+            state.all.sentences = payload
             return state
         });
         const addSentenceAction = reg.register('addSentenceAction', (state, payload: SentenceListState) => {
-            state.all = { payload };
+            state.all = payload;
             return state
         });
-        const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: SentenceListState) => {
-            state.all = { payload };
+        const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: String | null) => {
+            state.all.focusedSentenceId = payload ;
             return state
         });
 
@@ -139,17 +141,16 @@ export function SentenceList({
 
     // Handle sentence text change
     const handleSentenceChange = useCallback((id: string, newText: string, oldText: string) => {
-        const updatedSentences = localState.sentences.map((sentence: Sentence) => {
+        const updatedSentences = sentences.map((sentence: Sentence) => {
             return sentence.id === id ? { ...sentence, text: newText } : sentence;
         });
-        console.log("🚀 ~ updatedSentences ~ localState:", localState)
+        // console.log("🚀 ~ updatedSentences ~ localState:", localState)
         console.log("🚀 ~ handleSentenceChange ~ updatedSentences:", updatedSentences)
 
         setSentences(updatedSentences);
         setFocusedSentenceId(null);
 
         const newState = {
-            ...localState,
             sentences: updatedSentences,
             focusedSentenceId: null
         };
@@ -168,27 +169,24 @@ export function SentenceList({
                 ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
+    }, [sentences, trrack, actions, setAnswer, isTesting]);
 
     // Handle sentence removal
     const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
-        console.log("🚀 ~ removeSentenceAction ~ state:", { ...localState })
+        console.log("🚀 ~ removeSentenceAction ~ state:", { })
 
         //todo add in some way to capture reason.
 
-        const updatedSentences = localState.sentences.filter((sentence: Sentence) =>
+        const updatedSentences = sentences.filter((sentence: Sentence) =>
             sentence.id !== id
         );
 
-        const newState = {
-            ...localState,
-            sentences: updatedSentences
-        }
+        const newSentences = updatedSentences
 
         setSentences(updatedSentences);
 
         // Apply the change to Trrack
-        trrack.apply('Remove Sentence', actions.removeSentence(newState));
+        trrack.apply('Remove Sentence', actions.removeSentence(newSentences));
 
         // Set answer for tracking
         const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
@@ -200,8 +198,7 @@ export function SentenceList({
                 ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-        return localState
-    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
+    }, [sentences, focusedSentenceId, trrack, actions, setAnswer, isTesting]);
 
     // Handle sentence addition
     const handleAddSentence = useCallback((afterId: string | null) => {
@@ -216,12 +213,12 @@ export function SentenceList({
         let someSentences: Sentence[];
 
         if (afterId === null) {
-            someSentences = [...localState.sentences, newSentence];
+            someSentences = [...sentences, newSentence];
         } else {
             someSentences = [];
             let added = false;
 
-            for (const sentence of localState.sentences) {
+            for (const sentence of sentences) {
                 someSentences.push(sentence);
                 if (sentence.id === afterId) {
                     someSentences.push(newSentence);
@@ -237,7 +234,6 @@ export function SentenceList({
         setFocusedSentenceId(newSentence.id);
 
         const newState = {
-            ...localState,
             sentences: someSentences,
             focusedSentenceId: newSentence.id
         };
@@ -252,23 +248,18 @@ export function SentenceList({
             provenanceGraph: trrack.graph.backend,
             answers: {
                 ["paragraphID"]: ParagraphID,
-                ["updatedSummary"]: joinTextOfObjects(localState.sentences)
+                ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-        return localState;
-    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
+    }, [sentences, trrack, actions, setAnswer, isTesting]);
 
     const handleSentenceIdChange = useCallback((newFocus: string | null) => {
-        console.log("Previous Focus:", localState.focusedSentenceId, "New Focus:", newFocus);
+        console.log("Previous Focus:", focusedSentenceId, "New Focus:", newFocus);
 
         // Update local state
         setFocusedSentenceId(newFocus);
 
-        const newState = {
-            ...localState,
-            // sentences: updatedSentences,
-            focusedSentenceId: newFocus
-        };
+        const newState = newFocus
         // Apply the change to Trrack
         trrack.apply('Set Focused Sentence', actions.setFocusedSentence(newState));
 
@@ -284,7 +275,7 @@ export function SentenceList({
                 ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
+    }, [sentences, trrack, actions, setAnswer, isTesting]);
 
     // Get all text combined
     const joinTextOfObjects = (currentSentences: Sentence[]): string => {
@@ -296,33 +287,36 @@ export function SentenceList({
         return `removed: "${oldText}" added: "${newText}"`;
     };
 
-    return (
-        <>
-            {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
-            <div className="space-y-1">
-                {sentences.map((sentence) => (
-                    <SentenceItem
-                        key={sentence.id}
-                        id={sentence.id}
-                        text={sentence.text}
-                        focused={focusedSentenceId === sentence.id}
-                        onChange={handleSentenceChange}
-                        onRemove={handleSentenceRemove}
-                        onAddAfter={() => handleAddSentence(sentence.id)}
-                        onFocus={handleSentenceIdChange}
-                    />
-                ))}
-            </div>
-            <div className="mt-4">
-                <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    onClick={() => handleAddSentence(null)}
-                >
-                    + Add Sentence
-                </button>
-            </div>
-        </>
-    );
+    console.log(sentences)
+    return <p>hello</p>
+
+    // return (
+    //     <>
+    //         {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
+    //         <div className="space-y-1">
+    //             {sentences.map((sentence) => (
+    //                 <SentenceItem
+    //                     key={sentence.id}
+    //                     id={sentence.id}
+    //                     text={sentence.text}
+    //                     focused={focusedSentenceId === sentence.id}
+    //                     onChange={handleSentenceChange}
+    //                     onRemove={handleSentenceRemove}
+    //                     onAddAfter={() => handleAddSentence(sentence.id)}
+    //                     onFocus={handleSentenceIdChange}
+    //                 />
+    //             ))}
+    //         </div>
+    //         <div className="mt-4">
+    //             <button
+    //                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    //                 onClick={() => handleAddSentence(null)}
+    //             >
+    //                 + Add Sentence
+    //             </button>
+    //         </div>
+    //     </>
+    // );
 };
 
 export default SentenceList;
