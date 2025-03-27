@@ -15,7 +15,7 @@ export function SentenceList({
     parameters,
     setAnswer,
     provenanceState,
-}: StimulusParams<SentenceListParams, { all: SentenceListState }>) {
+}: StimulusParams<SentenceListParams,SentenceListState>) {
 
 
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
@@ -56,11 +56,11 @@ export function SentenceList({
 
 
     const [sentences, setSentences] = useState<Sentence[]>(
-        provenanceState?.all.sentences || initialSentences
+        provenanceState?.sentences || initialSentences
     );
 
     const [focusedSentenceId, setFocusedSentenceId] = useState<string | null>(
-        provenanceState?.all.focusedSentenceId || null
+        provenanceState?.focusedSentenceId || null
     );
 
 
@@ -69,8 +69,8 @@ export function SentenceList({
     // // Sync local state with provenance state when it changes
     // useEffect(() => {
     //     if (provenanceState) {
-    //         setSentences(provenanceState.all.sentences);
-    //         setFocusedSentenceId(provenanceState.all.focusedSentenceId);
+    //         setSentences(provenanceState.sentences);
+    //         setFocusedSentenceId(provenanceState.focusedSentenceId);
     //     }
     // }, [provenanceState]);
 
@@ -78,9 +78,9 @@ export function SentenceList({
         console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
         if (provenanceState) {
             console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
-            setSentences(provenanceState.all.sentences);
-            setFocusedSentenceId(provenanceState.all.focusedSentenceId);
-            // setLocalState(provenanceState.all);
+            setSentences(provenanceState.sentences);
+            setFocusedSentenceId(provenanceState.focusedSentenceId);
+            // setLocalState(provenanceState);
         } else {
             console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
             setSentences(initialSentences);
@@ -99,22 +99,22 @@ export function SentenceList({
 
         const updateSentenceAction = reg.register('updateSentence', (state, payload: SentenceListState) => {
             console.log("🚀 ~ updateSentenceAction ~ payload:", payload)
-            console.log("🚀 ~ updateSentenceAction ~ state:", state.all.sentences)
-            state.all = payload ;
-            console.log("🚀 ~ updateSentenceAction ~ state.all:", state.all)
+            console.log("🚀 ~ updateSentenceAction ~ state:", state.sentences)
+            state = payload ;
+            console.log("🚀 ~ updateSentenceAction ~ state:", state)
             return state;
         });
         const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: Sentence[]) => {
-            // state.all = { payload };
-            state.all.sentences = payload
+            // state = { payload };
+            state.sentences = payload
             return state
         });
         const addSentenceAction = reg.register('addSentenceAction', (state, payload: SentenceListState) => {
-            state.all = payload;
+            state = payload;
             return state
         });
         const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: String | null) => {
-            state.all.focusedSentenceId = payload ;
+            state.focusedSentenceId = payload ;
             return state
         });
 
@@ -287,36 +287,37 @@ export function SentenceList({
         return `removed: "${oldText}" added: "${newText}"`;
     };
 
-    console.log(sentences)
-    return <p>hello</p>
+    // console.log(sentences)
+    // return <p>hello</p>
+    console.log("🚀 ~ sentences:", sentences)
 
-    // return (
-    //     <>
-    //         {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
-    //         <div className="space-y-1">
-    //             {sentences.map((sentence) => (
-    //                 <SentenceItem
-    //                     key={sentence.id}
-    //                     id={sentence.id}
-    //                     text={sentence.text}
-    //                     focused={focusedSentenceId === sentence.id}
-    //                     onChange={handleSentenceChange}
-    //                     onRemove={handleSentenceRemove}
-    //                     onAddAfter={() => handleAddSentence(sentence.id)}
-    //                     onFocus={handleSentenceIdChange}
-    //                 />
-    //             ))}
-    //         </div>
-    //         <div className="mt-4">
-    //             <button
-    //                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    //                 onClick={() => handleAddSentence(null)}
-    //             >
-    //                 + Add Sentence
-    //             </button>
-    //         </div>
-    //     </>
-    // );
+    return (
+        <>
+            {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
+            <div className="space-y-1">
+                {sentences.map((sentence) => (
+                    <SentenceItem
+                        key={sentence.id}
+                        id={sentence.id}
+                        text={sentence.text}
+                        focused={focusedSentenceId === sentence.id}
+                        onChange={handleSentenceChange}
+                        onRemove={handleSentenceRemove}
+                        onAddAfter={() => handleAddSentence(sentence.id)}
+                        onFocus={handleSentenceIdChange}
+                    />
+                ))}
+            </div>
+            <div className="mt-4">
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => handleAddSentence(null)}
+                >
+                    + Add Sentence
+                </button>
+            </div>
+        </>
+    );
 };
 
 export default SentenceList;
