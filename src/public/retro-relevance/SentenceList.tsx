@@ -14,6 +14,9 @@ interface SentenceListProps {
     updateState?: (all: { sentences: Sentence[], focusedSentenceId: string | null }) => void;
     setAnswer?: (data: any) => void;
 }
+interface StoredAnswer {
+    [key: string]: any; // Add specific properties if known, e.g., participantAssignedID?: string;
+}
 
 const SentenceList: React.FC<SentenceListProps> = ({
     parameters,
@@ -28,8 +31,18 @@ const SentenceList: React.FC<SentenceListProps> = ({
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
     // console.log("🚀 ~ provenanceState:", provenanceState)
 
+    // set up a way to pull data from a Previous Stimuli
+    const trialNameToPullResponseFrom = "AdminStart_0"
+    const keyForSummary = "originalSummary"
+    const keyForID = "participantAssignedID"
+    
+    const answers = useStoreSelector((state): { [key: string]: StoredAnswer } => state.answers);
+    
+    //todo set isTesting to false once ready for participants.
+    const isTesting = true;
+    (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
 
-    const answers = useStoreSelector((state) => state.answers);
+    
     // console.log("🚀 ~ answers:", answers)
     // Local state that will sync with Trrack
     const [sentences, setSentences] = useState<Sentence[]>(
@@ -160,15 +173,17 @@ const SentenceList: React.FC<SentenceListProps> = ({
             focusedSentenceId
         });
 
+        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
         // Set answer for tracking
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-                ["test-response1"]: joinTextOfObjects(sentences)
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer]);
+    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
 
     // Handle sentence removal
     const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
@@ -185,15 +200,17 @@ const SentenceList: React.FC<SentenceListProps> = ({
             focusedSentenceId: focusedSentenceId === id ? null : focusedSentenceId
         });
 
+        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
         // Set answer for tracking
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-                ["test-response1"]: joinTextOfObjects(sentences)
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer]);
+    }, [sentences, focusedSentenceId, trrack, actions, updateState, setAnswer, isTesting]);
 
     // Handle sentence addition
     const handleAddSentence = useCallback((afterId: string | null) => {
@@ -240,15 +257,17 @@ const SentenceList: React.FC<SentenceListProps> = ({
             focusedSentenceId: newSentence.id
         });
 
+        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
         // Set answer for next component
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-                ["test-response1"]: joinTextOfObjects(sentences)
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, trrack, actions, updateState, setAnswer]);
+    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
 
     const handleSentenceIdChange = useCallback((newFocus: string | null) => {
         console.log("Previous Focus:", focusedSentenceId, "New Focus:", newFocus);
@@ -265,15 +284,17 @@ const SentenceList: React.FC<SentenceListProps> = ({
             focusedSentenceId: newFocus
         });
 
+        const ParagraphID = (isTesting)?"12345":answers[trialNameToPullResponseFrom].answer[keyForID]
         // Set answer for tracking
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-                ["test-response1"]: joinTextOfObjects(sentences)
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
             }
         });
-    }, [sentences, trrack, actions, updateState, setAnswer]);
+    }, [sentences, trrack, actions, updateState, setAnswer, isTesting]);
 
     // Get all text combined
     const joinTextOfObjects = (currentSentences: Sentence[]): string => {

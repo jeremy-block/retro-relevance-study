@@ -29,16 +29,24 @@
             "type": "questionnaire",
             "response": [
                 {
-                    "id": "mainSummary",
+                    "id": "originalSummary",
                     "prompt": "Please paste the text from the researcher",
                     "required": true,
                     "location": "aboveStimulus",
                     "type": "longText",
                     "placeholder": "Please enter the output from the large language model"
+                },
+                {
+                    "id": "participantAssignedID",
+                    "prompt": "Please enter a participant ID number",
+                    "required": true,
+                    "hidden": false,
+                    "location": "sidebar",
+                    "type": "shortText"
                 }
             ]
         },
-        "SentenceList":{
+        "SentenceList": {
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
             "type": "react-component",
@@ -48,20 +56,32 @@
                 "testingStimulusValue": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:",
                 "text": "hi there",
                 "id": "this is my ID",
-                "sentences":[{
+                "sentences": [
+                    {
                         "id": "pickleSentence1",
                         "text": "words on a page."
-                    },{
+                    },
+                    {
                         "id": "pickleSentence2",
                         "text": "new words on a page."
-                    },{
+                    },
+                    {
                         "id": "pickleSentence3",
                         "text": "final words on a page."
-                    }]
+                    }
+                ]
             },
             "response": [
                 {
-                    "id": "test-response1",
+                    "id": "paragraphID",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "updatedSummary",
                     "prompt": "",
                     "hidden": true,
                     "required": false,
@@ -75,10 +95,8 @@
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
             "type": "react-component",
             "path": "retro-relevance/testTwo.tsx",
-            "parameters": {
-            },
-            "response": [
-            ]
+            "parameters": {},
+            "response": []
         },
         "introduction": {
             "type": "markdown",
@@ -110,12 +128,12 @@
                     ]
                 }
             ]
-        }        
+        }
     },
     "sequence": {
         "order": "fixed",
         "components": [
-            "SentenceList",            
+            "SentenceList",
             "Tester",
             "introduction",
             "first-question-set",
