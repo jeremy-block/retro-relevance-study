@@ -67,9 +67,11 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
       
       // Create selection with properly mapped indices
       const newSelection: TextSelection = {
+        ParentParagraphID: "", //to be set later when a selection is made
         id: `selection-${Date.now()}`,
         startIndex,
         endIndex,
+        overlapsWithPriorSelection: false, // will be updated later when updating state.
         relevanceLevel: '', // Will be set by context menu
         selectedText,
         elements: selectedElements
@@ -112,6 +114,7 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
     if (range.startContainer === range.endContainer) {
       elements.push({
         nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+        nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
         path: getNodePath(range.startContainer),
         isFullySelected: false,
         startOffset: range.startOffset,
@@ -136,6 +139,7 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
         inSelection = true;
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
           isFullySelected: false,
           startOffset: range.startOffset,
@@ -147,6 +151,7 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
         inSelection = false;
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
           isFullySelected: false,
           startOffset: 0,
@@ -158,6 +163,7 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
       else if (inSelection) {
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
           isFullySelected: true
         });

@@ -48,14 +48,14 @@
         },
         "SelectionTask": {
             "description": "This is selection",
-            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
+            "instruction": "Please select the parts of this summary that you think will be relevant to future investigators.",
             "type": "react-component",
             "path": "retro-relevance/ParagraphSelection/ParagraphContentWithSelections.tsx",
             "parameters": {
-                "testingStimulusValue":[
+                "testingStimulusValue": [
                     {
                         "id": "p1",
-                        "text": "# this is the first paragraph.\n There could be more here, but I don't think I will talk much about it."
+                        "text": "# this is the first paragraph.\n There could be more here, \n but I don't think I **will talk much** about it.\nI tend to write lots of words sometimes and they can be overwhelming."
                     },
                     {
                         "id": "p2",
@@ -65,7 +65,55 @@
             },
             "response": [
                 {
-                    "id": "test-selections_text",
+                    "id": "paragraphIDs",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "selectionIDs",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "selectionStarts",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "selectionEnds",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "seletionTexts",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "selectionRelevances",
+                    "prompt": "",
+                    "hidden": false,
+                    "required": false,
+                    "location": "sidebar",
+                    "type": "reactive"
+                },
+                {
+                    "id": "selectionTypes",
                     "prompt": "",
                     "hidden": false,
                     "required": false,

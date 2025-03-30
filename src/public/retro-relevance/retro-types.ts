@@ -14,6 +14,18 @@ export interface SentenceListParams {
   }
 }
 
+export interface SelectionToolParams{
+  testingStimulusValue: Paragraph[];
+
+}
+
+export interface SelectionListState {
+  paragraphs: Paragraph[];
+  selections: TextSelection[];
+  focusedParagraphId?: string;
+  focusedParagraphIndex: number;
+}
+
 
 export type AppState = {
   user: User;
@@ -75,6 +87,7 @@ export type possibleNewSentence = {
 // Represents a single DOM element that needs to be highlighted
 export interface HighlightableElement {
   nodeRef: string;  // A unique reference to identify the node
+  nodeType: string; // a way to know what kind of element was slected.
   path: number[];   // Path to the node in the DOM tree (indices from root)
   isFullySelected: boolean;  // Whether the entire element is selected
   startOffset?: number;  // If partially selected, the start character position
@@ -86,6 +99,7 @@ export type TextSelection = {
   id: string;
   startIndex: number;
   endIndex: number;
+  overlapsWithPriorSelection: boolean;
   relevanceLevel: string;
   selectedText: string;
   elements?: HighlightableElement[];  // The DOM elements this selection covers
