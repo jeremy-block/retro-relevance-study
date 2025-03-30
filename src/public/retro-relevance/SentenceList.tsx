@@ -6,6 +6,7 @@ import { Sentence, SentenceListParams, SentenceListState } from './retro-types';
 import { splitIntoSentences, splitIntoSentencesAndMetadata, splitIntoSentencesOld } from './utils/markdownUtils';
 import { useStoreSelector } from '../../store/store';
 import { StimulusParams, StoredAnswer } from '../../store/types';
+import { Button, Paper } from '@mantine/core';
 
 
 //todo set isTesting to false once ready for participants.
@@ -292,7 +293,7 @@ export function SentenceList({
     console.log("🚀 ~ sentences:", sentences)
 
     return (
-        <>
+        <Paper shadow="xs" p="sm">
             {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
             <div className="space-y-1">
                 {sentences.map((sentence) => (
@@ -309,14 +310,14 @@ export function SentenceList({
                 ))}
             </div>
             <div className="mt-4">
-                <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                <Button size="compact-md"
+                    // className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     onClick={() => handleAddSentence(null)}
                 >
                     + Add Sentence
-                </button>
+                </Button>
             </div>
-        </>
+        </Paper>
     );
 };
 

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { TextSelection } from '../retro-types';
 import HighlightComponent from './HighlightComponent';
+import { Box } from '@mantine/core';
 
 interface HighlighterContainerProps {
   selections: TextSelection[];
@@ -54,7 +55,17 @@ const HighlighterContainer: React.FC<HighlighterContainerProps> = ({
     }, [selections]);
   
   return (
-    <div className="highlighter-container absolute top-0 left-0 w-full h-full p-4 pointer-events-none">
+    <Box className="highlighter-container absolute top-0 left-0 w-full h-full p-4 pointer-events-none"
+      p={'sm'}
+      style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(255, 255, 0, 0.1)', // Example semi-transparent highlight
+      pointerEvents: 'none', // Prevent it from blocking interactions
+     }}>
       {selections.map(selection => (
         <HighlightComponent
           key={`${selection.id}-${updateCounter}`}
@@ -63,7 +74,7 @@ const HighlighterContainer: React.FC<HighlighterContainerProps> = ({
           onClick={() => onSelectionClick(selection)}
         />
       ))}
-    </div>
+    </Box>
   );
 };
 

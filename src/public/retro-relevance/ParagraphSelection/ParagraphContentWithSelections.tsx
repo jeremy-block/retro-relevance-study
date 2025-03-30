@@ -7,6 +7,7 @@ import { Paragraph, TextSelection, SelectionToolParams, SelectionListState } fro
 import { StimulusParams, StoredAnswer } from '../../../store/types';
 import { useStoreSelector } from '../../../store/store';
 import { current } from '@reduxjs/toolkit';
+import { Button, Center, Pagination, Paper } from '@mantine/core';
 
 
 const isTesting = true;
@@ -399,7 +400,7 @@ export function ParagraphContentWithSelections({
     }
 
     return (
-        <div className="paragraph-content p-4">
+        <Paper shadow='sm' p='xl' radius='md'>
             {/* Paragraph Display and Navigation */}
             <div className="mb-6">
                 <h2 className="text-xl font-bold mb-4">
@@ -438,41 +439,21 @@ export function ParagraphContentWithSelections({
                 {/* Display paragraph navigation controls at bottom */}
                 {paragraphs.length > 1 && (
                     <div className="flex justify-between mb-4 mt-6">
-                        <button
-                            onClick={() => handleChangeParagraph(focusedParagraphIndex - 1)}
-                            disabled={focusedParagraphIndex === 0}
-                            className={`px-4 py-2 bg-blue-600 text-white rounded-md ${focusedParagraphIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-                                }`}
-                        >
-                            Previous
-                        </button>
-                        {/* Dots navigation for paragraphs */}
-                        <div className="flex space-x-2 items-center">
-                            {paragraphs.map((_, index) => (
-                                <div
-                                    key={index}
-                                    className={`w-3 h-3 rounded-full ${index === focusedParagraphIndex ? 'bg-blue-500' : 'bg-gray-300 hover:bg-gray-400'
-                                        } cursor-pointer`}
-                                    onClick={() => handleChangeParagraph(index)}
-                                    aria-label={`Go to paragraph ${index + 1}`}
-                                ></div>
-                            ))}
-                        </div>
-                        <button
-                            onClick={() => handleChangeParagraph(focusedParagraphIndex + 1)}
-                            disabled={focusedParagraphIndex === paragraphs.length - 1}
-                            className={`px-4 py-2 bg-blue-600 text-white rounded-md ${focusedParagraphIndex === paragraphs.length - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-                                }`}
-                        >
-                            Next
-                        </button>
+                        <Center p={4}>
+
+                        <Pagination total={paragraphs.length} size="md" siblings={1}
+                            onNextPage={() => handleChangeParagraph(focusedParagraphIndex + 1)}
+                            onPreviousPage={() => handleChangeParagraph(focusedParagraphIndex - 1)}
+                            onChange={(indexx) => handleChangeParagraph(indexx-1)}
+                            />
+                            </Center>
                     </div>
                 )}
                 {focusedParagraphIndex === paragraphs.length - 1 && (
                     <p>You're done now.</p>)
                 }
             </div>
-        </div>
+        </Paper>
     );
 };
 

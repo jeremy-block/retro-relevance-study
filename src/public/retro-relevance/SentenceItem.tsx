@@ -1,6 +1,7 @@
 // src/components/TextEditor/SentenceItem.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import { markdownToHtml } from './utils/markdownUtils';
+import { Button, ButtonGroup, CloseButton, Group, Paper, Textarea, UnstyledButton } from '@mantine/core';
 
 interface SentenceItemProps {
   id: string;
@@ -43,9 +44,9 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
   // Save changes
   const handleSave = () => {
     console.log("🚀 ~ handleSave ~ text:", text, editText)
-    if (text !== editText) {
+    // if (text !== editText) {
       onChange(id, editText, text);
-    }
+    // }
     // onFocus(null);  // Clear focus when done editing
   };
   
@@ -78,10 +79,11 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
   };
   
   return (
-    <div className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
+    <div
+      className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
       {focused ? (
-        <div>
-          <textarea
+        <Group justify="space-between" mt="xs">
+          <Textarea
             ref={editorRef}
             className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
             value={editText}
@@ -92,25 +94,27 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
             rows={Math.max(2, editText.split('\n').length)}
           />
           <div className="flex justify-end mt-2 space-x-2">
-            <button
+            <Button
+              size="compact-md"
+              variant="light"
               className="text-blue-500 hover:text-blue-700 text-sm font-medium"
               onClick={handleSave}
             >
               Save
-            </button>
+            </Button>
           </div>
-        </div>
+        </Group>
       ) : (
-        <div 
+        <UnstyledButton 
           onClick={handleStartEdit}
           className="cursor-text markdown-content"
-          style={{ minHeight: '1.5rem' }}
+          // style={{ minHeight: '1.5rem' }}
         >
           <div 
             className="prose prose-sm max-w-none" 
             dangerouslySetInnerHTML={renderHtml()} 
           />
-        </div>
+        </UnstyledButton>
       )}
       
       <div 
@@ -121,13 +125,11 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
         </svg>
       </div>
       
-      <button
+      <CloseButton
         className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
         onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
         title="Remove sentence"
-      >
-        ✕
-      </button>
+      />
       
       {showRemoveDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -148,20 +150,25 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
                 </label>
               ))}
             </div>
-            <div className="flex justify-end space-x-2">
-              <button
+            <ButtonGroup className="flex justify-end space-x-2">
+              <Button
+                size='compact-md'
+                variant='subtle'
                 className="px-4 py-2 border rounded hover:bg-gray-100"
                 onClick={() => setShowRemoveDialog(false)}>
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
+                size='compact-md'
+                variant='outline'
+                color='red'
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
                 onClick={handleRemoveConfirm}
                 disabled={!removeReason}
               >
                 Remove
-              </button>
-            </div>
+              </Button>
+            </ButtonGroup>
           </div>
         </div>
       )}

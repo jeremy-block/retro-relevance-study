@@ -4,6 +4,7 @@ import { parseMarkdownWithIds } from '../utils/markdownUtils';
 import { TextSelection } from '../retro-types';
 import HighlighterContainer from './HighlighterContainer';
 import SelectionManager from './SelectionManager';
+import { Box, Paper } from '@mantine/core';
 
 interface MarkdownRendererProps {
   markdownText: string;
@@ -45,9 +46,14 @@ const html = parseMarkdownWithIds(markdownText);
   };
   
   return (
-    <div className={`markdown-renderer relative ${className} ${isSelecting ? 'selecting' : ''}`}>
+    <Paper p='sm' m='lg' shadow='lg' style={{ position: 'relative' }} className={`markdown-renderer relative ${className} ${isSelecting ? 'selecting' : ''}`}>
       {/* The actual markdown content */}
-      <div 
+      <Box 
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '500px', // Ensure the parent has a defined height
+        }}
         ref={contentRef}
         className="markdown-content"
         dangerouslySetInnerHTML={{ __html: html }}
@@ -70,7 +76,7 @@ const html = parseMarkdownWithIds(markdownText);
         contentRef={contentRef}
         onSelectionClick={onSelectionClick}
       />
-    </div>
+    </Paper>
   );
 };
 
