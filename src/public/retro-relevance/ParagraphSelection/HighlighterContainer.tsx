@@ -17,55 +17,49 @@ const HighlighterContainer: React.FC<HighlighterContainerProps> = ({
 }) => {
   // Force re-render when DOM changes or window resizes to reposition highlights
   const [updateCounter, setUpdateCounter] = useState(0);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     // Update on window resize
     const handleResize = () => {
       setUpdateCounter(prev => prev + 1);
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     // Set up a mutation observer to watch for DOM or content changes
     if (contentRef.current) {
       const observer = new MutationObserver(() => {
         setUpdateCounter(prev => prev + 1);
       });
-      
-      observer.observe(contentRef.current, { 
-        childList: true, 
+
+      observer.observe(contentRef.current, {
+        childList: true,
         subtree: true,
-        characterData: true 
+        characterData: true
       });
-      
+
       return () => {
         observer.disconnect();
         window.removeEventListener('resize', handleResize);
       };
     }
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-    }, [contentRef]);
-    
-    // Trigger update when selections change
-    useEffect(() => {
-        setUpdateCounter(prev => prev + 1);
-    }, [selections]);
-  
+  }, [contentRef]);
+
+  // Trigger update when selections change
+  useEffect(() => {
+    setUpdateCounter(prev => prev + 1);
+  }, [selections]);
+
   return (
-    <Box className="highlighter-container absolute top-0 left-0 w-full h-full p-4 pointer-events-none"
+    <Box
       p={'sm'}
       style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(255, 255, 0, 0.1)', // Example semi-transparent highlight
-      pointerEvents: 'none', // Prevent it from blocking interactions
-     }}>
+        position: 'absolute',
+      }}>
       {selections.map(selection => (
         <HighlightComponent
           key={`${selection.id}-${updateCounter}`}

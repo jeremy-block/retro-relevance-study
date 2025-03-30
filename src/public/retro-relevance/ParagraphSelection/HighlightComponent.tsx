@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextSelection } from '../retro-types';
 import { Box } from '@mantine/core';
+import { spacingResolver } from '@mantine/core/lib/core/Box/style-props/resolvers/spacing-resolver/spacing-resolver';
 
 interface HighlightComponentProps {
   selection: TextSelection;
@@ -31,6 +32,56 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
         return `${baseClass} bg-gray-200/60 hover:bg-gray-300/80`;
     }
   };
+
+  const getMantineHighlightStyles = (rect: DOMRect) => {
+    const baseStyles = {
+      //   position: 'absolute',
+      left: `${rect.left}px`,
+      top: `${rect.top - 500}px`,
+      width: `${rect.width}px`,
+      height: `${rect.height}px`,
+      zIndex: 10,
+      cursor: 'pointer',
+      //   borderRadius: 'var(--mantine-radius-md)',
+      //   border: '1px solid var(--mantine-color-blue-light)',
+
+      pointerEvents: "auto" as const, // Ensure TypeScript recognizes valid CSS values
+      // marginLeft: "1rem", // ml-4
+      // marginTop: "0.875rem", // mt-3.5
+      padding: "0.875rem", // p-3.5
+      position: "absolute" as const, // Specify as const to avoid TypeScript error
+      borderRadius: 'var(--mantine-radius-md)', // rounded-sm
+      transition: "background-color 0.2s ease",
+    };
+
+    switch (selection.relevanceLevel) {
+      case "high":
+        return {
+          ...baseStyles,
+          backgroundColor: "rgba(254, 202, 202, 0.6)", // bg-red-200/60
+          "&:hover": { backgroundColor: "rgba(252, 165, 165, 0.8)" }, // hover:bg-red-300/80
+        };
+      case "medium":
+        return {
+          ...baseStyles,
+          backgroundColor: "rgba(254, 240, 138, 0.6)", // bg-yellow-200/60
+          "&:hover": { backgroundColor: "rgba(253, 230, 138, 0.8)" }, // hover:bg-yellow-300/80
+        };
+      case "low":
+        return {
+          ...baseStyles,
+          backgroundColor: "rgba(187, 247, 208, 0.6)", // bg-green-200/60
+          "&:hover": { backgroundColor: "rgba(134, 239, 172, 0.8)" }, // hover:bg-green-300/80
+        };
+      default:
+        return {
+          ...baseStyles,
+          backgroundColor: "rgba(229, 231, 235, 0.6)", // bg-gray-200/60
+          "&:hover": { backgroundColor: "rgba(209, 213, 219, 0.8)" }, // hover:bg-gray-300/80
+        };
+    }
+  };
+
 
   // Calculate highlight positions whenever the selection or content changes
   useEffect(() => {
@@ -196,28 +247,16 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
   }, [selection.selectedText, contentRef, highlightRects.length]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <>
       {highlightRects.map((rect, index) => (
         <Box
           key={`${selection.id}-${index}`}
-          className={getHighlightClass()}
-          style={{
-            position: 'absolute',
-            left: `${rect.left}px`,
-            top: `${rect.top}px`,
-            width: `${rect.width}px`,
-            height: `${rect.height}px`,
-            zIndex: 10,
-            borderRadius: 'var(--mantine-radius-md)',
-            border: '1px solid var(--mantine-color-blue-light)',
-            background: 'var(--mantine-color-blue-light)',
-            color: 'var(--mantine-color-blue-light-color)',
-          }}
+          style={getMantineHighlightStyles(rect)}
           data-selection-id={selection.id}
           onClick={handleClick}
         />
       ))}
-    </div>
+    </>
   );
 };
 

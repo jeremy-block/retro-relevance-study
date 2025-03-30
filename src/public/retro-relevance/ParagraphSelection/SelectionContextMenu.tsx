@@ -1,4 +1,5 @@
 // src/components/SelectionContextMenu.tsx
+import { index } from 'd3';
 import React from 'react';
 
 interface SelectionContextMenuProps {
@@ -22,7 +23,7 @@ const SelectionContextMenu: React.FC<SelectionContextMenuProps> = ({
     <div
       id="selection-context-menu"
       className="context-menu absolute z-50 bg-white rounded-md shadow-lg py-1 w-48 border border-gray-200"
-      style={{ top: position.y, left: position.x }}
+      style={{ position: 'absolute', zIndex:15, top: position.y, left: position.x }}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="px-4 py-1 text-sm font-medium text-gray-700">Relevance Level:</div>
