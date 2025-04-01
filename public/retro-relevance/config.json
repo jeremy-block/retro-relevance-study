@@ -14,7 +14,7 @@
     },
     "uiConfig": {
         "contactEmail": "j.block@ufl.edu",
-        "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
+        "logoPath": "assets/noun-retrospective-7620763.svg",
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 5000,
@@ -25,6 +25,251 @@
         "numSequences": 500
     },
     "components": {
+        "MentalModelQuiz": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "q-1",
+                    "prompt": "Who discovered Walter Boddy's body?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Henry Wadsworth",
+                        "Yvette Duster",
+                        "Adam Mustard",
+                        "Scott Plum"
+                    ]
+                },
+                {
+                    "id": "q-2",
+                    "prompt": "Which object is most directly linked as a potential murder weapon?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "A carving knife stuck in the wall of the kitchen",
+                        "A broken martini glass discovered in the theater",
+                        "A missing gun from the study",
+                        "A Tiffany & Co. ring receipt found in the lounge"
+                    ]
+                },
+                {
+                    "id": "q-3",
+                    "prompt": "In which room was Walter Boddy's body found?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "In the bathroom (bathtub)",
+                        "In the dining room",
+                        "In the study",
+                        "In the kitchen"
+                    ]
+                },
+                {
+                    "id": "q-4",
+                    "prompt": "Which suspect's fingerprint was found on Walter Boddy's missing Rolex watch?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Scott Plum",
+                        "Yvette Duster",
+                        "Adam Mustard",
+                        "Henry Wadsworth"
+                    ]
+                },
+                {
+                    "id": "q-5",
+                    "prompt": "Which item is reported as missing from the study?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Walter Boddy's gun",
+                        "A carving knife",
+                        "Walter Boddy's Rolex watch",
+                        "Walter Boddy's checkbook"
+                    ]
+                },
+                {
+                    "id": "q-6",
+                    "prompt": "Which individual was documented by security camera footage to have spent the night in the Servant's Building?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Henry Wadsworth",
+                        "Yvette Duster",
+                        "Scott Plum",
+                        "Adam Mustard"
+                    ]
+                },
+                {
+                    "id": "q-8",
+                    "prompt": "What best explains Henry Wadsworth's behavior on the morning of the murder?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "He was following his routine duties as Boddy's trusted aide and caretaker",
+                        "He deliberately staged events to cover up his own misdeeds",
+                        "He planned the murder to take over Boddy's assets",
+                        "He was trying to frame another guest by planting false evidence"
+                    ]
+                },
+                {
+                    "id": "q-9",
+                    "prompt": "What appears to motivate Yvette Duster's actions during the events at Boddy Estate?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Her adherence to her work schedule, which kept her away from the unfolding drama",
+                        "A secret alliance with the murderer to manipulate the evidence",
+                        "A personal vendetta against Boddy that led her to orchestrate distractions",
+                        "An attempt to conceal her involvement in another scandal"
+                    ]
+                },
+                {
+                    "id": "q-10",
+                    "prompt": "What best describes Adam Mustard's underlying motivation in his interactions with Walter Boddy?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "The pursuit of lucrative business deals and personal financial gain",
+                        "A covert desire to frame Boddy for financial fraud",
+                        "An effort to protect Boddy's reputation by managing insider trading risks",
+                        "A purely personal grudge rooted in an old rivalry unrelated to business"
+                    ]
+                },
+                {
+                    "id": "q-11",
+                    "prompt": "What seems to motivate Katie Peacock's decision to attend Boddy Estate on the day of the events?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "She anticipated that Boddy would request money from her in connection with blackmail",
+                        "She planned to confront Boddy about personal grievances over a past relationship",
+                        "She aimed to secretly record Boddy's financial secrets for a rival company",
+                        "She sought to facilitate a merger deal independent of Boddy's influence"
+                    ]
+                },
+                {
+                    "id": "q-12",
+                    "prompt": "Which motivation best fits Christine Scarlet's role in the unfolding events?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Balancing a romantic interest in Boddy with a strategic position in their business dealings",
+                        "Solely pursuing financial gain by manipulating insider information",
+                        "Intending to undermine Boddy's reputation to seize his business empire",
+                        "Remaining entirely uninvolved and unaware of the deeper financial schemes"
+                    ]
+                },
+                {
+                    "id": "q-13",
+                    "prompt": "What appears to motivate Jill White's behavior following her discovery of Boddy's travel records and personal secrets?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "A mix of personal betrayal and emotional hurt, prompting her to seek evidence of Boddy's infidelity",
+                        "A calculated move to blackmail Boddy by exposing his financial misdeeds",
+                        "An effort to orchestrate a hostile takeover of Boddy's business ventures",
+                        "A desire to help Boddy cover up a separate scandal unrelated to the murder"
+                    ]
+                },
+                {
+                    "id": "q-14",
+                    "prompt": "What motivated Scott Plum's actions regarding the handling of Walter Boddy's checkbook?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Financial desperation and resentment over a monetary grievance with Boddy",
+                        "An attempt to sabotage Boddy's business ventures by stealing sensitive documents",
+                        "A covert strategy to redirect funds into a rival company",
+                        "A ploy to frame Adam Mustard for financial mismanagement"
+                    ]
+                },
+                {
+                    "id": "q-15",
+                    "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Advancing a business deal through his role as a merger and acquisition broker",
+                        "Settling a personal score that stemmed from past disputes",
+                        "Attempting to expose Boddy's unethical practices to the public",
+                        "Organizing an elaborate scheme to embezzle funds from Boddy's estate"
+                    ]
+                }
+            ],
+            "correctAnswer": [
+                {
+                    "id": "q-1",
+                    "answer": "Henry Wadsworth"
+                },
+                {
+                    "id": "q-2",
+                    "answer": "A carving knife stuck in the wall of the kitchen"
+                },
+                {
+                    "id": "q-3",
+                    "answer": "In the bathroom (bathtub)"
+                },
+                {
+                    "id": "q-4",
+                    "answer": "Scott Plum"
+                },
+                {
+                    "id": "q-5",
+                    "answer": "Walter Boddy's gun"
+                },
+                {
+                    "id": "q-6",
+                    "answer": "Henry Wadsworth"
+                },
+                {
+                    "id": "q-8",
+                    "answer": "He was following his routine duties as Boddy's trusted aide and caretaker"
+                },
+                {
+                    "id": "q-9",
+                    "answer": "Her adherence to her work schedule, which kept her away from the unfolding drama"
+                },
+                {
+                    "id": "q-10",
+                    "answer": "The pursuit of lucrative business deals and personal financial gain"
+                },
+                {
+                    "id": "q-11",
+                    "answer": "She anticipated that Boddy would request money from her in connection with blackmail"
+                },
+                {
+                    "id": "q-12",
+                    "answer": "Balancing a romantic interest in Boddy with a strategic position in their business dealings"
+                },
+                {
+                    "id": "q-13",
+                    "answer": "A mix of personal betrayal and emotional hurt, prompting her to seek evidence of Boddy's infidelity"
+                },
+                {
+                    "id": "q-14",
+                    "answer": "Financial desperation and resentment over a monetary grievance with Boddy"
+                },
+                {
+                    "id": "q-15",
+                    "answer": "Advancing a business deal through his role as a merger and acquisition broker"
+                }
+            ]
+        },
         "AdminStart": {
             "type": "questionnaire",
             "response": [
@@ -209,6 +454,7 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "MentalModelQuiz",
             "AdminStart",
             "SentenceList",
             "Tester",
