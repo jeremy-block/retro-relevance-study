@@ -14,7 +14,7 @@
     },
     "uiConfig": {
         "contactEmail": "j.block@ufl.edu",
-        "logoPath": "assets/noun-retrospective-7620763.svg",
+        "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 5000,
@@ -48,10 +48,10 @@
                     "type": "radio",
                     "withDontKnow": true,
                     "options": [
+                        "The candlestick found in the conservatory",
                         "A carving knife stuck in the wall of the kitchen",
                         "A broken martini glass discovered in the theater",
-                        "A missing gun from the study",
-                        "A Tiffany & Co. ring receipt found in the lounge"
+                        "A missing gun from the study"
                     ]
                 },
                 {
@@ -82,58 +82,19 @@
                 },
                 {
                     "id": "q-5",
-                    "prompt": "Which item is reported as missing from the study?",
+                    "prompt": "Where was Walter Boddy's missing Rolex watch found?",
                     "location": "aboveStimulus",
                     "type": "radio",
                     "withDontKnow": true,
                     "options": [
-                        "Walter Boddy's gun",
-                        "A carving knife",
-                        "Walter Boddy's Rolex watch",
-                        "Walter Boddy's checkbook"
+                        "In the lounge",
+                        "In the study",
+                        "In the bathroom",
+                        "In the dining room"
                     ]
                 },
                 {
                     "id": "q-6",
-                    "prompt": "Which individual was documented by security camera footage to have spent the night in the Servant's Building?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "Henry Wadsworth",
-                        "Yvette Duster",
-                        "Scott Plum",
-                        "Adam Mustard"
-                    ]
-                },
-                {
-                    "id": "q-8",
-                    "prompt": "What best explains Henry Wadsworth's behavior on the morning of the murder?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "He was following his routine duties as Boddy's trusted aide and caretaker",
-                        "He deliberately staged events to cover up his own misdeeds",
-                        "He planned the murder to take over Boddy's assets",
-                        "He was trying to frame another guest by planting false evidence"
-                    ]
-                },
-                {
-                    "id": "q-9",
-                    "prompt": "What appears to motivate Yvette Duster's actions during the events at Boddy Estate?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "Her adherence to her work schedule, which kept her away from the unfolding drama",
-                        "A secret alliance with the murderer to manipulate the evidence",
-                        "A personal vendetta against Boddy that led her to orchestrate distractions",
-                        "An attempt to conceal her involvement in another scandal"
-                    ]
-                },
-                {
-                    "id": "q-10",
                     "prompt": "What best describes Adam Mustard's underlying motivation in his interactions with Walter Boddy?",
                     "location": "aboveStimulus",
                     "type": "radio",
@@ -146,46 +107,7 @@
                     ]
                 },
                 {
-                    "id": "q-11",
-                    "prompt": "What seems to motivate Katie Peacock's decision to attend Boddy Estate on the day of the events?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "She anticipated that Boddy would request money from her in connection with blackmail",
-                        "She planned to confront Boddy about personal grievances over a past relationship",
-                        "She aimed to secretly record Boddy's financial secrets for a rival company",
-                        "She sought to facilitate a merger deal independent of Boddy's influence"
-                    ]
-                },
-                {
-                    "id": "q-12",
-                    "prompt": "Which motivation best fits Christine Scarlet's role in the unfolding events?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "Balancing a romantic interest in Boddy with a strategic position in their business dealings",
-                        "Solely pursuing financial gain by manipulating insider information",
-                        "Intending to undermine Boddy's reputation to seize his business empire",
-                        "Remaining entirely uninvolved and unaware of the deeper financial schemes"
-                    ]
-                },
-                {
-                    "id": "q-13",
-                    "prompt": "What appears to motivate Jill White's behavior following her discovery of Boddy's travel records and personal secrets?",
-                    "location": "aboveStimulus",
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "options": [
-                        "A mix of personal betrayal and emotional hurt, prompting her to seek evidence of Boddy's infidelity",
-                        "A calculated move to blackmail Boddy by exposing his financial misdeeds",
-                        "An effort to orchestrate a hostile takeover of Boddy's business ventures",
-                        "A desire to help Boddy cover up a separate scandal unrelated to the murder"
-                    ]
-                },
-                {
-                    "id": "q-14",
+                    "id": "q-7",
                     "prompt": "What motivated Scott Plum's actions regarding the handling of Walter Boddy's checkbook?",
                     "location": "aboveStimulus",
                     "type": "radio",
@@ -198,7 +120,7 @@
                     ]
                 },
                 {
-                    "id": "q-15",
+                    "id": "q-8",
                     "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
                     "location": "aboveStimulus",
                     "type": "radio",
@@ -218,7 +140,7 @@
                 },
                 {
                     "id": "q-2",
-                    "answer": "A carving knife stuck in the wall of the kitchen"
+                    "answer": "The candlestick found in the conservatory"
                 },
                 {
                     "id": "q-3",
@@ -230,42 +152,18 @@
                 },
                 {
                     "id": "q-5",
-                    "answer": "Walter Boddy's gun"
+                    "answer": "In the lounge"
                 },
                 {
                     "id": "q-6",
-                    "answer": "Henry Wadsworth"
-                },
-                {
-                    "id": "q-8",
-                    "answer": "He was following his routine duties as Boddy's trusted aide and caretaker"
-                },
-                {
-                    "id": "q-9",
-                    "answer": "Her adherence to her work schedule, which kept her away from the unfolding drama"
-                },
-                {
-                    "id": "q-10",
                     "answer": "The pursuit of lucrative business deals and personal financial gain"
                 },
                 {
-                    "id": "q-11",
-                    "answer": "She anticipated that Boddy would request money from her in connection with blackmail"
-                },
-                {
-                    "id": "q-12",
-                    "answer": "Balancing a romantic interest in Boddy with a strategic position in their business dealings"
-                },
-                {
-                    "id": "q-13",
-                    "answer": "A mix of personal betrayal and emotional hurt, prompting her to seek evidence of Boddy's infidelity"
-                },
-                {
-                    "id": "q-14",
+                    "id": "q-7",
                     "answer": "Financial desperation and resentment over a monetary grievance with Boddy"
                 },
                 {
-                    "id": "q-15",
+                    "id": "q-8",
                     "answer": "Advancing a business deal through his role as a merger and acquisition broker"
                 }
             ]
@@ -367,6 +265,14 @@
                 }
             ]
         },
+        "Pause": {
+            "description": "This is to pause the participant",
+            "instruction": "Please pause here and wait for the next direction from the researcher.",
+            "type": "react-component",
+            "path": "retro-relevance/testTwo.tsx",
+            "parameters": {},
+            "response": []
+        },
         "SentenceList": {
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
@@ -411,42 +317,183 @@
                 }
             ]
         },
-        "Tester": {
-            "description": "This is SentenceList",
-            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
-            "type": "react-component",
-            "path": "retro-relevance/testTwo.tsx",
-            "parameters": {},
+        "SalmonfishTool": {
+            "type": "video",
+            "instruction": "Please watch the following tutorial to learn about the tool you will use.",
+            "path": "retro-relevance/assets/tutorialText/Salmonfish_tool.mp4",
             "response": []
         },
-        "introduction": {
+        "SensemakingTaskDescription": {
             "type": "markdown",
             "path": "../retro-relevance/assets/tutorialText/intro.md",
             "response": []
         },
-        "first-question-set": {
+        "Demographics": {
             "type": "questionnaire",
             "response": [
                 {
-                    "id": "q1-name",
-                    "prompt": "What is your first name?",
-                    "required": true,
+                    "id": "d-age",
+                    "prompt": "What is your age?",
                     "location": "aboveStimulus",
-                    "type": "longText",
-                    "placeholder": "Please enter your first name"
+                    "required": false,
+                    "type": "numerical"
                 },
                 {
-                    "id": "q2-color",
-                    "prompt": "What is your favorite color?",
-                    "required": true,
+                    "id": "d-gender",
+                    "prompt": "How do you identify your gender?",
                     "location": "aboveStimulus",
-                    "type": "dropdown",
-                    "placeholder": "Please choose your favorite color",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "withOther": true,
                     "options": [
-                        "Red",
-                        "Blue",
-                        "My favorite color is not shown here."
+                        "Male",
+                        "Female",
+                        "Non-Binary",
+                        "Prefer not to say"
                     ]
+                },
+                {
+                    "id": "d-education",
+                    "prompt": "What is your highest level of education completed?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "withOther": true,
+                    "options": [
+                        "High School",
+                        "Some College",
+                        "Associate's Degree or 2 years of college",
+                        "Bachelor's Degree or 3-4 years of college",
+                        "Master's Degree",
+                        "Doctorate or Professional Degree"
+                    ]
+                },
+                {
+                    "id": "d-field",
+                    "prompt": "Which field best describes your primary area of study or work?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Science/Technology",
+                        "Engineering/Mathematics",
+                        "Social Sciences",
+                        "Humanities",
+                        "Arts",
+                        "Business",
+                        "Healthcare",
+                        "Other"
+                    ]
+                },
+                {
+                    "id": "d-sensemaker",
+                    "prompt": "Have you previously participated in sensemaking or investigative tasks (e.g., research, data analysis, intelligence work)?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "d-sensemakingFrequency",
+                    "prompt": "If yes, how frequently do you engage in such tasks?",
+                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Rarely",
+                        "Occasionally",
+                        "Frequently",
+                        "Very frequently",
+                        "Not applicable"
+                    ]
+                },
+                {
+                    "id": "d-sensemakingTime",
+                    "prompt": "If yes, how many years of professional experience do you have in roles that involve analytical or investigative tasks?",
+                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "0--2 years",
+                        "3--5 years",
+                        "6--10 years",
+                        "11--20 years",
+                        "21+ years"
+                    ]
+                },
+                {
+                    "id": "d-Approach",
+                    "prompt": "Which best describes your typical approach when processing complex information?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "I focus on the details first and then build the big picture",
+                        "I look at the big picture first and then fill in the details",
+                        "I try to balance both simultaneously"
+                    ]
+                },
+                {
+                    "id": "q-confident",
+                    "prompt": "How confident are you in your ability to summarize complex information?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Not confident at all",
+                    "rightLabel": "Extremely confident",
+                    "numItems": 5
+                },
+                {
+                    "id": "d-often",
+                    "prompt": "How often do you perform manual text editing or summarization in your work or studies?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Rarely",
+                    "rightLabel": "Daily",
+                    "numItems": 5
+                },
+                {
+                    "id": "d-psAbility",
+                    "prompt": "How would you rate your problem-solving abilities?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Very poor",
+                    "rightLabel": "Excellent",
+                    "numItems": 5
+                },
+                {
+                    "id": "d-attendDetail",
+                    "prompt": "How would you describe your attention to detail?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Very low",
+                    "rightLabel": "Very high",
+                    "numItems": 5
+                },
+                {
+                    "id": "d-trust",
+                    "prompt": "How much do you trust automated summary tools compared to manual summarization?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Not at all",
+                    "rightLabel": "Completely",
+                    "numItems": 5
                 }
             ]
         }
@@ -454,13 +501,14 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "SalmonfishTool",
+            "SensemakingTaskDescription",
+            "Pause",
             "MentalModelQuiz",
+            "Demographics",
             "AdminStart",
             "SentenceList",
-            "Tester",
-            "SelectionTask",
-            "introduction",
-            "first-question-set"
+            "SelectionTask"
         ]
     }
 }

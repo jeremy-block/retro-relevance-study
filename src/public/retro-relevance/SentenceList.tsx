@@ -17,7 +17,7 @@ import styled from '@emotion/styled';
 
 
 //todo set isTesting to false once ready for participants.
-const isTesting = true;
+const isTesting = false;
 
 export interface Quote {
     id: string; content: string
@@ -34,7 +34,7 @@ export function SentenceList({
     // console.log("🚀 ~ provenanceState:", provenanceState)
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "AdminStart_0"
+    const trialNameToPullResponseFrom = "AdminStart_5"
     const keyForSummary = "originalSummary"
     const keyForID = "participantAssignedID"
 

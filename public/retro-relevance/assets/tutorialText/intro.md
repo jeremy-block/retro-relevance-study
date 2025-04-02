@@ -16,9 +16,7 @@ Your goal is to use this information to identify:
 - **What** weapon was used and,
 - **Where** it occurred at the Boddy Estate.
 
-## Final Thoughts
-
-*to-do work on the following phrasing.*
+## Note
 
 The characters you will meet in this task can lie.
 
