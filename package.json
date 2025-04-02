@@ -19,6 +19,7 @@
     "*.{tsx,jsx,ts,js}": "yarn lint"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "@mantine/core": "^7.10.1",
     "@mantine/dates": "^7.10.1",
     "@mantine/form": "^7.10.1",

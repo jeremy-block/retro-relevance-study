@@ -7,16 +7,22 @@ import { splitIntoSentences, splitIntoSentencesAndMetadata, splitIntoSentencesOl
 import { useStoreSelector } from '../../store/store';
 import { StimulusParams, StoredAnswer } from '../../store/types';
 import { Button, Paper } from '@mantine/core';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import styled from '@emotion/styled';
 
 
 //todo set isTesting to false once ready for participants.
 const isTesting = true;
 
+export interface Quote {
+    id: string; content: string
+}
+
 export function SentenceList({
     parameters,
     setAnswer,
     provenanceState,
-}: StimulusParams<SentenceListParams,SentenceListState>) {
+}: StimulusParams<SentenceListParams, SentenceListState>) {
 
 
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
@@ -90,7 +96,7 @@ export function SentenceList({
         }
     }, [provenanceState]);
 
- 
+
 
 
 
@@ -101,7 +107,7 @@ export function SentenceList({
         const updateSentenceAction = reg.register('updateSentence', (state, payload: SentenceListState) => {
             console.log("🚀 ~ updateSentenceAction ~ payload:", payload)
             console.log("🚀 ~ updateSentenceAction ~ state:", state.sentences)
-            state = payload ;
+            state = payload;
             console.log("🚀 ~ updateSentenceAction ~ state:", state)
             return state;
         });
@@ -115,7 +121,7 @@ export function SentenceList({
             return state
         });
         const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: String | null) => {
-            state.focusedSentenceId = payload ;
+            state.focusedSentenceId = payload;
             return state
         });
 
@@ -174,7 +180,7 @@ export function SentenceList({
 
     // Handle sentence removal
     const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
-        console.log("🚀 ~ removeSentenceAction ~ state:", { })
+        console.log("🚀 ~ removeSentenceAction ~ state:", {})
 
         //todo add in some way to capture reason.
 
@@ -292,10 +298,91 @@ export function SentenceList({
     // return <p>hello</p>
     console.log("🚀 ~ sentences:", sentences)
 
+    const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
+        const custom: Quote = {
+            id: `id-${k}`,
+            content: `Quote ${k}`
+        };
+
+        return custom;
+    });
+
+    const grid = 8;
+    const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
+        console.log("🚀 ~ reorder ~ list:", list)
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+
+    const QuoteItem = styled.div`
+  width: 200px;
+  border: 1px solid grey;
+  margin-bottom: ${grid}px;
+  background-color: lightblue;
+  padding: ${grid}px;
+`;
+
+    function Quote({ quote, index }: { quote: Quote; index: number }) {
+        return (
+            <Draggable draggableId={quote.id} index={index}>
+                {provided => (
+                    <Paper
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                    >
+                        {quote.content}
+                    </Paper>
+                )}
+            </Draggable>
+        );
+    }
+
+    const QuoteList = React.memo(function QuoteList({ quotes }: { quotes: Quote[] }) {
+        return quotes.map((quote: Quote, index: number) => (
+            <Quote quote={quote} index={index} key={quote.id} />
+        ));
+    });
+
+    const [state, setState] = useState({ quotes: initial });
+
+    function onDragEnd(result: { destination: { index: number; } | null; source: { index: number; }; }) {
+        if (result.destination === null) {
+            return;
+        }
+
+        if (result.destination.index === result.source.index) {
+            return;
+        }
+
+        const quotes = reorder(
+            state.quotes,
+            result.source.index,
+            result.destination.index
+        ) as Quote[];
+
+        setState({ quotes: quotes });
+    }
+
+    //todo: https://dnd.hellopangea.com/iframe.html?globals=&args=&id=examples-nested-interative-elements--stress-test
+    //todo: https://github.com/hello-pangea/dnd/tree/main/stories/src/interactive-elements
     return (
         <Paper shadow="xs" p="sm">
             {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
             <div className="space-y-1">
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="list">
+                        {provided => (
+                            <div ref={provided.innerRef} {...provided.droppableProps}>
+                                <QuoteList quotes={state.quotes} />
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
                 {sentences.map((sentence) => (
                     <SentenceItem
                         key={sentence.id}
