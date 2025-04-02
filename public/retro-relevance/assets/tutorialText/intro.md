@@ -1,6 +1,7 @@
 # Task
 
 Using the tool you just learned about, you will complete the following task. A copy of the following premise will be available in the interface.
+*Please read the following aloud*
 
 ## Premise
 

@@ -323,9 +323,19 @@
             "path": "retro-relevance/assets/tutorialText/Salmonfish_tool.mp4",
             "response": []
         },
+        "ConsentForm": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/consent.md",
+            "response": []
+        },
         "SensemakingTaskDescription": {
             "type": "markdown",
             "path": "../retro-relevance/assets/tutorialText/intro.md",
+            "response": []
+        },
+        "SentenceEditingDescription": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/editing_intro.md",
             "response": []
         },
         "Demographics": {
@@ -501,12 +511,14 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "ConsentForm",
             "SalmonfishTool",
             "SensemakingTaskDescription",
             "Pause",
             "MentalModelQuiz",
             "Demographics",
             "AdminStart",
+            "SentenceEditingDescription",
             "SentenceList",
             "SelectionTask"
         ]
