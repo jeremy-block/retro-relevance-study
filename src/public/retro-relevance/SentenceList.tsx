@@ -8,6 +8,11 @@ import { useStoreSelector } from '../../store/store';
 import { StimulusParams, StoredAnswer } from '../../store/types';
 import { Button, Paper } from '@mantine/core';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import type {
+    DropResult,
+    DroppableProvided,
+    DraggableProvided,
+} from '@hello-pangea/dnd';
 import styled from '@emotion/styled';
 
 
@@ -49,7 +54,7 @@ export function SentenceList({
     // (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
 
 
- 
+
 
     // function setLocalState(newState: { sentences: { id: string; text: string; }[]; focusedSentenceId: string | null }) {
     //     setSentences(newState.sentences);
@@ -111,6 +116,10 @@ export function SentenceList({
             console.log("🚀 ~ updateSentenceAction ~ state:", state)
             return state;
         });
+        const rearrangeSentencesAction = reg.register('rearangeSentence', (state, payload: SentenceListState) => {
+            state = payload;
+            return state;
+        })
         const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: Sentence[]) => {
             // state = { payload };
             state.sentences = payload
@@ -138,6 +147,7 @@ export function SentenceList({
         return {
             actions: {
                 updateSentence: updateSentenceAction,
+                rearrangeSentences: rearrangeSentencesAction,
                 removeSentence: removeSentenceAction,
                 addSentence: addSentenceAction,
                 setFocusedSentence: setFocusedSentenceAction
@@ -284,72 +294,8 @@ export function SentenceList({
         });
     }, [sentences, trrack, actions, setAnswer, isTesting]);
 
-    // Get all text combined
-    const joinTextOfObjects = (currentSentences: Sentence[]): string => {
-        return currentSentences.map(s => s.text).join(' ');
-    };
 
-    // Compute difference between texts
-    const computeDiff = (oldText: string, newText: string): string => {
-        return `removed: "${oldText}" added: "${newText}"`;
-    };
-
-    // console.log(sentences)
-    // return <p>hello</p>
-    console.log("🚀 ~ sentences:", sentences)
-
-    const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
-        const custom: Quote = {
-            id: `id-${k}`,
-            content: `Quote ${k}`
-        };
-
-        return custom;
-    });
-
-    const grid = 8;
-    const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
-        console.log("🚀 ~ reorder ~ list:", list)
-        const result = Array.from(list);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-
-        return result;
-    };
-
-    const QuoteItem = styled.div`
-  width: 200px;
-  border: 1px solid grey;
-  margin-bottom: ${grid}px;
-  background-color: lightblue;
-  padding: ${grid}px;
-`;
-
-    function Quote({ quote, index }: { quote: Quote; index: number }) {
-        return (
-            <Draggable draggableId={quote.id} index={index}>
-                {provided => (
-                    <Paper
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                    >
-                        {quote.content}
-                    </Paper>
-                )}
-            </Draggable>
-        );
-    }
-
-    const QuoteList = React.memo(function QuoteList({ quotes }: { quotes: Quote[] }) {
-        return quotes.map((quote: Quote, index: number) => (
-            <Quote quote={quote} index={index} key={quote.id} />
-        ));
-    });
-
-    const [state, setState] = useState({ quotes: initial });
-
-    function onDragEnd(result: { destination: { index: number; } | null; source: { index: number; }; }) {
+    const handleDragEnd = useCallback((result: DropResult) => {
         if (result.destination === null) {
             return;
         }
@@ -358,43 +304,104 @@ export function SentenceList({
             return;
         }
 
-        const quotes = reorder(
-            state.quotes,
+        const newOrderSentences = reorder(
+            sentences,
             result.source.index,
-            result.destination.index
-        ) as Quote[];
+            result.destination.index,
+        ) as Sentence[];
 
-        setState({ quotes: quotes });
-    }
 
-    //todo: https://dnd.hellopangea.com/iframe.html?globals=&args=&id=examples-nested-interative-elements--stress-test
-    //todo: https://github.com/hello-pangea/dnd/tree/main/stories/src/interactive-elements
+        setSentences(newOrderSentences);
+
+        const newState = {
+            sentences: newOrderSentences,
+            focusedSentenceId: focusedSentenceId,
+        };
+
+        // Apply the change to Trrack
+        trrack.apply('Rearranging Sentences', actions.rearrangeSentences(newState));
+
+        console.log("🚀 ~ handleDragEnd ~ newState:", newState)
+
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
+        // Set answer for tracking
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, trrack, actions, setAnswer, isTesting])
+
+    // Get all text combined
+    const joinTextOfObjects = (currentSentences: Sentence[]): string => {
+        return currentSentences.map(s => s.text).join(' ');
+    };
+
+    //todo Compute difference between texts and actually classify changes.
+    const computeDiff = (oldText: string, newText: string): string => {
+        return `removed: "${oldText}" added: "${newText}"`;
+    };
+
+    
+    const grid = 10;
+    const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
+        console.log("🚀 ~ reorder ~ list:", list)
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+        
+        return result;
+    };
+    
+    
+    const List = styled.div`
+    margin-left: ${grid * 2}px;
+    `;
+
+    // return <p>hello</p>
+    console.log("🚀 ~ sentences:", sentences)
+    
     return (
         <Paper shadow="xs" p="sm">
             {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
             <div className="space-y-1">
-                <DragDropContext onDragEnd={onDragEnd}>
-                    <Droppable droppableId="list">
-                        {provided => (
-                            <div ref={provided.innerRef} {...provided.droppableProps}>
-                                <QuoteList quotes={state.quotes} />
-                                {provided.placeholder}
-                            </div>
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <Droppable droppableId="droppable">
+                        {(droppableProvided: DroppableProvided) => (
+                            <List
+                                ref={droppableProvided.innerRef}
+                                {...droppableProvided.droppableProps}
+                            >
+                                {sentences.map((sentence: Sentence, index: number) => (
+                                    <Draggable
+                                        key={sentence.id}
+                                        draggableId={sentence.id}
+                                        index={index}
+                                    >
+                                        {(draggableProvided: DraggableProvided) => (
+                                            <SentenceItem
+                                                key={sentence.id}
+                                                id={sentence.id}
+                                                text={sentence.text}
+                                                ref={draggableProvided.innerRef}
+                                                provided={draggableProvided}
+                                                focused={focusedSentenceId === sentence.id}
+                                                onChange={handleSentenceChange}
+                                                onRemove={handleSentenceRemove}
+                                                onAddAfter={() => handleAddSentence(sentence.id)}
+                                                onFocus={handleSentenceIdChange}
+                                            />
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {droppableProvided.placeholder}
+                            </List>
                         )}
                     </Droppable>
                 </DragDropContext>
-                {sentences.map((sentence) => (
-                    <SentenceItem
-                        key={sentence.id}
-                        id={sentence.id}
-                        text={sentence.text}
-                        focused={focusedSentenceId === sentence.id}
-                        onChange={handleSentenceChange}
-                        onRemove={handleSentenceRemove}
-                        onAddAfter={() => handleAddSentence(sentence.id)}
-                        onFocus={handleSentenceIdChange}
-                    />
-                ))}
             </div>
             <div className="mt-4">
                 <Button size="compact-md"

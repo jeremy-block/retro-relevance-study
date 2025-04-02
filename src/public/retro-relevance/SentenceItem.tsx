@@ -2,8 +2,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { markdownToHtml } from './utils/markdownUtils';
 import { Button, ButtonGroup, CloseButton, Group, Paper, Textarea, UnstyledButton } from '@mantine/core';
+import { DraggableProvided } from '@hello-pangea/dnd';
 
 interface SentenceItemProps {
+  provided: DraggableProvided;
   id: string;
   text: string;
   focused: boolean;
@@ -17,7 +19,8 @@ interface SentenceItemProps {
   onFocus: (id: string | null) => void;
 }
 
-const SentenceItem: React.FC<SentenceItemProps> = ({
+const SentenceItem = React.forwardRef<HTMLDivElement, SentenceItemProps>(({
+  provided,
   id,
   text,
   focused,
@@ -25,12 +28,12 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
   onRemove,
   onAddAfter,
   onFocus,
-}) => {
+}, ref) => {
   const [editText, setEditText] = useState(text);
   const editorRef = useRef<HTMLTextAreaElement>(null);
   const [showRemoveDialog, setShowRemoveDialog] = useState(false);
   const [removeReason, setRemoveReason] = useState('');
-  
+
   // Ensure only one item is focused at a time
   useEffect(() => {
     if (focused && editorRef.current) {
@@ -39,17 +42,17 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
   }, [focused]);
   // Start editing
   const handleStartEdit = () => {
-        onFocus(id);  // This tells the parent to set the focus to this sentence
+    onFocus(id);  // This tells the parent to set the focus to this sentence
   };
   // Save changes
   const handleSave = () => {
     console.log("🚀 ~ handleSave ~ text:", text, editText)
     // if (text !== editText) {
-      onChange(id, editText, text);
+    onChange(id, editText, text);
     // }
     // onFocus(null);  // Clear focus when done editing
   };
-  
+
   // Handle key press
   // todo handle up and down arrow keys for navigation (maybe with shift key)
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -62,7 +65,7 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
       onFocus(null);
     }
   };
-  
+
   // Confirm sentence removal
   const handleRemoveConfirm = () => {
     if (removeReason) {
@@ -71,15 +74,18 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
       setRemoveReason('');
     }
   };
-  
+
   // Render HTML from markdown
   const renderHtml = () => {
     if (!text) return { __html: '<span class="text-gray-400 italic">Blank line - Please click to edit</span>' };
     return { __html: markdownToHtml(text) };
   };
-  
+
   return (
     <div
+      ref={ref}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
       className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
       {focused ? (
         <Group justify="space-between" mt="xs">
@@ -105,32 +111,31 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
           </div>
         </Group>
       ) : (
-        <UnstyledButton 
-          onClick={handleStartEdit}
-          className="cursor-text markdown-content"
-          // style={{ minHeight: '1.5rem' }}
+        <Paper p={0}
+          // todo change color of background when about to remove a sentence: use showRemoveDialog
+          className="absolute top-0 left-0 w-6 h-6 bg-gray-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl cursor-grab"
         >
-          <div 
-            className="prose prose-sm max-w-none" 
-            dangerouslySetInnerHTML={renderHtml()} 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+          <UnstyledButton
+            onClick={handleStartEdit}
+            className="cursor-text markdown-content"
+          // style={{ minHeight: '1.5rem' }}
+          >
+            <div
+              className="prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={renderHtml()}
+            />
+          </UnstyledButton>
+          <CloseButton size={"xs"}
+            className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
+            onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
+            title="Remove sentence"
           />
-        </UnstyledButton>
+        </Paper>
       )}
-      
-      <div 
-        className="absolute top-0 left-0 w-6 h-6 bg-gray-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl cursor-grab"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg>
-      </div>
-      
-      <CloseButton
-        className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
-        onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
-        title="Remove sentence"
-      />
-      
+
       {showRemoveDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-4 rounded shadow-lg max-w-md w-full">
@@ -174,6 +179,6 @@ const SentenceItem: React.FC<SentenceItemProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default SentenceItem;
