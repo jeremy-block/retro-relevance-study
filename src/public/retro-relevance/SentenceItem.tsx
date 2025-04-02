@@ -88,16 +88,19 @@ const SentenceItem = React.forwardRef<HTMLDivElement, SentenceItemProps>(({
       {...provided.dragHandleProps}
       className="bg-white border rounded p-1 pl-6 hover:shadow-md relative group">
       {focused ? (
-        <Group justify="space-between" mt="xs">
+        <Group grow justify="justify-left" mt="xs" gap={'xl'} preventGrowOverflow={false}>
           <Textarea
             ref={editorRef}
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+            // className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             onBlur={handleSave}
             onClick={handleStartEdit}
             onKeyDown={handleKeyDown}
-            rows={Math.max(2, editText.split('\n').length)}
+            autosize
+            minRows={2}
+            maxRows={4}
+            resize="both"
           />
           <div className="flex justify-end mt-2 space-x-2">
             <Button
@@ -115,24 +118,26 @@ const SentenceItem = React.forwardRef<HTMLDivElement, SentenceItemProps>(({
           // todo change color of background when about to remove a sentence: use showRemoveDialog
           className="absolute top-0 left-0 w-6 h-6 bg-gray-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl cursor-grab"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-          </svg>
-          <UnstyledButton
-            onClick={handleStartEdit}
-            className="cursor-text markdown-content"
-          // style={{ minHeight: '1.5rem' }}
-          >
-            <div
-              className="prose prose-sm max-w-none"
-              dangerouslySetInnerHTML={renderHtml()}
+          <Group align='left' mb="xs" gap={'xl'} preventGrowOverflow={true}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+            </svg>
+            <UnstyledButton
+              onClick={handleStartEdit}
+              className="cursor-text markdown-content"
+            // style={{ minHeight: '1.5rem' }}
+            >
+              <div
+                className="prose prose-sm max-w-none"
+                dangerouslySetInnerHTML={renderHtml()}
+              />
+            </UnstyledButton>
+            <CloseButton size={"xs"}
+              className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
+              onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
+              title="Remove sentence"
             />
-          </UnstyledButton>
-          <CloseButton size={"xs"}
-            className="absolute top-0 right-0 w-6 h-6 bg-red-200 flex items-center justify-center opacity-0 group-hover:opacity-100 rounded-bl"
-            onClick={() => (text.trim() ? setShowRemoveDialog(true) : onRemove(id, text, 'empty'))}
-            title="Remove sentence"
-          />
+          </Group>
         </Paper>
       )}
 
