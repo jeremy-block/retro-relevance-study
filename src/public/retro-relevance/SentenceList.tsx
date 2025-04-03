@@ -7,23 +7,34 @@ import { splitIntoSentences, splitIntoSentencesAndMetadata, splitIntoSentencesOl
 import { useStoreSelector } from '../../store/store';
 import { StimulusParams, StoredAnswer } from '../../store/types';
 import { Button, Paper } from '@mantine/core';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
+import type {
+    DropResult,
+    DroppableProvided,
+    DraggableProvided,
+} from '@hello-pangea/dnd';
+import styled from '@emotion/styled';
 
 
 //todo set isTesting to false once ready for participants.
-const isTesting = true;
+const isTesting = false;
+
+export interface Quote {
+    id: string; content: string
+}
 
 export function SentenceList({
     parameters,
     setAnswer,
     provenanceState,
-}: StimulusParams<SentenceListParams,SentenceListState>) {
+}: StimulusParams<SentenceListParams, SentenceListState>) {
 
 
     // console.log("🚀 ~ initialSentences=splitIntoSentencesOld ~ initialSentences:", initialSentences)
     // console.log("🚀 ~ provenanceState:", provenanceState)
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "AdminStart_0"
+    const trialNameToPullResponseFrom = "AdminStart_10"
     const keyForSummary = "originalSummary"
     const keyForID = "participantAssignedID"
 
@@ -43,7 +54,7 @@ export function SentenceList({
     // (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
 
 
- 
+
 
     // function setLocalState(newState: { sentences: { id: string; text: string; }[]; focusedSentenceId: string | null }) {
     //     setSentences(newState.sentences);
@@ -127,7 +138,7 @@ export function SentenceList({
     }, [provenanceState, source]);
 
 
- 
+
 
 
 
@@ -138,10 +149,14 @@ export function SentenceList({
         const updateSentenceAction = reg.register('updateSentence', (state, payload: SentenceListState) => {
             console.log("🚀 ~ updateSentenceAction ~ payload:", payload)
             console.log("🚀 ~ updateSentenceAction ~ state:", state.sentences)
-            state = payload ;
+            state = payload;
             console.log("🚀 ~ updateSentenceAction ~ state:", state)
             return state;
         });
+        const rearrangeSentencesAction = reg.register('rearangeSentence', (state, payload: SentenceListState) => {
+            state = payload;
+            return state;
+        })
         const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: Sentence[]) => {
             state.sentences = payload
             return state
@@ -151,7 +166,7 @@ export function SentenceList({
             return state
         });
         const setFocusedSentenceAction = reg.register('setFocusedSentenceAction', (state, payload: String | null) => {
-            state.focusedSentenceId = payload ;
+            state.focusedSentenceId = payload;
             return state
         });
 
@@ -168,6 +183,7 @@ export function SentenceList({
         return {
             actions: {
                 updateSentence: updateSentenceAction,
+                rearrangeSentences: rearrangeSentencesAction,
                 removeSentence: removeSentenceAction,
                 addSentence: addSentenceAction,
                 setFocusedSentence: setFocusedSentenceAction
@@ -211,7 +227,7 @@ export function SentenceList({
 
     // Handle sentence removal
     const handleSentenceRemove = useCallback((id: string, text: string, reason: string) => {
-        console.log("🚀 ~ removeSentenceAction ~ state:", { })
+        console.log("🚀 ~ removeSentenceAction ~ state:", {})
 
         //todo add in some way to capture reason.
 
@@ -319,6 +335,7 @@ export function SentenceList({
         });
     }, [sentences, trrack, actions, setAnswer, isTesting]);
 
+
     const handleDragEnd = useCallback((result: DropResult) => {
         if (result.destination === null) {
             return;
@@ -336,8 +353,6 @@ export function SentenceList({
 
 
         setSentences(newOrderSentences);
-        console.log(sentences)
-
 
         const newState = {
             sentences: newOrderSentences,
@@ -366,7 +381,7 @@ export function SentenceList({
         return currentSentences.map(s => s.text).join(' ');
     };
 
-    // Compute difference between texts
+    //todo Compute difference between texts and actually classify changes.
     const computeDiff = (oldText: string, newText: string): string => {
         return `removed: "${oldText}" added: "${newText}"`;
     };
@@ -393,18 +408,40 @@ export function SentenceList({
         <Paper shadow="xs" p="sm">
             {(sentences.length === 0) ? (<div>No sentences to your summaries... Try adding one with the button below.</div>) : null}
             <div className="space-y-1">
-                {sentences.map((sentence) => (
-                    <SentenceItem
-                        key={sentence.id}
-                        id={sentence.id}
-                        text={sentence.text}
-                        focused={focusedSentenceId === sentence.id}
-                        onChange={handleSentenceChange}
-                        onRemove={handleSentenceRemove}
-                        onAddAfter={() => handleAddSentence(sentence.id)}
-                        onFocus={handleSentenceIdChange}
-                    />
-                ))}
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <Droppable droppableId="droppable">
+                        {(droppableProvided: DroppableProvided) => (
+                            <List
+                                ref={droppableProvided.innerRef}
+                                {...droppableProvided.droppableProps}
+                            >
+                                {sentences.map((sentence: Sentence, index: number) => (
+                                    <Draggable
+                                        key={sentence.id}
+                                        draggableId={sentence.id}
+                                        index={index}
+                                    >
+                                        {(draggableProvided: DraggableProvided) => (
+                                            <SentenceItem
+                                                key={sentence.id}
+                                                id={sentence.id}
+                                                text={sentence.text}
+                                                ref={draggableProvided.innerRef}
+                                                provided={draggableProvided}
+                                                focused={focusedSentenceId === sentence.id}
+                                                onChange={handleSentenceChange}
+                                                onRemove={handleSentenceRemove}
+                                                onAddAfter={() => handleAddSentence(sentence.id)}
+                                                onFocus={handleSentenceIdChange}
+                                            />
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {droppableProvided.placeholder}
+                            </List>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
             <div className="mt-4">
                 <Button size="compact-md"

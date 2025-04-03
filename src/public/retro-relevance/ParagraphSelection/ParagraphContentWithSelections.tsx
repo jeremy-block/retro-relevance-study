@@ -10,7 +10,7 @@ import { current } from '@reduxjs/toolkit';
 import { Button, Center, Pagination, Paper } from '@mantine/core';
 
 
-const isTesting = true;
+const isTesting = false;
 
 
 export function ParagraphContentWithSelections({
@@ -20,16 +20,22 @@ export function ParagraphContentWithSelections({
 }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "AdminStart_0"
-    const keyForSummary = "finishedSummary"
+    const trialNameToPullResponseFrom = "SentenceList_12"
+    const keyForSummary = "updatedSummary"
     const keyForID = "participantAssignedID"
 
     const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
 
-    // Determine source text - broken
-    // const source = isTesting ? parameters.testingStimulusValue as Paragraph[]
-    //     : answers[trialNameToPullResponseFrom].answer[keyForSummary] as Paragraph[]};
-    const source = parameters.testingStimulusValue as Paragraph[];
+    // Determine source text 
+    // todo if we only have one paragraph does it still work?
+    const source = isTesting 
+        ? (parameters.testingStimulusValue as Paragraph[]) 
+        : [{ 
+            text: String(answers[trialNameToPullResponseFrom]?.answer.updatedSummary || ''), 
+            id: String(answers[trialNameToPullResponseFrom]?.answer.paragraphID || null), 
+            selections: [] 
+        }];
+    console.log("🚀 ~ source:", source)
     const initialParagraphs = source;
     const initialParagraphId = 0;
     const initialSelections = [] as TextSelection[];

@@ -49,7 +49,8 @@ const answers = useStoreSelector((state) => state.answers);
     }, [actions, setAnswer, trrack]);
   return (
     <div>
-      <button onClick={clickCallback}>Test me again</button>
+      <h1>Please Stop here</h1>
+      <p>The researcher has more instructions for you.</p>
     </div>
   );
 }

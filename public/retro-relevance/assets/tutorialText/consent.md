@@ -8,7 +8,8 @@
 
 ### Study Title: Retrospective Summary Relevance to Future Analysis
 
-#### Person(s) conducting the research:
+#### Person(s) conducting the research
+
 Eric D. Ragan, Ph.D. (PI)  
 CISE Department, PO Box 116120, Gainesville, FL 32611  
 Phone: (352) 392-1200  
@@ -25,6 +26,7 @@ This research study examines how individuals summarize their investigative proce
 ## Eligibility
 
 To participate in this research study, you must:
+
 - Be between **18 and 65 years old**.
 - Be **physically located within the United States**.
 
@@ -33,6 +35,7 @@ To participate in this research study, you must:
 ## What you will be asked to do in the study
 
 You will:
+
 1. Work with a dataset to conduct an analysis.
 2. Use a software tool to create or edit a summary of your findings.
 3. Have your interactions and feedback, both written and spoken, recorded for research purposes.
@@ -42,6 +45,7 @@ You will:
 Your responses will be recorded digitally, kept anonymous, and used for later analysis. You may withdraw from the study at any time by contacting **Eric D. Ragan**.
 
 Before starting, you will:
+
 - Review this information sheet and provide consent.
 - Be shown how to use the software.
 - Review a **fictional dataset** (text, tables, visualizations) designed for research.
@@ -69,6 +73,7 @@ The study session is expected to take **1-2 hours**.
 ## Use of your data in a public dataset
 
 De-identified data from this study **may be shared in a public dataset** for future research. This means:
+
 - Your responses and interactions **may be available to other researchers**.
 - **No personal information will be included**.
 - If you have concerns, please discuss them with the research team before participating.
@@ -109,6 +114,7 @@ This research **is not funded** by an outside entity.
 ## Contact Information
 
 If you have any **concerns or questions** about the study, contact:
+
 - A **research team member** (contact information at the top of this form).
 - The **University of Florida Institutional Review Board (IRB02)**:
   - **Address:** 098 PSY Bldg., University of Florida; Box 112250
