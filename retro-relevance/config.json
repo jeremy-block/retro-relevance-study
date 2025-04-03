@@ -17,7 +17,7 @@
         "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
         "withProgressBar": true,
         "autoDownloadStudy": true,
-        "autoDownloadTime": 5000,
+        "autoDownloadTime": 1000,
         "studyEndMsg": "Thank you for completing this study. You're the best!",
         "sidebar": true,
         "windowEventDebounceTime": 500,
@@ -25,6 +25,149 @@
         "numSequences": 500
     },
     "components": {
+        "MentalModelQuiz": {
+            "type": "questionnaire",
+            "response": [
+                {
+                    "id": "q-1",
+                    "prompt": "Who discovered Walter Boddy's body?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Henry Wadsworth",
+                        "Yvette Duster",
+                        "Adam Mustard",
+                        "Scott Plum"
+                    ]
+                },
+                {
+                    "id": "q-2",
+                    "prompt": "Which object is most directly linked as a potential murder weapon?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "The candlestick found in the conservatory",
+                        "A carving knife stuck in the wall of the kitchen",
+                        "A broken martini glass discovered in the theater",
+                        "A missing gun from the study"
+                    ]
+                },
+                {
+                    "id": "q-3",
+                    "prompt": "In which room was Walter Boddy's body found?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "In the bathroom (bathtub)",
+                        "In the dining room",
+                        "In the study",
+                        "In the kitchen"
+                    ]
+                },
+                {
+                    "id": "q-4",
+                    "prompt": "Which suspect's fingerprint was found on Walter Boddy's missing Rolex watch?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Scott Plum",
+                        "Yvette Duster",
+                        "Adam Mustard",
+                        "Henry Wadsworth"
+                    ]
+                },
+                {
+                    "id": "q-5",
+                    "prompt": "Where was Walter Boddy's missing Rolex watch found?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "In the lounge",
+                        "In the study",
+                        "In the bathroom",
+                        "In the dining room"
+                    ]
+                },
+                {
+                    "id": "q-6",
+                    "prompt": "What best describes Adam Mustard's underlying motivation in his interactions with Walter Boddy?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "The pursuit of lucrative business deals and personal financial gain",
+                        "A covert desire to frame Boddy for financial fraud",
+                        "An effort to protect Boddy's reputation by managing insider trading risks",
+                        "A purely personal grudge rooted in an old rivalry unrelated to business"
+                    ]
+                },
+                {
+                    "id": "q-7",
+                    "prompt": "What motivated Scott Plum's actions regarding the handling of Walter Boddy's checkbook?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Financial desperation and resentment over a monetary grievance with Boddy",
+                        "An attempt to sabotage Boddy's business ventures by stealing sensitive documents",
+                        "A covert strategy to redirect funds into a rival company",
+                        "A ploy to frame Adam Mustard for financial mismanagement"
+                    ]
+                },
+                {
+                    "id": "q-8",
+                    "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
+                    "location": "aboveStimulus",
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Advancing a business deal through his role as a merger and acquisition broker",
+                        "Settling a personal score that stemmed from past disputes",
+                        "Attempting to expose Boddy's unethical practices to the public",
+                        "Organizing an elaborate scheme to embezzle funds from Boddy's estate"
+                    ]
+                }
+            ],
+            "correctAnswer": [
+                {
+                    "id": "q-1",
+                    "answer": "Henry Wadsworth"
+                },
+                {
+                    "id": "q-2",
+                    "answer": "The candlestick found in the conservatory"
+                },
+                {
+                    "id": "q-3",
+                    "answer": "In the bathroom (bathtub)"
+                },
+                {
+                    "id": "q-4",
+                    "answer": "Scott Plum"
+                },
+                {
+                    "id": "q-5",
+                    "answer": "In the lounge"
+                },
+                {
+                    "id": "q-6",
+                    "answer": "The pursuit of lucrative business deals and personal financial gain"
+                },
+                {
+                    "id": "q-7",
+                    "answer": "Financial desperation and resentment over a monetary grievance with Boddy"
+                },
+                {
+                    "id": "q-8",
+                    "answer": "Advancing a business deal through his role as a merger and acquisition broker"
+                }
+            ]
+        },
         "AdminStart": {
             "type": "questionnaire",
             "response": [
@@ -122,6 +265,15 @@
                 }
             ]
         },
+        "Pause": {
+            "description": "This is to pause the participant",
+            "instruction": "Please pause here and wait for the next direction from the researcher.",
+            "type": "react-component",
+            "path": "retro-relevance/testTwo.tsx",
+            "nextButtonEnableTime": 5000,
+            "parameters": {},
+            "response": []
+        },
         "SentenceList": {
             "description": "This is SentenceList",
             "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
@@ -166,42 +318,1093 @@
                 }
             ]
         },
-        "Tester": {
-            "description": "This is SentenceList",
-            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
-            "type": "react-component",
-            "path": "retro-relevance/testTwo.tsx",
-            "parameters": {},
+        "SalmonfishTool": {
+            "type": "video",
+            "instruction": "Please watch the following tutorial to learn about the tool you will use.",
+            "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
             "response": []
         },
-        "introduction": {
+        "ConsentForm": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/consent.md",
+            "response": [
+                {
+                    "id": "Consent",
+                    "prompt": "I consent to participate in this study.",
+                    "location": "belowStimulus",
+                    "required": true,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            ],
+            "correctAnswer": [
+                {
+                    "id": "Demographics-Consent",
+                    "answer": "Yes"
+                }
+            ]
+        },
+        "SensemakingTaskDescription": {
             "type": "markdown",
             "path": "../retro-relevance/assets/tutorialText/intro.md",
             "response": []
         },
-        "first-question-set": {
+        "SentenceEditingDescription": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/editing_intro.md",
+            "response": []
+        },
+        "CognitiveStylesIndex": {
             "type": "questionnaire",
+            "instruction": "People differ in the way they think about problems. Below are 38 statements designed to identify your own approach. If you believe that a statement is true about you, answer 'Yes'. If you believe that it is false about you, answer 'No'. If you are uncertain whether it is true or false, answer 'Uncertain'. This is not a test of your ability, and there are no right or wrong answers. Simply choose the one response which comes closest to your own opinion.",
             "response": [
                 {
-                    "id": "q1-name",
-                    "prompt": "What is your first name?",
-                    "required": true,
+                    "id": "cs01",
+                    "prompt": "In my experience, rational thought is the only realistic basis for making decisions.",
                     "location": "aboveStimulus",
-                    "type": "longText",
-                    "placeholder": "Please enter your first name"
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
                 },
                 {
-                    "id": "q2-color",
-                    "prompt": "What is your favorite color?",
-                    "required": true,
+                    "id": "cs02",
+                    "prompt": "To solve a problem, I have to study each part of it in detail.",
                     "location": "aboveStimulus",
-                    "type": "dropdown",
-                    "placeholder": "Please choose your favorite color",
+                    "required": false,
+                    "type": "radio",
                     "options": [
-                        "Red",
-                        "Blue",
-                        "My favorite color is not shown here."
+                        "Yes",
+                        "Uncertain",
+                        "No"
                     ]
+                },
+                {
+                    "id": "cs03",
+                    "prompt": "I am most effective when my work involves a clear sequence of tasks to be performed.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs04",
+                    "prompt": "I have difficulty working with people who ‘dive in at the deep end’ without considering the finer aspects of the problem.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs05",
+                    "prompt": "I am careful to follow rules and regulations at work.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs06",
+                    "prompt": "I avoid taking a course of action if the odds are against its success.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs07",
+                    "prompt": "I am inclined to scan through reports rather than read them in detail.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs08",
+                    "prompt": "My understanding of a problem tends to come more from thorough analysis than flashes of insight.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs09",
+                    "prompt": "I try to keep to a regular routine in my work.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs10",
+                    "prompt": "The kind of work I like best is that which requires a logical, step-by-step approach.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs11",
+                    "prompt": "I rarely make ‘off the top of the head’ decisions.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs12",
+                    "prompt": "I prefer chaotic action to orderly inaction.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs13",
+                    "prompt": "Given enough time, I would consider every situation from all angles.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs14",
+                    "prompt": "To be successful in my work, I find that it is important to avoid hurting other people’s feelings.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs15",
+                    "prompt": "The best way for me to understand a problem is to break it down into its constituent parts.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs16",
+                    "prompt": "I find that to adopt a careful, analytical approach to making decisions takes too long.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs17",
+                    "prompt": "I make most progress when I take calculated risks.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs18",
+                    "prompt": "I find that it is possible to be too organised when performing certain kinds of task.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs19",
+                    "prompt": "I always pay attention to detail before I reach a conclusion.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs20",
+                    "prompt": "I make many of my decisions on the basis of intuition.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs21",
+                    "prompt": "My philosophy is that it is better to be safe than risk being sorry.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs22",
+                    "prompt": "When making a decision, I take my time and thoroughly consider all relevant factors.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs23",
+                    "prompt": "I get on best with quiet, thoughtful people",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs24",
+                    "prompt": "I would rather that my life was unpredictable than that it followed a regular pattern.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs25",
+                    "prompt": "Most people regard me as a logical thinker.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs26",
+                    "prompt": "To fully understand the facts I need a good theory",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs27",
+                    "prompt": "I work best with people who are spontaneous.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs28",
+                    "prompt": "I find detailed, methodical work satisfying.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs29",
+                    "prompt": "My approach to solving a problem is to focus on one part at a time.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs30",
+                    "prompt": "I am constantly on the lookout for new experiences.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs31",
+                    "prompt": "In meetings, I have more to say than most.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs32",
+                    "prompt": "My 'gut feeling' is just as good a basis for decision making as careful analysis.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs33",
+                    "prompt": "I am the kind of person who casts caution to the wind.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs34",
+                    "prompt": "I make decisions and get on with things rather than analyse every last detail.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs35",
+                    "prompt": "I am always prepared to take a gamble.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs36",
+                    "prompt": "Formal plans are more of a hindrance than a help in my work.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs37",
+                    "prompt": "I am more at home with ideas rather than facts and figures.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "cs38",
+                    "prompt": "I find that ‘too much analysis results in paralysis’.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "options": [
+                        "Yes",
+                        "Uncertain",
+                        "No"
+                    ]
+                }
+            ]
+        },
+        "AnalysisHolismScaleShort": {
+            "type": "questionnaire",
+            "instruction": "Please indicate how much you agree with the following statements.",
+            "response": [
+                {
+                    "id": "AH-Causality",
+                    "prompt": "Everything in the universe is somehow related to each other.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "AH-Contradictions",
+                    "prompt": "It is more desirable to take the middle ground than go to extremes.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "AH-Change (r)",
+                    "prompt": "Future events are predictable based on present situations.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "AH-Attention",
+                    "prompt": "It is more important to pay attention to the whole context rather than the details.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                }
+            ]
+        },
+        "HolisticCognitionScale": {
+            "type": "questionnaire",
+            "instruction": "Please indicate how much you agree with the following statements.",
+            "response": [
+                {
+                    "id": "HCS-Attention-1",
+                    "prompt": "It is impossible to understand the pieces without considering the whole picture.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Attention-2",
+                    "prompt": "It makes more sense to study things in their natural context rather than in isolation.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Attention-3",
+                    "prompt": "In a painting, the background is just as important as the main object.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Attention-4",
+                    "prompt": "Relationships between people are more important than the individuals themselves.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Causality-1",
+                    "prompt": "People are mostly independent of one another.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Causality-2",
+                    "prompt": "Events only occur as a result of individuals’ choices and behavior.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Causality-3",
+                    "prompt": "Each individual person is only responsible for his/her own actions.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Causality-4",
+                    "prompt": "People usually end up doing what they want to, irrespective of norms or expectations.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Contradiction-1",
+                    "prompt": "Something can be both ugly and beautiful at the same time.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Contradiction-2",
+                    "prompt": "In any given situation, what it means to do the right thing depends on who you ask.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Contradiction-3",
+                    "prompt": "It is better to reach a compromise than to argue your point of view.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Contradiction-4",
+                    "prompt": "Even two seemingly contradictory ideas can each yield something valuable.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Change-1",
+                    "prompt": "An honest person can be expected to stay honest in the future.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Change-2",
+                    "prompt": "A person’s true nature may evolve but it does not change dramatically over time.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Change-3",
+                    "prompt": "It is useful to make future projections based on the present situation.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "HCS-Change-4",
+                    "prompt": "The course of human history is best described as gradual linear progress.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                }
+            ]
+        },
+        "BigFivePersonalityScale": {
+            "type": "questionnaire",
+            "instruction": "Please indicate how much you agree with the following statements.",
+            "response": [
+                {
+                    "id": "BF-Extraversion-1",
+                    "prompt": "Am the life of the party.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Extraversion-2",
+                    "prompt": "Talk to a lot of different people at parties.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Extraversion-3",
+                    "prompt": "Don't talk a lot.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Extraversion-4",
+                    "prompt": "Keep in the background.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Agreeableness-1",
+                    "prompt": "Sympathize with others' feelings.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Agreeableness-2",
+                    "prompt": "Feel others' emotions.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Agreeableness-3",
+                    "prompt": "Am not really interested in others.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Agreeableness-4",
+                    "prompt": "Am not interested in other people's problems.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Conscientiousness-1",
+                    "prompt": "Get chores done right away.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Conscientiousness-2",
+                    "prompt": "Like order.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Conscientiousness-3",
+                    "prompt": "Often forget to put things back in their proper place.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                },
+                {
+                    "id": "BF-Conscientiousness-4",
+                    "prompt": "Make a mess of things.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Strongly Disagree",
+                    "rightLabel": "Strongly Agree",
+                    "numItems": 7
+                }
+            ]
+        },
+        "Demographics": {
+            "type": "questionnaire",
+            "instruction": "Please answer the following questions about yourself.",
+            "response": [
+                {
+                    "id": "Demographics-Age",
+                    "prompt": "What is your age?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "numerical"
+                },
+                {
+                    "id": "Demographics-Gender",
+                    "prompt": "How do you identify your gender?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "withOther": true,
+                    "options": [
+                        "Male",
+                        "Female",
+                        "Non-Binary",
+                        "Prefer not to say"
+                    ]
+                },
+                {
+                    "id": "Demographics-EducationLevel",
+                    "prompt": "What is your current level of education?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Undergraduate - Freshman",
+                        "Undergraduate - Sophomore",
+                        "Undergraduate - Junior",
+                        "Undergraduate - Senior",
+                        "Graduate - Master's",
+                        "Graduate - PhD"
+                    ]
+                },
+                {
+                    "id": "Demographics-Major",
+                    "prompt": "What is your major or primary field of study?",
+                    "location": "aboveStimulus",
+                    "required": true,
+                    "type": "shortText"
+                },
+                {
+                    "id": "Demographics-Minor",
+                    "prompt": "Do you have a minor or secondary field of study? If so, please specify.",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "withDontKnow": true,
+                    "type": "shortText"
+                },
+                {
+                    "id": "Demographics-Field",
+                    "prompt": "Which field best describes your primary area of study?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "withOther": true,
+                    "options": [
+                        "Computer Science & Information Technology",
+                        "Engineering & Applied Sciences",
+                        "Natural Sciences (Biology, Chemistry, Physics, etc.)",
+                        "Mathematics & Statistics",
+                        "Social Sciences (Psychology, Sociology, Political Science, etc.)",
+                        "Humanities (Philosophy, History, Languages, etc.)",
+                        "Arts & Design (Visual Arts, Performing Arts, Media, etc.)",
+                        "Business & Economics",
+                        "Communication & Media Studies",
+                        "Education",
+                        "Health Sciences (Medicine, Nursing, Public Health, etc.)",
+                        "Interdisciplinary Studies"
+                    ]
+                },
+                {
+                    "id": "Demographics-EnrollmentStatus",
+                    "prompt": "Are you enrolled as a full-time or part-time student?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Full-time",
+                        "Part-time",
+                        "Not currently enrolled"
+                    ]
+                },
+                {
+                    "id": "Demographics-Funding",
+                    "prompt": "How do you primarily fund your education?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Scholarships",
+                        "Grants",
+                        "Student Loans",
+                        "Personal/Spousal/Family Support",
+                        "Teaching Assistantship",
+                        "Research Assistantship",
+                        "Part-time/Full-time Work"
+                    ]
+                },
+                {
+                    "id": "Demographics-WorkStatus",
+                    "prompt": "Are you currently working while pursuing your studies?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "No",
+                        "Yes, part-time (less than 20 hours/week)",
+                        "Yes, full-time (20+ hours/week)"
+                    ]
+                },
+                {
+                    "id": "Demographics-FirstGen",
+                    "prompt": "Are you a first-generation college student (neither parent/guardian has a four-year degree)?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Yes",
+                        "No",
+                        "Prefer not to say"
+                    ]
+                },
+                {
+                    "id": "Demographics-International",
+                    "prompt": "Are you an international student?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "Demographics-sensemaker",
+                    "prompt": "Have you previously participated in sensemaking or investigative tasks (e.g., research, data analysis, intelligence work)?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "Demographics-sensemakingFrequency",
+                    "prompt": "If yes, how frequently do you engage in such tasks?",
+                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "Rarely",
+                        "Occasionally",
+                        "Frequently",
+                        "Very frequently",
+                        "Not applicable"
+                    ]
+                },
+                {
+                    "id": "Demographics-sensemakingTime",
+                    "prompt": "If yes, how many years of professional experience do you have in roles that involve analytical or investigative tasks?",
+                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "0--2 years",
+                        "3--5 years",
+                        "6--10 years",
+                        "11--20 years",
+                        "21+ years"
+                    ]
+                },
+                {
+                    "id": "Demographics-Approach",
+                    "prompt": "Which best describes your typical approach when processing complex information?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withDontKnow": true,
+                    "options": [
+                        "I focus on the details first and then build the big picture",
+                        "I look at the big picture first and then fill in the details",
+                        "I try to balance both simultaneously"
+                    ]
+                },
+                {
+                    "id": "q-confident",
+                    "prompt": "How confident are you in your ability to summarize complex information?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Not confident at all",
+                    "rightLabel": "Extremely confident",
+                    "numItems": 5
+                },
+                {
+                    "id": "Demographics-often",
+                    "prompt": "How often do you perform manual text editing or summarization in your work or studies?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Rarely",
+                    "rightLabel": "Daily",
+                    "numItems": 5
+                },
+                {
+                    "id": "Demographics-psAbility",
+                    "prompt": "How would you rate your problem-solving abilities?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Very poor",
+                    "rightLabel": "Excellent",
+                    "numItems": 5
+                },
+                {
+                    "id": "Demographics-attendDetail",
+                    "prompt": "How would you describe your attention to detail?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Very low",
+                    "rightLabel": "Very high",
+                    "numItems": 5
+                },
+                {
+                    "id": "Demographics-trust",
+                    "prompt": "How much do you trust automated summary tools compared to manual summarization?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Not at all",
+                    "rightLabel": "Completely",
+                    "numItems": 5
                 }
             ]
         }
@@ -209,12 +1412,20 @@
     "sequence": {
         "order": "fixed",
         "components": [
+            "ConsentForm",
+            "SalmonfishTool",
+            "SensemakingTaskDescription",
+            "Pause",
+            "MentalModelQuiz",
+            "AnalysisHolismScaleShort",
+            "HolisticCognitionScale",
+            "CognitiveStylesIndex",
+            "BigFivePersonalityScale",
+            "Demographics",
             "AdminStart",
+            "SentenceEditingDescription",
             "SentenceList",
-            "Tester",
-            "SelectionTask",
-            "introduction",
-            "first-question-set"
+            "SelectionTask"
         ]
     }
 }
