@@ -166,12 +166,10 @@
                 }
             ]
         },
-        "Tester": {
-            "description": "This is SentenceList",
-            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
-            "type": "react-component",
-            "path": "retro-relevance/testTwo.tsx",
-            "parameters": {},
+        "SalmonfishTool": {
+            "type": "video",
+            "instruction": "Please watch the following tutorial to learn about the tool you will use.",
+            "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
             "response": []
         },
         "introduction": {
@@ -211,7 +209,7 @@
         "components": [
             "AdminStart",
             "SentenceList",
-            "Tester",
+            "SalmonfishTool",
             "SelectionTask",
             "introduction",
             "first-question-set"

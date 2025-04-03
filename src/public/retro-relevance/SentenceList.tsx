@@ -34,10 +34,10 @@ export function SentenceList({
         ? parameters.testingStimulusValue as string
         : answers[trialNameToPullResponseFrom].answer[keyForSummary] as string;
 
-    const initialSentences = splitIntoSentencesOld(source).map((text, index) => ({
-        id: `sentence-${index}`,
-        text,
-    }));
+    const originalSentences = provenanceState?.sentences || [];
+    const distractorSentence = { id: 'sentence-Distractor', text: 'Investigated Miss Peach and her connection to her father, Walter Boddy.' };
+    const initialSentences = [...originalSentences];
+    initialSentences.splice(initialSentences.length - 3, 0, distractorSentence);
     const initialFocus = null;
     // console.log("🚀 ~ answers:", answers)
     // (isTesting)?console.log("pulling from parameters, not from responses to",trialNameToPullResponseFrom):console.log("🚀 ~ ParagraphID:", answers[trialNameToPullResponseFrom].answer[keyForID])
@@ -57,7 +57,7 @@ export function SentenceList({
 
 
     const [sentences, setSentences] = useState<Sentence[]>(
-        provenanceState?.sentences || initialSentences
+        provenanceState?.sentences || []
     );
 
     const [focusedSentenceId, setFocusedSentenceId] = useState<string | null>(
@@ -75,20 +75,57 @@ export function SentenceList({
     //     }
     // }, [provenanceState]);
 
+    // useEffect(() => {
+    //     console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
+    //     if (provenanceState) {
+    //         console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
+    //         setSentences(provenanceState.sentences);
+    //         console.log(sentences)
+    //         setFocusedSentenceId(provenanceState.focusedSentenceId);
+    //         // setLocalState(provenanceState);
+    //     } else {
+    //         const originalSentences = splitIntoSentencesOld(source).map((text, index) => ({
+    //             id: `sentence-${index}`,
+    //             text,
+    //         }));
+    //         // const distractorSentence = {id: 'sentence-Distracotr', text: 'Investigated Miss Peach and her connection to her father, Walter Boddy.'}
+    //         // const initialSentences = originalSentences.splice(originalSentences.length - 3, 0, distractorSentence)
+    //         console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
+    //         setSentences(initialSentences);
+    //         console.log(sentences)
+    //         setFocusedSentenceId(initialFocus)
+    //         // setLocalState({ sentences: initialSentences, focusedSentenceId: initialFocus })
+    //     }
+    // }, [provenanceState]);
+
+
     useEffect(() => {
-        console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
+        console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState);
+
         if (provenanceState) {
-            console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
+            console.log("🚀 ~ useEffect ~ provenanceState Exists!", provenanceState);
             setSentences(provenanceState.sentences);
             setFocusedSentenceId(provenanceState.focusedSentenceId);
-            // setLocalState(provenanceState);
         } else {
-            console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
-            setSentences(initialSentences);
-            setFocusedSentenceId(initialFocus)
-            // setLocalState({ sentences: initialSentences, focusedSentenceId: initialFocus })
+            let originalSentences = splitIntoSentencesOld(source).map((text, index) => ({
+                id: `sentence-${index}`,
+                text,
+            }));
+
+            // Add distractor sentence at the correct position
+            if (originalSentences.length >= 3) {
+                originalSentences.splice(originalSentences.length - 3, 0, {
+                    id: 'sentence-Distractor',
+                    text: 'Investigated Miss Peach and her connection to her father, Walter Boddy.',
+                });
+            }
+
+            console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!");
+            setSentences(originalSentences);
+            setFocusedSentenceId(initialFocus);
         }
-    }, [provenanceState]);
+    }, [provenanceState, source]);
+
 
  
 
@@ -106,7 +143,6 @@ export function SentenceList({
             return state;
         });
         const removeSentenceAction = reg.register('removeSentenceAction', (state, payload: Sentence[]) => {
-            // state = { payload };
             state.sentences = payload
             return state
         });
@@ -149,6 +185,7 @@ export function SentenceList({
         console.log("🚀 ~ handleSentenceChange ~ updatedSentences:", updatedSentences)
 
         setSentences(updatedSentences);
+        console.log(sentences)
         setFocusedSentenceId(null);
 
         const newState = {
@@ -185,6 +222,8 @@ export function SentenceList({
         const newSentences = updatedSentences
 
         setSentences(updatedSentences);
+        console.log(sentences)
+
 
         // Apply the change to Trrack
         trrack.apply('Remove Sentence', actions.removeSentence(newSentences));
@@ -232,6 +271,8 @@ export function SentenceList({
             }
         }
         setSentences(someSentences);
+        console.log(sentences)
+
         setFocusedSentenceId(newSentence.id);
 
         const newState = {
@@ -278,6 +319,48 @@ export function SentenceList({
         });
     }, [sentences, trrack, actions, setAnswer, isTesting]);
 
+    const handleDragEnd = useCallback((result: DropResult) => {
+        if (result.destination === null) {
+            return;
+        }
+
+        if (result.destination.index === result.source.index) {
+            return;
+        }
+
+        const newOrderSentences = reorder(
+            sentences,
+            result.source.index,
+            result.destination.index,
+        ) as Sentence[];
+
+
+        setSentences(newOrderSentences);
+        console.log(sentences)
+
+
+        const newState = {
+            sentences: newOrderSentences,
+            focusedSentenceId: focusedSentenceId,
+        };
+
+        // Apply the change to Trrack
+        trrack.apply('Rearranging Sentences', actions.rearrangeSentences(newState));
+
+        console.log("🚀 ~ handleDragEnd ~ newState:", newState)
+
+        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
+        // Set answer for tracking
+        setAnswer({
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+                ["paragraphID"]: ParagraphID,
+                ["updatedSummary"]: joinTextOfObjects(sentences)
+            }
+        });
+    }, [sentences, trrack, actions, setAnswer, isTesting])
+
     // Get all text combined
     const joinTextOfObjects = (currentSentences: Sentence[]): string => {
         return currentSentences.map(s => s.text).join(' ');
@@ -288,9 +371,23 @@ export function SentenceList({
         return `removed: "${oldText}" added: "${newText}"`;
     };
 
-    // console.log(sentences)
+    const grid = 10;
+    const reorder = (list: Iterable<unknown> | ArrayLike<unknown>, startIndex: number, endIndex: number) => {
+        console.log("🚀 ~ reorder ~ list:", list)
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+
+
+    const List = styled.div`
+    margin-left: ${grid * 2}px;
+    `;
+
     // return <p>hello</p>
-    console.log("🚀 ~ sentences:", sentences)
+    // console.log("🚀 ~ sentences:", sentences)
 
     return (
         <Paper shadow="xs" p="sm">
