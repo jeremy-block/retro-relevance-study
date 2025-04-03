@@ -321,7 +321,7 @@
         "SalmonfishTool": {
             "type": "video",
             "instruction": "Please watch the following tutorial to learn about the tool you will use.",
-            "path": "retro-relevance/assets/tutorialText/Salmonfish_tool.mp4",
+            "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
             "response": []
         },
         "ConsentForm": {

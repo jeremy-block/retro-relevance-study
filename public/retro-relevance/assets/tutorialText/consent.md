@@ -135,5 +135,4 @@ You may request a copy of this description at any time.
 
 ---
 
-| |**IRB Project Numbers:**| |
-| **IRB202500305** | IRB Version: **03/12/2025** | PI Version: **1**
+*| **IRB Project Number: IRB202500305** | IRB Version: **03/12/2025** | PI Version: **1** |*
