@@ -38,7 +38,9 @@ export function TextAreaInput({
       )}
       description={secondaryText}
       radius="md"
-      size="md"
+      size="sm"
+      autosize
+      minRows={25}
       {...answer}
         // This is necessary so the component doesnt switch from uncontrolled to controlled, which can cause issues.
       value={answer.value || ''}
