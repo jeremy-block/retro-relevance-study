@@ -34,7 +34,7 @@ export function SentenceList({
     // console.log("🚀 ~ provenanceState:", provenanceState)
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "AdminStart_6"
+    const trialNameToPullResponseFrom = "AdminStart_10"
     const keyForSummary = "originalSummary"
     const keyForID = "participantAssignedID"
 
