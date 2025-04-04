@@ -14,7 +14,7 @@
     },
     "uiConfig": {
         "contactEmail": "j.block@ufl.edu",
-        "logoPath": "../retro-relevance/assets/noun-retrospective-7620763.svg",
+        "logoPath": "../retro-relevance-study/retro-relevance/assets/noun-retrospective-7620763.svg",
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 1000,
@@ -27,7 +27,7 @@
     "components": {
         "MentalModelQuiz": {
             "type": "markdown",
-            "path": "../retro-relevance/assets/tutorialText/mentalModelQuiz.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/mentalModelQuiz.md",
             "instruction": "Please answer the following questions based on your understanding and indicate your confidence in your answers.",
             "response": [
                 {
@@ -526,7 +526,7 @@
         },
         "FinalAnswer": {
             "type": "markdown",
-            "path": "../retro-relevance/assets/tutorialText/finalAnswer.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/finalAnswer.md",
             "instruction": "Please give your best answer or mark n/a if you don't know.",
             "instructionLocation": "aboveStimulus",
             "response": [
@@ -591,7 +591,7 @@
             "description": "This is the start of the study",
             "instruction": "Please prepare a summary of your work for someone to pick up where you left off.<br><h2>Guidelines</h2><ol><li><string>Enhance the summary</strong>: Make sure it's suitable for someone unfamiliar with the case.</li><li><strong>Enhance the summary:</strong> Make sure it's suitable for someone unfamiliar with the case.</li> <li><strong>Add missing details</strong>: Include any connections or context that the AI might have overlooked.</li><li><strong>Remove irrelevant information</strong>: Eliminate anything that wouldn't assist the next investigator.</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Structure</strong>: Organize the summary for easy interpretation.</li><li><strong>Take your time</strong>: You have at least 10 minutes to review and make changes.</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ul>",
             "instructionLocation": "sidebar",
-            "path": "retro-relevance/assets/tutorialText/editSummary.md",
+            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
                 {
                     "id": "finishedSummary",
@@ -613,7 +613,7 @@
         },
         "Screener": {
             "type": "markdown",
-            "path": "retro-relevance/assets/tutorialText/screener.md",
+            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
             "instruction": "Please indicate each of the following before we begin:",
             "response": [
                 {
@@ -756,12 +756,12 @@
         "SalmonfishTool": {
             "type": "video",
             "instruction": "Please watch the following tutorial to learn about the tool you will use.",
-            "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
+            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
             "response": []
         },
         "ConsentForm": {
             "type": "markdown",
-            "path": "../retro-relevance/assets/tutorialText/consent.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/consent.md",
             "response": [
                 {
                     "id": "Consent",
@@ -784,12 +784,12 @@
         },
         "SensemakingTaskDescription": {
             "type": "markdown",
-            "path": "../retro-relevance/assets/tutorialText/intro.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro.md",
             "response": []
         },
         "SentenceEditingDescription": {
             "type": "markdown",
-            "path": "../retro-relevance/assets/tutorialText/editing_intro.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editing_intro.md",
             "response": []
         },
         "AnalysisHolismScaleShort": {
