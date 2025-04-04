@@ -20,7 +20,9 @@ Your goal is to use this information to identify:
 
 ## Note
 
-The characters you will meet in this task can lie.
+Only those involved in the murder may knowingly lie, while anyone might unknowingly provide false information.
+For example, if Jake is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
+Now, if Sarah, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but it was actually 7 PM, that’s unknowingly providing false information (2nd Degree lie).
 
 ### Are you ready to begin?
 
