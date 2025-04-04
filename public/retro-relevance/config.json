@@ -527,12 +527,12 @@
         "FinalAnswer": {
             "type": "markdown",
             "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/finalAnswer.md",
-            "instruction": "Please give your best answer or mark n/a if you don't know.",
+            "instruction": "Please give your best answer or mark if you don't know.",
             "instructionLocation": "aboveStimulus",
             "response": [
                 {
                     "id": "suspect",
-                    "prompt": "Which character(s) do you belive murdered Walter Boddy?",
+                    "prompt": "Which character(s) was/were involed in the murder of Walter Boddy?",
                     "type": "shortText",
                     "required": false,
                     "withDivider": true,
@@ -1375,8 +1375,8 @@
             "SalmonfishTool",
             "SensemakingTaskDescription",
             "sendToSensemakingTask",
-            "MentalModelQuiz",
             "FinalAnswer",
+            "MentalModelQuiz",
             "AnalysisHolismScaleShort",
             "HolisticCognitionScale",
             "BigFivePersonalityScale",
