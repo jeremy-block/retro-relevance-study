@@ -44,12 +44,30 @@
                 },
                 {
                     "id": "q-1-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
@@ -66,12 +84,30 @@
                 },
                 {
                     "id": "q-2-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
@@ -88,12 +124,30 @@
                 },
                 {
                     "id": "q-3-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
@@ -110,12 +164,30 @@
                 },
                 {
                     "id": "q-4-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
@@ -132,12 +204,30 @@
                 },
                 {
                     "id": "q-5-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
@@ -154,38 +244,34 @@
                 },
                 {
                     "id": "q-6-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 },
                 {
                     "id": "q-7",
-                    "prompt": "What motivated Scott Plum's actions regarding the handling of Walter Boddy's checkbook?",
-                    "location": "belowStimulus",
-                    "type": "radio",
-                    "options": [
-                        "Financial desperation and resentment over a monetary grievance with Boddy",
-                        "An attempt to sabotage Boddy's business ventures by stealing sensitive documents",
-                        "A covert strategy to redirect funds into a rival company",
-                        "A ploy to frame Adam Mustard for financial mismanagement"
-                    ]
-                },
-                {
-                    "id": "q-7-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
-                    "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
-                    "withDivider": true
-                },
-                {
-                    "id": "q-8",
                     "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
                     "location": "belowStimulus",
                     "type": "radio",
@@ -197,13 +283,151 @@
                     ]
                 },
                 {
-                    "id": "q-8-confidence",
-                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "id": "q-7-confidence",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
                     "location": "belowStimulus",
-                    "type": "numerical",
-                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
-                    "min": 1,
-                    "max": 4,
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
+                    "withDivider": true
+                },
+                {
+                    "id": "q-8",
+                    "prompt": "Where did Walter Boddy and Katie Peacock watch the blackmail tapes?",
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "In the kitchen",
+                        "In the theatre",
+                        "In the lounge",
+                        "In the study"
+                    ]
+                },
+                {
+                    "id": "q-8-confidence",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
+                    "withDivider": true
+                },
+                {
+                    "id": "q-9",
+                    "prompt": "Who installed the multi-camera surveillance system in the main building of Boddy Estate?",
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "Henry Wadsworth",
+                        "Yvette Duster",
+                        "Christine Scarlet",
+                        "Scott Plum"
+                    ]
+                },
+                {
+                    "id": "q-9-confidence",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
+                    "withDivider": true
+                },
+                {
+                    "id": "q-10",
+                    "prompt": "Where was Christine Scarlet waiting for Walter Boddy with the 'second surprise'?",
+                    "location": "belowStimulus",
+                    "type": "radio",
+                    "options": [
+                        "In the conservatory",
+                        "In the kitchen",
+                        "In the study",
+                        "In the theater"
+                    ]
+                },
+                {
+                    "id": "q-10-confidence",
+                    "prompt": "Indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "slider",
+                    "required": true,
+                    "startingValue":2.5,
+                    "snap": true,
+                    "options": [
+                        {
+                            "label": "I'm guessing",
+                            "value": 1
+                        },
+                        {
+                            "label": "Somewhat unsure",
+                            "value": 2
+                        },
+                        {
+                            "label": "Somwhat sure",
+                            "value": 3
+                        },
+                        {
+                            "label": "I'm sure",
+                            "value": 4
+                        }
+                    ],
                     "withDivider": true
                 }
             ],
@@ -264,7 +488,7 @@
                 },
                 {
                     "id": "q-7",
-                    "answer": "Financial desperation and resentment over a monetary grievance with Boddy"
+                    "answer": "Advancing a business deal through his role as a merger and acquisition broker"
                 },
                 {
                     "id": "q-7-confidence",
@@ -273,10 +497,28 @@
                 },
                 {
                     "id": "q-8",
-                    "answer": "Advancing a business deal through his role as a merger and acquisition broker"
+                    "answer": "In the theatre"
                 },
                 {
                     "id": "q-8-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
+                    "id": "q-9",
+                    "answer": "Christine Scarlet"
+                },
+                {
+                    "id": "q-9-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
+                    "id": "q-10",
+                    "answer": "In the conservatory"
+                },
+                {
+                    "id": "q-10-confidence",
                     "acceptableLow": 3,
                     "answer": 3
                 }
@@ -286,6 +528,7 @@
             "type": "markdown",
             "path": "../retro-relevance/assets/tutorialText/finalAnswer.md",
             "instruction": "Please give your best answer or mark n/a if you don't know.",
+            "instructionLocation": "aboveStimulus",
             "response": [
                 {
                     "id": "suspect",
@@ -343,14 +586,16 @@
                 }
             ]
         },
-        "AdminStart": {
-            "type": "questionnaire",
+        "EditSummary": {
+            "type": "markdown",
             "description": "This is the start of the study",
-            "instruction": "Please enter the following information then you may begin editing.",
+            "instruction": "Please prepare a summary of your work for someone to pick up where you left off.<br><h2>Guidelines</h2><ol><li><string>Enhance the summary</strong>: Make sure it's suitable for someone unfamiliar with the case.</li><li><strong>Enhance the summary:</strong> Make sure it's suitable for someone unfamiliar with the case.</li> <li><strong>Add missing details</strong>: Include any connections or context that the AI might have overlooked.</li><li><strong>Remove irrelevant information</strong>: Eliminate anything that wouldn't assist the next investigator.</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Structure</strong>: Organize the summary for easy interpretation.</li><li><strong>Take your time</strong>: You have at least 10 minutes to review and make changes.</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ul>",
+            "instructionLocation": "sidebar",
+            "path": "retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
                 {
-                    "id": "originalSummary",
-                    "prompt": "Please paste the text from the researcher",
+                    "id": "finishedSummary",
+                    "prompt": "Please paste the text from the researcher below and edit it so the next analyst knows where you left off.",
                     "required": true,
                     "location": "aboveStimulus",
                     "type": "longText",
@@ -427,7 +672,6 @@
         },
         "SelectionTask": {
             "description": "This is selection",
-            "instruction": "Please select the parts of this summary that you think will be relevant to future investigators.",
             "type": "react-component",
             "path": "retro-relevance/ParagraphSelection/ParagraphContentWithSelections.tsx",
             "parameters": {
@@ -501,58 +745,13 @@
                 }
             ]
         },
-        "Pause": {
+        "sendToSensemakingTask": {
             "description": "This is to pause the participant",
-            "instruction": "Please pause here and wait for the next direction from the researcher.",
             "type": "react-component",
-            "path": "retro-relevance/testTwo.tsx",
+            "path": "retro-relevance/sendToSensemakingTask.tsx",
             "nextButtonEnableTime": 5000,
             "parameters": {},
             "response": []
-        },
-        "SentenceList": {
-            "description": "This is SentenceList",
-            "instruction": "Edit the paragraph below by modifying sentences, reordering them, or adding new ones.",
-            "type": "react-component",
-            "path": "retro-relevance/SentenceList.tsx",
-            "parameters": {
-                "key": "test-response1",
-                "testingStimulusValue": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:",
-                "text": "hi there",
-                "id": "this is my ID",
-                "sentences": [
-                    {
-                        "id": "pickleSentence1",
-                        "text": "words on a page."
-                    },
-                    {
-                        "id": "pickleSentence2",
-                        "text": "new words on a page."
-                    },
-                    {
-                        "id": "pickleSentence3",
-                        "text": "final words on a page."
-                    }
-                ]
-            },
-            "response": [
-                {
-                    "id": "paragraphID",
-                    "prompt": "",
-                    "hidden": false,
-                    "required": false,
-                    "location": "sidebar",
-                    "type": "reactive"
-                },
-                {
-                    "id": "updatedSummary",
-                    "prompt": "",
-                    "hidden": true,
-                    "required": false,
-                    "location": "sidebar",
-                    "type": "reactive"
-                }
-            ]
         },
         "SalmonfishTool": {
             "type": "video",
@@ -704,7 +903,7 @@
                 },
                 {
                     "id": "HCS-Causality-2",
-                    "prompt": "Events only occur as a result of individuals’ choices and behavior.",
+                    "prompt": "Events only occur as a result of individuals' choices and behavior.",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "likert",
@@ -792,7 +991,7 @@
                 },
                 {
                     "id": "HCS-Change-2",
-                    "prompt": "A person’s true nature may evolve but it does not change dramatically over time.",
+                    "prompt": "A person's true nature may evolve but it does not change dramatically over time.",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "likert",
@@ -1175,16 +1374,16 @@
             "Screener",
             "SalmonfishTool",
             "SensemakingTaskDescription",
-            "Pause",
+            "sendToSensemakingTask",
             "MentalModelQuiz",
             "FinalAnswer",
             "AnalysisHolismScaleShort",
             "HolisticCognitionScale",
             "BigFivePersonalityScale",
-            "Demographics",
             "SentenceEditingDescription",
-            "AdminStart",
-            "SelectionTask"
+            "EditSummary",
+            "SelectionTask",
+            "Demographics"
         ]
     }
 }

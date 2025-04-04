@@ -7,7 +7,7 @@ import { Paragraph, TextSelection, SelectionToolParams, SelectionListState } fro
 import { StimulusParams, StoredAnswer } from '../../../store/types';
 import { useStoreSelector } from '../../../store/store';
 import { current } from '@reduxjs/toolkit';
-import { Button, Center, Pagination, Paper } from '@mantine/core';
+import { Button, Center, Pagination, Paper, useMantineTheme } from '@mantine/core';
 
 
 const isTesting = false;
@@ -20,8 +20,8 @@ export function ParagraphContentWithSelections({
 }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "SentenceList_12"
-    const keyForSummary = "updatedSummary"
+    const trialNameToPullResponseFrom = "EditSummary_11"
+    const keyForSummary = "finishedSummary"
     const keyForID = "participantAssignedID"
 
     const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
@@ -31,8 +31,8 @@ export function ParagraphContentWithSelections({
     const source = isTesting 
         ? (parameters.testingStimulusValue as Paragraph[]) 
         : [{ 
-            text: String(answers[trialNameToPullResponseFrom]?.answer.updatedSummary || ''), 
-            id: String(answers[trialNameToPullResponseFrom]?.answer.paragraphID || null), 
+            text: String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || ''), 
+            id: String(answers[trialNameToPullResponseFrom]?.answer[keyForID] || null), 
             selections: [] 
         }];
     console.log("🚀 ~ source:", source)
@@ -55,6 +55,7 @@ export function ParagraphContentWithSelections({
     const [pendingSelection, setPendingSelection] = useState<TextSelection | null>(null);
 
     const currentParagraph = paragraphs[focusedParagraphIndex];
+    const theme = useMantineTheme();
 
     useEffect(() => {
         console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
@@ -406,60 +407,51 @@ export function ParagraphContentWithSelections({
     }
 
     return (
-        <Paper shadow='sm' p='xl' radius='md'>
+        <div>
             {/* Paragraph Display and Navigation */}
             <div className="mb-6">
-                <h2 className="text-xl font-bold mb-4">
-                    Paragraph {focusedParagraphIndex + 1} of {paragraphs.length}
-                </h2>
-
                 {/* Selection Interface with Markdown Renderer */}
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h3 className="text-lg font-semibold mb-4">Select Relevant Text</h3>
-                    <p className="text-sm text-gray-600 mb-4">
-                        Select text below to mark it as relevant. Click and drag to highlight text.
-                    </p>
+                <h3 className="text-lg font-semibold mb-4">Select Relevant Text{paragraphs.length > 1 && (<span> :: Paragraph {focusedParagraphIndex + 1} of {paragraphs.length}</span>)}</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                    Please select the parts of {paragraphs.length > 1 ? (<span>these summaries</span>) : (<span>your summary</span>)} that you think {paragraphs.length > 1 ? (<span>are</span>) : (<span>will be</span>)} relevant to future investigators{paragraphs.length > 1 && (<span> like you</span>)}.<br />
+                    <small style={{ color: theme.colors.gray[5] }}> (Click and drag to select text, and indicate how relevant you believe it would be to {paragraphs.length > 1 ? (<span>someone like you</span>) : (<span>someone new</span>)}.)</small>
+                </p>
 
-                    {currentParagraph && (
-                        <div className="relative">
-                            <MarkdownRenderer
-                                markdownText={currentParagraph.text}
-                                selections={selections}
-                                onTextSelection={handleTextSelection}
-                                onSelectionClick={handleSelectionClick}
-                                className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
-                            />
-                        </div>
-                    )}
-                </div>
+                {currentParagraph && (
+                    <div className="relative">
+                        <MarkdownRenderer
+                            markdownText={currentParagraph.text}
+                            selections={selections}
+                            onTextSelection={handleTextSelection}
+                            onSelectionClick={handleSelectionClick}
+                            className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
+                        />
+                    </div>
+                )}
+            </div>
 
-                {/* Context Menu for Selection */}
-                <SelectionContextMenu
-                    position={contextMenuPosition}
-                    onSelectRelevance={handleSelectRelevance}
-                    onRemove={handleRemoveSelection}
-                    onCancel={handleCancelSelection}
-                    showRemoveOption={!!pendingSelection?.id}
-                />
+            {/* Context Menu for Selection */}
+            <SelectionContextMenu
+                position={contextMenuPosition}
+                onSelectRelevance={handleSelectRelevance}
+                onRemove={handleRemoveSelection}
+                onCancel={handleCancelSelection}
+                showRemoveOption={!!pendingSelection?.id}
+            />
 
-                {/* Display paragraph navigation controls at bottom */}
-                {paragraphs.length > 1 && (
-                    <div className="flex justify-between mb-4 mt-6">
-                        <Center p={4}>
-
+            {/* Display paragraph navigation controls at bottom */}
+            {paragraphs.length > 1 && (
+                <div className="flex justify-between mb-4 mt-6">
+                    <Center p={4}>
                         <Pagination total={paragraphs.length} size="md" siblings={1}
                             onNextPage={() => handleChangeParagraph(focusedParagraphIndex + 1)}
                             onPreviousPage={() => handleChangeParagraph(focusedParagraphIndex - 1)}
-                            onChange={(indexx) => handleChangeParagraph(indexx-1)}
-                            />
-                            </Center>
-                    </div>
-                )}
-                {focusedParagraphIndex === paragraphs.length - 1 && (
-                    <p>You're done now.</p>)
-                }
-            </div>
-        </Paper>
+                            onChange={(indexx) => handleChangeParagraph(indexx - 1)}
+                        />
+                    </Center>
+                </div>
+            )}
+        </div>
     );
 };
 

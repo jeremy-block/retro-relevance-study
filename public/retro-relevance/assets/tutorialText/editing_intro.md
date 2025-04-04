@@ -1,15 +1,15 @@
 # Summary Editing
 
-Now that you have completed the task, we have used an AI model to generate a summary of your interactions.  
+While you were completing those questionnaires, we have used an AI model to generate a summary of your interactions.  
 *Please read the following aloud.*
 
-## Role
+## Context
 
-You are collaborating with other investigators to solve the case about the murder of Mr. Boddy. A colleague will be stepping in to continue your work.
+Imagine a colleague will be stepping in to continue your work. They are collaborating with you to solve the case about the murder of Mr. Boddy. They need a summary of what you have done and what they should do next.
 
 ## Task
 
-Refine the generated summary on the next page to ensure that a new colleague can easily pick up where you left off.
+On the next page, you will refine the generated summary to prepare it for a new colleague, so they can easily pick up where you left off.
 
 ## Guidelines
 

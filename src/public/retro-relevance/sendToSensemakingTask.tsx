@@ -49,9 +49,14 @@ const answers = useStoreSelector((state) => state.answers);
     }, [actions, setAnswer, trrack]);
   return (
     <div>
-      <h1>Please Stop here</h1>
-      <p>The researcher has more instructions for you.</p>
-      <p>To begin working with the interface, please <a href="https://indie.cise.ufl.edu/MaverickMystery/?=5" target="blank">Click here to go to the click here to go to the document explorer tool.</a></p>
+      <h1>Pause</h1>
+      <p>Please pause here and inform the researcher you are ready for your next direction. Pleaes make sure you have:</p>
+      <ul>
+        <li>screen-shared your <strong>entire desktop</strong> in Zoom</li>
+        <li>opened the document explorer tool in an <strong>incognito window</strong></li>
+        <li>understood the <strong>interface tools</strong>. You may ask questions during your investigation too.</li>
+      </ul>
+      <p>To begin working with the interface, please <a href="https://indie.cise.ufl.edu/MaverickMystery/?=5" target="blank">click here to go to the document explorer tool.</a></p>
     </div>
   );
 }

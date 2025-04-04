@@ -46,7 +46,7 @@ const html = parseMarkdownWithIds(markdownText);
   };
   
   return (
-    <Paper p='sm' m='lg' shadow='lg' style={{ position: 'relative' }} className={`markdown-renderer relative ${className} ${isSelecting ? 'selecting' : ''}`}>
+    <Paper p='sm' m='lg' shadow='lg' style={{ position: 'relative', height: '500px', overflowY: 'scroll', paddingLeft: '1rem', paddingRight: '1rem' }} className={`markdown-renderer relative ${className} ${isSelecting ? 'selecting' : ''}`}>
       {/* The actual markdown content */}
       <Box 
         style={{

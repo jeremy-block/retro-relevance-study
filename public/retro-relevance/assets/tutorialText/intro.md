@@ -1,7 +1,8 @@
 # Task
 
-Using the tool you just learned about, you will complete the following task. A copy of the following premise will be available in the interface.
-*Please read the following aloud*
+Using the tool you just learned about, here is the premise for your investigation.
+
+*Please read the following aloud.*
 
 ## Premise
 
@@ -23,4 +24,4 @@ The characters you will meet in this task can lie.
 
 ### Are you ready to begin?
 
-*Once you click next you can not return to the tutorial.*
+A copy of the above premise will be available in the interface.
