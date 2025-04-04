@@ -18,7 +18,7 @@
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 1000,
-        "studyEndMsg": "Thank you for completing this study. You're the best!",
+        "studyEndMsg": "Thank you for completing this study. You're the best!<br/><br/>Please wait your data is being download.<br/><br/>As a backup, please send this data back to the Researcher on Zoom.",
         "sidebar": true,
         "windowEventDebounceTime": 500,
         "urlParticipantIdParam": "PROLIFIC_ID",
