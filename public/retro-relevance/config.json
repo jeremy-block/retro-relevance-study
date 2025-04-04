@@ -26,14 +26,15 @@
     },
     "components": {
         "MentalModelQuiz": {
-            "type": "questionnaire",
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/mentalModelQuiz.md",
+            "instruction": "Please answer the following questions based on your understanding and indicate your confidence in your answers.",
             "response": [
                 {
                     "id": "q-1",
                     "prompt": "Who discovered Walter Boddy's body?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "Henry Wadsworth",
                         "Yvette Duster",
@@ -42,11 +43,20 @@
                     ]
                 },
                 {
+                    "id": "q-1-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-2",
                     "prompt": "Which object is most directly linked as a potential murder weapon?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "The candlestick found in the conservatory",
                         "A carving knife stuck in the wall of the kitchen",
@@ -55,11 +65,20 @@
                     ]
                 },
                 {
+                    "id": "q-2-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-3",
                     "prompt": "In which room was Walter Boddy's body found?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "In the bathroom (bathtub)",
                         "In the dining room",
@@ -68,11 +87,20 @@
                     ]
                 },
                 {
+                    "id": "q-3-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-4",
                     "prompt": "Which suspect's fingerprint was found on Walter Boddy's missing Rolex watch?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "Scott Plum",
                         "Yvette Duster",
@@ -81,11 +109,20 @@
                     ]
                 },
                 {
+                    "id": "q-4-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-5",
                     "prompt": "Where was Walter Boddy's missing Rolex watch found?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "In the lounge",
                         "In the study",
@@ -94,11 +131,20 @@
                     ]
                 },
                 {
+                    "id": "q-5-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-6",
                     "prompt": "What best describes Adam Mustard's underlying motivation in his interactions with Walter Boddy?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "The pursuit of lucrative business deals and personal financial gain",
                         "A covert desire to frame Boddy for financial fraud",
@@ -107,11 +153,20 @@
                     ]
                 },
                 {
+                    "id": "q-6-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-7",
                     "prompt": "What motivated Scott Plum's actions regarding the handling of Walter Boddy's checkbook?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "Financial desperation and resentment over a monetary grievance with Boddy",
                         "An attempt to sabotage Boddy's business ventures by stealing sensitive documents",
@@ -120,17 +175,36 @@
                     ]
                 },
                 {
+                    "id": "q-7-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
+                },
+                {
                     "id": "q-8",
                     "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "Advancing a business deal through his role as a merger and acquisition broker",
                         "Settling a personal score that stemmed from past disputes",
                         "Attempting to expose Boddy's unethical practices to the public",
                         "Organizing an elaborate scheme to embezzle funds from Boddy's estate"
                     ]
+                },
+                {
+                    "id": "q-8-confidence",
+                    "prompt": "On a scale from 1 -- 4, indicate your confidence in your answer to the previous question?",
+                    "location": "belowStimulus",
+                    "type": "numerical",
+                    "secondaryText": "1 = I'm guessing, 4 = I'm sure",
+                    "min": 1,
+                    "max": 4,
+                    "withDivider": true
                 }
             ],
             "correctAnswer": [
@@ -139,37 +213,140 @@
                     "answer": "Henry Wadsworth"
                 },
                 {
+                    "id": "q-1-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
                     "id": "q-2",
                     "answer": "The candlestick found in the conservatory"
+                },
+                {
+                    "id": "q-2-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
                 },
                 {
                     "id": "q-3",
                     "answer": "In the bathroom (bathtub)"
                 },
                 {
+                    "id": "q-3-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
                     "id": "q-4",
                     "answer": "Scott Plum"
+                },
+                {
+                    "id": "q-4-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
                 },
                 {
                     "id": "q-5",
                     "answer": "In the lounge"
                 },
                 {
+                    "id": "q-5-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
                     "id": "q-6",
                     "answer": "The pursuit of lucrative business deals and personal financial gain"
+                },
+                {
+                    "id": "q-6-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
                 },
                 {
                     "id": "q-7",
                     "answer": "Financial desperation and resentment over a monetary grievance with Boddy"
                 },
                 {
+                    "id": "q-7-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                },
+                {
                     "id": "q-8",
                     "answer": "Advancing a business deal through his role as a merger and acquisition broker"
+                },
+                {
+                    "id": "q-8-confidence",
+                    "acceptableLow": 3,
+                    "answer": 3
+                }
+            ]
+        },
+        "FinalAnswer": {
+            "type": "markdown",
+            "path": "../retro-relevance/assets/tutorialText/finalAnswer.md",
+            "instruction": "Please give your best answer or mark n/a if you don't know.",
+            "response": [
+                {
+                    "id": "suspect",
+                    "prompt": "Which character(s) do you belive murdered Walter Boddy?",
+                    "type": "shortText",
+                    "required": false,
+                    "withDivider": true,
+                    "withDontKnow": true
+                },
+                {
+                    "id": "weapon",
+                    "prompt": "What item was used to murder Walter Boddy?",
+                    "type": "shortText",
+                    "required": false,
+                    "withDivider": true,
+                    "withDontKnow": true
+                },
+                {
+                    "id": "location",
+                    "prompt": "What room was Walter Boddy murdered in?",
+                    "type": "shortText",
+                    "required": false,
+                    "withDivider": true,
+                    "withDontKnow": true
+                },
+                {
+                    "id": "guilty",
+                    "prompt": "Did Mr. Wadsworth murder Walter Boddy?",
+                    "options": [
+                        "Mr. Wadsworth is guilty of murder",
+                        "Mr. Wadsworth is NOT guilty of murder."
+                    ],
+                    "type": "dropdown",
+                    "required": false,
+                    "withDivider": true,
+                    "withDontKnow": true
+                }
+            ],
+            "correctAnswer": [
+                {
+                    "id": "suspect",
+                    "answer": "Plum"
+                },
+                {
+                    "id": "weapon",
+                    "answer": "Candlestick"
+                },
+                {
+                    "id": "location",
+                    "answer": "Lounge"
+                },
+                {
+                    "id": "guilty",
+                    "answer": "Mr. Wadsworth is NOT guilty of murder."
                 }
             ]
         },
         "AdminStart": {
             "type": "questionnaire",
+            "description": "This is the start of the study",
+            "instruction": "Please enter the following information then you may begin editing.",
             "response": [
                 {
                     "id": "originalSummary",
@@ -186,6 +363,65 @@
                     "hidden": false,
                     "location": "sidebar",
                     "type": "shortText"
+                }
+            ]
+        },
+        "Screener": {
+            "type": "markdown",
+            "path": "retro-relevance/assets/tutorialText/screener.md",
+            "instruction": "Please indicate each of the following before we begin:",
+            "response": [
+                {
+                    "id": "screener-mouse",
+                    "prompt": "Do you have a mouse and keyboard to participate in today's study?",
+                    "type": "dropdown",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "screener-tablet",
+                    "prompt": "Are you using a tablet to participate in today's study?",
+                    "type": "dropdown",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "screener-english",
+                    "prompt": "Are you a native or fluent English speaker?",
+                    "type": "dropdown",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "id": "screener-screen",
+                    "prompt": "Please estimate (in inches) the size of the display you will use for today's study?",
+                    "type": "numerical"
+                }
+            ],
+            "correctAnswer": [
+                {
+                    "id": "screener-mouse",
+                    "answer": "Yes"
+                },
+                {
+                    "id": "screener-tablet",
+                    "answer": "No"
+                },
+                {
+                    "id": "screener-english",
+                    "answer": "Yes"
+                },
+                {
+                    "id": "screener-screen",
+                    "acceptableLow": 10,
+                    "acceptableHigh": 50,
+                    "answer": 14
                 }
             ]
         },
@@ -342,7 +578,7 @@
             ],
             "correctAnswer": [
                 {
-                    "id": "Demographics-Consent",
+                    "id": "Consent",
                     "answer": "Yes"
                 }
             ]
@@ -357,468 +593,6 @@
             "path": "../retro-relevance/assets/tutorialText/editing_intro.md",
             "response": []
         },
-        "CognitiveStylesIndex": {
-            "type": "questionnaire",
-            "instruction": "People differ in the way they think about problems. Below are 38 statements designed to identify your own approach. If you believe that a statement is true about you, answer 'Yes'. If you believe that it is false about you, answer 'No'. If you are uncertain whether it is true or false, answer 'Uncertain'. This is not a test of your ability, and there are no right or wrong answers. Simply choose the one response which comes closest to your own opinion.",
-            "response": [
-                {
-                    "id": "cs01",
-                    "prompt": "In my experience, rational thought is the only realistic basis for making decisions.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs02",
-                    "prompt": "To solve a problem, I have to study each part of it in detail.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs03",
-                    "prompt": "I am most effective when my work involves a clear sequence of tasks to be performed.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs04",
-                    "prompt": "I have difficulty working with people who ‘dive in at the deep end’ without considering the finer aspects of the problem.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs05",
-                    "prompt": "I am careful to follow rules and regulations at work.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs06",
-                    "prompt": "I avoid taking a course of action if the odds are against its success.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs07",
-                    "prompt": "I am inclined to scan through reports rather than read them in detail.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs08",
-                    "prompt": "My understanding of a problem tends to come more from thorough analysis than flashes of insight.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs09",
-                    "prompt": "I try to keep to a regular routine in my work.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs10",
-                    "prompt": "The kind of work I like best is that which requires a logical, step-by-step approach.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs11",
-                    "prompt": "I rarely make ‘off the top of the head’ decisions.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs12",
-                    "prompt": "I prefer chaotic action to orderly inaction.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs13",
-                    "prompt": "Given enough time, I would consider every situation from all angles.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs14",
-                    "prompt": "To be successful in my work, I find that it is important to avoid hurting other people’s feelings.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs15",
-                    "prompt": "The best way for me to understand a problem is to break it down into its constituent parts.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs16",
-                    "prompt": "I find that to adopt a careful, analytical approach to making decisions takes too long.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs17",
-                    "prompt": "I make most progress when I take calculated risks.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs18",
-                    "prompt": "I find that it is possible to be too organised when performing certain kinds of task.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs19",
-                    "prompt": "I always pay attention to detail before I reach a conclusion.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs20",
-                    "prompt": "I make many of my decisions on the basis of intuition.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs21",
-                    "prompt": "My philosophy is that it is better to be safe than risk being sorry.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs22",
-                    "prompt": "When making a decision, I take my time and thoroughly consider all relevant factors.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs23",
-                    "prompt": "I get on best with quiet, thoughtful people",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs24",
-                    "prompt": "I would rather that my life was unpredictable than that it followed a regular pattern.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs25",
-                    "prompt": "Most people regard me as a logical thinker.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs26",
-                    "prompt": "To fully understand the facts I need a good theory",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs27",
-                    "prompt": "I work best with people who are spontaneous.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs28",
-                    "prompt": "I find detailed, methodical work satisfying.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs29",
-                    "prompt": "My approach to solving a problem is to focus on one part at a time.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs30",
-                    "prompt": "I am constantly on the lookout for new experiences.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs31",
-                    "prompt": "In meetings, I have more to say than most.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs32",
-                    "prompt": "My 'gut feeling' is just as good a basis for decision making as careful analysis.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs33",
-                    "prompt": "I am the kind of person who casts caution to the wind.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs34",
-                    "prompt": "I make decisions and get on with things rather than analyse every last detail.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs35",
-                    "prompt": "I am always prepared to take a gamble.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs36",
-                    "prompt": "Formal plans are more of a hindrance than a help in my work.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs37",
-                    "prompt": "I am more at home with ideas rather than facts and figures.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                },
-                {
-                    "id": "cs38",
-                    "prompt": "I find that ‘too much analysis results in paralysis’.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "options": [
-                        "Yes",
-                        "Uncertain",
-                        "No"
-                    ]
-                }
-            ]
-        },
         "AnalysisHolismScaleShort": {
             "type": "questionnaire",
             "instruction": "Please indicate how much you agree with the following statements.",
@@ -831,7 +605,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "AH-Contradictions",
@@ -841,7 +616,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "AH-Change (r)",
@@ -851,7 +627,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "AH-Attention",
@@ -861,7 +638,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 }
             ]
         },
@@ -877,7 +655,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Attention-2",
@@ -887,7 +666,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Attention-3",
@@ -897,7 +677,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Attention-4",
@@ -907,7 +688,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Causality-1",
@@ -917,7 +699,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Causality-2",
@@ -927,7 +710,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Causality-3",
@@ -937,7 +721,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Causality-4",
@@ -947,7 +732,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Contradiction-1",
@@ -957,7 +743,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Contradiction-2",
@@ -967,7 +754,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Contradiction-3",
@@ -977,7 +765,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Contradiction-4",
@@ -987,7 +776,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Change-1",
@@ -997,7 +787,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Change-2",
@@ -1007,7 +798,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Change-3",
@@ -1017,7 +809,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "HCS-Change-4",
@@ -1027,7 +820,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 }
             ]
         },
@@ -1043,7 +837,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Extraversion-2",
@@ -1053,7 +848,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Extraversion-3",
@@ -1063,7 +859,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Extraversion-4",
@@ -1073,7 +870,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Agreeableness-1",
@@ -1083,7 +881,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Agreeableness-2",
@@ -1093,7 +892,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Agreeableness-3",
@@ -1103,7 +903,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Agreeableness-4",
@@ -1113,7 +914,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Conscientiousness-1",
@@ -1123,7 +925,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Conscientiousness-2",
@@ -1133,7 +936,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Conscientiousness-3",
@@ -1143,7 +947,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 },
                 {
                     "id": "BF-Conscientiousness-4",
@@ -1153,7 +958,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7
+                    "numItems": 7,
+                    "withDivider": true
                 }
             ]
         },
@@ -1181,11 +987,24 @@
                         "Female",
                         "Non-Binary",
                         "Prefer not to say"
+                    ],
+                    "withDivider": true
+                },
+                {
+                    "id": "Demographics-EnrollmentStatus",
+                    "prompt": "Are you enrolled as a full-time or part-time student?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Full-time (20+ hours/week)",
+                        "Part-time (less than 20 hours/week)",
+                        "Not currently enrolled"
                     ]
                 },
                 {
                     "id": "Demographics-EducationLevel",
-                    "prompt": "What is your current level of education?",
+                    "prompt": "What level of education are you enrolled in?",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
@@ -1195,14 +1014,15 @@
                         "Undergraduate - Junior",
                         "Undergraduate - Senior",
                         "Graduate - Master's",
-                        "Graduate - PhD"
+                        "Graduate - PhD",
+                        "Not currently enrolled"
                     ]
                 },
                 {
                     "id": "Demographics-Major",
                     "prompt": "What is your major or primary field of study?",
                     "location": "aboveStimulus",
-                    "required": true,
+                    "required": false,
                     "type": "shortText"
                 },
                 {
@@ -1212,69 +1032,6 @@
                     "required": false,
                     "withDontKnow": true,
                     "type": "shortText"
-                },
-                {
-                    "id": "Demographics-Field",
-                    "prompt": "Which field best describes your primary area of study?",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "radio",
-                    "withDontKnow": true,
-                    "withOther": true,
-                    "options": [
-                        "Computer Science & Information Technology",
-                        "Engineering & Applied Sciences",
-                        "Natural Sciences (Biology, Chemistry, Physics, etc.)",
-                        "Mathematics & Statistics",
-                        "Social Sciences (Psychology, Sociology, Political Science, etc.)",
-                        "Humanities (Philosophy, History, Languages, etc.)",
-                        "Arts & Design (Visual Arts, Performing Arts, Media, etc.)",
-                        "Business & Economics",
-                        "Communication & Media Studies",
-                        "Education",
-                        "Health Sciences (Medicine, Nursing, Public Health, etc.)",
-                        "Interdisciplinary Studies"
-                    ]
-                },
-                {
-                    "id": "Demographics-EnrollmentStatus",
-                    "prompt": "Are you enrolled as a full-time or part-time student?",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "dropdown",
-                    "options": [
-                        "Full-time",
-                        "Part-time",
-                        "Not currently enrolled"
-                    ]
-                },
-                {
-                    "id": "Demographics-Funding",
-                    "prompt": "How do you primarily fund your education?",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "dropdown",
-                    "options": [
-                        "Scholarships",
-                        "Grants",
-                        "Student Loans",
-                        "Personal/Spousal/Family Support",
-                        "Teaching Assistantship",
-                        "Research Assistantship",
-                        "Part-time/Full-time Work"
-                    ]
-                },
-                {
-                    "id": "Demographics-WorkStatus",
-                    "prompt": "Are you currently working while pursuing your studies?",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "type": "dropdown",
-                    "options": [
-                        "No",
-                        "Yes, part-time (less than 20 hours/week)",
-                        "Yes, full-time (20+ hours/week)"
-                    ]
                 },
                 {
                     "id": "Demographics-FirstGen",
@@ -1297,14 +1054,15 @@
                     "options": [
                         "Yes",
                         "No"
-                    ]
+                    ],
+                    "withDivider": true
                 },
                 {
                     "id": "Demographics-sensemaker",
-                    "prompt": "Have you previously participated in sensemaking or investigative tasks (e.g., research, data analysis, intelligence work)?",
+                    "prompt": "Have you previously participated in analytical or investigative tasks (e.g., research, reasoning, data analysis, intelligence work)?",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "radio",
+                    "type": "dropdown",
                     "withDontKnow": true,
                     "options": [
                         "Yes",
@@ -1317,25 +1075,25 @@
                     "secondaryText": "select 'I don't know' if you selected 'No' above",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "radio",
-                    "withDontKnow": true,
+                    "type": "dropdown",
                     "options": [
+                        "N/A",
                         "Rarely",
                         "Occasionally",
                         "Frequently",
-                        "Very frequently",
-                        "Not applicable"
+                        "Very frequently"
                     ]
                 },
                 {
                     "id": "Demographics-sensemakingTime",
-                    "prompt": "If yes, how many years of professional experience do you have in roles that involve analytical or investigative tasks?",
+                    "prompt": "If yes, how many years of experience do you have doing work that involves analytical or investigative tasks?",
                     "secondaryText": "select 'I don't know' if you selected 'No' above",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "radio",
+                    "type": "dropdown",
                     "withDontKnow": true,
                     "options": [
+                        "N/A",
                         "0--2 years",
                         "3--5 years",
                         "6--10 years",
@@ -1344,20 +1102,21 @@
                     ]
                 },
                 {
-                    "id": "Demographics-Approach",
+                    "id": "Demographics-approach",
                     "prompt": "Which best describes your typical approach when processing complex information?",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "radio",
+                    "type": "dropdown",
                     "withDontKnow": true,
                     "options": [
                         "I focus on the details first and then build the big picture",
                         "I look at the big picture first and then fill in the details",
                         "I try to balance both simultaneously"
-                    ]
+                    ],
+                    "withDivider": true
                 },
                 {
-                    "id": "q-confident",
+                    "id": "Demographics-confident",
                     "prompt": "How confident are you in your ability to summarize complex information?",
                     "location": "aboveStimulus",
                     "required": false,
@@ -1368,11 +1127,11 @@
                 },
                 {
                     "id": "Demographics-often",
-                    "prompt": "How often do you perform manual text editing or summarization in your work or studies?",
+                    "prompt": "How often do you perform report writing, presentation preparations, or summarization of your work or studies for others?",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "likert",
-                    "leftLabel": "Rarely",
+                    "leftLabel": "Yearly or less",
                     "rightLabel": "Daily",
                     "numItems": 5
                 },
@@ -1413,18 +1172,18 @@
         "order": "fixed",
         "components": [
             "ConsentForm",
+            "Screener",
             "SalmonfishTool",
             "SensemakingTaskDescription",
             "Pause",
             "MentalModelQuiz",
+            "FinalAnswer",
             "AnalysisHolismScaleShort",
             "HolisticCognitionScale",
-            "CognitiveStylesIndex",
             "BigFivePersonalityScale",
             "Demographics",
-            "AdminStart",
             "SentenceEditingDescription",
-            "SentenceList",
+            "AdminStart",
             "SelectionTask"
         ]
     }
