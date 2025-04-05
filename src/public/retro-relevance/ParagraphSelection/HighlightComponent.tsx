@@ -33,6 +33,8 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
     }
   };
 
+  console.log("HighlightComponent rendered with selection:", selection);
+
   const getMantineHighlightStyles = (rect: DOMRect) => {
     const baseStyles = {
       //   position: 'absolute',
@@ -110,6 +112,11 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
       const containerRect = container.getBoundingClientRect();
       const rects: DOMRect[] = [];
 
+      // Ensure highlights are only applied to the correct paragraph
+      if (selection.ParentParagraphID !== contentRef.current?.dataset.paragraphId) {
+        return [];
+      }
+
       // Process each element in the selection
       selection.elements?.forEach(el => {
         // Resolve the node from its path
@@ -119,53 +126,49 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
         // Create a range for this element
         const range = document.createRange();
 
-        console.log("🚀 ~ calculateHighlightRects ~ el:", el)
-        if (el.isFullySelected) {
-          // Select the entire text node
-          range.selectNodeContents(node);
-        } else {
-          range.setStart(node, el.startOffset || 0);
-          range.setEnd(node, el.endOffset || 0);
+        try {
+          if (el.isFullySelected) {
+            // Select the entire text node
+            range.selectNodeContents(node);
+          } else {
+            const textContentLength = node.textContent?.length || 0;
+            
+            // Validate offsets before setting the range
+            const startOffset = Math.min(el.startOffset || 0, textContentLength);
+            const endOffset = Math.min(el.endOffset || 0, textContentLength);
+            console.log("🚀 ~ calculateHighlightRects ~ textContentLength:", textContentLength, "start:", startOffset, "end:", endOffset)
 
-          //todo fix error when selecting multiple elements - after fixing styling.
-          // // Select only part of the text node
-          // // console.log("🚀 ~ calculateHighlightRects ~ node:", node)
-          // const textContentLength = node.textContent?.length || 0;
-          // // console.log("🚀 ~ calculateHighlightRects ~ textContentLength:", textContentLength)
-          // const startOffset = Math.min(el.startOffset || 0, textContentLength);
-          // const endOffset = Math.min(el.endOffset || 0, textContentLength);
-          // // console.log("🚀 ~ calculateHighlightRects ~ endOffset:", endOffset)
+            if (startOffset <= textContentLength && endOffset <= textContentLength) {
+              range.setStart(node, startOffset);
+              range.setEnd(node, endOffset);
+            } else {
+              console.warn("Invalid range offsets: startOffset or endOffset exceeds textContentLength.");
+              return;
+            }
+          }
 
-          // // Validate offsets before setting the range
-          // if (startOffset <= textContentLength && endOffset <= textContentLength) {
-          //   range.setStart(node, startOffset);
-          //   // console.log("🚀 ~ calculateHighlightRects ~ range.setStart node:", node, "startOffset:", startOffset);
-          //   range.setEnd(node, endOffset);
-          //   // console.log("🚀 ~ calculateHighlightRects ~ range.setEnd node:", node, "endOffset:", endOffset);
-          // } else {
-          //   // console.warn("Invalid range offsets: startOffset or endOffset exceeds textContentLength.");
-          // }
-        }
+          // Get client rects for this range
+          const clientRects = range.getClientRects();
 
-        // Get client rects for this range
-        const clientRects = range.getClientRects();
+          // Convert client rects to positions relative to the container
+          for (let i = 0; i < clientRects.length; i++) {
+            const rect = clientRects[i];
 
-        // Convert client rects to positions relative to the container
-        for (let i = 0; i < clientRects.length; i++) {
-          const rect = clientRects[i];
+            // Skip extremely small rects which might be artifacts
+            if (rect.width < 2 || rect.height < 2) continue;
 
-          // Skip extremely small rects which might be artifacts
-          if (rect.width < 2 || rect.height < 2) continue;
+            // Adjust coordinates to be relative to the container
+            const adjustedRect = new DOMRect(
+              rect.left - containerRect.left,
+              rect.top - containerRect.top,
+              rect.width,
+              rect.height
+            );
 
-          // Adjust coordinates to be relative to the container
-          const adjustedRect = new DOMRect(
-            rect.left - containerRect.left,
-            rect.top - containerRect.top,
-            rect.width,
-            rect.height
-          );
-
-          rects.push(adjustedRect);
+            rects.push(adjustedRect);
+          }
+        } catch (error) {
+          console.error("Error processing range for node:", node, error);
         }
       });
 

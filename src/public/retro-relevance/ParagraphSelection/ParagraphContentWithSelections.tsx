@@ -1,5 +1,5 @@
 // src/components/ParagraphSelection/ParagraphContentWithSelections.tsx
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Registry, initializeTrrack } from '@trrack/core';
 import MarkdownRenderer from './MarkdownRenderer';
 import SelectionContextMenu from './SelectionContextMenu';
@@ -10,7 +10,7 @@ import { current } from '@reduxjs/toolkit';
 import { Button, Center, Pagination, Paper, useMantineTheme } from '@mantine/core';
 
 
-const isTesting = false;
+const isTesting = true;
 
 
 export function ParagraphContentWithSelections({
@@ -55,22 +55,35 @@ export function ParagraphContentWithSelections({
     const [pendingSelection, setPendingSelection] = useState<TextSelection | null>(null);
 
     const currentParagraph = paragraphs[focusedParagraphIndex];
+    const contentRef = useRef<HTMLDivElement | null>(null); //I don't know if this is needed
     const theme = useMantineTheme();
 
     useEffect(() => {
         console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
-        if (provenanceState) {
-            console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
-            setSelections(provenanceState.selections);
-            setParagraphs(provenanceState.paragraphs);
-            setfocusedParagraphIndex(provenanceState.focusedParagraphIndex);
-        } else {
-            console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
-            setSelections(initialSelections)
-            setParagraphs(initialParagraphs);
-            setfocusedParagraphIndex(initialParagraphId)
-        }
+        const selections = provenanceState?.selections || initialSelections;
+        const paragraphs = provenanceState?.paragraphs || initialParagraphs;
+        const focusedIndex = provenanceState?.focusedParagraphIndex || initialParagraphId;
+        
+        setSelections(selections);
+        setParagraphs(paragraphs);
+        setfocusedParagraphIndex(focusedIndex);
     }, [provenanceState]);
+
+    // Original useEffect to set up provenance state
+    // useEffect(() => {
+    // console.log("🧠🧠 ~ useEffect ~ provenanceState:", provenanceState)
+    //     if (provenanceState) {
+    //         console.log("🚀 ~ useEffect ~ provenanceState Exists!:", provenanceState)
+    //         setSelections(provenanceState.selections);
+    //         setParagraphs(provenanceState.paragraphs);
+    //         setfocusedParagraphIndex(provenanceState.focusedParagraphIndex);
+    //     } else {
+    //         console.log("🙈 ~ useEffect ~ provenanceState NOPE NOPE NOPE Need to make my own!:")
+    //         setSelections(initialSelections)
+    //         setParagraphs(initialParagraphs);
+    //         setfocusedParagraphIndex(initialParagraphId)
+    //     }
+    // }, [provenanceState]);
 
     // Initialize Trrack
     const { actions, trrack } = useMemo(() => {
@@ -163,36 +176,16 @@ export function ParagraphContentWithSelections({
         const existingSelectionIndex = selections?.findIndex(s => s.id === pendingSelection.id);
         let isExisting = false;
 
+        let updatedSelections = [...selections];
+
         if (existingSelectionIndex !== -1 && existingSelectionIndex !== undefined) {
             isExisting = true;
-            const updatedSelections = [...selections];
-            // Find and update the selection
+            // Update the existing selection
             updatedSelections[existingSelectionIndex] = {
                 ...updatedSelections[existingSelectionIndex],
                 relevanceLevel,
             };
-            setSelections(updatedSelections);
-
-            // // Update existing selection  
-            // if (isExistingSelection) {
-            //     // Find the paragraph
-            //     //todo try just using currentParagraphId?
-            //     const parentParagraph = (paragraphs ?? []).find(p => p.id === currentParagraph.id);
-            //     if (!paragraphs || !parentParagraph ) return;
-
-            //     // const foundSelection = selections.find(s => s.id === pendingSelection.id);
-            //     if (isExistingSelection) {
-            //         isExistingSelection.relevanceLevel = relevanceLevel;
-            //         setSelections([
-
-            //             isExistingSelection
-            //         ])
-            //     }
-
         } else {
-
-            // Add a selection for a specific paragraph
-
             // Check for overlapping selections
             const hasOverlap = selections.some(existingSelection =>
                 pendingSelection.startIndex < existingSelection.endIndex &&
@@ -203,8 +196,7 @@ export function ParagraphContentWithSelections({
                 console.warn("Overlapping selection detected");
             }
 
-            // Add the selection
-            // create a new selection
+            // Add the new selection
             const newSelection: TextSelection = {
                 ...pendingSelection,
                 relevanceLevel,
@@ -212,80 +204,43 @@ export function ParagraphContentWithSelections({
                 ParentParagraphID: currentParagraph.id,
             };
 
-            const updatedSelections = [...selections, newSelection];
-            setSelections(updatedSelections);
+            updatedSelections = [...selections, newSelection];
         }
+
+        // Update the selections state
+        setSelections(updatedSelections);
 
         // Clear states
         clearSelection();
 
         const newState = {
             paragraphs,
-            selections,
+            selections: updatedSelections, // Use updatedSelections here
             focusedParagraphIndex,
         };
-        console.log("🚀 ~ handleSentenceChange ~ newState:", newState)
+        console.log("🚀 ~ handleSelectRelevance ~ newState:", newState);
 
         // Apply the change to Trrack
-        isExisting ?
-            trrack.apply('Update Selection', actions.updateSelection(newState)) :
-            trrack.apply('Adding Selection', actions.addSelection(newState))
-
+        isExisting
+            ? trrack.apply('Update Selection', actions.updateSelection(newState))
+            : trrack.apply('Adding Selection', actions.addSelection(newState));
 
         // Set answer for tracking
-        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
-        //make sure everything is output for the answer and the response is ready to accept everything
+        const ParagraphID = isTesting ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID];
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-                ["paragraphIDs"]: makeAnswerStringFromObjKey(selections, "ParentParagraphID"),
-                ["selectionIDs"]: makeAnswerStringFromObjKey(selections, "id"),
-                ["selectionStarts"]: makeAnswerStringFromObjKey(selections, "startIndex"),
-                ["selectionEnds"]: makeAnswerStringFromObjKey(selections, "endIndex"),
-                ["seletionTexts"]: makeAnswerStringFromObjKey(selections, "selectedText"),
-                ["selectionRelevances"]: makeAnswerStringFromObjKey(selections, "relevanceLevel"),
-                ["selectionTypes"]: selections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType"))
-            }
+                ["paragraphIDs"]: makeAnswerStringFromObjKey(updatedSelections, "ParentParagraphID"),
+                ["selectionIDs"]: makeAnswerStringFromObjKey(updatedSelections, "id"),
+                ["selectionStarts"]: makeAnswerStringFromObjKey(updatedSelections, "startIndex"),
+                ["selectionEnds"]: makeAnswerStringFromObjKey(updatedSelections, "endIndex"),
+                ["seletionTexts"]: makeAnswerStringFromObjKey(updatedSelections, "selectedText"),
+                ["selectionRelevances"]: makeAnswerStringFromObjKey(updatedSelections, "relevanceLevel"),
+                ["selectionTypes"]: updatedSelections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType")),
+            },
         });
-
-
     }, [selections, pendingSelection, currentParagraph, trrack, actions, setAnswer, isTesting]);
-
-
-    // Handler for selecting relevance level
-    // const handleSelectRelevance = (relevanceLevel: string) => {
-    //     if (!pendingSelection || !currentParagraph?.id) {
-    //         clearSelection();
-    //         return;
-    //     }
-
-    //     // Check if this is an existing selection or a new one
-    //     const isExisting = selections?.find(s => s.id === pendingSelection.id);
-
-    //     if (isExisting) {
-    //         // Update existing selection
-    //         // dispatch(updateSelection({
-    //         //     id: pendingSelection.id,
-    //         //     relevanceLevel,
-    //         //     paragraphId: currentParagraph.id
-    //         // }));
-
-    //     } else {
-    //         // Add new selection
-    //         console.log("adding Selection!")
-    //         // dispatch(addSelection({
-    //         //     selection: {
-    //         //         ...pendingSelection,
-    //         //         relevanceLevel
-    //         //     },
-    //         //     paragraphId: currentParagraph.id
-    //         // }));
-    //     }
-
-    //     // Clear states
-    //     clearSelection();
-    // };
 
     // Add a helper function to clear the browser's selection utility
     const clearSelection = () => {
@@ -312,39 +267,34 @@ export function ParagraphContentWithSelections({
             const smallerSelections = selections.filter((s: TextSelection) => s.id !== pendingSelection.id);
             setSelections(smallerSelections)
 
-            //todo set state to provenance graph and set answer.
+            // Apply the change to Trrack
+            trrack.apply('Removing Selection', actions.removeSelection(smallerSelections));
+            // Set answer for tracking
+            const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
+            //make sure everything is output for the answer and the response is ready to accept everything
+            setAnswer({
+                status: true,
+                provenanceGraph: trrack.graph.backend,
+                answers: {
+                    ["paragraphIDs"]: makeAnswerStringFromObjKey(smallerSelections, "ParentParagraphID"),
+                    ["selectionIDs"]: makeAnswerStringFromObjKey(smallerSelections, "id"),
+                    ["selectionStarts"]: makeAnswerStringFromObjKey(smallerSelections, "startIndex"),
+                    ["selectionEnds"]: makeAnswerStringFromObjKey(smallerSelections, "endIndex"),
+                    ["seletionTexts"]: makeAnswerStringFromObjKey(smallerSelections, "selectedText"),
+                    ["selectionRelevances"]: makeAnswerStringFromObjKey(smallerSelections, "relevanceLevel"),
+                    ["selectionTypes"]: smallerSelections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType"))
+                }
+            });
+            const newState = {
+                paragraphs,
+                selections,
+                focusedParagraphIndex,
+            };
+            console.log("🚀 ~ handleRemoveSelection ~ newState:", newState)
         }
 
         // Clear states
         clearSelection();
-
-        const newState = {
-            paragraphs,
-            selections,
-            focusedParagraphIndex,
-        };
-        console.log("🚀 ~ handleSentenceChange ~ newState:", newState)
-
-        // Apply the change to Trrack
-        trrack.apply('Removing Selection', actions.removeSelection(selections));
-
-
-        // Set answer for tracking
-        const ParagraphID = (isTesting) ? "12345" : answers[trialNameToPullResponseFrom].answer[keyForID]
-        //make sure everything is output for the answer and the response is ready to accept everything
-        setAnswer({
-            status: true,
-            provenanceGraph: trrack.graph.backend,
-            answers: {
-                ["paragraphIDs"]: makeAnswerStringFromObjKey(selections, "ParentParagraphID"),
-                ["selectionIDs"]: makeAnswerStringFromObjKey(selections, "id"),
-                ["selectionStarts"]: makeAnswerStringFromObjKey(selections, "startIndex"),
-                ["selectionEnds"]: makeAnswerStringFromObjKey(selections, "endIndex"),
-                ["seletionTexts"]: makeAnswerStringFromObjKey(selections, "selectedText"),
-                ["selectionRelevances"]: makeAnswerStringFromObjKey(selections, "relevanceLevel"),
-                ["selectionTypes"]: selections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType"))
-            }
-        });
 
 
     }, [selections, pendingSelection, currentParagraph, trrack, actions, setAnswer, isTesting]);
@@ -368,7 +318,7 @@ export function ParagraphContentWithSelections({
                 selections,
                 focusedParagraphIndex,
             };
-            console.log("🚀 ~ handleSentenceChange ~ newState:", newState)
+            console.log("🚀 ~ handleChangeParagraph ~ newState:", newState)
 
             // Apply the change to Trrack
             trrack.apply('Changing Paragraph Shown', actions.setFocusedParagraph(focusedParagraphIndex));
@@ -395,7 +345,7 @@ export function ParagraphContentWithSelections({
 
     //utility for saving arrays of objects to text for response.
     function makeAnswerStringFromObjKey<T>(array: T[], key: keyof T): string {
-        return array.map(item => item[key]).join(':|:|:');
+        return array.reduce((acc, item) => `${acc}${item[key]}:|:|:`, '').slice(0, -5); // Remove trailing delimiter
     }
 
     if (paragraphs.length === 0) {
@@ -418,13 +368,17 @@ export function ParagraphContentWithSelections({
                 </p>
 
                 {currentParagraph && (
-                    <div className="relative">
+                    <div
+                        ref={contentRef}
+                        data-paragraph-id={currentParagraph.id}
+                        className="relative">
                         <MarkdownRenderer
                             markdownText={currentParagraph.text}
                             selections={selections}
                             onTextSelection={handleTextSelection}
                             onSelectionClick={handleSelectionClick}
                             className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
+                            aria-label="Paragraph content with selectable text"
                         />
                     </div>
                 )}
@@ -441,7 +395,6 @@ export function ParagraphContentWithSelections({
 
             {/* Display paragraph navigation controls at bottom */}
             {paragraphs.length > 1 && (
-                <div className="flex justify-between mb-4 mt-6">
                     <Center p={4}>
                         <Pagination total={paragraphs.length} size="md" siblings={1}
                             onNextPage={() => handleChangeParagraph(focusedParagraphIndex + 1)}
@@ -449,7 +402,6 @@ export function ParagraphContentWithSelections({
                             onChange={(indexx) => handleChangeParagraph(indexx - 1)}
                         />
                     </Center>
-                </div>
             )}
         </div>
     );
