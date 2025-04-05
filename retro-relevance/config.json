@@ -48,7 +48,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -60,7 +60,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -88,7 +88,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -100,7 +100,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -128,7 +128,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -140,7 +140,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -168,7 +168,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -180,7 +180,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -208,7 +208,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -220,7 +220,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -248,7 +248,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -260,7 +260,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -272,14 +272,14 @@
                 },
                 {
                     "id": "q-7",
-                    "prompt": "What is the primary motivation behind Antonio Green's interactions with Walter Boddy?",
+                    "prompt": "The dented candlestick in the conservatory had a matching pair in which room?",
                     "location": "belowStimulus",
                     "type": "radio",
                     "options": [
-                        "Advancing a business deal through his role as a merger and acquisition broker",
-                        "Settling a personal score that stemmed from past disputes",
-                        "Attempting to expose Boddy's unethical practices to the public",
-                        "Organizing an elaborate scheme to embezzle funds from Boddy's estate"
+                        "Library",
+                        "Dining Room",
+                        "Study",
+                        "Lounge"
                     ]
                 },
                 {
@@ -288,7 +288,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -300,7 +300,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -312,14 +312,14 @@
                 },
                 {
                     "id": "q-8",
-                    "prompt": "Where did Walter Boddy and Katie Peacock watch the blackmail tapes?",
+                    "prompt": "Which of the following suspects knowingly lied because their story doesn't line up with other evidence?",
                     "location": "belowStimulus",
                     "type": "radio",
                     "options": [
-                        "In the kitchen",
-                        "In the theatre",
-                        "In the lounge",
-                        "In the study"
+                        "Adam Mustard",
+                        "Katie Peacock",
+                        "Jill White",
+                        "Christine Scarlet"
                     ]
                 },
                 {
@@ -328,7 +328,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -340,7 +340,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -352,14 +352,15 @@
                 },
                 {
                     "id": "q-9",
-                    "prompt": "Who installed the multi-camera surveillance system in the main building of Boddy Estate?",
-                    "location": "belowStimulus",
+                    "prompt": "Where were the Giorgio Armani leather driving gloves found?",
+                    "location": "aboveStimulus",
                     "type": "radio",
+                    "withDontKnow": true,
                     "options": [
-                        "Henry Wadsworth",
-                        "Yvette Duster",
-                        "Christine Scarlet",
-                        "Scott Plum"
+                        "Inside the piano in the lounge",
+                        "In the desk drawer of the study",
+                        "On a shelf in the library",
+                        "Under a potted fern in the conservatory"
                     ]
                 },
                 {
@@ -368,7 +369,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -380,7 +381,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -392,14 +393,14 @@
                 },
                 {
                     "id": "q-10",
-                    "prompt": "Where was Christine Scarlet waiting for Walter Boddy with the 'second surprise'?",
+                    "prompt": "Which characters have romantic relationships with Walter Boddy?",
                     "location": "belowStimulus",
                     "type": "radio",
                     "options": [
-                        "In the conservatory",
-                        "In the kitchen",
-                        "In the study",
-                        "In the theater"
+                        "Christine Scarlet and Jill White",
+                        "Katie Peacock and Yvette Duster",
+                        "Christine Scarlet and Katie Peacock",
+                        "Katie Peacock and Jill White"
                     ]
                 },
                 {
@@ -408,7 +409,7 @@
                     "location": "belowStimulus",
                     "type": "slider",
                     "required": true,
-                    "startingValue":2.5,
+                    "startingValue": 1.5,
                     "snap": true,
                     "options": [
                         {
@@ -420,7 +421,7 @@
                             "value": 2
                         },
                         {
-                            "label": "Somwhat sure",
+                            "label": "Somewhat sure",
                             "value": 3
                         },
                         {
@@ -488,7 +489,7 @@
                 },
                 {
                     "id": "q-7",
-                    "answer": "Advancing a business deal through his role as a merger and acquisition broker"
+                    "answer": "Lounge"
                 },
                 {
                     "id": "q-7-confidence",
@@ -497,7 +498,7 @@
                 },
                 {
                     "id": "q-8",
-                    "answer": "In the theatre"
+                    "answer": "Christine Scarlet"
                 },
                 {
                     "id": "q-8-confidence",
@@ -506,7 +507,7 @@
                 },
                 {
                     "id": "q-9",
-                    "answer": "Christine Scarlet"
+                    "answer": "Inside the piano in the lounge"
                 },
                 {
                     "id": "q-9-confidence",
@@ -515,7 +516,7 @@
                 },
                 {
                     "id": "q-10",
-                    "answer": "In the conservatory"
+                    "answer": "Christine Scarlet and Jill White"
                 },
                 {
                     "id": "q-10-confidence",
@@ -589,7 +590,7 @@
         "EditSummary": {
             "type": "markdown",
             "description": "This is the start of the study",
-            "instruction": "Please prepare a summary of your work for someone to pick up where you left off.<br><h2>Guidelines</h2><ol><li><string>Enhance the summary</strong>: Make sure it's suitable for someone unfamiliar with the case.</li><li><strong>Enhance the summary:</strong> Make sure it's suitable for someone unfamiliar with the case.</li> <li><strong>Add missing details</strong>: Include any connections or context that the AI might have overlooked.</li><li><strong>Remove irrelevant information</strong>: Eliminate anything that wouldn't assist the next investigator.</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Structure</strong>: Organize the summary for easy interpretation.</li><li><strong>Take your time</strong>: You have at least 10 minutes to review and make changes.</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ul>",
+            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong> Ensure the summary makes sense to someone who hasn't seen the case before.</li><li><strong>Add missing details</strong>: Fill in any key connections or reasoning the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut out any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Double-check for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Improve structure</strong>: Organize the summary so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ol>",
             "instructionLocation": "sidebar",
             "path": "retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
@@ -756,6 +757,7 @@
         "SalmonfishTool": {
             "type": "video",
             "instruction": "Please watch the following tutorial to learn about the tool you will use.",
+            "nextButtonEnableTime": 120000,
             "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
             "response": []
         },
@@ -785,6 +787,7 @@
         "SensemakingTaskDescription": {
             "type": "markdown",
             "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro.md",
+            "nextButtonEnableTime": 60000,
             "response": []
         },
         "SentenceEditingDescription": {
@@ -1026,7 +1029,7 @@
         },
         "BigFivePersonalityScale": {
             "type": "questionnaire",
-            "instruction": "Please indicate how much you agree with the following statements.",
+            "instruction": "Please indicate how much you agree with the following statements. Answer the question as the completion of the statement 'In general, I...'",
             "response": [
                 {
                     "id": "BF-Extraversion-1",

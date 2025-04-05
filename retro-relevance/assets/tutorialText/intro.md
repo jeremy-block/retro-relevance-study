@@ -18,9 +18,21 @@ Your goal is to use this information to identify:
 - **What** weapon was used and,
 - **Where** it occurred at the Boddy Estate.
 
-## Note
+## Timing and Tools
+
+You only have **15 minutes** to look at evidence. 
+
+*Be mindful about what you focus on.* You will not have enough time to read all the documents. 
+
+Right click to access the:
+1. 🔎 **Search tool** to find documents (matching content will be <span style='background-color: #ffea57'>Yellow</span>),
+2. 🖊️ **Highlight tool** to mark interesting content in <span style='background-color: #77F7A4'>Green</span>,
+3. 📝 **Note tool** to write down anything of interest. 
+
+### Note
 
 Only those involved in the murder may knowingly lie, while anyone might unknowingly provide false information.
+
 For example, if Jake is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
 Now, if Sarah, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but it was actually 7 PM, that’s unknowingly providing false information (2nd Degree lie).
 
