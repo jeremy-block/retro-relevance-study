@@ -1166,7 +1166,8 @@
             ]
         },
         "Demographics": {
-            "type": "questionnaire",
+            "type": "markdown",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/demographics.md",
             "instruction": "Please answer the following questions about yourself.",
             "response": [
                 {
@@ -1328,6 +1329,16 @@
                     "numItems": 5
                 },
                 {
+                    "id": "Demographics-collaborationExperience",
+                    "prompt": "What is your level of experience collaborating on projects that require direct reporting?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "likert",
+                    "leftLabel": "Beginner",
+                    "rightLabel": "Expert",
+                    "numItems": 5
+                },
+                {
                     "id": "Demographics-often",
                     "prompt": "How often do you perform report writing, presentation preparations, or summarization of your work or studies for others?",
                     "location": "aboveStimulus",
@@ -1362,10 +1373,96 @@
                     "prompt": "How much do you trust automated summary tools compared to manual summarization?",
                     "location": "aboveStimulus",
                     "required": false,
+                    "withDivider": true,
                     "type": "likert",
                     "leftLabel": "Not at all",
                     "rightLabel": "Completely",
                     "numItems": 5
+                },
+                {
+                    "id": "Ranking-Background",
+                    "prompt": "<strong>Contextual Background</strong>: Provides the setting and circumstances surrounding the analysis.",
+                    "type": "slider",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "options": [
+                        {
+                            "label": "Not helpful",
+                            "value": 0
+                        },
+                        {
+                            "label": "Very Helpful",
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "Ranking-Evidence",
+                    "prompt": "<strong>Data Evidence</strong>: Presents the data or examples that support the analysis.",
+                    "type": "slider",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "options": [
+                        {
+                            "label": "Not helpful",
+                            "value": 0
+                        },
+                        {
+                            "label": "Very Helpful",
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "Ranking-Methods",
+                    "prompt": "<strong>Methodological Approach</strong>: Details the procedures and techniques employed during the analysis.",
+                    "type": "slider",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "options": [
+                        {
+                            "label": "Not helpful",
+                            "value": 0
+                        },
+                        {
+                            "label": "Very Helpful",
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "Ranking-Findings",
+                    "prompt": "<strong>Key Findings</strong>: Highlights the most significant results or theories so far.",
+                    "type": "slider",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "options": [
+                        {
+                            "label": "Not helpful",
+                            "value": 0
+                        },
+                        {
+                            "label": "Very Helpful",
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": "Ranking-NextActions",
+                    "prompt": "<strong>Actionable Recommendations</strong>: Suggests specific steps or actions based on the analysis.",
+                    "type": "slider",
+                    "required": false,
+                    "location": "belowStimulus",
+                    "options": [
+                        {
+                            "label": "Not helpful",
+                            "value": 0
+                        },
+                        {
+                            "label": "Very Helpful",
+                            "value": 100
+                        }
+                    ]
                 }
             ]
         }
