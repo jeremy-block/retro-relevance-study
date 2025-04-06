@@ -353,7 +353,7 @@
                 {
                     "id": "q-9",
                     "prompt": "Where were the Giorgio Armani leather driving gloves found?",
-                    "location": "aboveStimulus",
+                    "location": "belowStimulus",
                     "type": "radio",
                     "withDontKnow": true,
                     "options": [
