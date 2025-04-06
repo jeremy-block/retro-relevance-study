@@ -46,6 +46,8 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
       
       // Find the path for nodes in the selection
       const selectedElements = getSerializableElementsInRange(range, contentRef.current);
+      console.log("🚀 ~ handleMouseUp ~ selectedElements:", selectedElements)
+      
       
       // Calculate HTML indices of the selection
       const htmlIndices = calculateHtmlIndices(range, contentRef.current);
@@ -92,36 +94,23 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
   // Find node paths for elements in a selection range
   const getSerializableElementsInRange = (range: Range, container: HTMLElement): HighlightableElement[] => {
     const elements: HighlightableElement[] = [];
-    
+
     // Helper function to get path from root to node
     const getNodePath = (node: Node): number[] => {
       const path: number[] = [];
       let current: Node | null = node;
-      
+
       while (current && current !== container) {
         const parent: Node | null = current.parentNode;
         if (!parent) break;
-        
+
         const index = Array.from(parent.childNodes).indexOf(current as ChildNode);
         path.unshift(index);
         current = parent;
       }
-      
+
       return path;
     };
-    
-    // If selection is within a single node
-    if (range.startContainer === range.endContainer) {
-      elements.push({
-        nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-        nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
-        path: getNodePath(range.startContainer),
-        isFullySelected: false,
-        startOffset: range.startOffset,
-        endOffset: range.endOffset
-      });
-      return elements;
-    }
     
     // If selection spans multiple nodes
     const nodeWalker = document.createTreeWalker(
@@ -129,21 +118,21 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
       NodeFilter.SHOW_TEXT,
       null
     );
-    
+
     let currentNode: Node | null = nodeWalker.currentNode;
     let inSelection = false;
-    
+
     while (currentNode) {
-      // Check if this node is the start container
+      // Check if the current node is within the start container
       if (currentNode === range.startContainer) {
         inSelection = true;
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
+          nodeType: (currentNode.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
           isFullySelected: false,
           startOffset: range.startOffset,
-          endOffset: (currentNode.textContent || "").length
+          endOffset: (currentNode.textContent || "").length,
         });
       }
       // Check if this node is the end container
@@ -151,27 +140,25 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
         inSelection = false;
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
+          nodeType: (currentNode.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
           isFullySelected: false,
           startOffset: 0,
-          endOffset: range.endOffset
+          endOffset: range.endOffset,
         });
         break;
-      }
-      // Add nodes that are fully contained in the selection
-      else if (inSelection) {
+      } else if (inSelection) {
         elements.push({
           nodeRef: `node-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
-          nodeType: (range.startContainer.parentElement?.tagName || 'UNKNOWN'),
+          nodeType: (currentNode.parentElement?.tagName || 'UNKNOWN'),
           path: getNodePath(currentNode),
-          isFullySelected: true
+          isFullySelected: true,
         });
       }
-      
+
       currentNode = nodeWalker.nextNode();
     }
-    
+
     return elements;
   };
   

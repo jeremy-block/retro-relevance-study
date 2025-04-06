@@ -33,7 +33,7 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
     }
   };
 
-  console.log("HighlightComponent rendered with selection:", selection);
+  // console.log("HighlightComponent rendered with selection:", selection.startIndex, selection.endIndex, selection.relevanceLevel);
 
   const getMantineHighlightStyles = (rect: DOMRect) => {
     const baseStyles = {
@@ -112,10 +112,12 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
       const containerRect = container.getBoundingClientRect();
       const rects: DOMRect[] = [];
 
-      // Ensure highlights are only applied to the correct paragraph
-      if (selection.ParentParagraphID !== contentRef.current?.dataset.paragraphId) {
-        return [];
-      }
+      // Ensure highlights are only applied to the correct paragraph (but for some reason this breaks multi node highlights.)
+      // console.log("🚀 ~ calculateHighlightRects ~ selection.ParentParagraphID:", selection.ParentParagraphID)
+      // console.log("🚀 ~ calculateHighlightRects ~ contentRef.current?.dataset.paragraphId:", contentRef.current?.dataset.paragraphId)
+      // if (selection.ParentParagraphID !== contentRef.current?.dataset.paragraphId) {
+      //   return [];
+      // }
 
       // Process each element in the selection
       selection.elements?.forEach(el => {
@@ -132,11 +134,11 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
             range.selectNodeContents(node);
           } else {
             const textContentLength = node.textContent?.length || 0;
-            
+
             // Validate offsets before setting the range
             const startOffset = Math.min(el.startOffset || 0, textContentLength);
             const endOffset = Math.min(el.endOffset || 0, textContentLength);
-            console.log("🚀 ~ calculateHighlightRects ~ textContentLength:", textContentLength, "start:", startOffset, "end:", endOffset)
+            // console.log("🚀 ~ calculateHighlightRects ~ textContentLength:", textContentLength, "start:", startOffset, "end:", endOffset)
 
             if (startOffset <= textContentLength && endOffset <= textContentLength) {
               range.setStart(node, startOffset);

@@ -10,7 +10,7 @@ import { current } from '@reduxjs/toolkit';
 import { Button, Center, Pagination, Paper, useMantineTheme } from '@mantine/core';
 
 
-const isTesting = true;
+const isTesting = false;
 
 
 export function ParagraphContentWithSelections({
@@ -35,7 +35,7 @@ export function ParagraphContentWithSelections({
             id: String(answers[trialNameToPullResponseFrom]?.answer[keyForID] || null), 
             selections: [] 
         }];
-    console.log("🚀 ~ source:", source)
+    // console.log("🚀 ~ source:", source)
     const initialParagraphs = source;
     const initialParagraphId = 0;
     const initialSelections = [] as TextSelection[];
