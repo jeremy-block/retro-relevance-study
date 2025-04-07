@@ -1,1 +1,1 @@
-Please rank the types of information below. Consider how helpful this type of information would be for communicating one's understanding to another peer:
+When sharing your work with a collaborator, how important is it to include each type of information below?

@@ -18,6 +18,8 @@ Your goal is to use this information to identify:
 - **What** weapon was used and,
 - **Where** it occurred at the Boddy Estate.
 
+*A copy of this premise will be available in the interface.*
+
 ## Timing and Tools
 
 You only have **15 minutes** to look at evidence. 
@@ -33,9 +35,10 @@ Right click to access the:
 
 Only those involved in the murder may knowingly lie, while anyone might unknowingly provide false information.
 
-For example, if Jake is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
-Now, if Sarah, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but it was actually 7 PM, that’s unknowingly providing false information (2nd Degree lie).
+For example, if a John Doe is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
+
+Now, if Jane Doe, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but they actually left at 7 PM, that’s unknowingly providing false information (2nd Degree lie).
 
 ### Are you ready to begin?
 
-A copy of the above premise will be available in the interface.
+Your interactions will be used to generate a summary of your investigation.
