@@ -33,8 +33,9 @@ Right click to access the:
 
 Only those involved in the murder may knowingly lie, while anyone might unknowingly provide false information.
 
-For example, if Jake is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
-Now, if Sarah, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but it was actually 7 PM, that’s unknowingly providing false information (2nd Degree lie).
+For example, if a John Doe is guilty of murder and says he never saw the victim that night, he is knowingly lying (1st Degree lie).
+
+Now, if Jane Doe, who is innocent, says the victim left at 8 PM--even though she wasn’t there to see them leave--but they actually left at 7 PM, that’s unknowingly providing false information (2nd Degree lie).
 
 ### Are you ready to begin?
 

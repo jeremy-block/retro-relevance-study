@@ -750,7 +750,7 @@
             "description": "This is to pause the participant",
             "type": "react-component",
             "path": "retro-relevance/sendToSensemakingTask.tsx",
-            "nextButtonEnableTime": 5000,
+            "nextButtonEnableTime": 600000,
             "parameters": {},
             "response": []
         },

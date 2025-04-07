@@ -50,14 +50,14 @@ Before starting, you will:
 - Be shown how to use the software.
 - Review a **fictional dataset** (text, tables, visualizations) designed for research.
   - **No personal information** is included, and any resemblance to real-life characters is purely coincidental.
-- Explore the data for **10-40 minutes**, summarize findings, and annotate key details.
-- Participate in a **brief interview and debriefing** to discuss your experience and ask questions.
+- Explore the data for **15 minutes**, summarize findings, and annotate your summary.
+- Participate in a **debriefing** to discuss your experience and ask questions.
 
 ---
 
 ## Time required
 
-The study session is expected to take **1-2 hours**.
+The study session is expected to take **1 hour**.
 
 ---
 
@@ -135,4 +135,4 @@ You may request a copy of this description at any time.
 
 ---
 
-*| **IRB Project Number: IRB202500305** | IRB Version: **03/12/2025** | PI Version: **1** |*
+**IRB Project Number: IRB202500305** | IRB Version: **03/12/2025** | PI Version: **1**
