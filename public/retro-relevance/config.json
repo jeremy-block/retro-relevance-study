@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
     "studyMetadata": {
         "title": "Retrospective Relevance",
-        "version": "pilot phase 4",
+        "version": "0.1.0",
         "authors": [
             "Jeremy Block"
         ],
@@ -18,7 +18,7 @@
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 1000,
-        "studyEndMsg": "Thank you for completing this study. You're the best!<br/><br/>Please wait your data is being download.<br/><br/>As a backup, please send this data back to the Researcher on Zoom.",
+        "studyEndMsg": "Thank you for completing this study!<br/><br/>Please wait your data is being download.<br/><br/>As a backup, please send this data back to the Researcher on Zoom.",
         "sidebar": true,
         "windowEventDebounceTime": 500,
         "urlParticipantIdParam": "PROLIFIC_ID",
@@ -790,6 +790,12 @@
             "nextButtonEnableTime": 60000,
             "response": []
         },
+        "PersonalityIntro": {
+            "type": "markdown",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro_personality.md",
+            "nextButtonEnableTime": 5000,
+            "response": []
+        },
         "SentenceEditingDescription": {
             "type": "markdown",
             "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editing_intro.md",
@@ -1175,7 +1181,10 @@
                     "prompt": "What is your age?",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "numerical"
+                    "type": "numerical",
+                    "placeholder": "Enter your age in years",
+                    "max": 120,
+                    "min": 18
                 },
                 {
                     "id": "Demographics-Gender",
@@ -1381,88 +1390,95 @@
                 },
                 {
                     "id": "Ranking-Background",
-                    "prompt": "<strong>Contextual Background</strong>: Provides the setting and circumstances surrounding the analysis.",
+                    "prompt": "<strong>Background and Context</strong>: Explains the situation, goals, or events that led to the analysis. (E.g., why this analysis was needed, what triggered it.).",
                     "type": "slider",
                     "required": false,
                     "location": "belowStimulus",
                     "options": [
                         {
-                            "label": "Not helpful",
+                            "label": "Not important",
                             "value": 0
                         },
                         {
-                            "label": "Very Helpful",
+                            "label": "Very important",
                             "value": 100
                         }
                     ]
                 },
                 {
                     "id": "Ranking-Evidence",
-                    "prompt": "<strong>Data Evidence</strong>: Presents the data or examples that support the analysis.",
+                    "prompt": "<strong>Supporting Evidence</strong>: Shares the key data, examples, or cases that back up the analysis. (E.g., charts, logs, quotes, specific observations.).",
                     "type": "slider",
                     "required": false,
                     "location": "belowStimulus",
                     "options": [
                         {
-                            "label": "Not helpful",
+                            "label": "Not important",
                             "value": 0
                         },
                         {
-                            "label": "Very Helpful",
+                            "label": "Very important",
                             "value": 100
                         }
                     ]
                 },
                 {
                     "id": "Ranking-Methods",
-                    "prompt": "<strong>Methodological Approach</strong>: Details the procedures and techniques employed during the analysis.",
+                    "prompt": "<strong>How it was done</strong>: Describes the steps, tools, or techniques used to do the analysis. (E.g., filters used, reasoning steps, tools applied.).",
                     "type": "slider",
                     "required": false,
                     "location": "belowStimulus",
                     "options": [
                         {
-                            "label": "Not helpful",
+                            "label": "Not important",
                             "value": 0
                         },
                         {
-                            "label": "Very Helpful",
+                            "label": "Very important",
                             "value": 100
                         }
                     ]
                 },
                 {
                     "id": "Ranking-Findings",
-                    "prompt": "<strong>Key Findings</strong>: Highlights the most significant results or theories so far.",
+                    "prompt": "<strong>What was found</strong>: Summarizes the main takeaways or insights from the work so far. (E.g., conclusions, patterns, theories.).",
                     "type": "slider",
                     "required": false,
                     "location": "belowStimulus",
                     "options": [
                         {
-                            "label": "Not helpful",
+                            "label": "Not important",
                             "value": 0
                         },
                         {
-                            "label": "Very Helpful",
+                            "label": "Very important",
                             "value": 100
                         }
                     ]
                 },
                 {
                     "id": "Ranking-NextActions",
-                    "prompt": "<strong>Actionable Recommendations</strong>: Suggests specific steps or actions based on the analysis.",
+                    "prompt": "<strong>Next steps or suggestions</strong>: Outlines what should be done next based on the current findings. (E.g., follow-ups, unresolved questions, or concrete suggestions.).",
                     "type": "slider",
                     "required": false,
                     "location": "belowStimulus",
                     "options": [
                         {
-                            "label": "Not helpful",
+                            "label": "Not important",
                             "value": 0
                         },
                         {
-                            "label": "Very Helpful",
+                            "label": "Very important",
                             "value": 100
                         }
                     ]
+                },
+                {
+                    "id": "Ranking-Other",
+                    "prompt": "Are there other kinds of information you think are important for peer collaboration? Please describe.",
+                    "location": "belowStimulus",
+                    "required": false,
+                    "type": "shortText"
                 }
             ]
         }
@@ -1477,6 +1493,7 @@
             "sendToSensemakingTask",
             "FinalAnswer",
             "MentalModelQuiz",
+            "PersonalityIntro",
             "AnalysisHolismScaleShort",
             "HolisticCognitionScale",
             "BigFivePersonalityScale",

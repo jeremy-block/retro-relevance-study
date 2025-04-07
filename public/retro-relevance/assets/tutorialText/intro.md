@@ -18,6 +18,8 @@ Your goal is to use this information to identify:
 - **What** weapon was used and,
 - **Where** it occurred at the Boddy Estate.
 
+*A copy of this premise will be available in the interface.*
+
 ## Timing and Tools
 
 You only have **15 minutes** to look at evidence. 
@@ -39,4 +41,4 @@ Now, if Jane Doe, who is innocent, says the victim left at 8 PM--even though she
 
 ### Are you ready to begin?
 
-A copy of the above premise will be available in the interface.
+Your interactions will be used to generate a summary of your investigation.

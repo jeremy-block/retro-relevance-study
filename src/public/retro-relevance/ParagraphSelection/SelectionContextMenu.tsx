@@ -46,7 +46,7 @@ const SelectionContextMenu: React.FC<SelectionContextMenuProps> = ({
         }}
         >
         <span className="w-4 h-4 bg-red-200 rounded-full"></span>
-        High
+        Critical
       </Menu.Item>
       <Menu.Item
         onClick={() => onSelectRelevance('medium')}
@@ -61,7 +61,7 @@ const SelectionContextMenu: React.FC<SelectionContextMenuProps> = ({
         }}
         >
         <span className="w-4 h-4 bg-yellow-200 rounded-full"></span>
-        Medium
+        Helpful
       </Menu.Item>
       <Menu.Item
         onClick={() => onSelectRelevance('low')}
@@ -76,7 +76,7 @@ const SelectionContextMenu: React.FC<SelectionContextMenuProps> = ({
         }}
         >
         <span className="w-4 h-4 bg-green-200 rounded-full"></span>
-        Low
+        Optional
       </Menu.Item>
       <Divider my="xs" />
       {showRemoveOption && (
