@@ -614,12 +614,12 @@
         },
         "Screener": {
             "type": "markdown",
-            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
             "instruction": "Please indicate each of the following before we begin:",
             "response": [
                 {
                     "id": "screener-mouse",
-                    "prompt": "Do you have a mouse and keyboard to participate in today's study?",
+                    "prompt": "Do you have a mouse and keyboard to participate in today's study? (Answer No if you only have a trackpad)",
                     "type": "dropdown",
                     "options": [
                         "Yes",
