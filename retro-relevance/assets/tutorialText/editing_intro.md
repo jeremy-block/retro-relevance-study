@@ -16,13 +16,14 @@ On the next page, you'll revise the AI-generated summary to make it as helpful a
 
 ## Guidelines
 
+On the next page, please edit your summary to:
+
 1. **Make it approachable**: Ensure the summary makes sense to someone unfamiliar with the case.
 1. **Add missing details**: Fill in any key actions the AI might have overlooked.
 1. **Remove distractions**: Cut any irrelevant or confusing details.
 1. **Fix errors**: Look for AI mistakes or made-up information. Proofread carefully!
 1. **Clarify transitions**: Make shifts in focus or reasoning more obvious.
 1. **Improve structure**: Organize the summary, so it's easy to scan and understand.
-1. **Take your time**: You have at least 10 minutes to make edits. Don't rush!
 
 <!-- ## Guidelines vShorter
 Make it understandable: Ensure someone new to the case can follow your summary.
@@ -32,5 +33,7 @@ Improve flow: Make transitions and structure easy to follow.
 Be clear and accurate: Proofread and polish the summary. -->
 
 ## Next Steps
+
+**Take your time**: You have at least 10 minutes to make edits. Don't rush!
 
 After you finish editing, you’ll highlight the parts of the summary you think will be most helpful to future users.
