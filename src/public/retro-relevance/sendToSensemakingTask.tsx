@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useStoreSelector } from "../../store/store";
 import { initializeTrrack, Registry } from '@trrack/core';
 import { StimulusParams } from "../../store/types";
+import { Button } from "@mantine/core";
 
 
 
@@ -15,15 +16,15 @@ const answers = useStoreSelector((state) => state.answers);
   const { actions, trrack } = useMemo(() => {
       const reg = Registry.create();
   
-      const clickAction = reg.register('click', (state, click: { distance: number}) => {
-        state.distance = click.distance;
+      const clickAction = reg.register('click', (state, click:boolean) => {
+        state.clicked = click;
         return state;
       });
   
       const trrackInst = initializeTrrack({
         registry: reg,
         initialState: {
-          distance: 0
+          clicked: false,
         },
       });
   
@@ -35,28 +36,37 @@ const answers = useStoreSelector((state) => state.answers);
       };
   }, []);
   
-    const clickCallback = useCallback((e: React.MouseEvent) => {
+    const clickCallback = useCallback(() => {
+        
+      window.open("https://indie.cise.ufl.edu/MaverickMystery/?=5", "_blank");
   
-      const newDistance = Math.random();
-  
-      trrack.apply('Clicked', actions.clickAction({ distance: newDistance }));
+      trrack.apply('Clicked', actions.clickAction(true));
   
       setAnswer({
         status: true,
         provenanceGraph: trrack.graph.backend,
-        answers: {        },
+        answers: {
+          "clicked": true,
+        },
       });
     }, [actions, setAnswer, trrack]);
   return (
     <div>
       <h1>Pause</h1>
-      <p>Please pause here and inform the researcher you are ready for your next direction. Pleaes make sure you have:</p>
+      <p>Please pause here and inform the researcher you are ready to begin. <br/>Please make sure you:</p>
       <ul>
-        <li>screen-shared your <strong>entire desktop</strong> in Zoom</li>
-        <li>opened the document explorer tool in an <strong>incognito window</strong></li>
-        <li>understood the <strong>interface tools</strong>. You may ask questions during your investigation too.</li>
+        <li>open the document explorer in an <strong>incognito window</strong></li>
+        <li>understood the <strong>interface tools</strong>.</li>
       </ul>
-      <p>To begin working with the interface, please <a href="https://indie.cise.ufl.edu/MaverickMystery/?=5" target="blank">click here to go to the document explorer tool.</a></p>
+      <Button
+        variant="outline"
+        color="green"
+        onClick={() => {
+          clickCallback(); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
+        }}
+      >
+        Open Document Explorer
+      </Button>
     </div>
   );
 }

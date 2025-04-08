@@ -6,10 +6,9 @@ While you were completing those questionnaires, we have used an AI model to gene
 
 ## Context
 
-Imagine a colleague is stepping in to take over your investigation. They're helping solve the murder of Mr. Boddy alongside you, but they’re short on time. They’ll have just **5 minutes** to read your notes and review any supporting documents. 
+Imagine a colleague is stepping in to take over your investigation. They're helping solve the murder of Mr. Boddy alongside you, but they’re short on time. They’ll have just **5 minutes** to read your notes and review any supporting documents.
 
-They need a clear, useful summary of what you’ve done so far and what still needs to be done.
-
+They need a clear, useful summary of what you’ve done so far and what still needs to be done to complete the mystery.
 
 ## Task
 
@@ -27,7 +26,7 @@ On the next page, you'll revise the AI-generated summary to make it as helpful a
 
 • **Clarify transitions**: Adjust the focus to make key transitions more obvious.
 
-• **Improve structure**: Organize the summary so it's easy to scan and understand.
+• **Improve structure**: Organize the summary, so it's easy to scan and understand.
 
 • **Take your time**: You have at least 10 minutes to make edits. Don't rush!
 
@@ -39,7 +38,6 @@ Add what's missing: Fill in important context or insights the AI skipped.
 Cut what doesn’t help: Remove irrelevant or incorrect details.
 Improve flow: Make transitions and structure easy to follow.
 Be clear and accurate: Proofread and polish the summary. -->
-
 
 ## Next Steps
 
