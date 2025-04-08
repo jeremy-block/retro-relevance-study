@@ -589,7 +589,7 @@
         },
         "EditSummary": {
             "type": "markdown",
-            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong>: Ensure the summary makes sense to someone unfamiliar with the case.</li><li><strong>Add missing details</strong>: Fill in any key actions the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Look for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Make shifts in focus or reasoning more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li></ol>",
+            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong>: Ensure the summary makes sense to someone unfamiliar with the case.</li><li><strong>Add missing details</strong>: Fill in any key actions the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Look for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Make shifts in focus or reasoning more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li></ol>",
             "instructionLocation": "sidebar",
             "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
@@ -764,7 +764,7 @@
             "type": "website",
             "nextButtonLocation": "belowStimulus",
             "nextButtonEnableTime": 60000,
-            "instruction": "<h1>Tutorial</h1>This the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
+            "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
             "path": "retro-relevance/assets/DocExplorer/index.html",
             "response": []
         },
