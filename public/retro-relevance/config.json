@@ -755,10 +755,11 @@
             "response": []
         },
         "SalmonfishTool": {
-            "type": "video",
-            "instruction": "Please watch the following tutorial to learn about the tool you will use.",
-            "nextButtonEnableTime": 120000,
-            "path": "retro-relevance/assets/tutorialText/TutorialWithCaptions.mp4",
+            "type": "website",
+            "nextButtonLocation": "belowStimulus",
+            "nextButtonEnableTime": 60000,
+            "instruction": "<h1>Tutorial</h1>This the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
+            "path": "retro-relevance/assets/DocExplorer/index.html",
             "response": []
         },
         "ConsentForm": {
