@@ -589,10 +589,9 @@
         },
         "EditSummary": {
             "type": "markdown",
-            "description": "This is the start of the study",
-            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong> Ensure the summary makes sense to someone who hasn't seen the case before.</li><li><strong>Add missing details</strong>: Fill in any key connections or reasoning the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut out any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Double-check for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ol>",
+            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong>: Ensure the summary makes sense to someone unfamiliar with the case.</li><li><strong>Add missing details</strong>: Fill in any key actions the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Look for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Make shifts in focus or reasoning more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li></ol>",
             "instructionLocation": "sidebar",
-            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
                 {
                     "id": "finishedSummary",
@@ -791,12 +790,6 @@
                     "answer": "Yes"
                 }
             ]
-        },
-        "SensemakingTaskDescription": {
-            "type": "markdown",
-            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro.md",
-            "nextButtonEnableTime": 60000,
-            "response": []
         },
         "PersonalityIntro": {
             "type": "markdown",
@@ -1460,7 +1453,6 @@
             "ConsentForm",
             "Screener",
             "SalmonfishTool",
-            "SensemakingTaskDescription",
             "sendToSensemakingTask",
             "FinalAnswer",
             "MentalModelQuiz",
