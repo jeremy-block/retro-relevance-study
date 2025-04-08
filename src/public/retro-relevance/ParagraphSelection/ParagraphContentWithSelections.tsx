@@ -20,7 +20,7 @@ export function ParagraphContentWithSelections({
 }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // set up a way to pull data from a Previous Stimuli
-    const trialNameToPullResponseFrom = "EditSummary_12"
+    const trialNameToPullResponseFrom = "EditSummary_11"
     const keyForSummary = "finishedSummary"
     const keyForID = "participantAssignedID"
 
