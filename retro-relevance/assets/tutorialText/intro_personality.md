@@ -1,13 +1,13 @@
 # Personality Assessments
 
-Thank you for working on the mystery of Mr. Boddy and describing what you know in the prior quiz. This task is hard, and intentionally designed to be impossible to complete in 15 minutes! You did the best you could!
+Great work tackling the mystery of Mr. Boddy and describing your findings in the previous quiz. That task was intentionally challenging—and nearly impossible to solve fully in just 15 minutes. You did exactly what we hoped: your best!
 
-The correct answer can be shared with you at the end of the study.
+We'll be able to share the correct answer with you at the end of the study.
 
-*For now, the researcher is working with an AI model to prepare a summary of your investigation.*
+*Right now, the researcher is working with an AI model to prepare a summary of your investigation.*
 
-## In the meantime
+## What’s next?
 
-On the next few pages, you will be asked a series of questions that are designed to better understand your **problem-solving approach** and **personality**.
+Over the next few pages, you’ll answer a few questions to help us better understand your **problem-solving approach** and **personality**.
 
-Please answer honestly and go with the first option that feels correct to you.
+Please respond honestly—there are no right or wrong answers—and go with your first instinct.

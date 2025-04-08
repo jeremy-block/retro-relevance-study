@@ -590,21 +590,21 @@
         "EditSummary": {
             "type": "markdown",
             "description": "This is the start of the study",
-            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong> Ensure the summary makes sense to someone who hasn't seen the case before.</li><li><strong>Add missing details</strong>: Fill in any key connections or reasoning the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut out any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Double-check for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Improve structure</strong>: Organize the summary so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ol>",
+            "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong> Ensure the summary makes sense to someone who hasn't seen the case before.</li><li><strong>Add missing details</strong>: Fill in any key connections or reasoning the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut out any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Double-check for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Adjust the focus to make key transitions more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li><li><strong>Take your time</strong>: You have at least 10 minutes to make edits. Don't rush!</li><li><strong>Ensure clarity</strong>: Make the summary clear and complete for the next investigator.</li></ol>",
             "instructionLocation": "sidebar",
             "path": "retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
             "response": [
                 {
                     "id": "finishedSummary",
-                    "prompt": "Please paste the text from the researcher below and edit it so the next analyst knows where you left off.",
+                    "prompt": "Please paste the text from the researcher below and edit it so the next analyst can solve the mystery.",
                     "required": true,
                     "location": "aboveStimulus",
                     "type": "longText",
-                    "placeholder": "Please enter the output from the large language model"
+                    "placeholder": "Please enter the output from the AI summarizer here."
                 },
                 {
                     "id": "participantAssignedID",
-                    "prompt": "Please enter a participant ID number",
+                    "prompt": "Please ask the researcher for your participant ID number",
                     "required": true,
                     "hidden": false,
                     "location": "sidebar",
@@ -614,12 +614,12 @@
         },
         "Screener": {
             "type": "markdown",
-            "path": "retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
             "instruction": "Please indicate each of the following before we begin:",
             "response": [
                 {
                     "id": "screener-mouse",
-                    "prompt": "Do you have a mouse and keyboard to participate in today's study?",
+                    "prompt": "Do you have a mouse and keyboard to participate in today's study? (Answer No if you only have a trackpad)",
                     "type": "dropdown",
                     "options": [
                         "Yes",
@@ -691,7 +691,7 @@
                 {
                     "id": "paragraphIDs",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -699,7 +699,7 @@
                 {
                     "id": "selectionIDs",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -707,7 +707,7 @@
                 {
                     "id": "selectionStarts",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -715,7 +715,7 @@
                 {
                     "id": "selectionEnds",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -723,7 +723,7 @@
                 {
                     "id": "seletionTexts",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -731,7 +731,7 @@
                 {
                     "id": "selectionRelevances",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -739,7 +739,7 @@
                 {
                     "id": "selectionTypes",
                     "prompt": "",
-                    "hidden": false,
+                    "hidden": true,
                     "required": false,
                     "location": "sidebar",
                     "type": "reactive"
@@ -750,15 +750,23 @@
             "description": "This is to pause the participant",
             "type": "react-component",
             "path": "retro-relevance/sendToSensemakingTask.tsx",
-            "nextButtonEnableTime": 600000,
             "parameters": {},
-            "response": []
+            "response": [
+                {
+                    "id": "clicked",
+                    "prompt": "",
+                    "hidden": true,
+                    "location": "sidebar",
+                    "type": "reactive"
+                }
+            ]
         },
         "SalmonfishTool": {
-            "type": "video",
-            "instruction": "Please watch the following tutorial to learn about the tool you will use.",
-            "nextButtonEnableTime": 120000,
-            "path": "retro-relevance/assets/tutorialText/CollabAnalysisTutorial.mp4",
+            "type": "website",
+            "nextButtonLocation": "belowStimulus",
+            "nextButtonEnableTime": 60000,
+            "instruction": "<h1>Tutorial</h1>This the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
+            "path": "retro-relevance/assets/DocExplorer/index.html",
             "response": []
         },
         "ConsentForm": {
@@ -803,7 +811,9 @@
         },
         "AnalysisHolismScaleShort": {
             "type": "questionnaire",
-            "instruction": "Please indicate how much you agree with the following statements.",
+            "instruction": "<h2>Please indicate how much you agree with the following statements.</h2>",
+            "instructionLocation": "aboveStimulus",
+            "responseDividers": true,
             "response": [
                 {
                     "id": "AH-Causality",
@@ -813,8 +823,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "AH-Contradictions",
@@ -824,8 +833,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "AH-Change (r)",
@@ -835,8 +843,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "AH-Attention",
@@ -846,14 +853,15 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 }
             ]
         },
         "HolisticCognitionScale": {
             "type": "questionnaire",
-            "instruction": "Please indicate how much you agree with the following statements.",
+            "instruction": "<h2>Please indicate how much you agree with the following statements.</h2>",
+            "instructionLocation": "aboveStimulus",
+            "responseDividers": true,
             "response": [
                 {
                     "id": "HCS-Attention-1",
@@ -863,8 +871,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Attention-2",
@@ -874,8 +881,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Attention-3",
@@ -885,8 +891,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Attention-4",
@@ -896,8 +901,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Causality-1",
@@ -907,8 +911,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Causality-2",
@@ -918,8 +921,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Causality-3",
@@ -929,8 +931,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Causality-4",
@@ -940,8 +941,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Contradiction-1",
@@ -951,8 +951,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Contradiction-2",
@@ -962,8 +961,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Contradiction-3",
@@ -973,8 +971,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Contradiction-4",
@@ -984,8 +981,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Change-1",
@@ -995,8 +991,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Change-2",
@@ -1006,8 +1001,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Change-3",
@@ -1017,8 +1011,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "HCS-Change-4",
@@ -1028,26 +1021,25 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 }
             ]
         },
         "BigFivePersonalityScale": {
             "type": "questionnaire",
-            "instruction": "Please indicate how much you agree with the following statements. Answer the question as the completion of the statement 'In general, I...'",
+            "instruction": "<h2>Please indicate how much you agree with the following statements.</h2> <em style='color: darkgrey; font-size: large;'>Answer each statement as the completion of <strong>'In general, I...'</strong></em>",
+            "responseDividers": true,
+            "instructionLocation": "aboveStimulus",
             "response": [
                 {
                     "id": "BF-Extraversion-1",
                     "prompt": "Am the life of the party.",
                     "location": "aboveStimulus",
-                    "required": false,
+                    "required": true,
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Extraversion-2",
                     "prompt": "Talk to a lot of different people at parties.",
@@ -1056,8 +1048,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
+                    "numItems": 7
                 },
                 {
                     "id": "BF-Extraversion-3",
@@ -1067,9 +1058,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Extraversion-4",
                     "prompt": "Keep in the background.",
@@ -1078,9 +1067,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Agreeableness-1",
                     "prompt": "Sympathize with others' feelings.",
@@ -1089,9 +1076,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Agreeableness-2",
                     "prompt": "Feel others' emotions.",
@@ -1100,9 +1085,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Agreeableness-3",
                     "prompt": "Am not really interested in others.",
@@ -1111,9 +1094,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Agreeableness-4",
                     "prompt": "Am not interested in other people's problems.",
@@ -1122,9 +1103,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Conscientiousness-1",
                     "prompt": "Get chores done right away.",
@@ -1133,9 +1112,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Conscientiousness-2",
                     "prompt": "Like order.",
@@ -1144,9 +1121,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Conscientiousness-3",
                     "prompt": "Often forget to put things back in their proper place.",
@@ -1155,9 +1130,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                },
+                    "numItems": 7                },
                 {
                     "id": "BF-Conscientiousness-4",
                     "prompt": "Make a mess of things.",
@@ -1166,9 +1139,7 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7,
-                    "withDivider": true
-                }
+                    "numItems": 7                }
             ]
         },
         "Demographics": {
@@ -1284,7 +1255,7 @@
                 {
                     "id": "Demographics-sensemakingFrequency",
                     "prompt": "If yes, how frequently do you engage in such tasks?",
-                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "secondaryText": "select 'N/A' if you selected 'No' above",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
@@ -1299,14 +1270,14 @@
                 {
                     "id": "Demographics-sensemakingTime",
                     "prompt": "If yes, how many years of experience do you have doing work that involves analytical or investigative tasks?",
-                    "secondaryText": "select 'I don't know' if you selected 'No' above",
+                    "secondaryText": "select 'N/A' if you selected 'No' above",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
-                    "withDontKnow": true,
                     "options": [
                         "N/A",
-                        "0--2 years",
+                        "0--1 years",
+                        "1--2 years",
                         "3--5 years",
                         "6--10 years",
                         "11--20 years",
