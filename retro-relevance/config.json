@@ -1032,7 +1032,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Extraversion-2",
                     "prompt": "Talk to a lot of different people at parties.",
@@ -1051,7 +1052,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Extraversion-4",
                     "prompt": "Keep in the background.",
@@ -1060,7 +1062,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Agreeableness-1",
                     "prompt": "Sympathize with others' feelings.",
@@ -1069,7 +1072,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Agreeableness-2",
                     "prompt": "Feel others' emotions.",
@@ -1078,7 +1082,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Agreeableness-3",
                     "prompt": "Am not really interested in others.",
@@ -1087,7 +1092,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Agreeableness-4",
                     "prompt": "Am not interested in other people's problems.",
@@ -1096,7 +1102,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Conscientiousness-1",
                     "prompt": "Get chores done right away.",
@@ -1105,7 +1112,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Conscientiousness-2",
                     "prompt": "Like order.",
@@ -1114,7 +1122,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Conscientiousness-3",
                     "prompt": "Often forget to put things back in their proper place.",
@@ -1123,7 +1132,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                },
+                    "numItems": 7
+                },
                 {
                     "id": "BF-Conscientiousness-4",
                     "prompt": "Make a mess of things.",
@@ -1132,7 +1142,8 @@
                     "type": "likert",
                     "leftLabel": "Strongly Disagree",
                     "rightLabel": "Strongly Agree",
-                    "numItems": 7                }
+                    "numItems": 7
+                }
             ]
         },
         "Demographics": {
@@ -1168,46 +1179,62 @@
                 },
                 {
                     "id": "Demographics-EnrollmentStatus",
-                    "prompt": "Are you enrolled as a full-time or part-time student?",
+                    "prompt": "What is your current primary status?",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
                     "options": [
-                        "Full-time (20+ hours/week)",
-                        "Part-time (less than 20 hours/week)",
-                        "Not currently enrolled"
+                        "Student - Full-time (20+ hours/week)",
+                        "Student - Part-time (less than 20 hours/week)",
+                        "Not currently a student"
                     ]
                 },
                 {
                     "id": "Demographics-EducationLevel",
-                    "prompt": "What level of education are you enrolled in?",
+                    "prompt": "What is the highest level of education you have completed?",
+                    "secondaryText": "If you are a current student, please specify the level you are currently pursuing.",                  
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
                     "options": [
-                        "Undergraduate - Freshman",
-                        "Undergraduate - Sophomore",
-                        "Undergraduate - Junior",
-                        "Undergraduate - Senior",
-                        "Graduate - Master's",
-                        "Graduate - PhD",
-                        "Not currently enrolled"
+                        "Some high school",
+                        "High school diploma or equivalent (completed)",
+                        "Undergraduate - Lower division (e.g., current freshman/sophomore)",
+                        "Undergraduate - Upper division (e.g., current junior/senior)",
+                        "Undergraduate - Bachelor's degree (completed)",
+                        "Graduate - Master's (currently pursuing)",
+                        "Graduate - Master's (completed)",
+                        "Graduate - PhD or equivalent (currently pursuing)",
+                        "Graduate - PhD or equivalent (completed)",
+                        "Other post-secondary credential",
+                        "Prefer not to say"
                     ]
                 },
                 {
-                    "id": "Demographics-Major",
-                    "prompt": "What is your major or primary field of study?",
+                    "id": "Demographics-FieldOfStudy",
+                    "prompt": "What is/was your primary field of study in your most recent academic program (e.g., during college or graduate school)?",
                     "location": "aboveStimulus",
                     "required": false,
-                    "type": "shortText"
-                },
-                {
-                    "id": "Demographics-Minor",
-                    "prompt": "Do you have a minor or secondary field of study? If so, please specify.",
-                    "location": "aboveStimulus",
-                    "required": false,
-                    "withDontKnow": true,
-                    "type": "shortText"
+                    "type": "dropdown",
+                    "options": [
+                        "Computer Science",
+                        "Software Engineering",
+                        "Computer Engineering",
+                        "Data Science / Statistics",
+                        "Digital Arts and Sciences / New Media",
+                        "Design / User Experience / Human-Computer Interaction",
+                        "Electrical Engineering",
+                        "Mechanical Engineering",
+                        "Library Science / Information Systems",
+                        "Mathematics",
+                        "Business / Management",
+                        "Cognitive Science / Psychology",
+                        "Social Sciences",
+                        "Natural Sciences",
+                        "Other STEM Field",
+                        "Other Non-STEM Field",
+                        "Prefer not to say"
+                    ]
                 },
                 {
                     "id": "Demographics-FirstGen",
@@ -1223,13 +1250,63 @@
                 },
                 {
                     "id": "Demographics-International",
-                    "prompt": "Are you an international student?",
+                    "prompt": "Are you an international student or professional currently residing outside your country of origin?",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
                     "options": [
                         "Yes",
                         "No"
+                    ]
+                },
+                {
+                    "id": "Demographics-CurrentJob",
+                    "prompt": "What is your current job title or role?",
+                    "location": "aboveStimulus",
+                    "secondaryText": "e.g., Senior Software Engineer, Data Analyst, CTO., Student, etc.",
+                    "required": false,
+                    "type": "shortText"
+                },
+                {
+                    "id": "Demographics-CurrentField",
+                    "prompt": "What field do you currently work in (or most identify with professionally)?",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "radio",
+                    "withOther": true,
+                    "options": [
+                        "Software Engineering / Development",
+                        "Data Science / Machine Learning",
+                        "Cybersecurity",
+                        "DevOps / Infrastructure Engineering",
+                        "Product Management",
+                        "User Experience (UX) / User Interface (UI) Design",
+                        "Human-Computer Interaction (HCI) / Usability Research",
+                        "Research (Academic or Industry)",
+                        "IT / Systems Administration",
+                        "Technical Support / Quality Assurance",
+                        "Engineering (Non-CS/ Non-Software)",
+                        "Education / Teaching (Technology related)",
+                        "Management / Technical Leadership",
+                        "Not currently employed",
+                        "Prefer not to say"
+                    ]
+                },
+                {
+                    "id": "Demographics-Experience",
+                    "prompt": "How many years of experience do you have in your current field?",
+                    "withDontKnow": true,
+                    "secondaryText": "Select 'I Don't Know' if you are currently working as a student",
+                    "location": "aboveStimulus",
+                    "required": false,
+                    "type": "dropdown",
+                    "options": [
+                        "Less than 1 year",
+                        "1-2 years",
+                        "3-5 years",
+                        "6-10 years",
+                        "11-20 years",
+                        "21+ years"
                     ],
                     "withDivider": true
                 },
