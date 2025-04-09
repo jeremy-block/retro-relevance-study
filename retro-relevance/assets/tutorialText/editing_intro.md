@@ -2,7 +2,7 @@
 
 *Please read the following aloud.*
 
-While you were completing the questionnaires, an AI model analyzed your activity and generated a summary based entirely on your interactions.
+While you were completing the questionnaires, an AI model analyzed your investigation activity and generated a summary based entirely on your interactions.
 
 ## Context
 

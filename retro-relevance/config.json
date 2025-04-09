@@ -691,7 +691,7 @@
                     "id": "paragraphIDs",
                     "prompt": "",
                     "hidden": true,
-                    "required": false,
+                    "required": true,
                     "location": "sidebar",
                     "type": "reactive"
                 },
