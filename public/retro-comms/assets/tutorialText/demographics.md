@@ -1,0 +1,1 @@
+When sharing your work with a collaborator, how important is it to include each type of information below?
