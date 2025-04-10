@@ -12,7 +12,7 @@ interface ApiParagraph {
 export const useParagraphData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [paragraphData, setParagraphData] = useState<Paragraph[]>([]);
+  const [initialParagraphs, setInitialParagraphs] = useState<Paragraph[]>([]);
   
   const apiBaseUrl = 'https://indie.cise.ufl.edu/retro-relevance';
   
@@ -26,7 +26,7 @@ export const useParagraphData = () => {
       'experiment-key-5-research-2023'
     ];
     
-    const dayOfMonth = new Date().getDate();
+    const dayOfMonth = new Date().getUTCDate();
     const keyIndex = dayOfMonth % accessKeys.length;
     return accessKeys[keyIndex];
   }, []);
@@ -100,7 +100,7 @@ export const useParagraphData = () => {
         // Map API format to component format
         const formatted = data.paragraphs.map((p: ApiParagraph) => ({
           id: p.id,
-          content: p.text,
+          text: p.text,
           selections: p.selections || []
         }));
         
@@ -135,6 +135,7 @@ export const useParagraphData = () => {
         params.append('previousId', previousId);
       }
       
+      console.log(`🚀 ~ fetchExperimentSequence ~ params.toString():`, params)
       const response = await fetch(`${apiBaseUrl}/get_sequence.php?${params.toString()}`);
       
       if (!response.ok) {
@@ -147,12 +148,12 @@ export const useParagraphData = () => {
         // Convert API response to Paragraph type
         const formattedParagraphs: Paragraph[] = data.sequence.map((p: ApiParagraph) => ({
           id: p.id,
-          content: p.text,
+          text: p.text,
           selections: p.selections || []
         }));
         
         // Update state
-        setParagraphData(formattedParagraphs);
+        setInitialParagraphs(formattedParagraphs);
         return formattedParagraphs;
       } else {
         throw new Error('Invalid response format or empty sequence');
@@ -171,8 +172,8 @@ export const useParagraphData = () => {
   return {
     loading,
     error,
-    paragraphData,
-    setParagraphData,
+    initialParagraphs,
+    setInitialParagraphs,
     fetchParagraphById,
     fetchParagraphsByType,
     fetchExperimentSequence,

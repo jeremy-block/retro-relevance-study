@@ -2,6 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/GlobalConfigSchema.json",
   "configsList": [
     "retro-relevance",
+    "retro-communications",
     "tutorial",
     "example-brush-interactions",
     "example-cleveland",
@@ -38,8 +39,11 @@
 
   ],
   "configs": {
-    "retro-relevance":{
+    "retro-relevance": {
       "path": "retro-relevance/config.json"
+    },
+    "retro-communications": {
+      "path": "retro-comms/config.json"
     },
     "tutorial": {
       "path": "tutorial/config.json"
