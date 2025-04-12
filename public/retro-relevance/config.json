@@ -355,7 +355,6 @@
                     "prompt": "Where were the Giorgio Armani leather driving gloves found?",
                     "location": "belowStimulus",
                     "type": "radio",
-                    "withDontKnow": true,
                     "options": [
                         "Inside the piano in the lounge",
                         "In the desk drawer of the study",
@@ -1325,7 +1324,7 @@
                 {
                     "id": "Demographics-sensemakingFrequency",
                     "prompt": "If yes, how frequently do you engage in such tasks?",
-                    "secondaryText": "select 'N/A' if you selected 'No' above",
+                    "secondaryText": "select 'N/A' if you selected 'No' or 'I don't know' above",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
@@ -1340,7 +1339,7 @@
                 {
                     "id": "Demographics-sensemakingTime",
                     "prompt": "If yes, how many years of experience do you have doing work that involves analytical or investigative tasks?",
-                    "secondaryText": "select 'N/A' if you selected 'No' above",
+                    "secondaryText": "select 'N/A' if you selected 'No' or 'I don't know' above",
                     "location": "aboveStimulus",
                     "required": false,
                     "type": "dropdown",
