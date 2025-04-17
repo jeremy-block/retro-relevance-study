@@ -748,7 +748,7 @@
                 "sendToSensemakingTask": {
                     "description": "This is to pause the participant",
                     "type": "react-component",
-                    "path": "retro-relevance/sendToSensemakingTask.tsx",
+                    "path": "retro-comms/SendToSensemakingTaskWithNotes.tsx",
                     "parameters": {},
                     "response": [
                         {
@@ -1527,11 +1527,11 @@
             "sequence": {
                 "order": "fixed",
                 "components": [
+                    "sendToSensemakingTask",
                     "SelectionTask",
                     "ConsentForm",
                     "Screener",
                     "SalmonfishTool",
-                    "sendToSensemakingTask",
                     "FinalAnswer",
                     "MentalModelQuiz",
                     "PersonalityIntro",
