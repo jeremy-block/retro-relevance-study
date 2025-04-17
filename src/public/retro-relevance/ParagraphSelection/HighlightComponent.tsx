@@ -91,38 +91,59 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
 
     // This function resolves a node path to an actual DOM node
     const resolveNodePath = (path: number[], root: HTMLElement): Node | null => {
+      // Start from the paragraph root element
       let current: Node = root;
+      console.group('Node Path Resolution');
+      console.log('Starting at root:', root.tagName);
+      console.log('Path to resolve:', path);
 
-      for (let i = 0; i < path.length; i++) {
-        const index = path[i];
-        if (index < 0 || index >= current.childNodes.length) {
-          return null;
+      try {
+        // Follow the path indices to find the node
+        for (let i = 0; i < path.length; i++) {
+          const index = path[i];
+          console.log(`Step ${i}: Looking for child ${index} of`, current.nodeName);
+
+          if (current.childNodes && index < current.childNodes.length) {
+            current = current.childNodes[index];
+            console.log(`Step ${i}: Found node:`, current.nodeName,
+              current.nodeType === Node.TEXT_NODE ?
+                `"${current.textContent?.substring(0, 20)}..."` : '');
+          } else {
+            console.error(`Step ${i}: Failed - Node has ${current.childNodes?.length || 0} children, tried to access index ${index}`);
+            console.groupEnd();
+            return null;
+          }
         }
-        current = current.childNodes[index];
+        console.log('Resolution successful');
+        console.groupEnd();
+        return current;
+      } catch (error) {
+        console.error('Error in path resolution:', error);
+        console.groupEnd();
+        return null;
       }
-
-      return current;
     };
 
     // Calculate client rects for all elements in the selection
     const calculateHighlightRects = () => {
-      const container = contentRef.current;
-      if (!container) return [];
+      if (!contentRef.current || !selection.elements) return [];
 
-      const containerRect = container.getBoundingClientRect();
+      const paragraphId = contentRef.current.dataset.paragraphId;
+      
+      const containerRect = contentRef.current.getBoundingClientRect();
       const rects: DOMRect[] = [];
 
       // Ensure highlights are only applied to the correct paragraph (but for some reason this breaks multi node highlights.)
-      // console.log("🚀 ~ calculateHighlightRects ~ selection.ParentParagraphID:", selection.ParentParagraphID)
-      // console.log("🚀 ~ calculateHighlightRects ~ contentRef.current?.dataset.paragraphId:", contentRef.current?.dataset.paragraphId)
-      // if (selection.ParentParagraphID !== contentRef.current?.dataset.paragraphId) {
-      //   return [];
-      // }
+      console.log("🚀 ~ calculateHighlightRects ~ selection.ParentParagraphID:", selection.ParentParagraphID)
+      console.log("🚀 ~ calculateHighlightRects ~ contentRef.current?.dataset.paragraphId:", paragraphId)
+      if (selection.ParentParagraphID !== paragraphId) {
+        return [];
+      }
 
       // Process each element in the selection
       selection.elements?.forEach(el => {
         // Resolve the node from its path
-        const node = resolveNodePath(el.path, container);
+        const node = contentRef.current ? resolveNodePath(el.path, contentRef.current) : null;
         if (!node) return;
 
         // Create a range for this element
@@ -148,6 +169,19 @@ const HighlightComponent: React.FC<HighlightComponentProps> = ({
               return;
             }
           }
+          
+          // In HighlightComponent.ts, in calculateHighlightRects:
+          console.group('Highlight Calculation');
+          console.log('Selection:', selection);
+          console.log('Selection Paragraph ID:', selection.ParentParagraphID);
+          console.log('Current Paragraph ID:', contentRef.current?.dataset.paragraphId);
+          console.log('Match?', selection.ParentParagraphID === contentRef.current?.dataset.paragraphId);
+          console.log('Elements to highlight:', selection.elements);
+          console.groupEnd();
+          
+          // And when resolving nodes:
+          console.log('Resolving node path:', el.path);
+          console.log('Found node:', node ? node.textContent?.substring(0, 20) + '...' : 'NULL');
 
           // Get client rects for this range
           const clientRects = range.getClientRects();

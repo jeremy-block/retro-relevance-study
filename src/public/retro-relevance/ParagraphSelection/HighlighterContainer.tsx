@@ -32,6 +32,10 @@ const HighlighterContainer: React.FC<HighlighterContainerProps> = ({
         setUpdateCounter(prev => prev + 1);
       });
 
+      // In HighlighterContainer.ts, in the MutationObserver callback:
+      console.log('DOM mutation detected, re-rendering highlights');
+      console.log('Current content:', contentRef.current?.innerHTML.substring(0, 100) + '...');
+
       observer.observe(contentRef.current, {
         childList: true,
         subtree: true,

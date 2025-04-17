@@ -11,6 +11,7 @@ interface MarkdownRendererProps {
   selections: TextSelection[];
   onTextSelection: (selection: TextSelection) => void;
   onSelectionClick: (selection: TextSelection) => void;
+  dataParagraphId: string|null;
   className?: string;
   readOnly?: boolean;
 }
@@ -20,6 +21,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   selections,
   onTextSelection,
   onSelectionClick,
+  dataParagraphId = null,
   className = '',
   readOnly = false
 }) => {
@@ -55,8 +57,10 @@ const html = parseMarkdownWithIds(markdownText);
           height: '500px', // Ensure the parent has a defined height
         }}
         ref={contentRef}
+        data-paragraph-id={dataParagraphId} // Add this line
         className="markdown-content"
         dangerouslySetInnerHTML={{ __html: html }}
+        onMouseDown={!readOnly ? handleSelectionStart : undefined}
       />
       
       {/* Selection manager - only if not read-only */}

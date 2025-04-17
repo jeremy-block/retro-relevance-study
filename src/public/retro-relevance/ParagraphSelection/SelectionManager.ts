@@ -29,59 +29,72 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
   // Handle text selection
   const handleMouseUp = useCallback(() => {
     const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || !contentRef.current) {
+    if (!selection || selection.rangeCount === 0 ) {
       return;
     }
     
-    // Get the selected text
-    const selectedText = selection.toString().trim();
-    if (!selectedText) return;
-    
     try {
       // Notify parent that selection has started
-      onSelectionStart();
-      
+      // onSelectionStart();
+
       // Get the selection range
       const range = selection.getRangeAt(0);
-      
+
+      // Make sure selection is within this paragraph
+      if (
+        !contentRef.current ||
+        !contentRef.current.contains(range.commonAncestorContainer)
+      ) {
+        return; // Selection is outside our paragraph
+      }
+
+      // Get the selected text
+      const selectedText = selection.toString().trim();
+      if (!selectedText) return;
+
+      // Extract paragraph ID from the content element
+      const paragraphId = contentRef.current.dataset.paragraphId;
+
       // Find the path for nodes in the selection
-      const selectedElements = getSerializableElementsInRange(range, contentRef.current);
-      console.log("🚀 ~ handleMouseUp ~ selectedElements:", selectedElements)
-      
-      
-      // Calculate HTML indices of the selection
-      const htmlIndices = calculateHtmlIndices(range, contentRef.current);
-      
-      // Map HTML indices to markdown indices
-      const startIndex = mapHtmlIndexToMarkdown(
-        htmlIndices.startIndex, 
-        contentRef.current.innerHTML, 
-        markdownText, 
-        tokens
-      ) || htmlIndices.startIndex;
-      
-      const endIndex = mapHtmlIndexToMarkdown(
-        htmlIndices.endIndex, 
-        contentRef.current.innerHTML, 
-        markdownText, 
-        tokens
-      ) || htmlIndices.endIndex;
-      
+      const selectedElements = getSerializableElementsInRange(
+        range,
+        contentRef.current
+      );
+      console.log("🚀 ~ handleMouseUp ~ selectedElements:", selectedElements);
+      const startIndex = range.startOffset;
+      const endIndex = range.endOffset;
+
       // Create selection with properly mapped indices
       const newSelection: TextSelection = {
-        ParentParagraphID: "", //to be set later when a selection is made
+        ParentParagraphID: paragraphId || "", //ensure paragraph ID is set
         id: `selection-${Date.now()}`,
         startIndex,
         endIndex,
         overlapsWithPriorSelection: false, // will be updated later when updating state.
-        relevanceLevel: '', // Will be set by context menu
+        relevanceLevel: "", // Will be set by context menu
         selectedText,
-        elements: selectedElements
+        elements: selectedElements,
       };
-      
+
+      // In SelectionManager.ts, add this debug code at selection creation:
+      console.group("Selection Creation");
+      console.log("Paragraph ID:", contentRef.current?.dataset.paragraphId);
+      console.log("Selection Range:", {
+        startContainer: range.startContainer,
+        endContainer: range.endContainer,
+        commonAncestor: range.commonAncestorContainer,
+      });
+      console.log(
+        "Is selection within paragraph:",
+        contentRef.current?.contains(range.commonAncestorContainer)
+      );
+      console.log("Selected Text:", selectedText);
+      console.log("Created Selection:", newSelection);
+      console.groupEnd();
+
       // Pass the new selection to the parent
       onSelectionComplete(newSelection);
-      
+
       // Important: Don't clear the selection here!
       // Let it remain visible until the context menu action is taken
     } catch (error) {

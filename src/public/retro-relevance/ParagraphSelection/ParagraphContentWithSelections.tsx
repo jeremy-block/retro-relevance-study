@@ -377,6 +377,7 @@ export function ParagraphContentWithSelections({
                             selections={selections}
                             onTextSelection={handleTextSelection}
                             onSelectionClick={handleSelectionClick}
+                            dataParagraphId={currentParagraph.id}
                             className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
                             aria-label="Paragraph content with selectable text"
                         />
