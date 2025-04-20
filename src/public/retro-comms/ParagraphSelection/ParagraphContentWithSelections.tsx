@@ -16,9 +16,9 @@ export function ParagraphContentWithSelections({
 }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
   // Get previous stimulus data if needed
-  const trialNameToPullResponseFrom = "EditSummary_11";
+  const trialNameToPullResponseFrom = "sendToSensemakingTask_0";
   const keyForSummary = "finishedSummary";
-  const keyForID = "participantAssignedID";
+  const keyForID = "firstParagraphId";
 
   const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
 
@@ -79,6 +79,8 @@ export function ParagraphContentWithSelections({
       try {
         // Fetch paragraph sequence from the server
         const fetchedParagraphs = await fetchExperimentSequence(previousParagraphId || undefined);
+        console.log("🚀 ~ loadParagraphs ~ fetchedParagraphs:", fetchedParagraphs)
+        //todo save the array selection of paragraphs into an answer property so it can be pulled up later.
 
         // If no paragraphs returned and we have a summary from a previous trial, use that
         if (fetchedParagraphs.length === 0 && answers[trialNameToPullResponseFrom]?.answer[keyForSummary]) {
@@ -344,8 +346,6 @@ export function ParagraphContentWithSelections({
   const handleChangeParagraph = useCallback((index: number) => {
     if (index >= 0 && index < paragraphs.length) {
       setfocusedParagraphIndex(index);
-
-      //todo save state to provenance graph
       const newState = {
         paragraphs,
         selections,

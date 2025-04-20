@@ -753,8 +753,17 @@
                     "response": [
                         {
                             "id": "clicked",
-                            "prompt": "",
+                            "prompt": "Clicked the button?",
                             "hidden": true,
+                            "required":true,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "firstParagraphId",
+                            "prompt": "Assigned paragraph ID:",
+                            "hidden": true,
+                            "required": false,
                             "location": "sidebar",
                             "type": "reactive"
                         }

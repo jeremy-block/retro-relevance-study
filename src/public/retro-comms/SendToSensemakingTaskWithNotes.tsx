@@ -15,9 +15,9 @@ function SendToSensemakingTask({ parameters,
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
-    const trialNameToPullResponseFrom = "EditSummary_11";
-    const keyForSummary = "finishedSummary";
-    const keyForID = "participantAssignedID";
+    const trialNameToPullResponseFrom = "sendToSensemakingTask_0";
+    const keyForSummary = "firstParagraphId";
+    // const keyForID = "participantAssignedID";
 
 
     // Use our paragraph data hook
@@ -25,7 +25,8 @@ function SendToSensemakingTask({ parameters,
         loading,
         error,
         initialParagraphs,
-        fetchExperimentSequence,
+        fetchParagraphsByType,
+        fetchParagraphById,
         getParticipantId
     } = useParagraphData();
 
@@ -62,48 +63,66 @@ function SendToSensemakingTask({ parameters,
     const contentRef = useRef<HTMLDivElement | null>(null);
     const theme = useMantineTheme();
 
+    // Fetch paragraphs when component loads
+
+    const loadParagraphs = async () => {
+        // If parameters include a testingStimulusValue, use that instead of fetching
+        // if (parameters.testingStimulusValue) {
+        //   setParagraphs(parameters.testingStimulusValue as Paragraph[]);
+        //   return;
+        // }
+
+        // Get the paragraph ID from previous trial if available
+        const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || '');
+
+        try {
+            let startingParagraph = [];
+            if (previousParagraphId == '') {
+            console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
+
+                const coinFlip = Math.random()
+                if (coinFlip > 0.5) {
+                    console.log("getting a new NARRATIVE Paragraph")
+                    startingParagraph = await fetchParagraphsByType("narrative", 1)
+                    console.log("🚀 ~ loadParagraphs ~ startingParagraph:", startingParagraph)
+                } else {
+                    console.log("getting a new LIST Paragraph")
+                    startingParagraph = await fetchParagraphsByType("list", 1)
+                    console.log("🚀 ~ loadParagraphs ~ startingParagraph:", startingParagraph)
+                }
+            } else {
+                let something = await fetchParagraphById(previousParagraphId)
+                startingParagraph.push(something)
+            }
+            console.log("🚀 ~ loadParagraphs ~ previousParagraphId:", previousParagraphId)
+            console.log("🚀 ~ loadParagraph ~ startingParagraph:", startingParagraph)
+            if (startingParagraph && startingParagraph.length > 0) {
+                setParagraphs(startingParagraph.filter((p): p is Paragraph => p !== null));
+                setfocusedParagraphIndex(0); // Set to the first paragraph by default
+            }
+            return startingParagraph;
+        } catch (err) {
+            console.error("Error loading paragraphs:", err);
+
+            // Fallback to the summary if API fails
+            if (answers[trialNameToPullResponseFrom]?.answer[keyForSummary]) {
+                const lastSeenParagraph = await fetchParagraphById(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] as string);
+                if (lastSeenParagraph) {
+                    setParagraphs([lastSeenParagraph]);
+                }
+                //     {
+                //     text: String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || ''),
+                //     id: String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || 'default-id'),
+                //     selections: []
+                // }]);
+            }
+        }
+    };
+
     // Fetch paragraph sequence when component loads
     useEffect(() => {
-        const loadParagraphs = async () => {
-            // If parameters include a testingStimulusValue, use that instead of fetching
-            // if (parameters.testingStimulusValue) {
-            //   setParagraphs(parameters.testingStimulusValue as Paragraph[]);
-            //   return;
-            // }
-
-            // Get the paragraph ID from previous trial if available
-            const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForID] || '');
-
-            try {
-                // Fetch paragraph sequence from the server
-                const fetchedParagraphs = await fetchExperimentSequence(previousParagraphId || undefined);
-
-                // If no paragraphs returned and we have a summary from a previous trial, use that
-                if (fetchedParagraphs.length === 0 && answers[trialNameToPullResponseFrom]?.answer[keyForSummary]) {
-                    setParagraphs([{
-                        text: String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || ''),
-                        id: String(previousParagraphId || 'default-id'),
-                        selections: []
-                    }]);
-                } else {
-                    setParagraphs(fetchedParagraphs);
-                }
-            } catch (err) {
-                console.error("Error loading paragraphs:", err);
-
-                // Fallback to the summary if API fails
-                if (answers[trialNameToPullResponseFrom]?.answer[keyForSummary]) {
-                    setParagraphs([{
-                        text: String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || ''),
-                        id: String(answers[trialNameToPullResponseFrom]?.answer[keyForID] || 'default-id'),
-                        selections: []
-                    }]);
-                }
-            }
-        };
-
         loadParagraphs();
-    }, [parameters.testingStimulusValue, fetchExperimentSequence]);
+    }, [parameters.testingStimulusValue, fetchParagraphsByType, fetchParagraphById]);
 
     // Sync with provenance state when it changes
     useEffect(() => {
@@ -126,8 +145,10 @@ function SendToSensemakingTask({ parameters,
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
-        const clickAction = reg.register('click', (state, click: boolean) => {
-            state.clicked = click;
+        const clickAction = reg.register('click', (state, payload: { click: boolean; paragraphId: string }) => {
+            console.log("clicking", payload)
+            state.clicked = payload.click;
+            state.firstParagraphId = payload.paragraphId;
             return state;
         });
 
@@ -135,6 +156,7 @@ function SendToSensemakingTask({ parameters,
             registry: reg,
             initialState: {
                 clicked: false,
+                firstParagraphId: "null"
             },
         });
 
@@ -146,22 +168,63 @@ function SendToSensemakingTask({ parameters,
         };
     }, []);
 
-    const clickCallback = useCallback((paragraphID:string) => {
+    const clickCallback = useCallback((paragraphID: string | null) => {
         
-        window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5&p=${paragraphID}`, "_blank");
+        
+        console.log("🚀 ~ clickCallback ~ paragraphID:", paragraphID)
+        if (paragraphID) {
+            window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5&p=${paragraphID}`, "_blank");
+        } else {
+            window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5`, "_blank");
+        }
     
-        trrack.apply('Clicked', actions.clickAction(true));
+        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID ?? '' }));
+
+        
+        console.log(typeof(paragraphID ?? "null"))
     
         setAnswer({
-          status: true,
-          provenanceGraph: trrack.graph.backend,
-          answers: {
-            "clicked": true,
+            status: true,
+            provenanceGraph: trrack.graph.backend,
+            answers: {
+              ["clicked"]: String(true),
+              ["firstParagraphId"]: paragraphID ?? "null",
           },
         });
-      }, [actions, setAnswer, trrack]);
+    }, [actions, setAnswer, trrack]);
+    
+    // Error state
+    if (error && paragraphs.length === 0) {
+        return (
+            <div className="text-center py-10 text-red-500">
+                Error loading paragraphs: {error}
+                <button
+                    onClick={() => loadParagraphs()}
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                    Retry
+                </button>
+            </div>
+        );
+    }
+
+    // Empty state
+    if (paragraphs.length === 0) {
+        return (
+            <div className="text-center py-10 text-gray-500">
+                No paragraphs available
+            </div>
+        );
+    }
+
     return (
         <div>
+            {loading && paragraphs.length === 0 && (
+                <div className="text-center py-10 text-gray-500">
+                    Loading Analyst notes...
+                </div>
+            )}
+            {}
             {/* Paragraph Display and Navigation */}
             <div className="mb-6">
                 {/* Selection Interface with Markdown Renderer */}
@@ -234,7 +297,12 @@ function SendToSensemakingTask({ parameters,
                 variant="outline"
                 color="green"
                 onClick={() => {
-                    clickCallback("narrative-summary_sentences_augmented_parsed_5_1ad14669_interactions_04-07_15-05-47"); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
+                    if (currentParagraph?.id) {
+                        clickCallback(currentParagraph.id); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
+                    } else {
+                        console.error("Error: currentParagraph.id is null");
+                        clickCallback(null)
+                    }
                 }}
             >
                 Open Document Explorer
