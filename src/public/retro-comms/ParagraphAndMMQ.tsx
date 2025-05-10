@@ -2,23 +2,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useStoreSelector } from "../../store/store";
 import { initializeTrrack, Registry } from '@trrack/core';
 import { StimulusParams, StoredAnswer } from "../../store/types";
-import { Button, useMantineTheme } from "@mantine/core";
+import { useMantineTheme, SimpleGrid, Paper, Title, Text } from '@mantine/core';
 import { Paragraph, SelectionListState, SelectionToolParams, TextSelection } from "../retro-relevance/retro-types";
 import { useParagraphData } from "./ParagraphSelection/useParagraphData";
 import MarkdownRenderer from "../retro-relevance/ParagraphSelection/MarkdownRenderer";
 
-
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function SendToSensemakingTask({
+function ParagraphAndMMQ({ parameters,
     setAnswer,
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
     const trialNameToPullResponseFrom = "ParagraphAndMMQ_0";
     const keyForSummary = "firstParagraphId";
-    // const keyForID = "participantAssignedID";
-
 
     // Use our paragraph data hook
     const {
@@ -43,7 +39,6 @@ function SendToSensemakingTask({
     );
     const currentParagraph = paragraphs[focusedParagraphIndex];
 
-
     const [selections, setSelections] = useState<TextSelection[]>(
         provenanceState?.selections || initialSelections
     );
@@ -64,16 +59,14 @@ function SendToSensemakingTask({
     const theme = useMantineTheme();
 
     // Fetch paragraphs when component loads
-
     const loadParagraphs = async () => {
-
         // Get the paragraph ID from previous trial if available
         const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || '');
 
         try {
             let startingParagraph = [];
             if (previousParagraphId == '') {
-            console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
+                console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
 
                 const coinFlip = Math.random()
                 if (coinFlip > 0.5) {
@@ -92,6 +85,11 @@ function SendToSensemakingTask({
             if (startingParagraph && startingParagraph.length > 0) {
                 setParagraphs(startingParagraph.filter((p): p is Paragraph => p !== null));
                 setfocusedParagraphIndex(0); // Set to the first paragraph by default
+
+                // Auto-trigger the setParagraphId after loading
+                if (startingParagraph[0] && startingParagraph[0].id) {
+                    setParagraphId(startingParagraph[0].id);
+                }
             }
             return startingParagraph;
         } catch (err) {
@@ -102,6 +100,9 @@ function SendToSensemakingTask({
                 const lastSeenParagraph = await fetchParagraphById(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] as string);
                 if (lastSeenParagraph) {
                     setParagraphs([lastSeenParagraph]);
+
+                    // Auto-trigger the setParagraphId for fallback
+                    setParagraphId(lastSeenParagraph.id);
                 }
             }
         }
@@ -129,7 +130,6 @@ function SendToSensemakingTask({
     const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
     console.log("🚀 ~ test ~ answers:", answers)
 
-
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
@@ -156,42 +156,26 @@ function SendToSensemakingTask({
         };
     }, []);
 
-    const clickCallback = useCallback((paragraphID: string | null) => {
-        
-        
-        console.log("🚀 ~ clickCallback ~ paragraphID:", paragraphID)
-        const prior_answer = answers[trialNameToPullResponseFrom]?.answer
+    // Function to set paragraph ID and update the answer
+    const setParagraphId = useCallback((paragraphID: string | null) => {
+        console.log("🚀 ~ setParagraphId ~ paragraphID:", paragraphID)
 
-        const curriosities = {
-            "Curiosity_1": (prior_answer["Curiosity_1"] || ""),
-            "Curiosity_2": (prior_answer["Curiosity_2"] || ""),
-            "Curiosity_3": (prior_answer["Curiosity_3"] || "")
-        }
-        if (paragraphID) {
-            const queryParams = new URLSearchParams({
-                p: paragraphID || "",
-                c: JSON.stringify(curriosities)
-            }).toString();
-            window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5&${queryParams}`, "_blank");
-        } else {
-            window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5`, "_blank");
-        }
-    
+        // Apply trrack action
         trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID ?? '' }));
 
-        
-        console.log(typeof(paragraphID ?? "null"))
-    
+        console.log(typeof (paragraphID ?? "null"))
+
+        // Set the answer
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
-              ["clicked"]: String(true),
-              ["firstParagraphId"]: paragraphID ?? "null",
-          },
+                ["clicked"]: String(true),
+                ["firstParagraphId"]: paragraphID ?? "null",
+            },
         });
     }, [actions, setAnswer, trrack]);
-    
+
     // Error state
     if (error && paragraphs.length === 0) {
         return (
@@ -218,59 +202,93 @@ function SendToSensemakingTask({
 
     return (
         <div>
-            <h1>Task</h1>
-            <p>Using the tool you just learned about, You will try to finish the investigation (i.e., <strong>Who</strong> committed the murder, <strong>What</strong> weapon was used, and <strong>Where</strong> it occurred at the Boddy Estate).</p>
-            <p><em>The original <strong>premise</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em></p>
+            <h1>Case Handoff</h1>
+            <p>You're collaborating with another analyst on a murder investigation.
+                Please take <strong>
+                a few minutes
+                </strong> to review the following and <strong>plan your investigation</strong>.</p>
+            <Text mt={2} className="mt-3 text-blue-600 italic">
+                Based on the <strong>Premise</strong> and <strong>Summary</strong> below, write at least three specific people, places, things, or activities that you want to explore in the <strong>sidebar</strong> on the left. <br/>
+            Remember, your goal is to work with the prior participant's note to figure out <em>Who</em> committed the murder, <em>What</em> weapon was used, and <em>Where</em> it happened.
+            </Text>
+<SimpleGrid
+  cols={{ base: 1, md: 2 }}
+  spacing="lg"
+>
+                <Paper shadow="sm" p="md" withBorder>
+                    <Text size="sm" style={{color: "gray"}} mt="sm" mb="sm">Here's the case overview the prior participant began with:</Text>
+                    <Title order={3}>Premise</Title>
+                    <Text mt="sm">Walter Boddy has been murdered at his estate. The police have named Mr. <strong>HENRY WADSWORTH</strong> as the primary suspect.</Text>
+            <Text mt="sm">Mr. <strong>WADSWORTH</strong> claims he did not do it and wants your help to solve the mystery and clear his name.</Text>
+            <Text mt="sm">You have asked a field reporter, Mr. <strong>HANS BRAUMAN</strong>, to collect evidence and track down the truth.</Text>
+            <Text mt="sm">Your goal is to use the <strong>notes from the prior analyst</strong> and the set of documents to identify:</Text>
+            <ul>
+                <li><strong>Who</strong> committed the murder,</li>
+                <li><strong>What</strong> weapon was used, and</li>
+                <li><strong>Where</strong> it occurred at the Boddy Estate.</li>
+                    </ul>    
+                    <hr/>
+                    <Title order={3}>A note about the truth</Title>
+                    <Text mt="sm">Only those involved in the murder may knowingly lie, while anyone might unknowingly provide false information.</Text>
 
-            <h2>Timing and Tools</h2>
-            <p>You only have <strong>7 minutes</strong> to look at evidence.</p>
-            <p><em>Be mindful about what you focus on.</em> You will <strong>not have enough time</strong> to read all the documents. <em>Stick to your <strong>plan</strong>.</em></p>
+                    <Text mt="sm">For example, if a John Doe is guilty of murder and says he never saw the victim that night, he is knowingly lying
+                        (<strong>1st Degree lie</strong>).</Text>
 
-            <p>Right click to access the:</p>
-            <ol>
-                <li>📝 <strong>Note tool</strong> to write down anything of interest,</li>
-                <li>🖊️ <strong>Highlight tool</strong> to mark interesting content in <span style={{ backgroundColor: "#77F7A4" }}>Green</span>, and</li>
-                <li>🔎 <strong>Search tool</strong> to find documents (matching content will be in <span style={{ backgroundColor: "#ffea57" }}>Yellow</span>).</li>
-            </ol>
+                    <Text mt="sm">Now, if Jane Doe, who is innocent, says the victim left at 8 PM, but the victim actually left at 7 PM,
+                        that's unknowingly providing false information because she wasn't there to see them leave
+                        (<strong>2nd Degree lie</strong>).</Text>
 
-<hr/>
-            <h3>Your Plan</h3><p>As a reminder the plan you made earlier is to look into:</p>
-            <ol>
-                <li>
-                    <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_1"]}
-                    </strong>
-                    </li>
-                <li>
-                    <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_2"]}
-                    </strong>
-                    </li>
-                <li>
-                    <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_3"]}
-                    </strong> (if time allows)
-                    </li>
-            </ol>
+                    <Text mt="sm">Only those directly involved with the murder will tell <strong>1st degree lies</strong>. Everyone else could provide
+                        false information though.</Text>
+              </Paper>
+            {/* Paragraph Display*/}
+  <Paper shadow="sm" p="md" withBorder>
+                    {/* Selection Interface with Markdown Renderer */}
+                    <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
+                    After the prior analyst spent 15 minutes looking at evidence, they prepared the following summary of their work for you to use before beginning your investigation. What follows should be helpful.</Text>
+                <Title order={3}>Prior Analyst Summary</Title>
+
+                {loading && paragraphs.length === 0 && (
+                        <Text style={{ textAlign: "center", color: "gray" }} py="md">
+                            Loading Analyst notes...
+                        </Text>
+                )}
+                {currentParagraph && (
+                    <div
+                        ref={contentRef}
+                        data-paragraph-id={currentParagraph.id}
+                            className="relative">
+                        <MarkdownRenderer
+                            markdownText={currentParagraph.text}
+                            selections={filteredSelections}
+                            onTextSelection={() => { return }}
+                            onSelectionClick={() => { return }}
+                            dataParagraphId={currentParagraph.id}
+                            className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
+                            aria-label="Paragraph content with selectable text"
+                        />
+                    </div>
+                )}
+                </Paper>
+            </SimpleGrid>
+                <Text mt={"sm"} style={{textAlign: "center", color:"gray"}}><em>A copy of this premise and summary will be available in the interface.</em></Text>
+            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+<p className="text-blue-700">
+                    {/* Please answer the questions on the sidebar to the best of your ability.   Remember, the goal of the investigation is
+                    to identify <strong>who</strong> committed the murder, <strong>what</strong> weapon was used,
+                    and <strong>where</strong> it occurred at the Boddy Estate. */}
+                </p>
+
+            </div>
+            <p className="mt-4">On the next page we will introduce to the investigation tool and the evidence.</p>
 
 
-            <h3>Are you ready to begin?</h3>
-            <Button
-                variant="outline"
-                color="green"
-                onClick={() => {
-                    if (currentParagraph?.id) {
-                        clickCallback(currentParagraph.id); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
-                    } else {
-                        console.error("Error: currentParagraph.id is null");
-                        clickCallback(null)
-                    }
-                }}
-            >
-                Open Document Explorer
-            </Button>
+        {/*
+            <button onClick={() => { console.log(answers[trialNameToPullResponseFrom]?.answer)}}>
+                Ready to begin
+            </button> */}
         </div>
     );
 }
 
-export default SendToSensemakingTask;
+export default ParagraphAndMMQ;

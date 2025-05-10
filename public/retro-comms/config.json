@@ -744,6 +744,51 @@
                         }
                     ]
                 },
+                "ParagraphAndMMQ": {
+                    "description": "This is to pause the participant",
+                    "type": "react-component",
+                    "path": "retro-comms/ParagraphAndMMQ.tsx",
+                    "instruction": "Based on the information to the right, please make a plan for your investigation by listing 3 things you would like to explore or find in the dataset.",
+                    "nextButtonEnableTime": 5000,
+                    "parameters": {},
+                    "response": [
+                        {
+                            "id": "firstParagraphId",
+                            "prompt": "Assigned paragraph ID:",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "Curiosity_1",
+                            "prompt": "What will you explore first?",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "Curiosity_2",
+                            "prompt": "Then, what will you explore?",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "Curiosity_3",
+                            "prompt": "What is one last thing you would like to explore? <small>(if you have time)</small>",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "impression",
+                            "prompt": "(Optional) What would you ask the previous analyst to change in their summary to help you prepare for your follow-up investigation?",        "location": "belowStimulus",
+                            "type": "shortText",
+                            "required": false
+                        }
+                    ]
+                },
                 "sendToSensemakingTask": {
                     "description": "This is to pause the participant",
                     "type": "react-component",
@@ -1615,6 +1660,7 @@
             "sequence": {
                 "order": "fixed",
                 "components": [
+                    "ParagraphAndMMQ",
                     "sendToSensemakingTask",
                     "SelectionTask",
                     "ConsentForm",
