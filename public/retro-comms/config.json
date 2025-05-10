@@ -355,7 +355,6 @@
                             "prompt": "Where were the Giorgio Armani leather driving gloves found?",
                             "location": "belowStimulus",
                             "type": "radio",
-                            "withDontKnow": true,
                             "options": [
                                 "Inside the piano in the lounge",
                                 "In the desk drawer of the study",
@@ -1146,6 +1145,86 @@
                         {
                             "id": "BF-Conscientiousness-4",
                             "prompt": "Make a mess of things.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-1",
+                            "prompt": "Have frequent mood swings.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-2",
+                            "prompt": "Get upset easily.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-3",
+                            "prompt": "Am relaxed most of the time.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-4",
+                            "prompt": "Seldom feel blue.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-1",
+                            "prompt": "Have a vivid imagination.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-2",
+                            "prompt": "Have difficulty understanding abstract ideas.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-3",
+                            "prompt": "Am not interested in abstract ideas.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-4",
+                            "prompt": "Do not have a good imagination.",
                             "location": "aboveStimulus",
                             "required": false,
                             "type": "likert",
