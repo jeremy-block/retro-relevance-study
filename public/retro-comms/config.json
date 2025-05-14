@@ -748,7 +748,7 @@
                     "description": "This is to pause the participant",
                     "type": "react-component",
                     "path": "retro-comms/ParagraphAndMMQ.tsx",
-                    "instruction": "Based on the information to the right, please make a plan for your investigation by listing 3 things you would like to explore or find in the dataset.",
+                    "instruction": "Based on the information to the right, please make a <strong>plan</strong> for your investigation by listing 3 things you would like to explore or find in the dataset.",
                     "nextButtonEnableTime": 5000,
                     "parameters": {},
                     "response": [
@@ -802,14 +802,6 @@
                             "required":true,
                             "location": "sidebar",
                             "type": "reactive"
-                        },
-                        {
-                            "id": "firstParagraphId",
-                            "prompt": "Assigned paragraph ID:",
-                            "hidden": true,
-                            "required": false,
-                            "location": "sidebar",
-                            "type": "reactive"
                         }
                     ]
                 },
@@ -819,7 +811,27 @@
                     "nextButtonEnableTime": 60000,
                     "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
                     "path": "retro-relevance/assets/DocExplorer/index.html",
-                    "response": []
+                    "response": [
+                        {
+                            "id": "tut-1",
+                            "prompt": "<span style='color:red'>TODO</span> About how many pieces of evidence will you see in the real interface?",
+                            "location": "sidebar",
+                            "required": true,
+                            "type": "numerical",
+                            "min": 0,
+                            "max": 150,
+                            "placeholder": "Please enter a number.",
+                            "withDivider": true,
+                            "withDontKnow": true
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "tut-1",
+                            "acceptableLow": 80,
+                            "acceptableHigh": 110
+                        }
+                    ]
                 },
                 "ConsentForm": {
                     "type": "markdown",

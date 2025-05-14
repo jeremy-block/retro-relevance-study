@@ -21,8 +21,8 @@ function ParagraphAndMMQ({ parameters,
         loading,
         error,
         initialParagraphs,
-        fetchParagraphsByType,
         fetchParagraphById,
+        fetchExperimentSequence,
         getParticipantId
     } = useParagraphData();
 
@@ -54,6 +54,7 @@ function ParagraphAndMMQ({ parameters,
 
     const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number, y: number } | null>(null);
     const [pendingSelection, setPendingSelection] = useState<TextSelection | null>(null);
+    const participant_id = useStoreSelector((state): string => state.participantId)
 
     const contentRef = useRef<HTMLDivElement | null>(null);
     const theme = useMantineTheme();
@@ -61,21 +62,17 @@ function ParagraphAndMMQ({ parameters,
     // Fetch paragraphs when component loads
     const loadParagraphs = async () => {
         // Get the paragraph ID from previous trial if available
+        //todo check if we are getting a single paragraph or a whole sequence in the answer. I would rather just define the sequence on this page if we can.
         const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || '');
+        console.log("🚀 ~ participant_id:", participant_id)
 
         try {
             let startingParagraph = [];
             if (previousParagraphId == '') {
                 console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
 
-                const coinFlip = Math.random()
-                if (coinFlip > 0.5) {
-                    console.log("getting a new NARRATIVE Paragraph")
-                    startingParagraph = await fetchParagraphsByType("narrative", 1)
-                } else {
-                    console.log("getting a new LIST Paragraph")
-                    startingParagraph = await fetchParagraphsByType("list", 1)
-                }
+                console.log("getting a new Paragraph");
+                startingParagraph = await fetchExperimentSequence(participant_id)
             } else {
                 let something = await fetchParagraphById(previousParagraphId)
                 startingParagraph.push(something)
@@ -111,7 +108,7 @@ function ParagraphAndMMQ({ parameters,
     // Fetch paragraph sequence when component loads
     useEffect(() => {
         loadParagraphs();
-    }, [fetchParagraphsByType, fetchParagraphById]);
+    }, [fetchParagraphById]);
 
     // Sync with provenance state when it changes
     useEffect(() => {

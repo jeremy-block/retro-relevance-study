@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useStoreSelector } from "../../store/store";
 import { initializeTrrack, Registry } from '@trrack/core';
-import { StimulusParams, StoredAnswer } from "../../store/types";
+import { StimulusParams, StoredAnswer, StoreState } from "../../store/types";
 import { Button, useMantineTheme } from "@mantine/core";
 import { Paragraph, SelectionListState, SelectionToolParams, TextSelection } from "../retro-relevance/retro-types";
 import { useParagraphData } from "./ParagraphSelection/useParagraphData";
@@ -25,7 +25,6 @@ function SendToSensemakingTask({
         loading,
         error,
         initialParagraphs,
-        fetchParagraphsByType,
         fetchParagraphById,
         getParticipantId
     } = useParagraphData();
@@ -63,54 +62,6 @@ function SendToSensemakingTask({
     const contentRef = useRef<HTMLDivElement | null>(null);
     const theme = useMantineTheme();
 
-    // Fetch paragraphs when component loads
-
-    const loadParagraphs = async () => {
-
-        // Get the paragraph ID from previous trial if available
-        const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || '');
-
-        try {
-            let startingParagraph = [];
-            if (previousParagraphId == '') {
-            console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
-
-                const coinFlip = Math.random()
-                if (coinFlip > 0.5) {
-                    console.log("getting a new NARRATIVE Paragraph")
-                    startingParagraph = await fetchParagraphsByType("narrative", 1)
-                } else {
-                    console.log("getting a new LIST Paragraph")
-                    startingParagraph = await fetchParagraphsByType("list", 1)
-                }
-            } else {
-                let something = await fetchParagraphById(previousParagraphId)
-                startingParagraph.push(something)
-            }
-            console.log("🚀 ~ loadParagraphs ~ previousParagraphId:", previousParagraphId)
-            console.log("🚀 ~ loadParagraph ~ startingParagraph:", startingParagraph)
-            if (startingParagraph && startingParagraph.length > 0) {
-                setParagraphs(startingParagraph.filter((p): p is Paragraph => p !== null));
-                setfocusedParagraphIndex(0); // Set to the first paragraph by default
-            }
-            return startingParagraph;
-        } catch (err) {
-            console.error("Error loading paragraphs:", err);
-
-            // Fallback to the summary if API fails
-            if (answers[trialNameToPullResponseFrom]?.answer[keyForSummary]) {
-                const lastSeenParagraph = await fetchParagraphById(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] as string);
-                if (lastSeenParagraph) {
-                    setParagraphs([lastSeenParagraph]);
-                }
-            }
-        }
-    };
-
-    // Fetch paragraph sequence when component loads
-    useEffect(() => {
-        loadParagraphs();
-    }, [fetchParagraphsByType, fetchParagraphById]);
 
     // Sync with provenance state when it changes
     useEffect(() => {
@@ -128,15 +79,16 @@ function SendToSensemakingTask({
 
     const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
     console.log("🚀 ~ test ~ answers:", answers)
-
+    const participant_id = useStoreSelector((state): string => state.participantId)
+    console.log("🚀 ~ participant_id:", participant_id)
 
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
-        const clickAction = reg.register('click', (state, payload: { click: boolean; paragraphId: string }) => {
+        const clickAction = reg.register('click', (state, payload: { click: boolean; paragraphParam: string }) => {
             console.log("clicking", payload)
             state.clicked = payload.click;
-            state.firstParagraphId = payload.paragraphId;
+            state.firstParagraphId = payload.paragraphParam;
             return state;
         });
 
@@ -144,7 +96,7 @@ function SendToSensemakingTask({
             registry: reg,
             initialState: {
                 clicked: false,
-                firstParagraphId: "null"
+                paragraphParam: "null"
             },
         });
 
@@ -156,69 +108,48 @@ function SendToSensemakingTask({
         };
     }, []);
 
-    const clickCallback = useCallback((paragraphID: string | null) => {
+    const clickCallback = useCallback((paragraphParam: string | null) => {
         
         
-        console.log("🚀 ~ clickCallback ~ paragraphID:", paragraphID)
+        console.log("🚀 ~ clickCallback ~ paragraphID:", paragraphParam)
         const prior_answer = answers[trialNameToPullResponseFrom]?.answer
 
         const curriosities = {
-            "Curiosity_1": (prior_answer["Curiosity_1"] || ""),
-            "Curiosity_2": (prior_answer["Curiosity_2"] || ""),
-            "Curiosity_3": (prior_answer["Curiosity_3"] || "")
+            "c1": (prior_answer["Curiosity_1"] || ""),
+            "c2": (prior_answer["Curiosity_2"] || ""),
+            "c3": (prior_answer["Curiosity_3"] || "")
         }
-        if (paragraphID) {
+        //todo set up the maveric tool to handle the curiosities and adding them to the personal notebook... I wonder if I need ot get this into a post request insteaed of direct in the url.
+        //todo I set this to the userID and now need to adjust maveric to handle userID instead of a specific identifier
+        if (paragraphParam) {
             const queryParams = new URLSearchParams({
-                p: paragraphID || "",
-                c: JSON.stringify(curriosities)
+                p: paragraphParam || "",
+                c: JSON.stringify(curriosities),
+                t: String(5000)
             }).toString();
             window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5&${queryParams}`, "_blank");
         } else {
             window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5`, "_blank");
         }
     
-        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID ?? '' }));
+        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphParam: paragraphParam ?? '' }));
 
         
-        console.log(typeof(paragraphID ?? "null"))
+        // console.log(typeof(paragraphParam ?? "null"))
     
         setAnswer({
             status: true,
             provenanceGraph: trrack.graph.backend,
             answers: {
               ["clicked"]: String(true),
-              ["firstParagraphId"]: paragraphID ?? "null",
           },
         });
     }, [actions, setAnswer, trrack]);
-    
-    // Error state
-    if (error && paragraphs.length === 0) {
-        return (
-            <div className="text-center py-10 text-red-500">
-                Error loading paragraphs: {error}
-                <button
-                    onClick={() => loadParagraphs()}
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                    Retry
-                </button>
-            </div>
-        );
-    }
-
-    // Empty state
-    if (paragraphs.length === 0) {
-        return (
-            <div className="text-center py-10 text-gray-500">
-                No paragraphs available
-            </div>
-        );
-    }
 
     return (
         <div>
             <h1>Task</h1>
+            {participant_id}
             <p>Using the tool you just learned about, You will try to finish the investigation (i.e., <strong>Who</strong> committed the murder, <strong>What</strong> weapon was used, and <strong>Where</strong> it occurred at the Boddy Estate).</p>
             <p><em>The original <strong>premise</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em></p>
 
@@ -259,10 +190,10 @@ function SendToSensemakingTask({
                 variant="outline"
                 color="green"
                 onClick={() => {
-                    if (currentParagraph?.id) {
-                        clickCallback(currentParagraph.id); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
+                    if (participant_id != "") {
+                        clickCallback(participant_id); //use a click callback to trigger the setAnswer function and allow the user to continue after opening the document explorer.
                     } else {
-                        console.error("Error: currentParagraph.id is null");
+                        console.error("Error: participantId is not defined in state.");
                         clickCallback(null)
                     }
                 }}
