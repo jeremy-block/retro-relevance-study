@@ -783,7 +783,8 @@
                         },
                         {
                             "id": "impression",
-                            "prompt": "(Optional) What would you ask the previous analyst to change in their summary to help you prepare for your follow-up investigation?",        "location": "belowStimulus",
+                            "prompt": "(Optional) What would you ask the previous analyst to change in their summary to help you prepare for your follow-up investigation?",
+                            "location": "belowStimulus",
                             "type": "shortText",
                             "required": false
                         }
@@ -799,7 +800,7 @@
                             "id": "clicked",
                             "prompt": "Clicked the button?",
                             "hidden": true,
-                            "required":true,
+                            "required": true,
                             "location": "sidebar",
                             "type": "reactive"
                         }
@@ -829,6 +830,7 @@
                         {
                             "id": "tut-1",
                             "acceptableLow": 80,
+                            "answer":100,
                             "acceptableHigh": 110
                         }
                     ]
