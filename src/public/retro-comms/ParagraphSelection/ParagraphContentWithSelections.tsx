@@ -28,7 +28,6 @@ export function ParagraphContentWithSelections({
     error,
     initialParagraphs,
     fetchExperimentSequence,
-    getParticipantId
   } = useParagraphData();
 
   // Initial values and state
@@ -202,6 +201,8 @@ export function ParagraphContentWithSelections({
       });
     }
   };
+
+  //todo set up the setAnswers true for a required element on the last paragraph. or a selection in each paragraph
 
   // Handle sentence text change
   const handleSelectRelevance = useCallback((relevanceLevel: string) => {

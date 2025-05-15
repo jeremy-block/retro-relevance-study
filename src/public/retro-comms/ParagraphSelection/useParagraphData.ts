@@ -1,6 +1,7 @@
 // useParagraphData.ts
 import { useState, useCallback } from "react";
 import { Paragraph, TextSelection } from "../../retro-relevance/retro-types";
+import { useStoreSelector } from "../../../store/store";
 
 interface ApiParagraphNew {
   id: string;
@@ -55,6 +56,10 @@ export const useParagraphData = () => {
     return accessKeys[keyIndex];
   }, []);
 
+  const participant_id = useStoreSelector(
+    (state): string => state.participantId
+  );
+
   const fetchData = useCallback(
     async (url: string, options: RequestInit): Promise<any> => {
       try {
@@ -77,21 +82,10 @@ export const useParagraphData = () => {
     []
   );
 
-  const getParticipantId = useCallback(() => {
-    //todo make sure we get the actual participant ID from the useStoreSelector
-    return "6820d66c-d66c-d66c-d66c-00006820d66c";
-    // let id = sessionStorage.getItem("participant_id");
-    // if (!id) {
-    //   id = "p_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
-    //   sessionStorage.setItem("participant_id", id);
-    // }
-    // return id;
-  }, []);
-
   const fetchParagraphById = useCallback(
     async (id: string): Promise<Paragraph | null> => {
       const accessKey = getAccessKey();
-      const participantId = getParticipantId();
+      const participantId = participant_id;
 
       const url = `${apiBaseUrl}/get_item.php?id=${id}&access_key=${accessKey}`;
       const data = await fetchData(url, { mode: "cors" });
@@ -105,15 +99,14 @@ export const useParagraphData = () => {
       }
       return null;
     },
-    [getAccessKey, getParticipantId, fetchData]
+    [getAccessKey, fetchData]
   );
 
   // Fetch a sequence of alternating paragraph types for the experiment
   const fetchExperimentSequence = useCallback(
     async (previousId?: string): Promise<Paragraph[]> => {
       const accessKey = getAccessKey();
-      const participantId = getParticipantId();
-      let url = `${apiBaseUrl}/get_full_block.php?access_key=${accessKey}&participant_id=${participantId}`;
+      let url = `${apiBaseUrl}/get_full_block.php?access_key=${accessKey}&participant_id=${participant_id}`;
       if (previousId) {
         url += `&previousId=${previousId}`;
       }
@@ -133,7 +126,7 @@ export const useParagraphData = () => {
       }
       return [];
     },
-    [getAccessKey, getParticipantId, fetchData, setInitialParagraphs]
+    [getAccessKey, fetchData, setInitialParagraphs]
   );
 
   return {
@@ -143,6 +136,5 @@ export const useParagraphData = () => {
     setInitialParagraphs,
     fetchParagraphById,
     fetchExperimentSequence,
-    getParticipantId,
   };
 };

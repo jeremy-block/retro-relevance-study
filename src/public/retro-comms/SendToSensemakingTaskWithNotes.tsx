@@ -22,11 +22,7 @@ function SendToSensemakingTask({
 
     // Use our paragraph data hook
     const {
-        loading,
-        error,
         initialParagraphs,
-        fetchParagraphById,
-        getParticipantId
     } = useParagraphData();
 
     // Initial values and state
@@ -55,9 +51,6 @@ function SendToSensemakingTask({
             selection.ParentParagraphID === currentParagraph.id
         );
     }, [selections, currentParagraph]);
-
-    const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number, y: number } | null>(null);
-    const [pendingSelection, setPendingSelection] = useState<TextSelection | null>(null);
 
     const contentRef = useRef<HTMLDivElement | null>(null);
     const theme = useMantineTheme();
@@ -169,17 +162,17 @@ function SendToSensemakingTask({
             <ol>
                 <li>
                     <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_1"]}
+                        {answers[trialNameToPullResponseFrom]?.answer["Curiosity_1"] || "No curiostity provided"}
                     </strong>
                     </li>
                 <li>
                     <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_2"]}
+                        {answers[trialNameToPullResponseFrom]?.answer["Curiosity_2"] || "No curiostity provided"}
                     </strong>
                     </li>
                 <li>
                     <strong>
-                    {answers[trialNameToPullResponseFrom]?.answer["Curiosity_3"]}
+                        {answers[trialNameToPullResponseFrom]?.answer["Curiosity_3"] || "No curiostity provided"}
                     </strong> (if time allows)
                     </li>
             </ol>

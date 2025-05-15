@@ -23,7 +23,6 @@ function ParagraphAndMMQ({ parameters,
         initialParagraphs,
         fetchParagraphById,
         fetchExperimentSequence,
-        getParticipantId
     } = useParagraphData();
 
     // Initial values and state
@@ -67,28 +66,25 @@ function ParagraphAndMMQ({ parameters,
         console.log("🚀 ~ participant_id:", participant_id)
 
         try {
-            let startingParagraph = [];
+            let startingParagraphSequence = [];
             if (previousParagraphId == '') {
                 console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
 
                 console.log("getting a new Paragraph");
-                startingParagraph = await fetchExperimentSequence(participant_id)
+                startingParagraphSequence = await fetchExperimentSequence(participant_id)
+                console.log("Got a new Paragraph sequence", startingParagraphSequence);
             } else {
                 let something = await fetchParagraphById(previousParagraphId)
-                startingParagraph.push(something)
+                startingParagraphSequence.push(something)
             }
             console.log("🚀 ~ loadParagraphs ~ previousParagraphId:", previousParagraphId)
-            console.log("🚀 ~ loadParagraph ~ startingParagraph:", startingParagraph)
-            if (startingParagraph && startingParagraph.length > 0) {
-                setParagraphs(startingParagraph.filter((p): p is Paragraph => p !== null));
+            console.log("🚀 ~ loadParagraph ~ startingParagraphSequence:", startingParagraphSequence)
+            if (startingParagraphSequence && startingParagraphSequence.length > 0) {
+                const filterdParagraphs = startingParagraphSequence.filter((p): p is Paragraph => p !== null)
+                setParagraphs(filterdParagraphs);
                 setfocusedParagraphIndex(0); // Set to the first paragraph by default
-
-                // Auto-trigger the setParagraphId after loading
-                if (startingParagraph[0] && startingParagraph[0].id) {
-                    setParagraphId(startingParagraph[0].id);
-                }
+                return filterdParagraphs;
             }
-            return startingParagraph;
         } catch (err) {
             console.error("Error loading paragraphs:", err);
 
@@ -103,12 +99,32 @@ function ParagraphAndMMQ({ parameters,
                 }
             }
         }
+        return null;
     };
-
+    // Add a separate useEffect for setting the paragraph ID after paragraphs state is set
+    useEffect(() => {
+        if (paragraphs.length > 0 && currentParagraph?.id) {
+            // Only update if we haven't already set this paragraph ID
+            const currentSavedId = answers[trialNameToPullResponseFrom]?.answer[keyForSummary];
+            if (currentSavedId !== currentParagraph.id) {
+                setParagraphId(currentParagraph.id);
+            }
+        }
+    }, [paragraphs, currentParagraph]);
     // Fetch paragraph sequence when component loads
     useEffect(() => {
         loadParagraphs();
-    }, [fetchParagraphById]);
+    }, [participant_id, fetchParagraphById, fetchExperimentSequence]);
+
+    // const prop1Ref = useRef(provenanceState);
+    // const prop2Ref = useRef(initialParagraphs);
+    // console.log('prop1:', provenanceState, 'prevProp1:', prop1Ref.current, 'didChange: ', provenanceState !== prop1Ref.current);
+    // console.log('prop2:', initialParagraphs, 'prevProp2:', prop2Ref.current, 'didChange: ', initialParagraphs !== prop2Ref.current);
+    // useEffect(() => {
+    //     console.log('Effect triggered');
+    // }, [provenanceState, initialParagraphs]);
+    // prop1Ref.current = provenanceState;
+    // prop2Ref.current = initialParagraphs;
 
     // Sync with provenance state when it changes
     useEffect(() => {
@@ -117,6 +133,9 @@ function ParagraphAndMMQ({ parameters,
             const selections = provenanceState?.selections || initialSelections;
             const paragraphs = provenanceState?.paragraphs || initialParagraphs;
             const focusedIndex = provenanceState?.focusedParagraphIndex || initialParagraphId;
+            // console.log("🚀 ~ useEffect ~ selections:", selections)
+            // console.log("🚀 ~ useEffect ~ paragraphs:", paragraphs)
+            // console.log("🚀 ~ useEffect ~ focusedInd:", focusedIndex)
 
             setSelections(selections);
             setParagraphs(paragraphs);
@@ -125,8 +144,9 @@ function ParagraphAndMMQ({ parameters,
     }, [provenanceState, initialParagraphs]);
 
     const answers = useStoreSelector((state): { [componentName: string]: StoredAnswer } => state.answers);
-    console.log("🚀 ~ test ~ answers:", answers)
-
+    // useEffect(() => {
+    //     console.log("🚀 ~ Current answers state:", answers);
+    // }, [answers]);
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
@@ -155,12 +175,12 @@ function ParagraphAndMMQ({ parameters,
 
     // Function to set paragraph ID and update the answer
     const setParagraphId = useCallback((paragraphID: string | null) => {
-        console.log("🚀 ~ setParagraphId ~ paragraphID:", paragraphID)
+        console.log("🚀 ~ setParagraphId ~ Attempting to setParagraphId to:", paragraphID)
+        if (!paragraphID) return; // Don't proceed if no ID
+        console.log("🚀 ~ setParagraphId ~ paragraphID:", paragraphID);
 
         // Apply trrack action
-        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID ?? '' }));
-
-        console.log(typeof (paragraphID ?? "null"))
+        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID }));
 
         // Set the answer
         setAnswer({
@@ -168,7 +188,7 @@ function ParagraphAndMMQ({ parameters,
             provenanceGraph: trrack.graph.backend,
             answers: {
                 ["clicked"]: String(true),
-                ["firstParagraphId"]: paragraphID ?? "null",
+                ["firstParagraphId"]: paragraphID,
             },
         });
     }, [actions, setAnswer, trrack]);
@@ -203,26 +223,27 @@ function ParagraphAndMMQ({ parameters,
             <p>You're collaborating with another analyst on a murder investigation.
                 Please take <strong>
                 a few minutes
-                </strong> to review the following and <strong>plan your investigation</strong>.</p>
+                </strong> to review the following and <strong>plan your investigation</strong>.
+            </p>
             <Text mt={2} className="mt-3 text-blue-600 italic">
-                Based on the <strong>Premise</strong> and <strong>Summary</strong> below, write at least three specific people, places, things, or activities that you want to explore in the <strong>sidebar</strong> on the left. <br/>
-            Remember, your goal is to work with the prior participant's note to figure out <em>Who</em> committed the murder, <em>What</em> weapon was used, and <em>Where</em> it happened.
+                Based on the <strong>Premise</strong> and <strong>Summary</strong> below, write at least three specific people, places, things, or activities that you want to explore in the <strong>sidebar</strong> on the left. <br />
+                Remember, your goal is to work with the prior participant's note to figure out <em>Who</em> committed the murder, <em>What</em> weapon was used, and <em>Where</em> it happened.
             </Text>
-<SimpleGrid
-  cols={{ base: 1, md: 2 }}
-  spacing="lg"
->
+            <SimpleGrid
+            cols={{ base: 1, md: 2 }}
+            spacing="lg"
+            >
                 <Paper shadow="sm" p="md" withBorder>
                     <Text size="sm" style={{color: "gray"}} mt="sm" mb="sm">Here's the case overview the prior participant began with:</Text>
                     <Title order={3}>Premise</Title>
                     <Text mt="sm">Walter Boddy has been murdered at his estate. The police have named Mr. <strong>HENRY WADSWORTH</strong> as the primary suspect.</Text>
-            <Text mt="sm">Mr. <strong>WADSWORTH</strong> claims he did not do it and wants your help to solve the mystery and clear his name.</Text>
-            <Text mt="sm">You have asked a field reporter, Mr. <strong>HANS BRAUMAN</strong>, to collect evidence and track down the truth.</Text>
-            <Text mt="sm">Your goal is to use the <strong>notes from the prior analyst</strong> and the set of documents to identify:</Text>
-            <ul>
-                <li><strong>Who</strong> committed the murder,</li>
-                <li><strong>What</strong> weapon was used, and</li>
-                <li><strong>Where</strong> it occurred at the Boddy Estate.</li>
+                    <Text mt="sm">Mr. <strong>WADSWORTH</strong> claims he did not do it and wants your help to solve the mystery and clear his name.</Text>
+                    <Text mt="sm">You have asked a field reporter, Mr. <strong>HANS BRAUMAN</strong>, to collect evidence and track down the truth.</Text>
+                    <Text mt="sm">Your goal is to use the <strong>notes from the prior analyst</strong> and the set of documents to identify:</Text>
+                    <ul>
+                        <li><strong>Who</strong> committed the murder,</li>
+                        <li><strong>What</strong> weapon was used, and</li>
+                        <li><strong>Where</strong> it occurred at the Boddy Estate.</li>
                     </ul>    
                     <hr/>
                     <Title order={3}>A note about the truth</Title>
@@ -237,9 +258,10 @@ function ParagraphAndMMQ({ parameters,
 
                     <Text mt="sm">Only those directly involved with the murder will tell <strong>1st degree lies</strong>. Everyone else could provide
                         false information though.</Text>
-              </Paper>
-            {/* Paragraph Display*/}
-  <Paper shadow="sm" p="md" withBorder>
+                </Paper>
+            
+                {/* Paragraph Display*/}
+                <Paper shadow="sm" p="md" withBorder>
                     {/* Selection Interface with Markdown Renderer */}
                     <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
                     After the prior analyst spent 15 minutes looking at evidence, they prepared the following summary of their work for you to use before beginning your investigation. What follows should be helpful.</Text>
@@ -268,22 +290,8 @@ function ParagraphAndMMQ({ parameters,
                 )}
                 </Paper>
             </SimpleGrid>
-                <Text mt={"sm"} style={{textAlign: "center", color:"gray"}}><em>A copy of this premise and summary will be available in the interface.</em></Text>
-            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-<p className="text-blue-700">
-                    {/* Please answer the questions on the sidebar to the best of your ability.   Remember, the goal of the investigation is
-                    to identify <strong>who</strong> committed the murder, <strong>what</strong> weapon was used,
-                    and <strong>where</strong> it occurred at the Boddy Estate. */}
-                </p>
-
-            </div>
+            <Text mt={"sm"} style={{textAlign: "center", color:"gray"}}><em>A copy of this premise and summary will be available in the interface.</em></Text>
             <p className="mt-4">On the next page we will introduce to the investigation tool and the evidence.</p>
-
-
-        {/*
-            <button onClick={() => { console.log(answers[trialNameToPullResponseFrom]?.answer)}}>
-                Ready to begin
-            </button> */}
         </div>
     );
 }
