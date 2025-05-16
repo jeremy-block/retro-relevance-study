@@ -13,15 +13,14 @@
                 ]
             },
             "uiConfig": {
-                "contactEmail": "j.block@ufl.edu",
+                "contactEmail": "j.block@ufl.edu, eragan@ufl.edu",
                 "logoPath": "../retro-relevance-study/retro-relevance/assets/noun-retrospective-7620763.svg",
                 "withProgressBar": true,
-                "autoDownloadStudy": true,
-                "autoDownloadTime": 1000,
+                "autoDownloadStudy": false,
                 "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)",
                 "sidebar": true,
                 "windowEventDebounceTime": 500,
-                "urlParticipantIdParam": "PROLIFIC_PID",
+                "urlParticipantIdParam": "SONA",
                 "numSequences": 500
             },
             "components": {
@@ -648,14 +647,14 @@
                             "type": "numerical"
                         },
                         {
-                            "id": "prolificId",
-                            "prompt": "Please enter your Prolific ID",
+                            "id": "SONAID",
+                            "prompt": "Please enter your SONA ID",
                             "required": true,
                             "hidden": false,
                             "location": "belowStimulus",
                             "type": "shortText",
-                            "placeholder": "Prolific ID",
-                            "paramCapture": "PROLIFIC_PID"
+                            "placeholder": "SONA ID",
+                            "paramCapture": "SONA"
                         }
                     ],
                     "correctAnswer": [

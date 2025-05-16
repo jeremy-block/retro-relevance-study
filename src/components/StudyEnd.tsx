@@ -100,12 +100,19 @@ export function StudyEnd() {
     checkDataCollectionEnabled();
   }, [storageEngine, studyId]);
 
+  console.log(studyConfig);
+  console.log(studyConfig.uiConfig);
+  console.log(studyConfig.uiConfig.urlParticipantIdParam);
+  console.log(studyConfig.uiConfig.studyEndMsg);
+  const SonaMessage = `Thank you for participating in this study. Please click here for credit: [Back to SONA](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${studyConfig.uiConfig.urlParticipantIdParam}).`;
+  const finishwords = (studyConfig.uiConfig.urlParticipantIdParam=="SONA")? SonaMessage : studyConfig.uiConfig.studyEndMsg || "Default end message.";
+
   return (
     <Center style={{ height: '100%' }}>
       <Flex direction="column">
         {completed || !dataCollectionEnabled
           ? (studyConfig.uiConfig.studyEndMsg
-            ? <ReactMarkdownWrapper text={studyConfig.uiConfig.studyEndMsg} />
+            ? <ReactMarkdownWrapper text={finishwords} />
             : <Text size="xl" display="block">Thank you for completing the study. You may close this window now.</Text>)
           : (
             <>

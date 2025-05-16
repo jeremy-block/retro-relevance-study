@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
     "studyMetadata": {
-        "title": "Retrospective Tester",
+        "title": "Retrospective SONA Tester",
         "version": "0.1.0",
         "authors": [
             "Jeremy Block"
@@ -18,10 +18,10 @@
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 1000,
-        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=PROLIFIC_PID)",
+        "studyEndMsg": "**This is not really ever gonna be seen since the `urlParticipantIdParam` is set to 'SONA': [yourProlificLink](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=PROLIFIC_PID)",
         "sidebar": true,
         "windowEventDebounceTime": 500,
-        "urlParticipantIdParam": "PROLIFIC_PID",
+        "urlParticipantIdParam": "SONA",
         "numSequences": 500
     },
     "components": {
@@ -43,14 +43,14 @@
                     ]
                 },
                 {
-                    "id": "prolificId",
-                    "prompt": "Please enter your Prolific ID",
+                    "id": "SonaId",
+                    "prompt": "Please enter your Sona ID",
                     "required": true,
                     "hidden": false,
                     "location": "belowStimulus",
                     "type": "shortText",
-                    "placeholder": "Prolific ID",
-                    "paramCapture": "PROLIFIC_PID"
+                    "placeholder": "Sona ID",
+                    "paramCapture": "SONA"
                 }
             ]
         }
