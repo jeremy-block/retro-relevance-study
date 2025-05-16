@@ -767,6 +767,14 @@
                             "required": false,
                             "location": "sidebar",
                             "type": "reactive"
+                        },
+                        {
+                            "id": "sequenceBlockId",
+                            "prompt": "Assigned sequence:",
+                            "hidden": false,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
                         },        
                         {
                             "id": "Curiosity_1",

@@ -34,6 +34,7 @@ export function ParagraphContentWithSelections({
   const initialParagraphId = 0;
   const initialSelections = [] as TextSelection[];
 
+  // const [sequenceBlock, setSequenceBlock] = useState<Number | null>(null);
   const [paragraphs, setParagraphs] = useState<Paragraph[]>(
     provenanceState?.paragraphs || initialParagraphs
   );
@@ -77,7 +78,9 @@ export function ParagraphContentWithSelections({
 
       try {
         // Fetch paragraph sequence from the server
-        const fetchedParagraphs = await fetchExperimentSequence(previousParagraphId || undefined);
+        const startingObject = await fetchExperimentSequence(previousParagraphId || undefined);
+        const fetchedParagraphs = startingObject.paragraphs;
+        // setSequenceBlock(startingObject.blockId)
         console.log("🚀 ~ loadParagraphs ~ fetchedParagraphs:", fetchedParagraphs)
         //todo save the array selection of paragraphs into an answer property so it can be pulled up later.
 

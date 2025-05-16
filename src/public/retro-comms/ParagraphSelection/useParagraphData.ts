@@ -32,6 +32,7 @@ export const useParagraphData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [initialParagraphs, setInitialParagraphs] = useState<Paragraph[]>([]);
+  // const [initialParagraphs, setInitialParagraphs] = useState<{ paragraphs: Paragraph[]; blockId: number | null }>({ paragraphs: [], blockId: null });
 
   const _GET_options = {
     method: "GET",
@@ -104,7 +105,7 @@ export const useParagraphData = () => {
 
   // Fetch a sequence of alternating paragraph types for the experiment
   const fetchExperimentSequence = useCallback(
-    async (previousId?: string): Promise<Paragraph[]> => {
+    async (previousId?: string): Promise<{ paragraphs: Paragraph[]; blockId: number | null }> => {
       const accessKey = getAccessKey();
       let url = `${apiBaseUrl}/get_full_block.php?access_key=${accessKey}&participant_id=${participant_id}`;
       if (previousId) {
@@ -121,10 +122,11 @@ export const useParagraphData = () => {
             selections: p.selections || [],
           })
         );
+        const returnVal = { paragraphs: formattedParagraphs, blockId: data.block_id };
         setInitialParagraphs(formattedParagraphs);
-        return formattedParagraphs;
+        return returnVal;
       }
-      return [];
+      return { paragraphs: [], blockId: null };
     },
     [getAccessKey, fetchData, setInitialParagraphs]
   );

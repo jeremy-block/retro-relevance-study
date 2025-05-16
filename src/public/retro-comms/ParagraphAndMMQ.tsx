@@ -28,7 +28,8 @@ function ParagraphAndMMQ({ parameters,
     // Initial values and state
     const initialParagraphId = 0;
     const initialSelections = [] as TextSelection[];
-
+    
+    const [sequenceBlock, setSequenceBlock] = useState<Number | null>(null);
     const [paragraphs, setParagraphs] = useState<Paragraph[]>(
         provenanceState?.paragraphs || initialParagraphs
     );
@@ -71,7 +72,9 @@ function ParagraphAndMMQ({ parameters,
                 console.log("🚀 ~ loadParagraphs ~ previousParagraphId: NO Previous ID:", previousParagraphId)
 
                 console.log("getting a new Paragraph");
-                startingParagraphSequence = await fetchExperimentSequence(participant_id)
+                const startingObject = await fetchExperimentSequence(participant_id)
+                startingParagraphSequence = startingObject.paragraphs;
+                setSequenceBlock(startingObject.blockId)
                 console.log("Got a new Paragraph sequence", startingParagraphSequence);
             } else {
                 let something = await fetchParagraphById(previousParagraphId)
@@ -96,7 +99,7 @@ function ParagraphAndMMQ({ parameters,
                     setParagraphs([lastSeenParagraph]);
 
                     // Auto-trigger the makeReactAnswer for fallback
-                    makeReactAnswer(lastSeenParagraph.id, paragraphs);
+                    makeReactAnswer(lastSeenParagraph.id, paragraphs, sequenceBlock);
                 }
             }
         }
@@ -108,7 +111,7 @@ function ParagraphAndMMQ({ parameters,
             // Only update if we haven't already set this paragraph ID
             const currentSavedId = answers[trialNameToPullResponseFrom]?.answer[keyForSummary];
             if (currentSavedId !== currentParagraph.id) {
-                makeReactAnswer(currentParagraph.id, paragraphs);
+                makeReactAnswer(currentParagraph.id, paragraphs, sequenceBlock);
             }
         }
     }, [paragraphs, currentParagraph]);
@@ -178,7 +181,23 @@ function ParagraphAndMMQ({ parameters,
     }, []);
 
     // Function to set paragraph ID and update the answer
-    const makeReactAnswer = useCallback((paragraphID: string | null, someParagraphs: Paragraph[] | null) => {
+    /**
+     * Handles the process of recording a user's answer selection for a paragraph and updates the application state accordingly.
+     *
+     * This function performs the following actions:
+     * 1. Validates the provided `paragraphID` and `someParagraphs` parameters.
+     * 2. Applies a provenance tracking action using the `trrack` object to record the click event and associated data.
+     * 3. Updates the answer state with relevant information, including the clicked status, paragraph ID, sequence of paragraph IDs, and the sequence block ID.
+     *
+     * @param paragraphID - The ID of the selected paragraph, or `null` if none is selected.
+     * @param someParagraphs - An array of `Paragraph` objects representing the current sequence of paragraphs, or `null` if unavailable.
+     * @param sequenceBlock - The sequence block identifier, or `null` if not applicable.
+     *
+     * @remarks
+     * - If either `paragraphID` or `someParagraphs` is `null`, the function will exit early and perform no actions.
+     * - The function relies on external dependencies: `trrack`, `actions`, and `setAnswer`.
+     */
+    const makeReactAnswer = useCallback((paragraphID: string | null, someParagraphs: Paragraph[] | null, sequenceBlock: Number | null) => {
         console.log("🚀 ~ makeReactAnswer ~ Attempting to set paragraphID to:", paragraphID)
         if (!paragraphID) return; // Don't proceed if no ID
         console.log("🚀 ~ makeReactAnswer ~ Attempting to set paragraphs to:", someParagraphs);
@@ -195,6 +214,7 @@ function ParagraphAndMMQ({ parameters,
                 ["clicked"]: String(true),
                 ["firstParagraphId"]: paragraphID,
                 ["paragraphSequenceIds"]: makeAnswerStringFromObjKey(someParagraphs, "id"),
+                ["sequenceBlockId"]: String(sequenceBlock),
                 // ["paragraphSequenceSelections"]: makeAnswerStringFromObjKey(someParagraphs, "selections"),
                 // ["paragraphSequenceText"]: makeAnswerStringFromObjKey(someParagraphs, "text"),
             },
