@@ -19,7 +19,7 @@ Email: [eragan@ufl.edu](mailto:eragan@ufl.edu)
 
 ## Purpose of the research study
 
-This research study examines how individuals summarize their investigative processes when handing off their analyses to others. The study aims to improve methods for generating and presenting provenance summaries, which document the history of an analysis process. The findings will help inform the development of tools that support the effective communication of analysis findings during shift transitions or collaborative investigations. Participants will engage with investigative datasets, generate or refine summaries of their analysis, and provide feedback on the presented information.
+This research study examines how individuals share their investigative processes when handing off their analyses to others. The study aims to improve methods for generating and presenting provenance summaries, which document the history of an analysis process. The findings will help inform the development of tools that support the effective communication of analysis findings during shift transitions or collaborative investigations. Participants will engage with investigative datasets, annotate summaries of analysis, and provide feedback on the presented information.
 
 ---
 
@@ -36,22 +36,15 @@ To participate in this research study, you must:
 
 You will:
 
-1. Work with a dataset to conduct an analysis.
-2. Use a software tool to create or edit a summary of your findings.
-3. Have your interactions and feedback, both written and spoken, recorded for research purposes.
-4. Refine summaries by editing text, selecting key phrases, and providing feedback through a survey or short interview.
-5. Answer some questions about your personality and habits.
+1. Have your browser activities and written feedback recorded for research purposes.
+2. Read the notes written by the prior investigator and make an investigation plan.
+3. Use a software tool to review a **fictional mystery** (text) designed for research.
+   1. **No personal information** is included, and any resemblance to real-life characters is purely coincidental.
+4. Show your understanding of the mystery by taking a quiz.
+5. Rate summaries by selecting key phrases, and providing feedback through a survey.
+6. Answer some questions about your personality, habits, and demographics.
 
-Your responses will be recorded digitally, kept anonymous, and used for later analysis. You may withdraw from the study at any time by contacting **Eric D. Ragan**.
-
-Before starting, you will:
-
-- Review this information sheet and provide consent.
-- Be shown how to use the software.
-- Review a **fictional dataset** (text, tables, visualizations) designed for research.
-  - **No personal information** is included, and any resemblance to real-life characters is purely coincidental.
-- Explore the data for **15 minutes**, summarize findings, and annotate your summary.
-- Participate in a **debriefing** to discuss your experience and ask questions.
+Your responses will be recorded digitally, kept anonymous, and used for later analysis. You may withdraw from the study at any time by contacting **Eric D. Ragan at [eragan@ufl.edu](mailto:eragan@ufl.edu)**.
 
 ---
 
@@ -121,7 +114,7 @@ If you have any **concerns or questions** about the study, contact:
   - **Phone:** (352) 392-0433
   - **Email:** [irb2@ufl.edu](mailto:irb2@ufl.edu)
 
-If you wish to discuss this information or any discomforts, please ask questions now or contact the research team later.
+If you wish to discuss this information or any discomforts, please contact the research team.
 
 ---
 
@@ -135,4 +128,4 @@ You may request a copy of this description at any time.
 
 ---
 
-**IRB Project Number: IRB202500305** | IRB Version: **03/12/2025** | PI Version: **1**
+**IRB Project Number: ET00046536** | IRB Version: **05/15/2025** | PI Version: **1**

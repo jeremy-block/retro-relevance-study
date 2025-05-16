@@ -16,7 +16,7 @@ function SendToSensemakingTask({
 
     // Get previous stimulus data if needed
     const trialNameToPullResponseFrom = "ParagraphAndMMQ_2";
-    const keyForSummary = "firstParagraphId";
+    // const keyForSummary = "firstParagraphId";
     // const keyForID = "participantAssignedID";
 
 
@@ -112,8 +112,6 @@ function SendToSensemakingTask({
             "c2": (prior_answer["Curiosity_2"] || ""),
             "c3": (prior_answer["Curiosity_3"] || "")
         }
-        //todo set up the maveric tool to handle the curiosities and adding them to the personal notebook... I wonder if I need ot get this into a post request insteaed of direct in the url.
-        //todo I set this to the userID and now need to adjust maveric to handle userID instead of a specific identifier
         if (paragraphParam) {
             const queryParams = new URLSearchParams({
                 p: paragraphParam || "",
@@ -142,8 +140,7 @@ function SendToSensemakingTask({
     return (
         <div>
             <h1>Task</h1>
-            {participant_id}
-            <p>Using the tool you just learned about, You will try to finish the investigation (i.e., <strong>Who</strong> committed the murder, <strong>What</strong> weapon was used, and <strong>Where</strong> it occurred at the Boddy Estate).</p>
+            <p>Using the tool you just learned about, you will try to finish the investigation.</p>
             <p><em>The original <strong>premise</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em></p>
 
             <h2>Timing and Tools</h2>
@@ -156,9 +153,10 @@ function SendToSensemakingTask({
                 <li>🖊️ <strong>Highlight tool</strong> to mark interesting content in <span style={{ backgroundColor: "#77F7A4" }}>Green</span>, and</li>
                 <li>🔎 <strong>Search tool</strong> to find documents (matching content will be in <span style={{ backgroundColor: "#ffea57" }}>Yellow</span>).</li>
             </ol>
-
-<hr/>
-            <h3>Your Plan</h3><p>As a reminder the plan you made earlier is to look into:</p>
+            <hr />
+            <h3>Your Plan</h3>
+            
+            <p>As a reminder the plan you made earlier is to look into:</p>
             <ol>
                 <li>
                     <strong>
@@ -176,6 +174,7 @@ function SendToSensemakingTask({
                     </strong> (if time allows)
                     </li>
             </ol>
+            <p>Considering your plan, remember your goal:<br/> determine <strong>Who</strong> committed the murder, <strong>What</strong> weapon was used, and <strong>Where</strong> it occurred at the Boddy Estate.</p>
 
 
             <h3>Are you ready to begin?</h3>

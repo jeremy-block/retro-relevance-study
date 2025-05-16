@@ -729,7 +729,7 @@
                             "type": "reactive"
                         },
                         {
-                            "id": "seletionTexts",
+                            "id": "selectionTexts",
                             "prompt": "",
                             "hidden": true,
                             "required": false,
@@ -751,6 +751,57 @@
                             "required": false,
                             "location": "sidebar",
                             "type": "reactive"
+                        },
+                        {
+                            "id": "Ranking-HelpfulnessA",
+                            "prompt": "Summary 1",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not helpful",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very helpful",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-HelpfulnessB",
+                            "prompt": "Summary 2",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not helpful",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very helpful",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-HelpfulnessC",
+                            "prompt": "Summary 3",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not helpful",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very helpful",
+                                    "value": 100
+                                }
+                            ]
                         }
                     ]
                 },
@@ -805,16 +856,6 @@
                             "location": "belowStimulus",
                             "type": "shortText",
                             "required": false
-                        },
-                        {
-                            "id": "prolificId",
-                            "prompt": "Please enter your Prolific ID",
-                            "required": true,
-                            "hidden": false,
-                            "location": "belowStimulus",
-                            "type": "shortText",
-                            "placeholder": "Prolific ID",
-                            "paramCapture": "PROLIFIC_PID"
                         }
                     ]
                 },
@@ -865,7 +906,7 @@
                 },
                 "ConsentForm": {
                     "type": "markdown",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/consent.md",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/consent.md",
                     "response": [
                         {
                             "id": "Consent",
@@ -888,7 +929,13 @@
                 },
                 "PersonalityIntro": {
                     "type": "markdown",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro_personality.md",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_personality.md",
+                    "nextButtonEnableTime": 5000,
+                    "response": []
+                },
+                "SelectionIntro": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_selections.md",
                     "nextButtonEnableTime": 5000,
                     "response": []
                 },
@@ -1709,6 +1756,7 @@
                     "sendToSensemakingTask",
                     "FinalAnswer",
                     "MentalModelQuiz",
+                    "SelectionIntro",
                     "SelectionTask",
                     "PersonalityIntro",
                     "AnalysisHolismScaleShort",

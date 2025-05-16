@@ -277,7 +277,7 @@ export function ParagraphContentWithSelections({
         ["selectionIDs"]: makeAnswerStringFromObjKey(updatedSelections, "id"),
         ["selectionStarts"]: makeAnswerStringFromObjKey(updatedSelections, "startIndex"),
         ["selectionEnds"]: makeAnswerStringFromObjKey(updatedSelections, "endIndex"),
-        ["seletionTexts"]: makeAnswerStringFromObjKey(updatedSelections, "selectedText"),
+        ["selectionTexts"]: makeAnswerStringFromObjKey(updatedSelections, "selectedText"),
         ["selectionRelevances"]: makeAnswerStringFromObjKey(updatedSelections, "relevanceLevel"),
         ["selectionTypes"]: updatedSelections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType")),
       },
@@ -321,7 +321,7 @@ export function ParagraphContentWithSelections({
           ["selectionIDs"]: makeAnswerStringFromObjKey(smallerSelections, "id"),
           ["selectionStarts"]: makeAnswerStringFromObjKey(smallerSelections, "startIndex"),
           ["selectionEnds"]: makeAnswerStringFromObjKey(smallerSelections, "endIndex"),
-          ["seletionTexts"]: makeAnswerStringFromObjKey(smallerSelections, "selectedText"),
+          ["selectionTexts"]: makeAnswerStringFromObjKey(smallerSelections, "selectedText"),
           ["selectionRelevances"]: makeAnswerStringFromObjKey(smallerSelections, "relevanceLevel"),
           ["selectionTypes"]: smallerSelections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType"))
         }
@@ -371,7 +371,7 @@ export function ParagraphContentWithSelections({
           ["selectionIDs"]: makeAnswerStringFromObjKey(selections, "id"),
           ["selectionStarts"]: makeAnswerStringFromObjKey(selections, "startIndex"),
           ["selectionEnds"]: makeAnswerStringFromObjKey(selections, "endIndex"),
-          ["seletionTexts"]: makeAnswerStringFromObjKey(selections, "selectedText"),
+          ["selectionTexts"]: makeAnswerStringFromObjKey(selections, "selectedText"),
           ["selectionRelevances"]: makeAnswerStringFromObjKey(selections, "relevanceLevel"),
           ["selectionTypes"]: selections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType"))
         }
@@ -465,6 +465,7 @@ export function ParagraphContentWithSelections({
           />
         </Center>
       )}
+      <p>Considering the paragraphs above, please indicate how <strong>helpful</strong> each would be to a new investigator.</p>
     </div>
   );
 };
