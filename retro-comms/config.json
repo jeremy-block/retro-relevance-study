@@ -1,0 +1,1702 @@
+        {
+            "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
+            "studyMetadata": {
+                "title": "Retrospective Communications",
+                "version": "0.1.0",
+                "authors": [
+                    "Jeremy Block"
+                ],
+                "date": "2025-04-01",
+                "description": "We want to evaluate how you interpret summaries of your work",
+                "organizations": [
+                    "University of Florida"
+                ]
+            },
+            "uiConfig": {
+                "contactEmail": "j.block@ufl.edu",
+                "logoPath": "../retro-relevance-study/retro-relevance/assets/noun-retrospective-7620763.svg",
+                "withProgressBar": true,
+                "autoDownloadStudy": true,
+                "autoDownloadTime": 1000,
+                "studyEndMsg": "Thank you for completing this study!<br/><br/>Please wait your data is being download.<br/><br/>As a backup, please send this data back to the Researcher on Zoom.",
+                "sidebar": true,
+                "windowEventDebounceTime": 500,
+                "urlParticipantIdParam": "PROLIFIC_ID",
+                "numSequences": 500
+            },
+            "components": {
+                "MentalModelQuiz": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/mentalModelQuiz.md",
+                    "instruction": "Please answer the following questions based on your understanding and indicate your confidence in your answers.",
+                    "response": [
+                        {
+                            "id": "q-1",
+                            "prompt": "Who discovered Walter Boddy's body?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Henry Wadsworth",
+                                "Yvette Duster",
+                                "Adam Mustard",
+                                "Scott Plum"
+                            ]
+                        },
+                        {
+                            "id": "q-1-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-2",
+                            "prompt": "Which object is most directly linked as a potential murder weapon?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "The candlestick found in the conservatory",
+                                "A carving knife stuck in the wall of the kitchen",
+                                "A broken martini glass discovered in the theater",
+                                "A missing gun from the study"
+                            ]
+                        },
+                        {
+                            "id": "q-2-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-3",
+                            "prompt": "In which room was Walter Boddy's body found?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "In the bathroom (bathtub)",
+                                "In the dining room",
+                                "In the study",
+                                "In the kitchen"
+                            ]
+                        },
+                        {
+                            "id": "q-3-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-4",
+                            "prompt": "Which suspect's fingerprint was found on Walter Boddy's missing Rolex watch?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Scott Plum",
+                                "Yvette Duster",
+                                "Adam Mustard",
+                                "Henry Wadsworth"
+                            ]
+                        },
+                        {
+                            "id": "q-4-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-5",
+                            "prompt": "Where was Walter Boddy's missing Rolex watch found?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "In the lounge",
+                                "In the study",
+                                "In the bathroom",
+                                "In the dining room"
+                            ]
+                        },
+                        {
+                            "id": "q-5-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-6",
+                            "prompt": "What best describes Adam Mustard's underlying motivation in his interactions with Walter Boddy?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "The pursuit of lucrative business deals and personal financial gain",
+                                "A covert desire to frame Boddy for financial fraud",
+                                "An effort to protect Boddy's reputation by managing insider trading risks",
+                                "A purely personal grudge rooted in an old rivalry unrelated to business"
+                            ]
+                        },
+                        {
+                            "id": "q-6-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-7",
+                            "prompt": "The dented candlestick in the conservatory had a matching pair in which room?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Library",
+                                "Dining Room",
+                                "Study",
+                                "Lounge"
+                            ]
+                        },
+                        {
+                            "id": "q-7-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-8",
+                            "prompt": "Which of the following suspects knowingly lied because their story doesn't line up with other evidence?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Adam Mustard",
+                                "Katie Peacock",
+                                "Jill White",
+                                "Christine Scarlet"
+                            ]
+                        },
+                        {
+                            "id": "q-8-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-9",
+                            "prompt": "Where were the Giorgio Armani leather driving gloves found?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Inside the piano in the lounge",
+                                "In the desk drawer of the study",
+                                "On a shelf in the library",
+                                "Under a potted fern in the conservatory"
+                            ]
+                        },
+                        {
+                            "id": "q-9-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "q-10",
+                            "prompt": "Which characters have romantic relationships with Walter Boddy?",
+                            "location": "belowStimulus",
+                            "type": "radio",
+                            "options": [
+                                "Christine Scarlet and Jill White",
+                                "Katie Peacock and Yvette Duster",
+                                "Christine Scarlet and Katie Peacock",
+                                "Katie Peacock and Jill White"
+                            ]
+                        },
+                        {
+                            "id": "q-10-confidence",
+                            "prompt": "Indicate your confidence in your answer to the previous question?",
+                            "location": "belowStimulus",
+                            "type": "slider",
+                            "required": true,
+                            "startingValue": 1.5,
+                            "snap": true,
+                            "options": [
+                                {
+                                    "label": "I'm guessing",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "Somewhat unsure",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "Somewhat sure",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "I'm sure",
+                                    "value": 4
+                                }
+                            ],
+                            "withDivider": true
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "q-1",
+                            "answer": "Henry Wadsworth"
+                        },
+                        {
+                            "id": "q-1-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-2",
+                            "answer": "The candlestick found in the conservatory"
+                        },
+                        {
+                            "id": "q-2-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-3",
+                            "answer": "In the bathroom (bathtub)"
+                        },
+                        {
+                            "id": "q-3-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-4",
+                            "answer": "Scott Plum"
+                        },
+                        {
+                            "id": "q-4-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-5",
+                            "answer": "In the lounge"
+                        },
+                        {
+                            "id": "q-5-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-6",
+                            "answer": "The pursuit of lucrative business deals and personal financial gain"
+                        },
+                        {
+                            "id": "q-6-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-7",
+                            "answer": "Lounge"
+                        },
+                        {
+                            "id": "q-7-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-8",
+                            "answer": "Christine Scarlet"
+                        },
+                        {
+                            "id": "q-8-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-9",
+                            "answer": "Inside the piano in the lounge"
+                        },
+                        {
+                            "id": "q-9-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        },
+                        {
+                            "id": "q-10",
+                            "answer": "Christine Scarlet and Jill White"
+                        },
+                        {
+                            "id": "q-10-confidence",
+                            "acceptableLow": 3,
+                            "answer": 3
+                        }
+                    ]
+                },
+                "FinalAnswer": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/finalAnswer.md",
+                    "instruction": "Please give your best answer or mark if you don't know.",
+                    "instructionLocation": "aboveStimulus",
+                    "response": [
+                        {
+                            "id": "suspect",
+                            "prompt": "Which character(s) was/were involed in the murder of Walter Boddy?",
+                            "type": "shortText",
+                            "required": false,
+                            "withDivider": true,
+                            "withDontKnow": true
+                        },
+                        {
+                            "id": "weapon",
+                            "prompt": "What item was used to murder Walter Boddy?",
+                            "type": "shortText",
+                            "required": false,
+                            "withDivider": true,
+                            "withDontKnow": true
+                        },
+                        {
+                            "id": "location",
+                            "prompt": "What room was Walter Boddy murdered in?",
+                            "type": "shortText",
+                            "required": false,
+                            "withDivider": true,
+                            "withDontKnow": true
+                        },
+                        {
+                            "id": "guilty",
+                            "prompt": "Did Mr. Wadsworth murder Walter Boddy?",
+                            "options": [
+                                "Mr. Wadsworth is guilty of murder",
+                                "Mr. Wadsworth is NOT guilty of murder."
+                            ],
+                            "type": "dropdown",
+                            "required": false,
+                            "withDivider": true,
+                            "withDontKnow": true
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "suspect",
+                            "answer": "Plum"
+                        },
+                        {
+                            "id": "weapon",
+                            "answer": "Candlestick"
+                        },
+                        {
+                            "id": "location",
+                            "answer": "Lounge"
+                        },
+                        {
+                            "id": "guilty",
+                            "answer": "Mr. Wadsworth is NOT guilty of murder."
+                        }
+                    ]
+                },
+                "EditSummary": {
+                    "type": "markdown",
+                    "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong>: Ensure the summary makes sense to someone unfamiliar with the case.</li><li><strong>Add missing details</strong>: Fill in any key actions the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Look for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Make shifts in focus or reasoning more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li></ol>",
+                    "instructionLocation": "sidebar",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
+                    "response": [
+                        {
+                            "id": "finishedSummary",
+                            "prompt": "Please paste the text from the researcher below and edit it so the next analyst can solve the mystery.",
+                            "required": true,
+                            "location": "aboveStimulus",
+                            "type": "longText",
+                            "placeholder": "Please enter the output from the AI summarizer here."
+                        },
+                        {
+                            "id": "participantAssignedID",
+                            "prompt": "Please ask the researcher for your participant ID number",
+                            "required": true,
+                            "hidden": false,
+                            "location": "sidebar",
+                            "type": "shortText"
+                        }
+                    ]
+                },
+                "Screener": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
+                    "instruction": "Please indicate each of the following before we begin:",
+                    "response": [
+                        {
+                            "id": "screener-mouse",
+                            "prompt": "Do you have a mouse and keyboard to participate in today's study? (Answer No if you only have a trackpad)",
+                            "type": "dropdown",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        {
+                            "id": "screener-tablet",
+                            "prompt": "Are you using a tablet to participate in today's study?",
+                            "type": "dropdown",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        {
+                            "id": "screener-english",
+                            "prompt": "Are you a native or fluent English speaker?",
+                            "type": "dropdown",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        {
+                            "id": "screener-screen",
+                            "prompt": "Please estimate (in inches) the size of the display you will use for today's study?",
+                            "type": "numerical"
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "screener-mouse",
+                            "answer": "Yes"
+                        },
+                        {
+                            "id": "screener-tablet",
+                            "answer": "No"
+                        },
+                        {
+                            "id": "screener-english",
+                            "answer": "Yes"
+                        },
+                        {
+                            "id": "screener-screen",
+                            "acceptableLow": 10,
+                            "acceptableHigh": 50,
+                            "answer": 14
+                        }
+                    ]
+                },
+                "SelectionTask": {
+                    "description": "This is selection",
+                    "type": "react-component",
+                    "path": "retro-comms/ParagraphSelection/ParagraphContentWithSelections.tsx",
+                    "parameters": {
+                        "testingStimulusValue": [
+                            {
+                                "id": "p1",
+                                "text": "# this is the first paragraph.\n There could be more here, \n but I don't think I **will talk much** about it.\nI tend to write lots of words sometimes and they can be overwhelming."
+                            },
+                            {
+                                "id": "p2",
+                                "text": "# this is markdown.\n It is a long string of text. **General Requirements:**\n\n- **Two Main Study Pages:**\n- **Text Editor (Phase 4):** For participants to edit and author a markdown paragraph.\n- **Paragraph Selection (Phase 5):** For participants to mark regions of a finished paragraph for relevance.\n- Three additional pages:\n\n - **Admin Page:** This page is for study administrators to prepare study data. Administrators can:"
+                            }
+                        ]
+                    },
+                    "response": [
+                        {
+                            "id": "paragraphIDs",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "selectionIDs",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "selectionStarts",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "selectionEnds",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "seletionTexts",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "selectionRelevances",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "selectionTypes",
+                            "prompt": "",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        }
+                    ]
+                },
+                "ParagraphAndMMQ": {
+                    "description": "This is to pause the participant",
+                    "type": "react-component",
+                    "path": "retro-comms/ParagraphAndMMQ.tsx",
+                    "instruction": "Based on the information to the right, please make a <strong>plan</strong> for your investigation by listing 3 things you would like to explore or find in the dataset.",
+                    "nextButtonEnableTime": 5000,
+                    "parameters": {},
+                    "response": [
+                        {
+                            "id": "firstParagraphId",
+                            "prompt": "Assigned paragraph ID:",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
+                            "id": "paragraphSequenceIds",
+                            "prompt": "Assigned paragraph ID:",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },        
+                        {
+                            "id": "Curiosity_1",
+                            "prompt": "What will you explore first?",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "Curiosity_2",
+                            "prompt": "Then, what will you explore?",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "Curiosity_3",
+                            "prompt": "What is one last thing you would like to explore? <small>(if you have time)</small>",
+                            "location": "sidebar",
+                            "type": "shortText",
+                            "required": true
+                        },
+                        {
+                            "id": "impression",
+                            "prompt": "(Optional) What would you ask the previous analyst to change in their summary to help you prepare for your follow-up investigation?",
+                            "location": "belowStimulus",
+                            "type": "shortText",
+                            "required": false
+                        }
+                    ]
+                },
+                "sendToSensemakingTask": {
+                    "description": "This is to pause the participant",
+                    "type": "react-component",
+                    "path": "retro-comms/SendToSensemakingTaskWithNotes.tsx",
+                    "parameters": {},
+                    "response": [
+                        {
+                            "id": "clicked",
+                            "prompt": "Clicked the button?",
+                            "hidden": true,
+                            "required": true,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        }
+                    ]
+                },
+                "SalmonfishTool": {
+                    "type": "website",
+                    "nextButtonLocation": "belowStimulus",
+                    "nextButtonEnableTime": 60000,
+                    "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
+                    "path": "retro-relevance/assets/DocExplorer/index.html",
+                    "response": [
+                        {
+                            "id": "tut-1",
+                            "prompt": "<span style='color:red'>TODO</span> About how many pieces of evidence will you see in the real interface?",
+                            "location": "sidebar",
+                            "required": true,
+                            "type": "numerical",
+                            "min": 0,
+                            "max": 150,
+                            "placeholder": "Please enter a number.",
+                            "withDivider": true,
+                            "withDontKnow": true
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "tut-1",
+                            "acceptableLow": 80,
+                            "answer":100,
+                            "acceptableHigh": 110
+                        }
+                    ]
+                },
+                "ConsentForm": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/consent.md",
+                    "response": [
+                        {
+                            "id": "Consent",
+                            "prompt": "I consent to participate in this study.",
+                            "location": "belowStimulus",
+                            "required": true,
+                            "type": "radio",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        }
+                    ],
+                    "correctAnswer": [
+                        {
+                            "id": "Consent",
+                            "answer": "Yes"
+                        }
+                    ]
+                },
+                "PersonalityIntro": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/intro_personality.md",
+                    "nextButtonEnableTime": 5000,
+                    "response": []
+                },
+                "SentenceEditingDescription": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editing_intro.md",
+                    "response": []
+                },
+                "AnalysisHolismScaleShort": {
+                    "type": "questionnaire",
+                    "instruction": "<h2>Please indicate how much you agree with the following statements.</h2>",
+                    "instructionLocation": "aboveStimulus",
+                    "responseDividers": true,
+                    "response": [
+                        {
+                            "id": "AH-Causality",
+                            "prompt": "Everything in the universe is somehow related to each other.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "AH-Contradictions",
+                            "prompt": "It is more desirable to take the middle ground than go to extremes.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "AH-Change (r)",
+                            "prompt": "Future events are predictable based on present situations.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "AH-Attention",
+                            "prompt": "It is more important to pay attention to the whole context rather than the details.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        }
+                    ]
+                },
+                "HolisticCognitionScale": {
+                    "type": "questionnaire",
+                    "instruction": "<h2>Please indicate how much you agree with the following statements.</h2>",
+                    "instructionLocation": "aboveStimulus",
+                    "responseDividers": true,
+                    "response": [
+                        {
+                            "id": "HCS-Attention-1",
+                            "prompt": "It is impossible to understand the pieces without considering the whole picture.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Attention-2",
+                            "prompt": "It makes more sense to study things in their natural context rather than in isolation.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Attention-3",
+                            "prompt": "In a painting, the background is just as important as the main object.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Attention-4",
+                            "prompt": "Relationships between people are more important than the individuals themselves.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Causality-1",
+                            "prompt": "People are mostly independent of one another.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Causality-2",
+                            "prompt": "Events only occur as a result of individuals' choices and behavior.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Causality-3",
+                            "prompt": "Each individual person is only responsible for his/her own actions.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Causality-4",
+                            "prompt": "People usually end up doing what they want to, irrespective of norms or expectations.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Contradiction-1",
+                            "prompt": "Something can be both ugly and beautiful at the same time.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Contradiction-2",
+                            "prompt": "In any given situation, what it means to do the right thing depends on who you ask.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Contradiction-3",
+                            "prompt": "It is better to reach a compromise than to argue your point of view.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Contradiction-4",
+                            "prompt": "Even two seemingly contradictory ideas can each yield something valuable.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Change-1",
+                            "prompt": "An honest person can be expected to stay honest in the future.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Change-2",
+                            "prompt": "A person's true nature may evolve but it does not change dramatically over time.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Change-3",
+                            "prompt": "It is useful to make future projections based on the present situation.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "HCS-Change-4",
+                            "prompt": "The course of human history is best described as gradual linear progress.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        }
+                    ]
+                },
+                "BigFivePersonalityScale": {
+                    "type": "questionnaire",
+                    "instruction": "<h2>Please indicate how much you agree with the following statements.</h2> <em style='color: darkgrey; font-size: large;'>Answer each statement as the completion of <strong>'In general, I...'</strong></em>",
+                    "responseDividers": true,
+                    "instructionLocation": "aboveStimulus",
+                    "response": [
+                        {
+                            "id": "BF-Extraversion-1",
+                            "prompt": "Am the life of the party.",
+                            "location": "aboveStimulus",
+                            "required": true,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Extraversion-2",
+                            "prompt": "Talk to a lot of different people at parties.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Extraversion-3",
+                            "prompt": "Don't talk a lot.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Extraversion-4",
+                            "prompt": "Keep in the background.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Agreeableness-1",
+                            "prompt": "Sympathize with others' feelings.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Agreeableness-2",
+                            "prompt": "Feel others' emotions.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Agreeableness-3",
+                            "prompt": "Am not really interested in others.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Agreeableness-4",
+                            "prompt": "Am not interested in other people's problems.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Conscientiousness-1",
+                            "prompt": "Get chores done right away.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Conscientiousness-2",
+                            "prompt": "Like order.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Conscientiousness-3",
+                            "prompt": "Often forget to put things back in their proper place.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Conscientiousness-4",
+                            "prompt": "Make a mess of things.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-1",
+                            "prompt": "Have frequent mood swings.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-2",
+                            "prompt": "Get upset easily.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-3",
+                            "prompt": "Am relaxed most of the time.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Neuroticism-4",
+                            "prompt": "Seldom feel blue.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-1",
+                            "prompt": "Have a vivid imagination.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-2",
+                            "prompt": "Have difficulty understanding abstract ideas.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-3",
+                            "prompt": "Am not interested in abstract ideas.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        },
+                        {
+                            "id": "BF-Intellect-4",
+                            "prompt": "Do not have a good imagination.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Strongly Disagree",
+                            "rightLabel": "Strongly Agree",
+                            "numItems": 7
+                        }
+                    ]
+                },
+                "Demographics": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/demographics.md",
+                    "instruction": "Please answer the following questions about yourself.",
+                    "response": [
+                        {
+                            "id": "Demographics-Age",
+                            "prompt": "What is your age?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "numerical",
+                            "placeholder": "Enter your age in years",
+                            "max": 120,
+                            "min": 18
+                        },
+                        {
+                            "id": "Demographics-Gender",
+                            "prompt": "How do you identify your gender?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "radio",
+                            "withDontKnow": true,
+                            "withOther": true,
+                            "options": [
+                                "Male",
+                                "Female",
+                                "Non-Binary",
+                                "Prefer not to say"
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "Demographics-EnrollmentStatus",
+                            "prompt": "What is your current primary status?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Student - Full-time (20+ hours/week)",
+                                "Student - Part-time (less than 20 hours/week)",
+                                "Not currently a student"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-EducationLevel",
+                            "prompt": "What is the highest level of education you have completed?",
+                            "secondaryText": "If you are a current student, please specify the level you are currently pursuing.",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Some high school",
+                                "High school diploma or equivalent (completed)",
+                                "Undergraduate - Lower division (e.g., current freshman/sophomore)",
+                                "Undergraduate - Upper division (e.g., current junior/senior)",
+                                "Undergraduate - Bachelor's degree (completed)",
+                                "Graduate - Master's (currently pursuing)",
+                                "Graduate - Master's (completed)",
+                                "Graduate - PhD or equivalent (currently pursuing)",
+                                "Graduate - PhD or equivalent (completed)",
+                                "Other post-secondary credential",
+                                "Prefer not to say"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-FieldOfStudy",
+                            "prompt": "What is/was your primary field of study in your most recent academic program (e.g., during college or graduate school)?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Computer Science",
+                                "Software Engineering",
+                                "Computer Engineering",
+                                "Data Science / Statistics",
+                                "Digital Arts and Sciences / New Media",
+                                "Design / User Experience / Human-Computer Interaction",
+                                "Electrical Engineering",
+                                "Mechanical Engineering",
+                                "Library Science / Information Systems",
+                                "Mathematics",
+                                "Business / Management",
+                                "Cognitive Science / Psychology",
+                                "Social Sciences",
+                                "Natural Sciences",
+                                "Other STEM Field",
+                                "Other Non-STEM Field",
+                                "Prefer not to say"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-FirstGen",
+                            "prompt": "Are you a first-generation college student (neither parent/guardian has a four-year degree)?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Yes",
+                                "No",
+                                "Prefer not to say"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-International",
+                            "prompt": "Are you an international student or professional currently residing outside your country of origin?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-CurrentJob",
+                            "prompt": "What is your current job title or role?",
+                            "location": "aboveStimulus",
+                            "secondaryText": "e.g., Senior Software Engineer, Data Analyst, CTO., Student, etc.",
+                            "required": false,
+                            "type": "shortText"
+                        },
+                        {
+                            "id": "Demographics-CurrentField",
+                            "prompt": "What field do you currently work in (or most identify with professionally)?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "radio",
+                            "withOther": true,
+                            "options": [
+                                "Software Engineering / Development",
+                                "Data Science / Machine Learning",
+                                "Cybersecurity",
+                                "DevOps / Infrastructure Engineering",
+                                "Product Management",
+                                "User Experience (UX) / User Interface (UI) Design",
+                                "Human-Computer Interaction (HCI) / Usability Research",
+                                "Research (Academic or Industry)",
+                                "IT / Systems Administration",
+                                "Technical Support / Quality Assurance",
+                                "Engineering (Non-CS/ Non-Software)",
+                                "Education / Teaching (Technology related)",
+                                "Management / Technical Leadership",
+                                "Not currently employed",
+                                "Prefer not to say"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-Experience",
+                            "prompt": "How many years of experience do you have in your current field?",
+                            "withDontKnow": true,
+                            "secondaryText": "Select 'I Don't Know' if you are currently working as a student",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "Less than 1 year",
+                                "1-2 years",
+                                "3-5 years",
+                                "6-10 years",
+                                "11-20 years",
+                                "21+ years"
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "Demographics-sensemaker",
+                            "prompt": "Have you previously participated in analytical or investigative tasks (e.g., research, reasoning, data analysis, intelligence work)?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "withDontKnow": true,
+                            "options": [
+                                "Yes",
+                                "No"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-sensemakingFrequency",
+                            "prompt": "If yes, how frequently do you engage in such tasks?",
+                            "secondaryText": "select 'N/A' if you selected 'No' above",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "N/A",
+                                "Rarely",
+                                "Occasionally",
+                                "Frequently",
+                                "Very frequently"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-sensemakingTime",
+                            "prompt": "If yes, how many years of experience do you have doing work that involves analytical or investigative tasks?",
+                            "secondaryText": "select 'N/A' if you selected 'No' above",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "options": [
+                                "N/A",
+                                "0--1 years",
+                                "1--2 years",
+                                "3--5 years",
+                                "6--10 years",
+                                "11--20 years",
+                                "21+ years"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-approach",
+                            "prompt": "Which best describes your typical approach when processing complex information?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "dropdown",
+                            "withDontKnow": true,
+                            "options": [
+                                "I focus on the details first and then build the big picture",
+                                "I look at the big picture first and then fill in the details",
+                                "I try to balance both simultaneously"
+                            ],
+                            "withDivider": true
+                        },
+                        {
+                            "id": "Demographics-confident",
+                            "prompt": "How confident are you in your ability to summarize complex information?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Not confident at all",
+                            "rightLabel": "Extremely confident",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Demographics-collaborationExperience",
+                            "prompt": "What is your level of experience collaborating on projects that require direct reporting?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Beginner",
+                            "rightLabel": "Expert",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Demographics-often",
+                            "prompt": "How often do you perform report writing, presentation preparations, or summarization of your work or studies for others?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Yearly or less",
+                            "rightLabel": "Daily",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Demographics-psAbility",
+                            "prompt": "How would you rate your problem-solving abilities?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Very poor",
+                            "rightLabel": "Excellent",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Demographics-attendDetail",
+                            "prompt": "How would you describe your attention to detail?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "likert",
+                            "leftLabel": "Very low",
+                            "rightLabel": "Very high",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Demographics-trust",
+                            "prompt": "How much do you trust automated summary tools compared to manual summarization?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "withDivider": true,
+                            "type": "likert",
+                            "leftLabel": "Not at all",
+                            "rightLabel": "Completely",
+                            "numItems": 5
+                        },
+                        {
+                            "id": "Ranking-Background",
+                            "prompt": "<strong>Background and Context</strong>: Explains the situation, goals, or events that led to the analysis. (E.g., why this analysis was needed, what triggered it.).",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not important",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very important",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-Evidence",
+                            "prompt": "<strong>Supporting Evidence</strong>: Shares the key data, examples, or cases that back up the analysis. (E.g., charts, logs, quotes, specific observations.).",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not important",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very important",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-Methods",
+                            "prompt": "<strong>How it was done</strong>: Describes the steps, tools, or techniques used to do the analysis. (E.g., filters used, reasoning steps, tools applied.).",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not important",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very important",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-Findings",
+                            "prompt": "<strong>What was found</strong>: Summarizes the main takeaways or insights from the work so far. (E.g., conclusions, patterns, theories.).",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not important",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very important",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-NextActions",
+                            "prompt": "<strong>Next steps or suggestions</strong>: Outlines what should be done next based on the current findings. (E.g., follow-ups, unresolved questions, or concrete suggestions.).",
+                            "type": "slider",
+                            "required": false,
+                            "location": "belowStimulus",
+                            "options": [
+                                {
+                                    "label": "Not important",
+                                    "value": 0
+                                },
+                                {
+                                    "label": "Very important",
+                                    "value": 100
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Ranking-Other",
+                            "prompt": "Are there other kinds of information you think are important for peer collaboration? Please describe.",
+                            "location": "belowStimulus",
+                            "required": false,
+                            "type": "shortText"
+                        }
+                    ]
+                }
+            },
+            "sequence": {
+                "order": "fixed",
+                "components": [
+                    "ParagraphAndMMQ",
+                    "sendToSensemakingTask",
+                    "SelectionTask",
+                    "ConsentForm",
+                    "Screener",
+                    "SalmonfishTool",
+                    "FinalAnswer",
+                    "MentalModelQuiz",
+                    "PersonalityIntro",
+                    "AnalysisHolismScaleShort",
+                    "HolisticCognitionScale",
+                    "BigFivePersonalityScale",
+                    "SentenceEditingDescription",
+                    "EditSummary",
+                    "Demographics"
+                ]
+            }
+        }
