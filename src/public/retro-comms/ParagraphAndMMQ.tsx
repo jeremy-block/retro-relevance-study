@@ -86,6 +86,7 @@ function ParagraphAndMMQ({ parameters,
                 return filterdParagraphs;
             }
         } catch (err) {
+            //todo I think this error is not going to catch and work now that I updated the server.
             console.error("Error loading paragraphs:", err);
 
             // Fallback to the summary if API fails
@@ -94,8 +95,8 @@ function ParagraphAndMMQ({ parameters,
                 if (lastSeenParagraph) {
                     setParagraphs([lastSeenParagraph]);
 
-                    // Auto-trigger the setParagraphId for fallback
-                    setParagraphId(lastSeenParagraph.id);
+                    // Auto-trigger the makeReactAnswer for fallback
+                    makeReactAnswer(lastSeenParagraph.id, paragraphs);
                 }
             }
         }
@@ -107,14 +108,14 @@ function ParagraphAndMMQ({ parameters,
             // Only update if we haven't already set this paragraph ID
             const currentSavedId = answers[trialNameToPullResponseFrom]?.answer[keyForSummary];
             if (currentSavedId !== currentParagraph.id) {
-                setParagraphId(currentParagraph.id);
+                makeReactAnswer(currentParagraph.id, paragraphs);
             }
         }
     }, [paragraphs, currentParagraph]);
     // Fetch paragraph sequence when component loads
     useEffect(() => {
         loadParagraphs();
-    }, [participant_id, fetchParagraphById, fetchExperimentSequence]);
+    }, [participant_id,fetchParagraphById, fetchExperimentSequence]);
 
     // const prop1Ref = useRef(provenanceState);
     // const prop2Ref = useRef(initialParagraphs);
@@ -150,10 +151,12 @@ function ParagraphAndMMQ({ parameters,
     const { actions, trrack } = useMemo(() => {
         const reg = Registry.create();
 
-        const clickAction = reg.register('click', (state, payload: { click: boolean; paragraphId: string }) => {
+        const clickAction = reg.register('load', (state, payload: { click: boolean; paragraphId: string, someParagraphs: Paragraph[] }) => {
             console.log("clicking", payload)
             state.clicked = payload.click;
             state.firstParagraphId = payload.paragraphId;
+            console.log("paragraphing", payload)
+            state.paragraphSequence = payload.someParagraphs;
             return state;
         });
 
@@ -161,7 +164,8 @@ function ParagraphAndMMQ({ parameters,
             registry: reg,
             initialState: {
                 clicked: false,
-                firstParagraphId: "null"
+                firstParagraphId: "null",
+                paragraphSequence: []
             },
         });
 
@@ -174,13 +178,14 @@ function ParagraphAndMMQ({ parameters,
     }, []);
 
     // Function to set paragraph ID and update the answer
-    const setParagraphId = useCallback((paragraphID: string | null) => {
-        console.log("🚀 ~ setParagraphId ~ Attempting to setParagraphId to:", paragraphID)
+    const makeReactAnswer = useCallback((paragraphID: string | null, someParagraphs: Paragraph[] | null) => {
+        console.log("🚀 ~ makeReactAnswer ~ Attempting to set paragraphID to:", paragraphID)
         if (!paragraphID) return; // Don't proceed if no ID
-        console.log("🚀 ~ setParagraphId ~ paragraphID:", paragraphID);
+        console.log("🚀 ~ makeReactAnswer ~ Attempting to set paragraphs to:", someParagraphs);
+        if (!someParagraphs) return; // Don't proceed if no paragraphs
 
         // Apply trrack action
-        trrack.apply('Clicked', actions.clickAction({ click: true, paragraphId: paragraphID }));
+        trrack.apply('load', actions.clickAction({ click: true, paragraphId: paragraphID, someParagraphs: someParagraphs }));
 
         // Set the answer
         setAnswer({
@@ -189,9 +194,17 @@ function ParagraphAndMMQ({ parameters,
             answers: {
                 ["clicked"]: String(true),
                 ["firstParagraphId"]: paragraphID,
+                ["paragraphSequenceIds"]: makeAnswerStringFromObjKey(someParagraphs, "id"),
+                // ["paragraphSequenceSelections"]: makeAnswerStringFromObjKey(someParagraphs, "selections"),
+                // ["paragraphSequenceText"]: makeAnswerStringFromObjKey(someParagraphs, "text"),
             },
         });
     }, [actions, setAnswer, trrack]);
+    
+    //utility for saving arrays of objects to text for response.
+    function makeAnswerStringFromObjKey<T>(array: T[], key: keyof T): string {
+        return array.reduce((acc, item) => `${acc}${item[key]}:|:|:`, '').slice(0, -5); // Remove trailing delimiter
+    }
 
     // Error state
     if (error && paragraphs.length === 0) {

@@ -761,6 +761,14 @@
                             "type": "reactive"
                         },
                         {
+                            "id": "paragraphSequenceIds",
+                            "prompt": "Assigned paragraph ID:",
+                            "hidden": true,
+                            "required": false,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },        
+                        {
                             "id": "Curiosity_1",
                             "prompt": "What will you explore first?",
                             "location": "sidebar",
