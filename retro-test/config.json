@@ -18,14 +18,14 @@
         "withProgressBar": true,
         "autoDownloadStudy": true,
         "autoDownloadTime": 1000,
-        "studyEndMsg": "**This is not really ever gonna be seen since the `urlParticipantIdParam` is set to 'SONA': [yourProlificLink](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=PROLIFIC_PID)",
+        "studyEndMsg": "**This is not really ever gonna be seen if SONA is included in the URL, but since the `urlParticipantIdParam` is set to 'SONA' and we have a response in a screener component that captures the Sona ID, it will be included in the URL.**",
         "sidebar": true,
         "windowEventDebounceTime": 500,
         "urlParticipantIdParam": "SONA",
         "numSequences": 500
     },
     "components": {
-        "ParagraphAndMMQ": {
+        "Screener": {
             "type": "markdown",
             "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
 
@@ -45,7 +45,7 @@
                 {
                     "id": "SonaId",
                     "prompt": "Please enter your Sona ID",
-                    "required": true,
+                    "required": false,
                     "hidden": false,
                     "location": "belowStimulus",
                     "type": "shortText",
@@ -58,7 +58,7 @@
     "sequence": {
         "order": "fixed",
         "components": [
-            "ParagraphAndMMQ"
+            "Screener"
         ]
     }
 }
