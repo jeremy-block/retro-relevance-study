@@ -1,13 +1,13 @@
 {
     "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
     "studyMetadata": {
-        "title": "Retrospective Communications",
+        "title": "Retrospective Tester",
         "version": "0.1.0",
         "authors": [
             "Jeremy Block"
         ],
         "date": "2025-04-01",
-        "description": "We want to evaluate how you interpret summaries of your work",
+        "description": "Testing the SONA connection",
         "organizations": [
             "University of Florida"
         ]
