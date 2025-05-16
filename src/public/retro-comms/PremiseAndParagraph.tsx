@@ -8,12 +8,12 @@ import { useParagraphData } from "./ParagraphSelection/useParagraphData";
 import MarkdownRenderer from "../retro-relevance/ParagraphSelection/MarkdownRenderer";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ParagraphAndMMQ({ parameters,
+function PremiseAndParagraph({ parameters,
     setAnswer,
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
-    const trialNameToPullResponseFrom = "ParagraphAndMMQ_2";
+    const trialNameToPullResponseFrom = "PremiseAndParagraph_2";
     const keyForSummary = "firstParagraphId";
 
     // Use our paragraph data hook
@@ -61,7 +61,6 @@ function ParagraphAndMMQ({ parameters,
     // Fetch paragraphs when component loads
     const loadParagraphs = async () => {
         // Get the paragraph ID from previous trial if available
-        //todo check if we are getting a single paragraph or a whole sequence in the answer. I would rather just define the sequence on this page if we can.
         const previousParagraphId = String(answers[trialNameToPullResponseFrom]?.answer[keyForSummary] || '');
         console.log("🚀 ~ participant_id:", participant_id)
 
@@ -309,4 +308,4 @@ function ParagraphAndMMQ({ parameters,
     );
 }
 
-export default ParagraphAndMMQ;
+export default PremiseAndParagraph;

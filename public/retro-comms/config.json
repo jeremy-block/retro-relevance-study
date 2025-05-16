@@ -17,7 +17,7 @@
                 "logoPath": "../retro-relevance-study/retro-relevance/assets/noun-retrospective-7620763.svg",
                 "withProgressBar": true,
                 "autoDownloadStudy": false,
-                "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)",
+                "studyEndMsg": "**Thank you for volunteering for this study. Your responses have been recorded.** You can close this window now.",
                 "sidebar": true,
                 "windowEventDebounceTime": 500,
                 "urlParticipantIdParam": "SONA",
@@ -585,30 +585,6 @@
                         }
                     ]
                 },
-                "EditSummary": {
-                    "type": "markdown",
-                    "instruction": "Please prepare a summary of your work for someone to pick up where you left off. They will only have <strong>5 minutes</strong>.<br><h2>Guidelines</h2><ol><li><strong>Make it approachable</strong>: Ensure the summary makes sense to someone unfamiliar with the case.</li><li><strong>Add missing details</strong>: Fill in any key actions the AI might have overlooked.</li><li><strong>Remove distractions</strong>: Cut any irrelevant or confusing details.</li><li><strong>Fix errors</strong>: Look for AI mistakes or made-up information. Proofread carefully!</li><li><strong>Clarify transitions</strong>: Make shifts in focus or reasoning more obvious.</li><li><strong>Improve structure</strong>: Organize the summary, so it's easy to scan and understand.</li></ol>",
-                    "instructionLocation": "sidebar",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editSummary.md",
-                    "response": [
-                        {
-                            "id": "finishedSummary",
-                            "prompt": "Please paste the text from the researcher below and edit it so the next analyst can solve the mystery.",
-                            "required": true,
-                            "location": "aboveStimulus",
-                            "type": "longText",
-                            "placeholder": "Please enter the output from the AI summarizer here."
-                        },
-                        {
-                            "id": "participantAssignedID",
-                            "prompt": "Please ask the researcher for your participant ID number",
-                            "required": true,
-                            "hidden": false,
-                            "location": "sidebar",
-                            "type": "shortText"
-                        }
-                    ]
-                },
                 "Screener": {
                     "type": "markdown",
                     "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
@@ -647,9 +623,9 @@
                             "type": "numerical"
                         },
                         {
-                            "id": "SONAID",
-                            "prompt": "Please enter your SONA ID",
-                            "required": true,
+                            "id": "SONA_ID",
+                            "prompt": "Do not change the SONA ID below. It is automatically generated.",
+                            "required": false,
                             "hidden": false,
                             "location": "belowStimulus",
                             "type": "shortText",
@@ -804,10 +780,10 @@
                         }
                     ]
                 },
-                "ParagraphAndMMQ": {
+                "PremiseAndParagraph": {
                     "description": "This is to pause the participant",
                     "type": "react-component",
-                    "path": "retro-comms/ParagraphAndMMQ.tsx",
+                    "path": "retro-comms/PremiseAndParagraph.tsx",
                     "instruction": "Based on the information to the right, please make a <strong>plan</strong> for your investigation by listing 3 things you would like to explore or find in the dataset.",
                     "nextButtonEnableTime": 5000,
                     "parameters": {},
@@ -1750,7 +1726,7 @@
                 "components": [
                     "ConsentForm",
                     "Screener",
-                    "ParagraphAndMMQ",
+                    "PremiseAndParagraph",
                     "SalmonfishTool",
                     "sendToSensemakingTask",
                     "FinalAnswer",
