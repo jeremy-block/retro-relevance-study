@@ -120,7 +120,7 @@ export function StudyEnd() {
   // If the study is using an external service like SONA and the participant's ID is available,
   // display a message with a link to return to the external service for credit.
   // Otherwise, display the configured study end message or a default message.
-  const finishWords = (studyConfig.uiConfig.urlParticipantIdParam === externalServiceName && answers[collectionComponent]?.answer?.[localParamKeyforExternalURL] !== null) 
+  const finishWords = (studyConfig.uiConfig.urlParticipantIdParam === externalServiceName && (answers[collectionComponent]?.answer?.[localParamKeyforExternalURL] !== null && answers[collectionComponent]?.answer?.[localParamKeyforExternalURL] !== undefined)) 
     ? sonaMessage 
     : studyConfig.uiConfig.studyEndMsg || "Default end message.";
 
