@@ -18,10 +18,10 @@
                 "withProgressBar": true,
                 "autoDownloadStudy": true,
                 "autoDownloadTime": 1000,
-                "studyEndMsg": "Thank you for completing this study!<br/><br/>Please wait your data is being download.<br/><br/>As a backup, please send this data back to the Researcher on Zoom.",
+                "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](yourProlificLink)",
                 "sidebar": true,
                 "windowEventDebounceTime": 500,
-                "urlParticipantIdParam": "PROLIFIC_ID",
+                "urlParticipantIdParam": "PROLIFIC_PID",
                 "numSequences": 500
             },
             "components": {
@@ -646,6 +646,16 @@
                             "id": "screener-screen",
                             "prompt": "Please estimate (in inches) the size of the display you will use for today's study?",
                             "type": "numerical"
+                        },
+                        {
+                            "id": "prolificId",
+                            "prompt": "Please enter your Prolific ID",
+                            "required": true,
+                            "hidden": false,
+                            "location": "belowStimulus",
+                            "type": "shortText",
+                            "placeholder": "Prolific ID",
+                            "paramCapture": "PROLIFIC_PID"
                         }
                     ],
                     "correctAnswer": [
@@ -795,6 +805,16 @@
                             "location": "belowStimulus",
                             "type": "shortText",
                             "required": false
+                        },
+                        {
+                            "id": "prolificId",
+                            "prompt": "Please enter your Prolific ID",
+                            "required": true,
+                            "hidden": false,
+                            "location": "belowStimulus",
+                            "type": "shortText",
+                            "placeholder": "Prolific ID",
+                            "paramCapture": "PROLIFIC_PID"
                         }
                     ]
                 },

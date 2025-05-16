@@ -3,6 +3,7 @@
   "configsList": [
     "retro-relevance",
     "retro-communications",
+    "retro-test",
     "tutorial",
     "example-brush-interactions",
     "example-cleveland",
@@ -44,6 +45,9 @@
     },
     "retro-communications": {
       "path": "retro-comms/config.json"
+    },  
+    "retro-test": {
+      "path": "retro-test/config.json"
     },
     "tutorial": {
       "path": "tutorial/config.json"
