@@ -87,7 +87,7 @@ export function StudyEnd() {
     }
     return () => {};
   }, [autoDownload, completed, delayCounter, downloadParticipant]);
-
+  
   const studyId = useStudyId();
   const [dataCollectionEnabled, setDataCollectionEnabled] = useState(false);
   useEffect(() => {
@@ -99,13 +99,25 @@ export function StudyEnd() {
     };
     checkDataCollectionEnabled();
   }, [storageEngine, studyId]);
-
+  
+  
+  //Establish keys from answers that will have the SONA ID code to add to a return link
+  console.log("🚀 ~ StudyEnd ~ answers:", answers)
+  
+  const screenerComponent: string = Object.keys(answers).find((key) => key.toLowerCase().startsWith('screener_')) || 'Screener_1';
+  console.log("🚀 ~ StudyEnd ~ screenerComponent Key:", screenerComponent)
+  
+  const SonaId: string = Object.keys(answers[screenerComponent]?.answer || {}).find((answer: string) => answer.toLowerCase().startsWith('sona')) || '123456';
+  console.log("🚀 ~ StudyEnd ~ SonaId in that screener:", SonaId)
+  
   console.log(studyConfig);
-  console.log(studyConfig.uiConfig);
-  console.log(studyConfig.uiConfig.urlParticipantIdParam);
-  console.log(studyConfig.uiConfig.studyEndMsg);
-  const SonaMessage = `Thank you for participating in this study. Please click here for credit: [Back to SONA](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${studyConfig.uiConfig.urlParticipantIdParam}).`;
-  const finishwords = (studyConfig.uiConfig.urlParticipantIdParam=="SONA")? SonaMessage : studyConfig.uiConfig.studyEndMsg || "Default end message.";
+  // console.log(studyConfig.uiConfig);
+  // console.log(studyConfig.uiConfig.urlParticipantIdParam);
+  // console.log(studyConfig.uiConfig.studyEndMsg);
+  const SonaMessage = `Thank you for participating in this study. Please click here for credit: [Back to SONA](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${answers[screenerComponent].answer[SonaId]}).`;
+  const finishwords = (studyConfig.uiConfig.urlParticipantIdParam === "SONA" && answers[screenerComponent]?.answer?.[SonaId] !== null) 
+    ? SonaMessage 
+    : studyConfig.uiConfig.studyEndMsg || "Default end message.";
 
   return (
     <Center style={{ height: '100%' }}>
