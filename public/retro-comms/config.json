@@ -1702,20 +1702,19 @@
             "sequence": {
                 "order": "fixed",
                 "components": [
-                    "ParagraphAndMMQ",
-                    "sendToSensemakingTask",
-                    "SelectionTask",
                     "ConsentForm",
                     "Screener",
+                    "ParagraphAndMMQ",
                     "SalmonfishTool",
+                    "sendToSensemakingTask",
                     "FinalAnswer",
                     "MentalModelQuiz",
+                    "SelectionTask",
                     "PersonalityIntro",
                     "AnalysisHolismScaleShort",
                     "HolisticCognitionScale",
                     "BigFivePersonalityScale",
                     "SentenceEditingDescription",
-                    "EditSummary",
                     "Demographics"
                 ]
             }

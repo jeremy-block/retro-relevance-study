@@ -15,7 +15,7 @@ function SendToSensemakingTask({
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
-    const trialNameToPullResponseFrom = "ParagraphAndMMQ_0";
+    const trialNameToPullResponseFrom = "ParagraphAndMMQ_2";
     const keyForSummary = "firstParagraphId";
     // const keyForID = "participantAssignedID";
 
@@ -118,7 +118,7 @@ function SendToSensemakingTask({
             const queryParams = new URLSearchParams({
                 p: paragraphParam || "",
                 c: JSON.stringify(curriosities),
-                t: String(5000)
+                t: String(15*60*1000), // 15 minutes in milliseconds
             }).toString();
             window.open(`https://indie.cise.ufl.edu/MaverickMystery/?=5&${queryParams}`, "_blank");
         } else {

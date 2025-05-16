@@ -13,7 +13,7 @@ function ParagraphAndMMQ({ parameters,
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
-    const trialNameToPullResponseFrom = "ParagraphAndMMQ_0";
+    const trialNameToPullResponseFrom = "ParagraphAndMMQ_2";
     const keyForSummary = "firstParagraphId";
 
     // Use our paragraph data hook
