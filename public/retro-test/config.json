@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.1.0/src/parser/StudyConfigSchema.json",
+    "studyMetadata": {
+        "title": "Retrospective Communications",
+        "version": "0.1.0",
+        "authors": [
+            "Jeremy Block"
+        ],
+        "date": "2025-04-01",
+        "description": "We want to evaluate how you interpret summaries of your work",
+        "organizations": [
+            "University of Florida"
+        ]
+    },
+    "uiConfig": {
+        "contactEmail": "j.block@ufl.edu",
+        "logoPath": "../retro-relevance-study/retro-relevance/assets/noun-retrospective-7620763.svg",
+        "withProgressBar": true,
+        "autoDownloadStudy": true,
+        "autoDownloadTime": 1000,
+        "studyEndMsg": "**Thank you for completing the study. You may click this link and return to Prolific**: [yourProlificLink](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=PROLIFIC_PID)",
+        "sidebar": true,
+        "windowEventDebounceTime": 500,
+        "urlParticipantIdParam": "PROLIFIC_PID",
+        "numSequences": 500
+    },
+    "components": {
+        "ParagraphAndMMQ": {
+            "type": "markdown",
+            "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
+
+            "instruction": "Please read the following paragraph and answer the questions that follow.",
+            "response": [
+                {
+
+                    "id": "scale",
+                    "type": "dropdown",
+                    "prompt": "How relevant is this summary to your work?",
+                    "options": [
+                        "Not at all relevant",
+                        "Somewhat relevant",
+                        "Very relevant"
+                    ]
+                },
+                {
+                    "id": "prolificId",
+                    "prompt": "Please enter your Prolific ID",
+                    "required": true,
+                    "hidden": false,
+                    "location": "belowStimulus",
+                    "type": "shortText",
+                    "placeholder": "Prolific ID",
+                    "paramCapture": "PROLIFIC_PID"
+                }
+            ]
+        }
+    },
+    "sequence": {
+        "order": "fixed",
+        "components": [
+            "ParagraphAndMMQ"
+        ]
+    }
+}
