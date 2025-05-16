@@ -102,21 +102,26 @@ export function StudyEnd() {
   
   
   //Establish keys from answers that will have the SONA ID code to add to a return link
-  console.log("🚀 ~ StudyEnd ~ answers:", answers)
+  // This is a temporary solution until we can get a custom URL parameter to include in response to a participant collection service.
+  // This basically will check to see if the service name is set in the user's answers and if so, it will add the SONA ID code to the return link.
+  // If they do not have a SONA ID code set by the url, then they will see the studyEndMsg that is established in the studyConfig.
+  const externalServiceName = studyConfig.uiConfig.urlParticipantIdParam || "SONA";
+  const collectionComponent: string = Object.keys(answers).find((key) => key.toLowerCase().startsWith('screener_')) || 'Screener_1';
+  const localParamKeyforExternalURL: string = Object.keys(answers[collectionComponent]?.answer || {}).find((answer: string) => answer.toLowerCase().startsWith(externalServiceName)) || 'sona_id';
+
+  //for testing
+  // console.log("🚀 ~ StudyEnd ~ answers:", answers)
+  // console.log("🚀 ~ StudyEnd ~ collectionComponent Key:", collectionComponent)
+  // console.log("🚀 ~ StudyEnd ~ localParamKeyforExternalURL in that component that collects urlParticipantIdParam:", localParamKeyforExternalURL)
+  // console.log(studyConfig);
   
-  const screenerComponent: string = Object.keys(answers).find((key) => key.toLowerCase().startsWith('screener_')) || 'Screener_1';
-  console.log("🚀 ~ StudyEnd ~ screenerComponent Key:", screenerComponent)
-  
-  const SonaId: string = Object.keys(answers[screenerComponent]?.answer || {}).find((answer: string) => answer.toLowerCase().startsWith('sona')) || '123456';
-  console.log("🚀 ~ StudyEnd ~ SonaId in that screener:", SonaId)
-  
-  console.log(studyConfig);
-  // console.log(studyConfig.uiConfig);
-  // console.log(studyConfig.uiConfig.urlParticipantIdParam);
-  // console.log(studyConfig.uiConfig.studyEndMsg);
-  const SonaMessage = `Thank you for participating in this study. Please click here for credit: [Back to SONA](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${answers[screenerComponent].answer[SonaId]}).`;
-  const finishwords = (studyConfig.uiConfig.urlParticipantIdParam === "SONA" && answers[screenerComponent]?.answer?.[SonaId] !== null) 
-    ? SonaMessage 
+  const sonaMessage = `Thank you for participating in this study. Please click for credit: [Back to ${externalServiceName}](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${answers[collectionComponent].answer[localParamKeyforExternalURL]}).`;
+  // Determine the final message to display to the participant.
+  // If the study is using an external service like SONA and the participant's ID is available,
+  // display a message with a link to return to the external service for credit.
+  // Otherwise, display the configured study end message or a default message.
+  const finishWords = (studyConfig.uiConfig.urlParticipantIdParam === externalServiceName && answers[collectionComponent]?.answer?.[localParamKeyforExternalURL] !== null) 
+    ? sonaMessage 
     : studyConfig.uiConfig.studyEndMsg || "Default end message.";
 
   return (
@@ -124,7 +129,7 @@ export function StudyEnd() {
       <Flex direction="column">
         {completed || !dataCollectionEnabled
           ? (studyConfig.uiConfig.studyEndMsg
-            ? <ReactMarkdownWrapper text={finishwords} />
+            ? <ReactMarkdownWrapper text={finishWords} />
             : <Text size="xl" display="block">Thank you for completing the study. You may close this window now.</Text>)
           : (
             <>
