@@ -4,62 +4,62 @@
         "title": "Double-click to open me!",
         "date": "1",
         "type": "set1",
-        "contents": "Excellent work!<br/><br/>Now you can see the content in this document!<br/>To close a document, double-click the teal title again."
+        "contents": "Great start!<br><br>Documents will contain text from fictional sources like:<ul><li>Security cameras</li><li>Interview transcripts</li><li>Police reports</li></ul>Double-click a teal title to open or close a doc. Give it a try!<br><br><em>Close this doc and check out doc 2.</em>"
     },
     {
         "id": "Tutorial2",
         "title": "Click and drag me!",
         "date": "2",
         "type": "set1",
-        "contents": "Yep, documents can be moved around!<br/><br/>Move similar documents together so you can think about them as a group.<br/>Resize this document by dragging an <strong>open document's</strong> edge. <em>Only open documents can be resized.</em>"
+        "contents": "You can move docs by dragging the title bar.<br>Resize them by dragging the edges.<br><br>Try grouping docs together to help spot patterns.<br><em>Only open docs can be resized.</em>"
     },
     {
         "id": "Tutorial3",
-        "title": "Try writing something down!",
+        "title": "Write something down!",
         "date": "3",
         "type": "set1",
-        "contents": "You should see a yellow 'Personal Notebook' document. Try typing 'hello world' into this document!<br/><br/><em>You can also copy and paste information directly into notes!</em>"
+        "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br><br><em>You can also paste info from other docs here.</em>"
     },
     {
         "id": "Tutorial4",
-        "title": "More notes, anyone?",
+        "title": "More notes, please!",
         "date": "4",
         "type": "set1",
-        "contents": "By now, you might notice that the interface can get a bit messy. You can create more notes to help organize your thoughts!<br/>Try making a new note: Right-click in the orange background and select 'New note.'<br/>This gives you more space to write things down.<br/>Notes cannot be deleted or renamed, but consider how you could use them to separate different kinds of information or label groups of documents."
+        "contents": "Things getting messy? Right-click the orange background and choose <strong>New note</strong>.<br><br>Extra notes give you space to write things down and organize your thoughts.<em> <br/><br/>Notes can't be renamed or deleted, but they're great for storing or sorting info.</em>"
     },
     {
         "id": "Tutorial5",
         "title": "Highlighting helps!",
         "date": "5",
         "type": "set1",
-        "contents": "In the last document, you used the context menu to create a new note!<br/>The context menu is different when you right-click in documents. In documents, you can:<br/><strong>(1) search for selected text</strong> or <strong>(2) highlight text</strong>.<br/><br/>Let's try highlighting first. Use your cursor to select the following words:<br/><br/>Please select me with your cursor.<br/><br/>With the text selected,<br/>right-click (and hold) and select 'Highlight' in the menu.<br/>The text should now have a <strong>green</strong> background.<br/><br/><em>This highlight will appear any time the document is open, so it can be a good way to track what you've already read.</em>"
+        "contents": "Select some text in an open doc, then right-click to <strong>highlight</strong> text or <strong>Search for selected</strong>.<br><br>For example, try selecting this:<br><br>Please select me with your cursor.<br><br>Then right-click (and hold) to highlight.<br><br><em>Highlights stay visible after closing a doc---they're great for identifying what you've already read.</em>"
     },
     {
         "id": "Tutorial6",
-        "title": "Use search! There's too much to read!",
+        "title": "Use Search! There's too much to read!",
         "date": "6",
         "type": "set1",
-        "contents": "There are two ways to search:<br/><ol><li><strong>Search by selection</strong>: Select text (as you did when highlighting) and choose the option in the context menu. This is helpful for looking into suspicious terms while reading.</li><li><strong>Search by query</strong>: Right-click in the orange background and type a query into the context menu. Press Enter to see results.</li></ol><br/><br/>Try searching for the term 'document,' then try querying your own term.<br/><br/>Regardless of how you search, documents with a matching string will now have yellow in their title.<br/><br/><em>Search is case-insensitive and will only returns exact matches.</em> If you don't get the results you expect, try changing your search term slightly."
+        "contents": "There are two ways to search:<br><ol><li><strong>Search by selection:</strong> Highlight text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own term too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
     },
     {
         "id": "Tutorial7",
-        "title": "Not enough time? Don't go random!",
+        "title": "Not enough time! Don't go random!",
         "date": "7",
         "type": "set1",
-        "contents": "You won't have time to read all the documents! Stick to your plan. Use more searches to find connections between people, places, objects, or events that look promising or suspicious."
+        "contents": "You won't finish reading every doc—focus on what matters!<br><br>Use search to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
     },
     {
         "id": "Tutorial8",
         "title": "So many approaches!",
         "date": "8",
         "type": "set1",
-        "contents": "Use whichever features help you with the investigation.<br/><br/>We recommend <strong>searching</strong> for information instead of trying to read everything.<br/>By the way, the background is orange because mysteries often include red herrings. A herring is a type of fish. The fish most similar in color to the University of Florida brand is a salmon. Spotted salmonfish are typically orange and teal."
+        "contents": "Use whatever tools help you investigate. Search is often faster than reading everything.<br>And hey—if the orange background reminds you of fish, you're not wrong. Red herrings are part of solving mysteries and something fishy is afoot!<br><em>We were looking for a fish that matched the University of Florida's colors. The Spotted Salmonfish just seemed right—it probably loves mysteries too. Heck, how do these orange and teal creatures know how to return to their spawning grounds?</em>"
     },
     {
         "id": "Tutorial9",
         "title": "Final notes",
         "date": "9",
         "type": "set1",
-        "contents": "Now you're an expert! <small><em>(at least with this interface tool)</em></small><br/>🖥️ Maximize your screen for the best experience.<br/>This orange and teal interface is designed to help you examine data from different sources, such as:<ul><li>security camera descriptions,</li><li>suspect interview transcripts, and</li><li>police reports.</li></ul>There will be a short quiz after your investigation to check your understanding.<br/><br/>Also, try searching for 'orange' to find the answer to a question."
+        "contents": "You're ready!<br><br>Maximize your screen for the best view (you can also use your browser's zoom features to give you more space).<br>This orange-and-teal interface helps you piece together data. After your investigation, there's a short quiz.<br><br><em>Try searching 'orange' to find the answer to the question.</em>"
     }
 ]

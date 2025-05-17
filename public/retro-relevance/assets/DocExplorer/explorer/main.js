@@ -33,8 +33,6 @@ var prov_history_file = ""
 
 var prov_Coverage_file = "";
 const passedDataset = getUrlParameter("set");
-// const passedDataset = getUrlParameter("trialid");
-console.log("🚀 ~ passedDataset:", passedDataset)
 
 var thisDoc = (passedDataset == "comms")
   ? "./explorer/data/comms_tutorial_docs.json"
@@ -49,7 +47,8 @@ pname=guid("tut");
 var load_prov_history = false;
 var load_prov_Coverage = false;
 promptNoteText = "ERROR - no condition specified<br><br>You are viewing a <strong>template interface</strong> to practice interacting with the interface. <br> Analyst A Notes will be displayed when condition provided."
-instructionsPrompt = "This window will describe the task and goal of the analysis session as well as provide a <strong>button</strong> for you to end the study.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
+instructionsPrompt = (passedDataset == "comms")? "This window will describe the context of the analysis session.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
+: "This window will describe the task and goal of the analysis session as well as provide a <strong>button</strong> for you to end the study.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
 console.error('ERROR! - defaulting to tutorial interface');
 
 (async function() {
@@ -77,7 +76,7 @@ console.error('ERROR! - defaulting to tutorial interface');
         var output="<div>";
         for (var i in data){
 			jsonCounter++;  // document_id data[i].id
-			console.log(jsonCounter)
+			// console.log(jsonCounter)
 
 			output +=
 			//  '<div id="jsonDialog' + i + '" class="doc-set docSet" title="' + data[i].title + '" data-id="' + scrunchOriginal + '" data-source="' + data[i].type + '">' +

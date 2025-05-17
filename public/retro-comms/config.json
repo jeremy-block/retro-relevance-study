@@ -860,7 +860,7 @@
                 "SalmonfishTool": {
                     "type": "website",
                     "nextButtonLocation": "belowStimulus",
-                    "instruction": "<p>Please read each document in the interface at the right. They describe the 5 ways you can interact with evidence to solve the mystery. You can:</p><ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in <em>Personal Notebook</em> or create <em>new notes</em>.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol> <p>You will want to feel comfortable since there will be many more documents in the mystery.</p>",
+                    "instruction": "<p>Read each tutorial document on the right. They'll describe the 5 key ways to interact with evidence in the real interface. This time is for you to practice and get comforatable.</p><ul><li><strong>Open/Close:</strong> Double-click a title to open or close a document.</li><li><strong>Move/Resize:</strong> Drag the title bar to move, or grab edges to resize.</li><li><strong>Take Notes:</strong> Type in your <em>Personal Notebook</em> or make new ones.</li><li><strong>Highlight:</strong> Select text, right-click-hold, then choose “Highlight.”</li><li><strong>Search:</strong> Right-click selected text or on the background to search.</li></ul></p>",
                     "path": "retro-relevance/assets/DocExplorer/index.html?set=comms&",
                     "response": [
                         {
