@@ -728,6 +728,14 @@
                             "type": "reactive"
                         },
                         {
+                            "id": "allSelected",
+                            "prompt": "Did all the selections get set?",
+                            "hidden": true,
+                            "required": true,
+                            "location": "sidebar",
+                            "type": "reactive"
+                        },
+                        {
                             "id": "Ranking-HelpfulnessA",
                             "prompt": "Summary 1",
                             "type": "slider",

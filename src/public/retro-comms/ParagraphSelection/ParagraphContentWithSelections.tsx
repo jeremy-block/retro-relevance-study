@@ -222,6 +222,17 @@ export function ParagraphContentWithSelections({
       ? "12345"
       : answers[TRIAL_NAME_TO_PULL_RESPONSE_FROM]?.answer[KEY_FOR_ID] || currentParagraph?.id;
     
+    // Create a Set of paragraphs that have selections
+    const paragraphsWithSelections = new Set(
+      updatedSelections.map(selection => selection.ParentParagraphID)
+    );
+
+    // Check if all paragraphs have at least one selection
+    const allParagraphsHaveSelections = paragraphs.every(paragraph => {
+      return paragraphsWithSelections.has(String(paragraph.id || ''))
+    })? "true" : []; // set it to a string so it can pass validations in the setAnswer backend function.
+
+    
     setAnswer({
       status: true,
       provenanceGraph: trrack.graph.backend,
@@ -233,6 +244,7 @@ export function ParagraphContentWithSelections({
         selectionTexts: makeAnswerStringFromObjKey(updatedSelections, "selectedText"),
         selectionRelevances: makeAnswerStringFromObjKey(updatedSelections, "relevanceLevel"),
         selectionTypes: updatedSelections.map(e => makeAnswerStringFromObjKey(e.elements ?? [], "nodeType")),
+        allSelected: allParagraphsHaveSelections, //makeAnswerStringFromObjKey([{"checker": allParagraphsHaveSelections}],"checker"), // Add the property inside the answers object
       },
     });
   }, [currentParagraph, parameters.testingStimulusValue, answers, setAnswer, trrack]);
