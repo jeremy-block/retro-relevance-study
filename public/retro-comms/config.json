@@ -626,7 +626,7 @@
                             "id": "SONA_ID",
                             "prompt": "Do not change the SONA ID below. It is automatically generated.",
                             "required": false,
-                            "hidden": false,
+                            "hidden": true,
                             "location": "belowStimulus",
                             "type": "shortText",
                             "placeholder": "SONA ID",
@@ -793,7 +793,6 @@
                     "type": "react-component",
                     "path": "retro-comms/PremiseAndParagraph.tsx",
                     "instruction": "Based on the information to the right, please make a <strong>plan</strong> for your investigation by listing 3 things you would like to explore or find in the dataset.",
-                    "nextButtonEnableTime": 5000,
                     "parameters": {},
                     "response": [
                         {
