@@ -139,9 +139,9 @@ function PremiseAndParagraph({
     console.log("🔄 loadParagraphs called");
     
     // Don't fetch if we already have paragraphs from provenanceState
-    if (provenanceState?.paragraphs?.length > 0) {
-      console.log("📦 Using paragraphs from provenanceState:", provenanceState.paragraphs);
-      return provenanceState.paragraphs;
+    if ((provenanceState?.paragraphs ?? []).length > 0) {
+      console.log("📦 Using paragraphs from provenanceState:", provenanceState?.paragraphs);
+      return provenanceState?.paragraphs || [];
     }
     
     // Get the paragraph ID from previous trial if available
