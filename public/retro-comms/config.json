@@ -857,56 +857,39 @@
                         }
                     ]
                 },
-                "videoTutorial":{
-                    "type": "video",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/TutorialWithCaptions.mp4",
-                    "forceCompletion": true,
-                    "allowFailedTraining": true,
-                    "response": [{
-                        "id":"numInteractions",
-                        "location": "sidebar",
-                        "prompt": "How many types of interactions can you do in the interface?",
-                        "type": "dropdown",
-                        "options": [
-                            "3",
-                            "4",
-                            "5",
-                            "6",
-                            "7"
-                        ]
-                    }
-                ],
-                "correctAnswer": [{
-                    "id":"numInteractions",
-                    "answer": "5"
-                }]
-                },
                 "SalmonfishTool": {
                     "type": "website",
                     "nextButtonLocation": "belowStimulus",
-                    "nextButtonEnableTime": 60000,
-                    "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol><p>Please try practicing each of these interactions before we continue. You will want to feel comfortable since there will be many more documents when we begin</p>",
-                    "path": "retro-relevance/assets/DocExplorer/index.html",
+                    "instruction": "<p>Please read each document in the interface at the right. They describe the 5 ways you can interact with evidence to solve the mystery. You can:</p><ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in <em>Personal Notebook</em> or create <em>new notes</em>.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol> <p>You will want to feel comfortable since there will be many more documents in the mystery.</p>",
+                    "path": "retro-relevance/assets/DocExplorer/index.html?set=comms&",
                     "response": [
                         {
                             "id": "tut-1",
-                            "prompt": "<span style='color:red'>TODO</span> About how many pieces of evidence will you see in the real interface?",
+                            "prompt": "Why is the interface orange and teal? <small>Hint: the answer is in the documents</small>",
                             "location": "sidebar",
                             "required": true,
-                            "type": "numerical",
-                            "min": 0,
-                            "max": 150,
-                            "placeholder": "Please enter a number.",
-                            "withDivider": true,
-                            "withDontKnow": true
+                            "type": "dropdown",
+                            "placeholder": "Select a reason",
+                            "withDontKnow": true,
+                            "options": [{
+                                "label": "Because Florida is known for their oranges.",
+                                "value": "1"
+                            },{
+                                "label": "Because mysteries can be filled with red herrings.",
+                                "value": "2"
+                            },{
+                                "label": "Because teal and orange are compliments.",
+                                "value": "3"
+                            },{
+                                "label": "Because orange is for urgency, and teal is for technology",
+                                "value": "4"
+                            }]
                         }
                     ],
                     "correctAnswer": [
                         {
                             "id": "tut-1",
-                            "acceptableLow": 80,
-                            "answer":100,
-                            "acceptableHigh": 110
+                            "answer": "2"
                         }
                     ]
                 },
@@ -1753,7 +1736,6 @@
                     "ConsentForm",
                     "Screener",
                     "PremiseAndParagraph",
-                    "videoTutorial",
                     "SalmonfishTool",
                     "sendToSensemakingTask",
                     "FinalAnswer",

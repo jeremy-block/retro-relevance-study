@@ -10,6 +10,15 @@ let guid = (cond) => {
     //return id of format #_'aaaaaaaa'
     return cond+"_"+s4() + s4();
 }
+// Get URL parameters function
+function getUrlParameter(name) {
+    // console.log("🚀 ~ getUrlParameter ~ name:", name)
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    // console.log("🚀 ~ getUrlParameter ~ results:", results)
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
 
 var pname = "NONE"
 // var DEBUGME = null;
@@ -23,8 +32,14 @@ var init_time = d.getTime();
 var prov_history_file = ""
 
 var prov_Coverage_file = "";
+const passedDataset = getUrlParameter("set");
+// const passedDataset = getUrlParameter("trialid");
+console.log("🚀 ~ passedDataset:", passedDataset)
 
-var thisDoc = "./explorer/data/tutorial_docs.json";  //  -or- documents_1.json  -or- documents_2.json  -or- documents_2.json -or- documents_test.json	 		
+var thisDoc = (passedDataset == "comms")
+  ? "./explorer/data/comms_tutorial_docs.json"
+  : "./explorer/data/tutorial_docs.json";  //  -or- documents_1.json  -or- documents_2.json  -or- documents_2.json -or- documents_test.json	 		
+ console.log("🚀 ~ thisDoc:", thisDoc)
  
 var query = window.location.search;
 var promptNoteText = '';
