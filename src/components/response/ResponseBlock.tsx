@@ -106,10 +106,21 @@ export function ResponseBlock({
   const showNextBtn = location === (configInUse?.nextButtonLocation || 'belowStimulus');
 
   useEffect(() => {
-    const ReactiveResponse = responsesWithDefaults.find((r) => r.type === 'reactive');
-    if (reactiveAnswers && ReactiveResponse) {
-      const answerId = ReactiveResponse.id;
-      answerValidator.setValues({ ...answerValidator.values, [answerId]: reactiveAnswers[answerId] as string[] });
+    const ReactiveResponses = responsesWithDefaults.filter((r) => r.type === 'reactive');
+    if (reactiveAnswers && ReactiveResponses.length > 0) {
+      // Create an object to hold all the updates
+      const updatedValues = { ...answerValidator.values };
+      
+      // Process each reactive response
+      ReactiveResponses.forEach(response => {
+        const answerId = response.id;
+        if (reactiveAnswers[answerId]) {
+          updatedValues[answerId] = reactiveAnswers[answerId] as string[];
+        }
+      });
+      
+      // Update all values at once
+      answerValidator.setValues(updatedValues);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reactiveAnswers]);
