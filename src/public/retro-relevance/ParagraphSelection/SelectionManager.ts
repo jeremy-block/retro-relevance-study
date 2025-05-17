@@ -60,7 +60,7 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
         range,
         contentRef.current
       );
-      console.log("🚀 ~ handleMouseUp ~ selectedElements:", selectedElements);
+      // console.log("🚀 ~ handleMouseUp ~ selectedElements:", selectedElements);
       const startIndex = range.startOffset;
       const endIndex = range.endOffset;
 
@@ -77,20 +77,20 @@ const SelectionManager: React.FC<SelectionManagerProps> = ({
       };
 
       // In SelectionManager.ts, add this debug code at selection creation:
-      console.group("Selection Creation");
-      console.log("Paragraph ID:", contentRef.current?.dataset.paragraphId);
-      console.log("Selection Range:", {
-        startContainer: range.startContainer,
-        endContainer: range.endContainer,
-        commonAncestor: range.commonAncestorContainer,
-      });
-      console.log(
-        "Is selection within paragraph:",
-        contentRef.current?.contains(range.commonAncestorContainer)
-      );
-      console.log("Selected Text:", selectedText);
-      console.log("Created Selection:", newSelection);
-      console.groupEnd();
+      // console.group("Selection Creation");
+      // console.log("Paragraph ID:", contentRef.current?.dataset.paragraphId);
+      // console.log("Selection Range:", {
+      //   startContainer: range.startContainer,
+      //   endContainer: range.endContainer,
+      //   commonAncestor: range.commonAncestorContainer,
+      // });
+      // console.log(
+      //   "Is selection within paragraph:",
+      //   contentRef.current?.contains(range.commonAncestorContainer)
+      // );
+      // console.log("Selected Text:", selectedText);
+      // console.log("Created Selection:", newSelection);
+      // console.groupEnd();
 
       // Pass the new selection to the parent
       onSelectionComplete(newSelection);
