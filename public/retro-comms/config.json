@@ -857,11 +857,35 @@
                         }
                     ]
                 },
+                "videoTutorial":{
+                    "type": "video",
+                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/TutorialWithCaptions.mp4",
+                    "forceCompletion": true,
+                    "allowFailedTraining": true,
+                    "response": [{
+                        "id":"numInteractions",
+                        "location": "sidebar",
+                        "prompt": "How many types of interactions can you do in the interface?",
+                        "type": "dropdown",
+                        "options": [
+                            "3",
+                            "4",
+                            "5",
+                            "6",
+                            "7"
+                        ]
+                    }
+                ],
+                "correctAnswer": [{
+                    "id":"numInteractions",
+                    "answer": "5"
+                }]
+                },
                 "SalmonfishTool": {
                     "type": "website",
                     "nextButtonLocation": "belowStimulus",
                     "nextButtonEnableTime": 60000,
-                    "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol>",
+                    "instruction": "<h1>Tutorial</h1>This is the tool you will use to solve a mystery. With it, you can:<ol><li><strong>Open/Close:</strong> Double-click a title to toggle a document.</li><li><strong>Move/Resize:</strong> Drag on a title to move; edges to resize.</li><li><strong>Take Notes:</strong> Type in Personal Notebook or create new notes.</li><li><strong>Highlight:</strong> Select text, right-click-hold, choose <em>“highlight.”</em></li><li><strong>Search:</strong> Right-click selected text or click in background to type search term.</li></ol><p>Please try practicing each of these interactions before we continue. You will want to feel comfortable since there will be many more documents when we begin</p>",
                     "path": "retro-relevance/assets/DocExplorer/index.html",
                     "response": [
                         {
@@ -1729,6 +1753,7 @@
                     "ConsentForm",
                     "Screener",
                     "PremiseAndParagraph",
+                    "videoTutorial",
                     "SalmonfishTool",
                     "sendToSensemakingTask",
                     "FinalAnswer",
