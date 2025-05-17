@@ -914,11 +914,6 @@
                     "nextButtonEnableTime": 5000,
                     "response": []
                 },
-                "SentenceEditingDescription": {
-                    "type": "markdown",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/editing_intro.md",
-                    "response": []
-                },
                 "AnalysisHolismScaleShort": {
                     "type": "questionnaire",
                     "instruction": "<h2>Please indicate how much you agree with the following statements.</h2>",
@@ -1737,7 +1732,6 @@
                     "AnalysisHolismScaleShort",
                     "HolisticCognitionScale",
                     "BigFivePersonalityScale",
-                    "SentenceEditingDescription",
                     "Demographics"
                 ]
             }
