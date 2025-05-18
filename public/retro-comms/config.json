@@ -587,8 +587,7 @@
                 },
                 "Screener": {
                     "type": "markdown",
-                    "path": "../retro-relevance-study/retro-relevance/assets/tutorialText/screener.md",
-                    "instruction": "Please indicate each of the following before we begin:",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/screener.md",
                     "response": [
                         {
                             "id": "screener-mouse",
@@ -619,7 +618,7 @@
                         },
                         {
                             "id": "screener-screen",
-                            "prompt": "Please estimate (in inches) the size of the display you will use for today's study?",
+                            "prompt": "Please estimate the diagonal length (in inches) of the display you will use for today's study?",
                             "type": "numerical"
                         },
                         {
@@ -785,6 +784,13 @@
                                     "value": 100
                                 }
                             ]
+                        },
+                        {
+                            "id": "Ranking-why",
+                            "prompt": "Finally, why did you arrange the sliders in this way?",
+                            "type": "shortText",
+                            "required": true,
+                            "location": "belowStimulus"
                         }
                     ]
                 },
@@ -810,7 +816,7 @@
                             "required": false,
                             "location": "sidebar",
                             "type": "reactive"
-                        },        
+                        },
                         {
                             "id": "Curiosity_1",
                             "prompt": "What will you explore first?",
@@ -871,19 +877,24 @@
                             "type": "dropdown",
                             "placeholder": "Select a reason",
                             "withDontKnow": true,
-                            "options": [{
-                                "label": "Because Florida is known for their oranges.",
-                                "value": "1"
-                            },{
-                                "label": "Because mysteries can be filled with red herrings.",
-                                "value": "2"
-                            },{
-                                "label": "Because teal and orange are compliments.",
-                                "value": "3"
-                            },{
-                                "label": "Because orange is for urgency, and teal is for technology",
-                                "value": "4"
-                            }]
+                            "options": [
+                                {
+                                    "label": "Because Florida is known for its oranges.",
+                                    "value": "1"
+                                },
+                                {
+                                    "label": "Because mysteries can be filled with red herrings.",
+                                    "value": "2"
+                                },
+                                {
+                                    "label": "Because teal and orange are complements.",
+                                    "value": "3"
+                                },
+                                {
+                                    "label": "Because orange is for urgency, and teal is for technology.",
+                                    "value": "4"
+                                }
+                            ]
                         }
                     ],
                     "correctAnswer": [
@@ -1559,6 +1570,45 @@
                                 "11--20 years",
                                 "21+ years"
                             ]
+                        },
+                        {
+                            "id": "Demographics-toolsUsed",
+                            "prompt": "Which of the following tools have you used for summarization or reporting work?",
+                            "type": "checkbox",
+                            "options": [
+                                "ChatGPT",
+                                "Copilot",
+                                "Tableau",
+                                "Jupyter",
+                                "Excel summaries",
+                                "None",
+                                "Other"
+                            ],
+                            "required": false
+                        },
+                        {
+                            "id": "Demographics-summaryAudience",
+                            "prompt": "Do you usually summarize information for a technical or non-technical audience?",
+                            "type": "dropdown",
+                            "options": [
+                                "Technical",
+                                "Non-technical",
+                                "Both equally",
+                                "Neither"
+                            ],
+                            "required": false
+                        },
+                        {
+                            "id": "Demographics-reportingRole",
+                            "prompt": "Are you typically responsible for writing reports, reviewing them, or both?",
+                            "type": "dropdown",
+                            "options": [
+                                "Writing reports",
+                                "Reviewing reports",
+                                "Both",
+                                "Neither"
+                            ],
+                            "required": false
                         },
                         {
                             "id": "Demographics-approach",

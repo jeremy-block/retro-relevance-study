@@ -140,7 +140,7 @@ function SendToSensemakingTask({
             <h1>Task</h1>
             <p>Using the tool you just learned about, on the next page, you will try to finish the investigation.</p>
             <Notification withCloseButton={false} style={{ "maxWidth": "700px" }} withBorder color="lime" radius="md">
-                <em>The original <strong>premise</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em>
+                <em style={{ color: "gray" }}>The original <strong>context</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em>
             </Notification>
 
             <Divider my="md" />
@@ -148,51 +148,53 @@ function SendToSensemakingTask({
             <Alert variant="outline" color="blue" title="Timing and Tools" style={{
                 justifySelf: "center",
             }}>
-                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence.</Text>
-                <Text><em>Be mindful about what you focus on.</em> You will <strong>not have enough time</strong> to read all the documents. <em>Stick to your <strong>plan</strong>.</em></Text>
+                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ A timmer will give you warnings in the bottom right.</Text>
+                <Text><em>Be mindful about what you focus on.</em> You will <strong>not have enough time</strong> to read all the documents. <em>Stick to <strong>your plan</strong>.</em></Text>
 
-                <Text>Right click to access the:</Text>
+                <Text>Right click to:</Text>
                 <ol>
-                    <li>📝 <strong>Note tool</strong> to write down anything of interest,</li>
-                    <li>🖊️ <strong>Highlight tool</strong> to mark interesting content in <span style={{ backgroundColor: "#77F7A4" }}>Green</span>, and</li>
-                    <li>🔎 <strong>Search tool</strong> to find documents (matching content will be in <span style={{ backgroundColor: "#ffea57" }}>Yellow</span>).</li>
+                    <li>📝 <strong>Note</strong> anything of interest,</li>
+                    <li>🖊️ <strong>Highlight</strong> interesting text in <span style={{ backgroundColor: "#77F7A4" }}>Green</span>, and</li>
+                    <li>🔎 <strong>Search</strong> to find documents (matches will be <span style={{ backgroundColor: "#ffea57" }}>Yellow</span>).</li>
                 </ol>
             </Alert>
             <Divider my="md" />
-            <SimpleGrid cols={2} >
+            <SimpleGrid cols={2} spacing="xs" >
 
 
-                <Alert variant="light" color="green" title="Your Plan">                    <Text>As a reminder the plan you made earlier is to look into:</Text>
+                <Alert variant="light" color="blue" title="Investigative goal" style={{ maxWidth: 600 }}>
+                    Remember, your goal is to determine: <br /><Text span fw={700} >Who</Text> committed the murder, <br /><Text span fw={700} >What</Text> weapon was used, and <br /><Text span fw={700} >Where</Text> it occurred at the Boddy Estate.
+                </Alert>
+                <Alert variant="light" color="yellow" title="Your Plan">
+                    <Text>Earlier, you made a plan to look into:</Text>
 
                     <Group
                         gap="xs"
-                        justify="left"
-                        mb="xl"
+                        justify="center"
+                        mb="sm"
                         style={{
                             display: "flex",
                             // flexDirection: "column",
                             alignItems: "flex-start",
                         }}>
-                        <Paper shadow="md" withBorder p="sm">1.
+                        <Paper shadow="md" withBorder p="sm">
                             <Text fw={700} >
-                                {answers[trialNameToPullResponseFrom]?.answer["Curiosity_1"] || "No curiostity provided"}
+                                1. {answers[trialNameToPullResponseFrom]?.answer["Curiosity_1"] || "No curiostity provided"}
                             </Text>
                         </Paper>
-                        <Paper shadow="md" withBorder p="sm">2.
+                        <Paper shadow="md" withBorder p="sm">
                             <Text fw={700} >
-                                {answers[trialNameToPullResponseFrom]?.answer["Curiosity_2"] || "No curiostity provided"}
+                                2. {answers[trialNameToPullResponseFrom]?.answer["Curiosity_2"] || "No curiostity provided"}
                             </Text>
                         </Paper>
-                        <Paper shadow="md" withBorder p="sm">3.
-                            <Text fw={700} >
-                                {answers[trialNameToPullResponseFrom]?.answer["Curiosity_3"] || "No curiostity provided"}
-                            </Text> (if time allows)
+                        <Paper shadow="md" withBorder p="sm">
+                            <Text span fw={700} >
+                                3. {answers[trialNameToPullResponseFrom]?.answer["Curiosity_3"] || "No curiostity provided"}
+                            </Text> 
+                            <Text span fs="italic"> (if time allows)</Text>
 
                         </Paper>
                     </Group>
-                </Alert>
-                <Alert variant="light" color="blue" title="Goal" style={{ maxWidth: 600 }}>
-                    Considering your plan, remember, your goal is to determine: <br /><Text span fw={700} >Who</Text> committed the murder, <br /><Text span fw={700} >What</Text> weapon was used, and <br /><Text span fw={700} >Where</Text> it occurred at the Boddy Estate.
                 </Alert>
             </SimpleGrid>
 

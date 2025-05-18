@@ -409,26 +409,21 @@ export function ParagraphContentWithSelections({
       {/* Paragraph Display and Navigation */}
       <div className="mb-6">
         {/* Selection Interface with Markdown Renderer */}
+        
+        <p className="text-sm text-gray-600 mb-4">
+          Please select the parts in each of these summaries that you think would be relevant to future investigators.
+          <br />
+          <small style={{ color: theme.colors.gray[5] }}>
+            Click and drag to select text, and indicate how relevant (Critical, Helpful, Optional) you believe the text would be to someone joining the investigative team and helping solve the mystery.
+          </small>
+        </p>
+        
         <h3 className="text-lg font-semibold mb-4">
           Select Relevant Text
           {paragraphs.length > 1 && (
             <span> :: Paragraph {focusedParagraphIndex + 1} of {paragraphs.length}</span>
           )}
         </h3>
-        
-        <p className="text-sm text-gray-600 mb-4">
-          Please select the parts of {paragraphs.length > 1 ? 'these summaries' : 'your summary'} that 
-          you think {paragraphs.length > 1 ? 'are' : 'will be'} relevant to future investigators 
-          attempting to complete the investigation: <span>(i.e., What is relevant to someone who is 
-          attempting to identify <strong>Who</strong> committed the murder, <strong>What</strong> weapon 
-          was used, and <strong>Where</strong> it occured)</span>.
-          <br />
-          <small style={{ color: theme.colors.gray[5] }}>
-            (Click and drag to select text, and indicate how relevant you believe it would be to 
-            {paragraphs.length > 1 ? ' someone like you' : ' someone new'}.)
-          </small>
-        </p>
-        
         {currentParagraph && (
           <div
             ref={contentRef}
@@ -471,7 +466,7 @@ export function ParagraphContentWithSelections({
       )}
       
       <p>
-        Considering the paragraphs above, please indicate how <strong>helpful</strong> each would be to a new investigator.
+        Considering the paragraphs above, please rank how <strong>helpful</strong> each would be to a new investigator.
       </p>
     </div>
   );

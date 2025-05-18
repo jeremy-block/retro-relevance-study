@@ -303,10 +303,10 @@ function PremiseAndParagraph({
       </p>
       
       <Text mt={2} className="mt-3 text-blue-600 italic">
-        Based on the <strong>Premise</strong> and <strong>Summary</strong> below, write at least 
+        Based on the <strong>Context</strong> and <strong>Summary</strong> below, write at least 
         three specific people, places, things, or activities that you want to explore in 
         the <strong>sidebar</strong> on the left. <br />
-        Remember, your goal is to work with the prior participant's note to figure out <em>Who</em> committed 
+        Remember, your goal is to work with the prior participant's summary to figure out <em>Who</em> committed 
         the murder, <em>What</em> weapon was used, and <em>Where</em> it happened.
       </Text>
       
@@ -317,7 +317,7 @@ function PremiseAndParagraph({
             Here's the case overview the prior participant began with:
           </Text>
           
-          <Title order={3}>Premise</Title>
+          <Title order={3}>Context</Title>
           <Text mt="sm">
             Walter Boddy has been murdered at his estate. The police have named 
             Mr. <strong>HENRY WADSWORTH</strong> as the primary suspect.
@@ -331,7 +331,7 @@ function PremiseAndParagraph({
             evidence and track down the truth.
           </Text>
           <Text mt="sm">
-            Your goal is to use the <strong>notes from the prior analyst</strong> and the set 
+            Your goal is to use the <strong>prior analyst's summary</strong> and the set 
             of documents to identify:
           </Text>
           
@@ -368,14 +368,14 @@ function PremiseAndParagraph({
           <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
             After the prior analyst spent 15 minutes looking at evidence, they prepared 
             the following summary of their work for you to use before beginning your 
-            investigation. What follows should be helpful.
+            investigation. What follows should be helpful, but may contain typos.
           </Text>
           
           <Title order={3}>Prior Analyst Summary</Title>
           
           {loading && !currentParagraph && (
             <Text style={{ textAlign: "center", color: "gray" }} py="md">
-              Loading Analyst notes...
+              Loading Analyst summary...
             </Text>
           )}
           
@@ -400,7 +400,7 @@ function PremiseAndParagraph({
       </SimpleGrid>
       
       <Text mt="sm" style={{textAlign: "center", color:"gray"}}>
-        <em>A copy of this premise and summary will be available in the interface.</em>
+        <em>A copy of this context and summary will be available in the investigative tool.</em>
       </Text>
       
       <p className="mt-4">On the next page we will introduce to the investigation tool and the evidence.</p>
