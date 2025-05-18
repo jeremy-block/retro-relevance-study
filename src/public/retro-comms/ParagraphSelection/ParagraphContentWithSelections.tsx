@@ -421,7 +421,7 @@ export function ParagraphContentWithSelections({
         <h3 className="text-lg font-semibold mb-4">
           Select Relevant Text
           {paragraphs.length > 1 && (
-            <span> :: Paragraph {focusedParagraphIndex + 1} of {paragraphs.length}</span>
+            <span> :: Summary {focusedParagraphIndex + 1} of {paragraphs.length} <small style={{color: "gray"}}>{focusedParagraphIndex > 0 ? "(New analyst's work)" : "(You've seen this summary before)"}</small></span>
           )}
         </h3>
         {currentParagraph && (

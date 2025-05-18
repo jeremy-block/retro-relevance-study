@@ -830,7 +830,7 @@
                     "description": "This is to pause the participant",
                     "type": "react-component",
                     "path": "retro-comms/PremiseAndParagraph.tsx",
-                    "instruction": "Based on the information to the right, please make a <strong>plan</strong> for your investigation by listing 3 things you would like to explore or find in the dataset.",
+                    "instruction": "List 3 things you would like to explore or find in the dataset.",
                     "parameters": {},
                     "response": [
                         {
@@ -898,7 +898,7 @@
                 "SalmonfishTool": {
                     "type": "website",
                     "nextButtonLocation": "belowStimulus",
-                    "instruction": "<p>Read each tutorial document on the right. They'll describe the 5 key ways to interact with evidence in the real interface. This time is for you to practice and get comforatable.</p><ul><li><strong>Open/Close:</strong> Double-click a title to open or close a document.</li><li><strong>Move/Resize:</strong> Drag the title bar to move, or grab edges to resize.</li><li><strong>Take Notes:</strong> Type in your <em>Personal Notebook</em> or make new ones.</li><li><strong>Highlight:</strong> Select text, right-click-hold, then choose “Highlight.”</li><li><strong>Search:</strong> Right-click selected text or on the background to search.</li></ul></p>",
+                    "instruction": "<p>Read each tutorial document on the right. They'll describe the 5 key ways to interact with evidence in the real interface. Use this time to practice and get comforatable.</p><ol><li><strong>Open/Close:</strong> Double-click a title to open or close a document.</li><li><strong>Move/Resize:</strong> Drag the title bar to move, or grab edges to resize.</li><li><strong>Take Notes:</strong> Type in your <em>Personal Notebook</em> or make new ones.</li><li><strong>Highlight:</strong> Select text, right-click-hold, then choose “Highlight.”</li><li><strong>Search:</strong> Right-click selected text or on the background to search.</li></ol></p>",
                     "path": "retro-relevance/assets/DocExplorer/index.html?set=comms&",
                     "response": [
                         {

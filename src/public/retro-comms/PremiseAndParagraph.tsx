@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { initializeTrrack, Registry } from '@trrack/core';
-import { useMantineTheme, SimpleGrid, Paper, Title, Text } from '@mantine/core';
+import { useMantineTheme, SimpleGrid, Paper, Title, Text, Divider } from '@mantine/core';
 
 import { useStoreSelector } from "../../store/store";
 import { StimulusParams, StoredAnswer } from "../../store/types";
@@ -305,16 +305,14 @@ function PremiseAndParagraph({
       <Text mt={2} className="mt-3 text-blue-600 italic">
         Based on the <strong>Context</strong> and <strong>Summary</strong> below, write at least 
         three specific people, places, things, or activities that you want to explore in 
-        the <strong>sidebar</strong> on the left. <br />
-        Remember, your goal is to work with the prior participant's summary to figure out <em>Who</em> committed 
-        the murder, <em>What</em> weapon was used, and <em>Where</em> it happened.
+        the <strong>sidebar</strong> on the left.
       </Text>
       
       <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
         {/* Premise Section */}
         <Paper shadow="sm" p="md" withBorder>
           <Text size="sm" style={{color: "gray"}} mt="sm" mb="sm">
-            Here's the case overview the prior participant began with:
+            Here's the case overview the prior analyst began with:
           </Text>
           
           <Title order={3}>Context</Title>
@@ -340,26 +338,11 @@ function PremiseAndParagraph({
             <li><strong>What</strong> weapon was used, and</li>
             <li><strong>Where</strong> it occurred at the Boddy Estate.</li>
           </ul>    
-          
-          <hr/>
-          
+          <Divider pb={"lg"} />
           <Title order={3}>A note about the truth</Title>
           <Text mt="sm">
-            Only those involved in the murder may knowingly lie, while anyone might 
-            unknowingly provide false information.
-          </Text>
-          <Text mt="sm">
-            For example, if a John Doe is guilty of murder and says he never saw the victim 
-            that night, he is knowingly lying (<strong>1st Degree lie</strong>).
-          </Text>
-          <Text mt="sm">
-            Now, if Jane Doe, who is innocent, says the victim left at 8 PM, but the victim 
-            actually left at 7 PM, that's unknowingly providing false information because she 
-            wasn't there to see them leave (<strong>2nd Degree lie</strong>).
-          </Text>
-          <Text mt="sm">
-            Only those directly involved with the murder will tell <strong>1st degree lies</strong>. 
-            Everyone else could provide false information though.
+            Only those involved in the murder may knowingly lie, while anyone might
+            accidentally provide false information.
           </Text>
         </Paper>
       
@@ -368,7 +351,7 @@ function PremiseAndParagraph({
           <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
             After the prior analyst spent 15 minutes looking at evidence, they prepared 
             the following summary of their work for you to use before beginning your 
-            investigation. What follows should be helpful, but may contain typos.
+            investigation.<br/> What follows should be helpful, but may contain typos.
           </Text>
           
           <Title order={3}>Prior Analyst Summary</Title>
@@ -403,7 +386,7 @@ function PremiseAndParagraph({
         <em>A copy of this context and summary will be available in the investigative tool.</em>
       </Text>
       
-      <p className="mt-4">On the next page we will introduce to the investigation tool and the evidence.</p>
+      <p className="mt-4">On the next page we will introduce the investigation tool and the evidence.</p>
     </div>
   );
 }

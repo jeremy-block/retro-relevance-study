@@ -39,14 +39,14 @@
         "title": "Use Search! There's too much to read!",
         "date": "6",
         "type": "set1",
-        "contents": "There are two ways to search:<br><ol><li><strong>Search by selection:</strong> Highlight text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own term too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
+        "contents": "There are two ways to search:<br><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own terms too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
     },
     {
         "id": "Tutorial7",
         "title": "Not enough time! Don't go random!",
         "date": "7",
         "type": "set1",
-        "contents": "You won't finish reading every doc—focus on what matters!<br><br>Use search to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
+        "contents": "You won't finish reading every doc—focus on what matters!<br><br>Use <strong>search</search> to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
     },
     {
         "id": "Tutorial8",
