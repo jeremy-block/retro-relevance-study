@@ -2,7 +2,7 @@
 
 ## General Participants  
 
-**Please read this document carefully before participating in this research study.** Your participation is voluntary, and you can decline to participate or withdraw consent at any time with no consequences.
+**Please read this document carefully before participating in this research study.** Your participation is **voluntary**, and you may **decline to participate** or **withdraw your consent** at any time without consequences.
 
 ---
 
@@ -19,88 +19,92 @@ Email: [eragan@ufl.edu](mailto:eragan@ufl.edu)
 
 ## Purpose of the research study
 
-This research study examines how individuals share their investigative processes when handing off their analyses to others. The study aims to improve methods for generating and presenting provenance summaries, which document the history of an analysis process. The findings will help inform the development of tools that support the effective communication of analysis findings during shift transitions or collaborative investigations. Participants will engage with investigative datasets, annotate summaries of analysis, and provide feedback on the presented information.
+We are studying how people share their investigative processes when handing off their work to others. Our goal is to improve tools that generate and present provenance summaries—records that document how an analysis was done. These findings will help us support effective communication during shift transitions or collaborative investigations.
+
+During the study, you will work with investigative datasets, annotate summaries of previous analyses, and give feedback on how helpful the information is.
 
 ---
 
 ## Eligibility
 
-To participate in this research study, you must:
+You can participate in this research study, if you:
 
-- Be between **18 and 65 years old**.
-- Be **physically located within the United States**.
+- Are between **18 and 65 years old**.
+- Are **physically located within the United States**.
 
 ---
 
 ## What you will be asked to do in the study
 
-You will:
+During the study, you will:
 
-1. Have your browser activities and written feedback recorded for research purposes.
-2. Read the notes written by the prior investigator and make an investigation plan.
-3. Use a software tool to review a **fictional mystery** (text) designed for research.
-   1. **No personal information** is included, and any resemblance to real-life characters is purely coincidental.
-4. Show your understanding of the mystery by taking a quiz.
-5. Rate summaries by selecting key phrases, and providing feedback through a survey.
-6. Answer some questions about your personality, habits, and demographics.
+1. Allow the system to record your browser activity and written responses for research purposes.
+2. Read investigation notes written by a previous investigator.
+3. Create your own plan for continuing the investigation.
+4. Use a research tool to explore a **fictional mystery case** presented in text format.
 
-Your responses will be recorded digitally, kept anonymous, and used for later analysis. You may withdraw from the study at any time by contacting **Eric D. Ragan at [eragan@ufl.edu](mailto:eragan@ufl.edu)**.
+   - The case contains no real-world personal information; any similarities to real individuals are purely coincidental.
+5. Complete a quiz to demonstrate your understanding of the case.
+6. Review and rate summaries by highlighting key phrases and answering follow-up survey questions.
+7. Answer a short set of questions about your personality, habits, and demographics.
+
+All of your responses will be recorded digitally, kept anonymous, and analyzed for research purposes. You may stop participating at any time. Contact **Eric D. Ragan at [eragan@ufl.edu](mailto:eragan@ufl.edu)** to have your data discarded after study completion.
 
 ---
 
 ## Time required
 
-The study session is expected to take **1 hour**.
+The study session will take approximately **1 hour**.
 
 ---
 
 ## Risks and benefits
 
-- This study presents **minimal risks**, similar to daily computer use.
-- Possible risks include **mild fatigue** from screen time or cognitive effort.
-- There are **no direct benefits** to participants.
-- Your contributions will help improve tools for summarizing investigative processes.
+- The risks are **minimal**, similar to using a computer for everyday tasks.
+- You may experience **mild fatigue** from screen use or mental effort.
+- You will **not receive direct benefits**, but your participation will help us improve tools for summarizing investigative work.
+- Your data will contribute toward the **publication of scientific knowledge** and the **career advancement** of the research team.
 
 ---
 
 ## Use of your data in a public dataset
 
-De-identified data from this study **may be shared in a public dataset** for future research. This means:
+We may **share your de-identified data** in a public dataset for future research. This means:
 
-- Your responses and interactions **may be available to other researchers**.
-- **No personal information will be included**.
+- **Other researchers** may access your responses and interactions, but we will **not include any personal information**.
 - If you have concerns, please discuss them with the research team before participating.
 
 ---
 
 ## Confidentiality
 
-- **No personal information** will be collected or stored.
-- All collected data will be **anonymized and kept confidential**.
-- Any recorded responses, including text annotations or interview notes, will be **stored securely** and analyzed without links to personal identifiers.
+- We will **not collect or store any personal information**.
+- **Anonymize all collected data** and keep it confidential.
+- **Securely store your responses**, including any annotations or notes, and analyze them without linking them to your identity.
 
 ---
 
 ## Sponsorship
 
-This research **is not funded** by an outside entity.
+This study **is not funded** by an outside entity.
 
 ---
 
 ## Compensation
 
-- Participants **may receive compensation** for their time.
-- If recruited through **SONA**, they may receive **up to 1 course credit point** (determined by their instructor).
-- Other recruits may receive **compensation as outlined in recruitment materials**.
-- **Compensation is optional** and can be waived by mutual agreement.
+- You **may receive compensation** for your time.
+- If you were recruited through **SONA**, you may receive **up to 1 course credit point**.
+- If you were recruited another way, you may receive **compensation as outlined in the recruitment materials**.
+- **Compensation is optional** and can be waived otherwise.
 
 ---
 
 ## Withdrawal from the study
 
 - Your participation is **entirely voluntary**.
-- You may **withdraw at any time** without penalty, and any collected data will be discarded.
-- You are **not required to answer any question** that makes you uncomfortable.
+- You may **skip most demographic questions** by selecting “N/A” or “I don’t know” where available.
+- You may **stop participating at any time** without penalty.
+- We will **discard any data we've collected** if you choose to withdraw or close the window.
 
 ---
 
@@ -128,4 +132,4 @@ You may request a copy of this description at any time.
 
 ---
 
-**IRB Project Number: ET00046536** | IRB Version: **05/15/2025** | PI Version: **1**
+**IRB Project Number: ET00046536** | IRB Version: **05/17/2025** | PI Version: **1**

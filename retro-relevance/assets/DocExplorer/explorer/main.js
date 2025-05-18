@@ -10,6 +10,15 @@ let guid = (cond) => {
     //return id of format #_'aaaaaaaa'
     return cond+"_"+s4() + s4();
 }
+// Get URL parameters function
+function getUrlParameter(name) {
+    // console.log("🚀 ~ getUrlParameter ~ name:", name)
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    // console.log("🚀 ~ getUrlParameter ~ results:", results)
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
 
 var pname = "NONE"
 // var DEBUGME = null;
@@ -23,8 +32,12 @@ var init_time = d.getTime();
 var prov_history_file = ""
 
 var prov_Coverage_file = "";
+const passedDataset = getUrlParameter("set");
 
-var thisDoc = "./explorer/data/tutorial_docs.json";  //  -or- documents_1.json  -or- documents_2.json  -or- documents_2.json -or- documents_test.json	 		
+var thisDoc = (passedDataset == "comms")
+  ? "./explorer/data/comms_tutorial_docs.json"
+  : "./explorer/data/tutorial_docs.json";  //  -or- documents_1.json  -or- documents_2.json  -or- documents_2.json -or- documents_test.json	 		
+ console.log("🚀 ~ thisDoc:", thisDoc)
  
 var query = window.location.search;
 var promptNoteText = '';
@@ -34,7 +47,8 @@ pname=guid("tut");
 var load_prov_history = false;
 var load_prov_Coverage = false;
 promptNoteText = "ERROR - no condition specified<br><br>You are viewing a <strong>template interface</strong> to practice interacting with the interface. <br> Analyst A Notes will be displayed when condition provided."
-instructionsPrompt = "This window will describe the task and goal of the analysis session as well as provide a <strong>button</strong> for you to end the study.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
+instructionsPrompt = (passedDataset == "comms")? "This window will describe the context of the analysis session.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
+: "This window will describe the task and goal of the analysis session as well as provide a <strong>button</strong> for you to end the study.<br/> In the real study interface you will see about <strong>10x the number of documents</strong>."
 console.error('ERROR! - defaulting to tutorial interface');
 
 (async function() {
@@ -62,7 +76,7 @@ console.error('ERROR! - defaulting to tutorial interface');
         var output="<div>";
         for (var i in data){
 			jsonCounter++;  // document_id data[i].id
-			console.log(jsonCounter)
+			// console.log(jsonCounter)
 
 			output +=
 			//  '<div id="jsonDialog' + i + '" class="doc-set docSet" title="' + data[i].title + '" data-id="' + scrunchOriginal + '" data-source="' + data[i].type + '">' +
