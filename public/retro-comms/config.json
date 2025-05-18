@@ -7,7 +7,7 @@
                     "Jeremy Block"
                 ],
                 "date": "2025-04-01",
-                "description": "We want to evaluate how you interpret summaries of your work",
+                "description": "We want to evaluate how you interpret summaries of other people's work",
                 "organizations": [
                     "University of Florida"
                 ]
@@ -564,6 +564,32 @@
                             "required": false,
                             "withDivider": true,
                             "withDontKnow": true
+                        },
+                        {
+                            "id": "plan-stickiness",
+                            "prompt": "Did you stick to the plan you made?",
+                            "options": [
+                                {
+                                    "label": "😮 Oh shoot! I forgot about that.",
+                                    "value": "1"
+                                },
+                                {
+                                    "label": "🫤 Nah, it wasn't really applicable once I saw the evidence",
+                                    "value": "2"
+                                },
+                                {
+                                    "label": "🙃 Kinda, I also found other things to look at",
+                                    "value": "3"
+                                },
+                                {
+                                    "label": "😁 Yeah, more or less.",
+                                    "value": "4"
+                                }                                
+                            ],
+                            "type": "dropdown",
+                            "required": false,
+                            "withDivider": true,
+                            "withDontKnow": true
                         }
                     ],
                     "correctAnswer": [
@@ -582,6 +608,12 @@
                         {
                             "id": "guilty",
                             "answer": "Mr. Wadsworth is NOT guilty of murder."
+                        },
+                        {
+                            "id": "plan-stickiness",
+                            "answer": "2",
+                            "acceptableHigh": 4,
+                            "acceptableLow": 2
                         }
                     ]
                 },
@@ -1572,43 +1604,30 @@
                             ]
                         },
                         {
-                            "id": "Demographics-toolsUsed",
-                            "prompt": "Which of the following tools have you used for summarization or reporting work?",
-                            "type": "checkbox",
-                            "options": [
-                                "ChatGPT",
-                                "Copilot",
-                                "Tableau",
-                                "Jupyter",
-                                "Excel summaries",
-                                "None",
-                                "Other"
-                            ],
-                            "required": false
-                        },
-                        {
                             "id": "Demographics-summaryAudience",
                             "prompt": "Do you usually summarize information for a technical or non-technical audience?",
+                            "location": "aboveStimulus",
+                            "required": false,
                             "type": "dropdown",
                             "options": [
-                                "Technical",
-                                "Non-technical",
+                                "Technical/Academic",
+                                "Non-technical/Public",
                                 "Both equally",
                                 "Neither"
-                            ],
-                            "required": false
+                            ]
                         },
                         {
                             "id": "Demographics-reportingRole",
                             "prompt": "Are you typically responsible for writing reports, reviewing them, or both?",
+                            "location": "aboveStimulus",
+                            "required": false,
                             "type": "dropdown",
                             "options": [
                                 "Writing reports",
                                 "Reviewing reports",
                                 "Both",
                                 "Neither"
-                            ],
-                            "required": false
+                            ]
                         },
                         {
                             "id": "Demographics-approach",
@@ -1621,12 +1640,28 @@
                                 "I focus on the details first and then build the big picture",
                                 "I look at the big picture first and then fill in the details",
                                 "I try to balance both simultaneously"
+                            ]
+                        },
+                        {
+                            "id": "Demographics-toolsUsed",
+                            "prompt": "Which of the following tools have you used for summarization or reporting your work for others?",
+                            "location": "aboveStimulus",
+                            "required": false,
+                            "type": "checkbox",
+                            "withDontKnow": true,
+                            "withOther": true,
+                            "options": [
+                                "AI Models (ChatGPT, Claude, Copilot, etc.)",
+                                "Science notebooks (Jupyter / R Markdown)",
+                                "Data Visualization dashboards (Tableau / Microsoft BI / d3.js)",
+                                "Tabular data tools (Excel / Google Sheets / Airtable)",
+                                "Written reports (Word / LaTeX)"
                             ],
                             "withDivider": true
                         },
                         {
                             "id": "Demographics-confident",
-                            "prompt": "How confident are you in your ability to summarize complex information?",
+                            "prompt": "How confident are you in your ability to summarize complex information you understand well?",
                             "location": "aboveStimulus",
                             "required": false,
                             "type": "likert",
@@ -1679,10 +1714,10 @@
                             "prompt": "How much do you trust automated summary tools compared to manual summarization?",
                             "location": "aboveStimulus",
                             "required": false,
-                            "withDivider": true,
                             "type": "likert",
                             "leftLabel": "Not at all",
                             "rightLabel": "Completely",
+                            "withDivider": true,
                             "numItems": 5
                         },
                         {
