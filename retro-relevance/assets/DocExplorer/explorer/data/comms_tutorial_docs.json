@@ -4,62 +4,62 @@
         "title": "Double-click to open me!",
         "date": "1",
         "type": "set1",
-        "contents": "Great start!<br><br>Documents will contain text from fictional sources like:<ul><li>Security cameras</li><li>Interview transcripts</li><li>Police reports</li></ul>Double-click a teal title to open or close a doc. Give it a try!<br><br><em>Close this doc and check out doc 2.</em>"
+        "contents": "Great start!<br/><br/>Documents will contain text from fictional sources like:<ul><li>Security cameras</li><li>Interview transcripts</li><li>Police reports</li></ul>Double-click a teal title to open or close a doc. Give it a try!<br/><br/><em>Close this doc and check out doc 2.</em>"
     },
     {
         "id": "Tutorial2",
         "title": "Click and drag me!",
         "date": "2",
         "type": "set1",
-        "contents": "You can move docs by dragging the title bar.<br>Resize them by dragging the edges.<br><br>Try grouping docs together to help spot patterns.<br><em>Only open docs can be resized.</em>"
+        "contents": "You can move docs by dragging the title bar.<br/>Resize them by dragging the edges.<br/><br/>Try grouping docs together to help spot patterns.<br/><em>Only open docs can be resized.</em>"
     },
     {
         "id": "Tutorial3",
         "title": "Write something down!",
         "date": "3",
         "type": "set1",
-        "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br><br><em>You can also paste info from other docs here.</em>"
+        "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br/><br/><em>You can also paste info from other docs here.</em>"
     },
     {
         "id": "Tutorial4",
         "title": "More notes, please!",
         "date": "4",
         "type": "set1",
-        "contents": "Things getting messy? Right-click the orange background and choose <strong>New note</strong>.<br><br>Extra notes give you space to write things down and organize your thoughts.<em> <br/><br/>Notes can't be renamed or deleted, but they're great for storing or sorting info.</em>"
+        "contents": "Things getting messy? Right-click the orange background and choose <strong>New note</strong>.<br/><br/>Extra notes give you space to write things down and organize your thoughts.<em> <br/><br/>Notes can't be renamed or deleted, but they're great for storing or sorting info.</em>"
     },
     {
         "id": "Tutorial5",
         "title": "Highlighting helps!",
         "date": "5",
         "type": "set1",
-        "contents": "Select some text in an open doc, then right-click to <strong>highlight</strong> text or <strong>Search for selected</strong>.<br><br>For example, try selecting this:<br><br>Please select me with your cursor.<br><br>Then right-click (and hold) to highlight.<br><br><em>Highlights stay visible after closing a doc---they're great for identifying what you've already read.</em>"
+        "contents": "Select some text in an open doc, then right-click to <strong>highlight</strong> text or <strong>Search for selected</strong>.<br/><br/>For example, try selecting this:<br/><br/>Please select me with your cursor.<br/><br/>Then right-click (and hold) to highlight.<br/><br/><em>Highlights stay visible after closing a doc---they're great for identifying what you've already read.</em>"
     },
     {
         "id": "Tutorial6",
         "title": "Use Search! There's too much to read!",
         "date": "6",
         "type": "set1",
-        "contents": "There are two ways to search:<br><ol><li><strong>Search by selection:</strong> Highlight text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own term too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
+        "contents": "There are two ways to search:<br/><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own terms too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
     },
     {
         "id": "Tutorial7",
         "title": "Not enough time! Don't go random!",
         "date": "7",
         "type": "set1",
-        "contents": "You won't finish reading every doc—focus on what matters!<br><br>Use search to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
+        "contents": "You won't finish reading every doc—focus on what matters!<br/><br/>Use <strong>search</strong> to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
     },
     {
         "id": "Tutorial8",
         "title": "So many approaches!",
         "date": "8",
         "type": "set1",
-        "contents": "Use whatever tools help you investigate. Search is often faster than reading everything.<br>And hey—if the orange background reminds you of fish, you're not wrong. Red herrings are part of solving mysteries and something fishy is afoot!<br><em>We were looking for a fish that matched the University of Florida's colors. The Spotted Salmonfish just seemed right—it probably loves mysteries too. Heck, how do these orange and teal creatures know how to return to their spawning grounds?</em>"
+        "contents": "Use whatever tools help you investigate-Search is often faster than reading everything.<br/>Some clues may be distractors-We call these <strong>red herrings</strong>.<br/><em>A herring is a type of fish, and we were looking for a fish that matched the University of Florida's colors. The Spotted Salmonfish just seemed right (it probably loves mysteries too). Heck, how do these orange and teal fish know how to return to their spawning grounds? It's a mystery!</em>"
     },
     {
         "id": "Tutorial9",
         "title": "Final notes",
         "date": "9",
         "type": "set1",
-        "contents": "You're ready!<br><br>Maximize your screen for the best view (you can also use your browser's zoom features to give you more space).<br>This orange-and-teal interface helps you piece together data. After your investigation, there's a short quiz.<br><br><em>Try searching 'orange' to find the answer to the question.</em>"
+        "contents": "You're ready!<br/><br/>Maximize your screen for the best view (you can also use your browser's zoom features to give you more space).<br/>This orange-and-teal interface helps you look at evidence.<br/><br/><em>Try searching 'orange' to find the answer to the question.</em>"
     }
 ]

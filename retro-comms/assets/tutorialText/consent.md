@@ -38,15 +38,15 @@ You can participate in this research study, if you:
 
 During the study, you will:
 
-1. Allow the system to record your browser activity and written responses for research purposes.
-2. Read investigation notes written by a previous investigator.
-3. Create your own plan for continuing the investigation.
-4. Use a research tool to explore a **fictional mystery case** presented in text format.
+- Allow the system to record your **browser activity** and written responses for research purposes.
+- Read investigation notes written by a **previous investigator**.
+- Create your own **plan** for continuing the investigation.
+- Use a research tool to explore a **fictional mystery case** presented in text format.
+  - The case contains no real-world personal information; any similarities to real individuals are purely coincidental.
 
-   - The case contains no real-world personal information; any similarities to real individuals are purely coincidental.
-5. Complete a quiz to demonstrate your understanding of the case.
-6. Review and rate summaries by highlighting key phrases and answering follow-up survey questions.
-7. Answer a short set of questions about your personality, habits, and demographics.
+- Complete a **quiz** to demonstrate your understanding of the case.
+- **Review and rate summaries** by highlighting key phrases and answering follow-up survey questions.
+- Answer a short set of questions about your **personality, habits, and demographics**.
 
 All of your responses will be recorded digitally, kept anonymous, and analyzed for research purposes. You may stop participating at any time. Contact **Eric D. Ragan at [eragan@ufl.edu](mailto:eragan@ufl.edu)** to have your data discarded after study completion.
 
