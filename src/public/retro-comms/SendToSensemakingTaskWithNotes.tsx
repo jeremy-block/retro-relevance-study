@@ -15,7 +15,7 @@ function SendToSensemakingTask({
     provenanceState }: StimulusParams<SelectionToolParams, SelectionListState>) {
 
     // Get previous stimulus data if needed
-    const trialNameToPullResponseFrom = "PremiseAndParagraph_2";
+    const trialNameToPullResponseFrom = "PremiseAndParagraph_4";
     // const keyForSummary = "firstParagraphId";
     // const keyForID = "participantAssignedID";
     const minutes = 10; //How long will the user have to look at evidence?
@@ -148,7 +148,7 @@ function SendToSensemakingTask({
             <Alert variant="outline" color="blue" title="Timing and Tools" style={{
                 justifySelf: "center",
             }}>
-                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ <br/>Your time starts when you <strong>open your first document</strong>.<br/> The <strong>remaining time</strong> will appear in the <strong>bottom right</strong> occasionally.</Text>
+                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ <br/>Your time starts when you <strong>open your first document</strong>.<br/> The <strong>remaining time</strong> will appear <strong>occasionally</strong>.</Text>
                 <Text>You will <strong>not have enough time</strong> to read all the documents. <em>Stick to <strong>your plan</strong>.</em></Text>
 
                 <Text>Right click to:</Text>

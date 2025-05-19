@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { initializeTrrack, Registry } from '@trrack/core';
-import { useMantineTheme, SimpleGrid, Paper, Title, Text, Divider } from '@mantine/core';
+import { Divider, Grid, Paper, Title, Text, useMantineTheme } from '@mantine/core';
 
 import { useStoreSelector } from "../../store/store";
 import { StimulusParams, StoredAnswer } from "../../store/types";
@@ -302,13 +302,16 @@ function PremiseAndParagraph({
       </p>
       
       <Text mt={2} className="mt-3 text-blue-600 italic">
-        Based on the <strong>Context</strong> and <strong>Summary</strong> below, please <strong>plan your investigation</strong>.<br/>
-        Write at least three (3) specific people, places, things, or activities that you want to explore in 
-        the <strong>sidebar</strong> on the left.
+        Based on the <strong>Prior Analyst Summary</strong> below, please make a <strong>plan for your investigation</strong>.<br/>
+        Your plan can change once you look at evidence, but please write at least <strong>3 people, places, things, or activities</strong> that you want to explore in 
+        the <strong>sidebar</strong> on the left.<br />
+        The original <strong>Context</strong> for the investigation is also provided below.
       </Text>
       
-      <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg">
+      <Grid gutter="xs">
         {/* Premise Section */}
+        <Grid.Col span={{ base: 12, md: 4 }}>
+
         <Paper shadow="sm" p="md" withBorder>
           <Text size="sm" style={{color: "gray"}} mt="sm" mb="sm">
             Here's the case overview the prior analyst began with:
@@ -343,8 +346,11 @@ function PremiseAndParagraph({
             Only those involved in the murder may knowingly lie, while anyone might
             accidentally provide false information.
           </Text>
+          {/* <Text style={{color: "gray"}} mt="sm" mb="sm">Please read the prior analyst's summary too!</Text> */}
         </Paper>
-      
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, md: 8 }}>
+
         {/* Analyst Summary Section */}
         <Paper shadow="sm" p="md" withBorder>
           <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
@@ -363,9 +369,9 @@ function PremiseAndParagraph({
           
           {currentParagraph && (
             <div
-              ref={contentRef}
-              data-paragraph-id={currentParagraph.id}
-              className="relative"
+            ref={contentRef}
+            data-paragraph-id={currentParagraph.id}
+            className="relative"
             >
               <MarkdownRenderer
                 markdownText={currentParagraph.text}
@@ -375,11 +381,12 @@ function PremiseAndParagraph({
                 dataParagraphId={currentParagraph.id}
                 className="bg-gray-50 border border-gray-200 rounded-md p-4 max-h-96 overflow-y-auto"
                 aria-label="Paragraph content with selectable text"
-              />
+                />
             </div>
           )}
         </Paper>
-      </SimpleGrid>
+          </Grid.Col>
+      </Grid>
       
       <Text mt="sm" mb="md" style={{textAlign: "center", color:"gray"}}>
         <em>A copy of this context and summary will be available in the investigative tool.</em>

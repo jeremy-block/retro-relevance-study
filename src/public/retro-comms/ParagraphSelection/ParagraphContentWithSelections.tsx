@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Registry, initializeTrrack } from '@trrack/core';
-import { Center, Pagination, useMantineTheme } from '@mantine/core';
+import { Center, Pagination, Text, useMantineTheme } from '@mantine/core';
 
 import MarkdownRenderer from '../../retro-relevance/ParagraphSelection/MarkdownRenderer';
 import SelectionContextMenu from '../../retro-relevance/ParagraphSelection/SelectionContextMenu';
@@ -411,17 +411,18 @@ export function ParagraphContentWithSelections({
         {/* Selection Interface with Markdown Renderer */}
         
         <p className="text-sm text-gray-600 mb-4">
-          Please select the parts in each of these summaries that you think would be relevant to future investigators.
+          Please select the parts in each of these summaries that you think would be <Text span fw={700}>relevant</Text> to future investigators.
           <br />
-          <small style={{ color: theme.colors.gray[5] }}>
-            Click and drag to select text, and indicate how relevant (Critical, Helpful, Optional) you believe the text would be to someone joining the investigative team and helping solve the mystery.
+          <small style={{ color: theme.colors.gray[7] }}>
+            Click and drag to select text, and indicate what you believe would be <Text span pl={5} pr={5} style={{ backgroundColor: theme.colors.red[1] }}>🟥 Critical,</Text> <Text span pl={5} pr={5} style={{ backgroundColor: theme.colors.yellow[1] }}>🟨 Helpful,</Text>and<Text span pl={5} pr={5} style={{ backgroundColor: theme.colors.green[1] }}>🟩 Optional</Text>
+            to someone joining the investigative team and helping solve the mystery.
           </small>
         </p>
         
         <h3 className="text-lg font-semibold mb-4">
           Select Relevant Text
           {paragraphs.length > 1 && (
-            <span> :: Summary {focusedParagraphIndex + 1} of {paragraphs.length} <small style={{color: "gray"}}>{focusedParagraphIndex > 0 ? "(New analyst's work)" : "(You've seen this summary before)"}</small></span>
+            <span> :: Summary {focusedParagraphIndex + 1} of {paragraphs.length} <small style={{color: "gray"}}>{focusedParagraphIndex > 0 ? "(This summary is new to you)" : "(You've seen this summary before)"}</small></span>
           )}
         </h3>
         {currentParagraph && (
