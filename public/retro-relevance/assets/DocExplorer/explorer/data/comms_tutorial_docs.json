@@ -21,45 +21,45 @@
         "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br/><br/>You can also copy and paste info from other docs there. <em>Try it!</em>"
     },
     {
+        "id": "Tutorial6",
+        "title": "Use Search! There's too much to read!",
+        "date": "4",
+        "type": "set1",
+        "contents": "When you search, results will have yellow document titles. There are two ways to search:<br/><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> <em>Try searching for the term <strong>'document'</strong> this way.</em> <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background, type a word and hit return.<br/><em>Try typing your own terms too!</em> <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
+    },
+    {
+        "id": "Tutorial7",
+        "title": "Not enough time! Don't go random!",
+        "date": "5",
+        "type": "set1",
+        "contents": "You won't finish reading every doc—That's okay! You don't need to finish reading thse documents if you feel comfortable. The evidence you will look at is intentionally overwhelming. We want to see what you focus on when you don't have enough time.<br/><br/>Use <strong>search</strong> to find clues about people, places, or suspicious patterns. <em>Stick to your plan!</em><br/>The remaining documents describe other things you can do in the interface, but you've got the essentials by now. <em>For example, try searching 'because' to answer the question in the sidebar.</em>"
+    },
+    {
         "id": "Tutorial4",
         "title": "More notes, please!",
-        "date": "4",
+        "date": "6",
         "type": "set1",
         "contents": "Things getting messy? Right-click the orange background and choose <strong>New note</strong>.<br/><br/>Extra notes give you space to write things down and organize your thoughts.<em> <br/><br/>Notes can't be renamed or deleted, but they're great for storing or sorting info.</em>"
     },
     {
         "id": "Tutorial5",
         "title": "Highlighting helps!",
-        "date": "5",
-        "type": "set1",
-        "contents": "Select some text in an open doc, then right-click to <strong>highlight</strong> text or <strong>Search for selected</strong>.<br/><br/>For example, try selecting this:<br/><br/>Please select me with your cursor.<br/><br/>Then right-click (and hold) to highlight.<br/><br/><em>Highlights stay visible after closing a doc---they're great for identifying what you've already read.</em>"
-    },
-    {
-        "id": "Tutorial6",
-        "title": "Use Search! There's too much to read!",
-        "date": "6",
-        "type": "set1",
-        "contents": "Search results will have yellow document titles. There are two ways to search:<br/><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> <em>Try searching for the term <strong>'document'</strong> this way.</em> <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background, type a word and hit return.<br/><em>Try typing your own terms too!</em> <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
-    },
-    {
-        "id": "Tutorial7",
-        "title": "Not enough time! Don't go random!",
         "date": "7",
         "type": "set1",
-        "contents": "You won't finish reading every doc—focus on what matters!<br/><br/>Use <strong>search</strong> to find clues about people, places, or suspicious patterns.<br/><em>Stick to your plan!</em>"
+        "contents": "Select some text in an open doc, then right-click to <strong>highlight</strong> text or <strong>Search for selected</strong>.<br/><br/>For example, try selecting this:<br/><br/>Please select me with your cursor.<br/><br/>Then right-click (and hold) to highlight.<br/><br/><em>Highlights stay visible after closing a doc---they're great for identifying what you've already read.</em>"
     },
     {
         "id": "Tutorial8",
         "title": "So many approaches!",
         "date": "8",
         "type": "set1",
-        "contents": "Use whatever tools help you investigate-Search is often faster than reading everything.<br/>Some clues may be distractors-We call these <strong>red herrings</strong>.<br/><em>A herring is a type of fish, and we were looking for a fish that matched the University of Florida's colors. The Spotted Salmonfish just seemed right (it probably loves mysteries too). Heck, how do these orange and teal fish know how to return to their spawning grounds? It's a mystery!</em>"
+        "contents": "Use whatever tools help you investigate-Search is often faster than reading everything.<br/><br/>For example, there is a lot to read in the docs and some clues may be distractors-We call these <strong>red herrings</strong>.<br/><em>A herring is a type of fish, and we were looking for a fish that matched the University of Florida's colors. The Spotted Salmonfish just seemed right (it probably loves mysteries too). Heck, how do these orange and teal fish know how to return to their spawning grounds? It's a mystery! So, the background is orange because mysteries can be filled with red herrings! (Hint: select the second option to continue)</em>"
     },
     {
         "id": "Tutorial9",
         "title": "Final notes",
         "date": "9",
         "type": "set1",
-        "contents": "You're ready!<br/><br/>Maximize your screen for the best view (you can also use your browser's zoom features to give you more space).<br/>This orange-and-teal interface helps you look at evidence.<br/><br/><em>Try searching 'orange' to find the answer to the question.</em>"
+        "contents": "You're ready for the mystery!<br/><br/>Maximize your screen for the best view (you can also use your browser's zoom features to give you more space).<br/><em>Have you searched for 'mystery' yet?</em>"
     }
 ]

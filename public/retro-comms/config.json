@@ -898,7 +898,7 @@
                 "SalmonfishTool": {
                     "type": "website",
                     "nextButtonLocation": "belowStimulus",
-                    "instruction": "<p>Read each tutorial document on the right. They'll describe the 5 ways to interact with evidence in the real interface. Use this time to practice and get comforatable.</p><ol><li><strong>Open/Close:</strong> Double-click a title to open or close a document.</li><li><strong>Move/Resize:</strong> Drag the title bar to move, or edges to resize.</li><li><strong>Take Notes:</strong> Type in your <em>Personal Notebook</em> or new ones.</li><li><strong>Highlight:</strong> Select text, right-click-hold, then “Highlight.”</li><li><strong>Search:</strong> Right-click selected text or on the background to search.</li></ol></p>",
+                    "instruction": "<p>The documents on the right describe the 5 ways to interact with evidence. Use this time to practice and get comforatable.</p><ol><li><strong>Open/Close:</strong> Double-click a title to open or close a document.</li><li><strong>Move/Resize:</strong> Drag the title bar to move, or edges to resize.</li><li><strong>Take Notes:</strong> Type in your <em>Personal Notebook</em> or new ones.</li><li><strong>Highlight:</strong> Select text, right-click-hold, then “Highlight.”</li><li><strong>Search:</strong> Right-click selected text or on the background to search.</li></ol></p>",
                     "path": "retro-relevance/assets/DocExplorer/index.html?set=comms&",
                     "response": [
                         {
