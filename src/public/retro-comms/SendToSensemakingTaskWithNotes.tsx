@@ -148,7 +148,7 @@ function SendToSensemakingTask({
             <Alert variant="outline" color="blue" title="Timing and Tools" style={{
                 justifySelf: "center",
             }}>
-                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ A timer will start when you open your first document, it will appear occasionally in the bottom right.</Text>
+                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ <br/>Your time starts when you <strong>open your first document</strong>.<br/> The <strong>remaining time</strong> will appear in the <strong>bottom right</strong> occasionally.</Text>
                 <Text>You will <strong>not have enough time</strong> to read all the documents. <em>Stick to <strong>your plan</strong>.</em></Text>
 
                 <Text>Right click to:</Text>

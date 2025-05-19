@@ -299,12 +299,11 @@ function PremiseAndParagraph({
       <h1>Case Handoff</h1>
       <p>
         You're collaborating with another analyst on a murder investigation.
-        Please take <strong>a few minutes</strong> to review the following and <strong>plan your investigation</strong>.
       </p>
       
       <Text mt={2} className="mt-3 text-blue-600 italic">
-        Based on the <strong>Context</strong> and <strong>Summary</strong> below, write at least 
-        three specific people, places, things, or activities that you want to explore in 
+        Based on the <strong>Context</strong> and <strong>Summary</strong> below, please <strong>plan your investigation</strong>.<br/>
+        Write at least three (3) specific people, places, things, or activities that you want to explore in 
         the <strong>sidebar</strong> on the left.
       </Text>
       
@@ -382,11 +381,9 @@ function PremiseAndParagraph({
         </Paper>
       </SimpleGrid>
       
-      <Text mt="sm" style={{textAlign: "center", color:"gray"}}>
+      <Text mt="sm" mb="md" style={{textAlign: "center", color:"gray"}}>
         <em>A copy of this context and summary will be available in the investigative tool.</em>
       </Text>
-      
-      <p className="mt-4">On the next page we will introduce the investigation tool and the evidence.</p>
     </div>
   );
 }

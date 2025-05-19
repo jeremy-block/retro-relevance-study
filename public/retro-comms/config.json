@@ -903,7 +903,7 @@
                     "response": [
                         {
                             "id": "tut-1",
-                            "prompt": "Why is the interface orange and teal? <small>Hint: the answer is in the documents</small>",
+                            "prompt": "Why is the background orange?<br/> <small>Hint: the answer is in the documents</small>",
                             "location": "sidebar",
                             "required": true,
                             "type": "dropdown",
@@ -911,7 +911,7 @@
                             "withDontKnow": true,
                             "options": [
                                 {
-                                    "label": "Because Florida is known for its oranges.",
+                                    "label": "Because the state of Florida is known for its oranges.",
                                     "value": "1"
                                 },
                                 {
@@ -919,7 +919,7 @@
                                     "value": "2"
                                 },
                                 {
-                                    "label": "Because teal and orange are complements.",
+                                    "label": "Because orange improves focus during reading tasks.",
                                     "value": "3"
                                 },
                                 {
@@ -959,6 +959,12 @@
                         }
                     ]
                 },
+                "Opener":{
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_opener.md",
+                    "nextButtonEnableTime": 5000,
+                    "response": []
+                },
                 "PersonalityIntro": {
                     "type": "markdown",
                     "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_personality.md",
@@ -968,6 +974,12 @@
                 "SelectionIntro": {
                     "type": "markdown",
                     "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_selections.md",
+                    "nextButtonEnableTime": 5000,
+                    "response": []
+                },
+                "SelectionIntro2": {
+                    "type": "markdown",
+                    "path": "../retro-relevance-study/retro-comms/assets/tutorialText/intro_selections2.md",
                     "nextButtonEnableTime": 5000,
                     "response": []
                 },
@@ -1820,12 +1832,14 @@
                 "components": [
                     "ConsentForm",
                     "Screener",
-                    "PremiseAndParagraph",
+                    "Opener",
                     "SalmonfishTool",
+                    "PremiseAndParagraph",
                     "sendToSensemakingTask",
                     "FinalAnswer",
                     "MentalModelQuiz",
                     "SelectionIntro",
+                    "SelectionIntro2",
                     "SelectionTask",
                     "PersonalityIntro",
                     "AnalysisHolismScaleShort",
