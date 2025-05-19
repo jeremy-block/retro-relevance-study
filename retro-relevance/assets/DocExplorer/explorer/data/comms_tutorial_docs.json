@@ -4,7 +4,7 @@
         "title": "Double-click to open me!",
         "date": "1",
         "type": "set1",
-        "contents": "Great start!<br/><br/>Documents will contain text from fictional sources like:<ul><li>Security cameras</li><li>Interview transcripts</li><li>Police reports</li></ul>Double-click a teal title to open or close a doc. Give it a try!<br/><br/><em>Close this doc and check out doc 2.</em>"
+        "contents": "Great start!<br/><br/>This document is now open. Typically docs contain text from fictional sources like:<ul><li>Security cameras</li><li>Interview transcripts</li><li>Police reports</li></ul>Double-click a title to open or close a doc.<br/><br/><em>Give it a try with doc 2!.</em>"
     },
     {
         "id": "Tutorial2",
@@ -18,7 +18,7 @@
         "title": "Write something down!",
         "date": "3",
         "type": "set1",
-        "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br/><br/><em>You can also paste info from other docs here.</em>"
+        "contents": "Find your yellow <strong>Personal Notebook</strong> and type something in—maybe 'hello world'?<br/><br/>You can also copy and paste info from other docs there. <em>Try it!</em>"
     },
     {
         "id": "Tutorial4",
@@ -39,7 +39,7 @@
         "title": "Use Search! There's too much to read!",
         "date": "6",
         "type": "set1",
-        "contents": "There are two ways to search:<br/><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> Try searching for the term <strong>'document'</strong> this way. <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background and type a word or phrase.<br/>Try typing your own terms too! <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Matching docs get a yellow title. Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
+        "contents": "Search results will have yellow document titles. There are two ways to search:<br/><ol><li><strong>Search by selection:</strong> Select text, then right-click to search for it.<br/> <em>Try searching for the term <strong>'document'</strong> this way.</em> <small>(Hint: there are 3 results)</small></li><li><strong>Search by query:</strong> Right-click in the orange background, type a word and hit return.<br/><em>Try typing your own terms too!</em> <small>(Hint: Try 'docs' vs. 'documents'— any different?)</small></li></ol><br/><br/><em>Searches are case-insensitive but only match exact character sequences.</em>  If you don't get the results you expect, try changing your search term slightly."
     },
     {
         "id": "Tutorial7",
