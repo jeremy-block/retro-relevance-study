@@ -21,7 +21,7 @@
         "studyEndMsg": "**This is not really ever gonna be seen if SONA is included in the URL, but since the `urlParticipantIdParam` is set to 'SONA' and we have a response in a screener component that captures the Sona ID, it will be included in the URL.**",
         "sidebar": true,
         "windowEventDebounceTime": 500,
-        "urlParticipantIdParam": "SONA",
+        "urlParticipantIdParam": "sona",
         "numSequences": 500
     },
     "components": {
@@ -50,7 +50,7 @@
                     "location": "belowStimulus",
                     "type": "shortText",
                     "placeholder": "Sona ID",
-                    "paramCapture": "SONA"
+                    "paramCapture": "sona"
                 }
             ]
         }

@@ -20,7 +20,7 @@
                 "studyEndMsg": "**Thank you for volunteering for this study. Your responses have been recorded.** You can close this window now.",
                 "sidebar": true,
                 "windowEventDebounceTime": 500,
-                "urlParticipantIdParam": "SONA",
+                "urlParticipantIdParam": "sona",
                 "numSequences": 500
             },
             "components": {
@@ -654,14 +654,14 @@
                             "type": "numerical"
                         },
                         {
-                            "id": "SONA_ID",
+                            "id": "sona_id",
                             "prompt": "Do not change the SONA ID below. It is automatically generated.",
                             "required": false,
                             "hidden": true,
                             "location": "belowStimulus",
                             "type": "shortText",
                             "placeholder": "SONA ID",
-                            "paramCapture": "SONA"
+                            "paramCapture": "sona"
                         }
                     ],
                     "correctAnswer": [

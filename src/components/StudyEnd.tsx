@@ -105,15 +105,15 @@ export function StudyEnd() {
   // This is a temporary solution until we can get a custom URL parameter to include in response to a participant collection service.
   // This basically will check to see if the service name is set in the user's answers and if so, it will add the SONA ID code to the return link.
   // If they do not have a SONA ID code set by the url, then they will see the studyEndMsg that is established in the studyConfig.
-  const externalServiceName = studyConfig.uiConfig.urlParticipantIdParam || "SONA";
+  const externalServiceName = studyConfig.uiConfig.urlParticipantIdParam || "sona";
   const collectionComponent: string = Object.keys(answers).find((key) => key.toLowerCase().startsWith('screener_')) || 'Screener_1';
   const localParamKeyforExternalURL: string = Object.keys(answers[collectionComponent]?.answer || {}).find((answer: string) => answer.toLowerCase().startsWith(externalServiceName)) || 'sona_id';
 
   //for testing
-  // console.log("🚀 ~ StudyEnd ~ answers:", answers)
-  // console.log("🚀 ~ StudyEnd ~ collectionComponent Key:", collectionComponent)
-  // console.log("🚀 ~ StudyEnd ~ localParamKeyforExternalURL in that component that collects urlParticipantIdParam:", localParamKeyforExternalURL)
-  // console.log(studyConfig);
+  console.log("🚀 ~ StudyEnd ~ answers:", answers)
+  console.log("🚀 ~ StudyEnd ~ collectionComponent Key:", collectionComponent)
+  console.log("🚀 ~ StudyEnd ~ localParamKeyforExternalURL in that component that collects urlParticipantIdParam:", localParamKeyforExternalURL)
+  console.log(studyConfig);
   
   const sonaMessage = `Thank you for participating in this study. Please click for credit: [Back to ${externalServiceName}](https://ufl-cise.sona-systems.com/webstudy_credit.aspx?experiment_id=163&credit_token=76f116f1f7814ef5a8d135b551c0cbb6&survey_code=${answers[collectionComponent].answer[localParamKeyforExternalURL]}).`;
   // Determine the final message to display to the participant.
