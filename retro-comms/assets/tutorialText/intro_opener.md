@@ -1,16 +1,18 @@
 # 👋 Welcome to the Study
 
-Thank you for participating!
+Thank you for joining our study!
 
-We want to know what makes an investigative summary helpful to a new team member—**someone like you**!
+You're helping us learn **what makes an investigative summary helpful** to new team members—**someone like you**!
 
-This study explores how people summarize their work and what makes those summaries useful for communicating with others.
+Your goal is to review a summary of someone elses work, make a plan for invesitgation, try to solve the mystery and evaluate other investigative summaries.
 
-There are **four** main phases:
+🧩 This study has **4 short parts**:
 
-1. 🎓 **Training:** First, you'll learn about a tool to review evidence.
-2. 📋 **Planning:** Next, you'll review a summary of someone else’s attempt and outline a plan.
-3. 🔍 **Investigation:** Then, you’ll then try to solve the mystery.
-4. 📖 **Review:** Finally, you’ll read two additional summaries and mark what you think will be helpful or relevant.
+1. 🎓 **Training:** First, try out our evidence review tool.
+2. 📋 **Planning:** Next, read a summary and plan what you'd explore.
+3. 🔍 **Investigation:** Then, use the tool to find out what really happened.
+4. 📖 **Review:** Finally, review two new summaries and highlight what’s helpful.
 
-🧠 There’s **a lot of reading** ahead, but you’re helping us learn **how people interpret other people's work**!
+🧠 There’s **a lot of reading** ahead, but you’re helping us learn **how people word together to solve problems**!
+
+Let's get started!
