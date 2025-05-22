@@ -298,14 +298,15 @@ function PremiseAndParagraph({
     <div>
       <h1>Case Handoff</h1>
       <p>
-        You're collaborating with another analyst on a murder investigation.
+        You're joining a murder investigation. A previous analyst wrote a short summary of their investigation.
       </p>
-      
+      <p>
+        Your job: <strong>Plan your follow-up investigation</strong>.
+      </p>
       <Text mt={2} className="mt-3 text-blue-600 italic">
-        Based on the <strong>Prior Analyst Summary</strong> below, please make a <strong>plan for your investigation</strong>.<br/>
-        Your plan can change once you look at evidence, but please write at least <strong>3 people, places, things, or activities</strong> that you want to explore in 
-        the <strong>sidebar</strong> on the left.<br />
-        The original <strong>Context</strong> for the investigation is also provided below.
+        Based on the <strong>Prior Analyst Summary</strong> below, please list at least <strong>3 people, places, things, or activities</strong> that you want to explore during your investigation.
+        Write this list in the <strong>sidebar</strong> on the left.<br />
+        {/* Go with your gut, your plan can change later once you start looking at evidence.<br/>  */}
       </Text>
       
       <Grid gutter="xs">
@@ -314,7 +315,7 @@ function PremiseAndParagraph({
 
         <Paper shadow="sm" p="md" withBorder>
           <Text size="sm" style={{color: "gray"}} mt="sm" mb="sm">
-            Here's the case overview the prior analyst began with:
+            This is the case overview the prior analyst began with:
           </Text>
           
           <Title order={3}>Context</Title>
@@ -354,9 +355,7 @@ function PremiseAndParagraph({
         {/* Analyst Summary Section */}
         <Paper shadow="sm" p="md" withBorder>
           <Text size="sm" style={{ color: "gray" }} mt="sm" mb="sm">
-            After the prior analyst spent 15 minutes looking at evidence, they prepared 
-            the following summary of their work for you to use before beginning your 
-            investigation.<br/> What follows should be helpful, but may contain typos.
+            After spending 15 minutes looking at evidence, heres what your teammate prepared for you:
           </Text>
           
           <Title order={3}>Prior Analyst Summary</Title>

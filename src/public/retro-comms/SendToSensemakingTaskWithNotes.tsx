@@ -138,9 +138,9 @@ function SendToSensemakingTask({
     return (
         <div>
             <h1>Task</h1>
-            <p>Using the tool you just learned about, on the next page, you will try to finish the investigation.</p>
+            <p>Now it's your turn to dig into the the evidence.</p>
             <Notification withCloseButton={false} style={{ "maxWidth": "700px" }} withBorder color="lime" radius="md">
-                <em style={{ color: "gray" }}>The original <strong>context</strong> and your collaborator's <strong>summary</strong> will be available in the tool as documents.</em>
+                <em style={{ color: "gray" }}>The original <strong>context</strong> and your teammate's <strong>summary</strong> will be available in the tool.</em>
             </Notification>
 
             <Divider my="md" />
@@ -148,8 +148,9 @@ function SendToSensemakingTask({
             <Alert variant="outline" color="blue" title="Timing and Tools" style={{
                 justifySelf: "center",
             }}>
-                <Text>You only have <strong>{minutes} minutes</strong> to look at evidence. ⏰ <br/>Your time starts when you <strong>open your first document</strong>.<br/> The <strong>remaining time</strong> will appear <strong>occasionally</strong>.</Text>
-                <Text>You will <strong>not have enough time</strong> to read all the documents. <em>Stick to <strong>your plan</strong>.</em></Text>
+                <Text>You have <strong>{minutes} minutes</strong> ⏰ once you <strong>open your first document</strong>.<br /> The <strong>remaining time</strong> will appear <strong>occasionally</strong>.</Text>
+                <Text>This task is <strong>intentionally challening</strong>.</Text>
+                <Text>You won't have time to see everything—focus on what feels most important. <em>Stick to <strong>your plan</strong>.</em></Text>
 
                 <Text>Right click to:</Text>
                 <ol>
